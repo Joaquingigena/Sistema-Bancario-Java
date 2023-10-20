@@ -52,7 +52,33 @@
       <h2>Bienvenido a tu cuenta</h2>
       
   </section>
-
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="css/imagenes/img1.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
+    </div>
+    <div class="carousel-item">
+      <img src="css/imagenes/img2.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
+    </div>
+    <div class="carousel-item">
+      <img src="css/imagenes/img3.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
+    </div>
+        <div class="carousel-item">
+      <img src="css/imagenes/img4.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
+    </div>
+        <div class="carousel-item">
+      <img src="css/imagenes/img5.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
   <footer>
       <p>&copy; 2023 Banco Grupo 6. Todos los derechos reservados.</p>
   </footer> -->

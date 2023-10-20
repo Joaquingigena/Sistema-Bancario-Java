@@ -25,6 +25,10 @@
     height: 100px;
 }
 
+.carousel-inner{
+	max-height:39rem !important;
+}
+
 
 /* Estos estilos ya estaban */
 .TextBox {
