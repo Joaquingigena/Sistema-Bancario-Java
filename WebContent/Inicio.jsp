@@ -32,56 +32,116 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="Inicio.jsp"> Inicio</a>
               </li>
+              &nbsp
               <li class="nav-item">
-                <a class="nav-link" href="#">Movimientos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Historial de Transacciones</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Cerra sesion</a>
-              </li>
-            </ul>
-          
+                <a class="nav-link" href="Login.jsp">Iniciar Sesion</a>
+              </li>   
           </div>
         </div>
     </nav>
-      
     
-    <section id="inicio">
-      <h2>Bienvenido a tu cuenta</h2>
-      
-  </section>
-  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="css/imagenes/img1.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
+    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+            <img src="css/imagenes/img1.jpg" class="d-block w-100" alt="">
+          </div>
+          
+ 
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="css/imagenes/img2.jpg" class="d-block w-100" alt="...">
+          </div>
+ 
+
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="css/imagenes/img3.jpg" class="d-block w-100" alt="...">
+          </div>
+ 
+ 
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel"  data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel"  data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>   
+   <!--========================================================== -->
+                        <!-- INTRODUCCION DE SERVICIOS-->
+    <!--========================================================== -->
+
+
+    <section class="d-flex flex-column justify-content-center align-items-center pt-5  text-center w-50 m-auto" id="intro">
+    <h1 class="p-3 fs-2 border-top border-3">"Tu Socio de Confianza para Todas Tus Necesidades Financieras" <span class="text-primary">Finanzas<span/></h1>
+     <p class="p-3  fs-4">
+         <span class="text-primary">Banco Grupo 6.</span> ¡Somos su socio financiero de confianza, comprometidos a ofrecerle una amplia gama de servicios bancarios para satisfacer todas sus necesidades financieras. En Banco Grupo6, entendemos la importancia de la seguridad, la accesibilidad y la satisfacción del cliente.        
+     </p>   
+    </section>
+
+   <!--========================================================== -->
+                        <!-- TIPOS DE SERVICIOS-->
+    <!--========================================================== -->
+
+
+<section class="w-100">
+    <div class="row w-75 mx-auto" id="servicios-fila-1">       
+        <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-start my-5 icono-wrap">
+            <img src="css/imagenes/img6.png" alt="..."   width="180" height="160">
+
+            <div>
+                <h3 class="fs-5 mt-4 px-4 pb-1">Cuentas Bancarias</h3>
+                <p class="px-4">Ofrecemos una variedad de cuentas bancarias diseñadas para adaptarse a sus necesidades personales o empresariales.</p>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-start  my-5 icono-wrap">
+            <img src="css/imagenes/img7.png" alt="..." width="180" height="160">
+
+            <div>
+                <h3 class="fs-5 mt-4 px-4 pb-1 icono-wrap">Prestamos y Creditos</h3>
+                <p class="px-4">Obtenga acceso a préstamos personales, hipotecas y financiamiento para sus proyectos.</p>
+            </div>
+        </div>   
     </div>
-    <div class="carousel-item">
-      <img src="css/imagenes/img2.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
+    
+    <div class="row w-75 mx-auto mb-5" id="servicios-fila-2">       
+        <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-start  my-5 icono-wrap">
+            <img src="css/imagenes/img8.png" alt="..." width="180" height="160">
+
+            <div>
+                <h3 class="fs-5 mt-4 px-4 pb-1">Inversiones</h3>
+                <p class="px-4">Planifique su futuro financiero con nuestras opciones de inversión y asesoramiento experto.
+
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-start my-5 icono-wrap">
+            <img src="css/imagenes/img9.png" alt="..." width="180" height="160" >
+
+            <div>
+                <h3 class="fs-5 mt-4 px-4 pb-1">Servicios Empresariales</h3>
+                <p class="px-4">Apoyamos a empresas de todos los tamaños con soluciones financieras personalizadas.</p>
+            </div>
+        </div>   
     </div>
-    <div class="carousel-item">
-      <img src="css/imagenes/img3.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
-    </div>
-        <div class="carousel-item">
-      <img src="css/imagenes/img4.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
-    </div>
-        <div class="carousel-item">
-      <img src="css/imagenes/img5.jpg" class="d-block w-100" alt="..." style="max-width: 100%; max-height: 600px;">
-    </div>
+</section>
+
+<!--========================================================== -->
+                        <!--FOOTER-->
+<!--========================================================== -->
+
+
+<footer class="w-100  d-flex  align-items-center justify-content-center flex-wrap">
+  <p class="fs-5 px-3  pt-3">&copy; Banco Grupo 6 Todos Los Derechos Reservados 2021</p>
+  <div id="iconos" >
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-twitter"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>  
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-  <footer>
-      <p>&copy; 2023 Banco Grupo 6. Todos los derechos reservados.</p>
-  </footer> -->
+</footer>
 
 </body>
 </html>

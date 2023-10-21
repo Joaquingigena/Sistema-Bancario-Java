@@ -29,6 +29,22 @@
 	max-height:39rem !important;
 }
 
+/*=========================FOOTER================================*/
+
+footer {
+    background: #C7F1BA;
+    min-height: 100px;;
+}
+footer p{
+    color: black;
+    text-align:center;
+}
+#iconos  i {
+    font-size: 26px;
+    padding: 0 8px;
+    color: black;
+}
+
 
 /* Estos estilos ya estaban */
 .TextBox {
