@@ -61,7 +61,7 @@
                     <div class="form-group mb-3">
                         
                         <select class="form-control mb-3" id="nacionalidad" name="nacionalidad" placeholder="Nacionalidad">
-                        	<option value="predeterminada" selected>Ejila una opcion</option>
+                        	<option value="predeterminada" selected>Ejila su Nacionalidad</option>
                             <option value="opcion1">Argentina</option>
                             <option value="opcion2">Perú</option>
                             <option value="opcion2">Uruguay</option>
@@ -72,7 +72,7 @@
                     <div class="form-group mb-3">
                         
                         <select class="form-control mb-3" id="sexo" name="sexo" placeholder="Sexo">
-                        	<option value="predeterminada" selected>Ejila una opcion</option>
+                        	<option value="predeterminada" selected>Ejila su Sexo</option>
                             <option value="masculino">Masculino</option>
                             <option value="femenino">Femenino</option>
                             <option value="Otro">Otro</option>
