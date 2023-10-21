@@ -25,36 +25,82 @@
         <h2>Registrarse</h2>
       </div>
       
-      <form   method="POST" data-netlify="true" action="#">     
-            <div class= "mb-3">           
-              <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com">
-            </div>
- 
-          
-            <div class="mb-3">            
-              <input type="input" class="form-control" id="name" name="name" placeholder="John">
-            </div>
-      
-            <div class="mb-3">            
-              <input type="input" class="form-control" id="name" name="surname" placeholder="Doe">
-            </div>
-            <div class="mb-3">            
-              <input type="number" class="form-control" id="name" name="CUIL" placeholder="20-42882584-8">
-            </div>
-             <div class="mb-3">            
-              <input type="date" class="form-control" id="name" name="FechaNac" placeholder="01-01-2023">
-            </div>
-             <div class="mb-3">            
-              <input type="input" class="form-control" id="name" name="Direccion" placeholder="Calle falsa 123">
-            </div>
-            <div class="mb-3">
-              <input type="tel" class="form-control" name="phone" id="phone" placeholder="Teléfono">
-            </div>
+      <form>
+            <div class="row bg-secondary border-dark rounded ">
+                <!-- Primera Columna -->
+                <div class="col-md-6 align-items-center mt-3">
+                    <div class="form-group mb-3 ">
+                        
+                        <input type="text" class="form-control " id="nombre" name="nombre" required placeholder="Nombre">
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="text" class="form-control" id="apellido" name="apellido" required placeholder="Apellido">
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="example@email.com">
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="text" class="form-control" id="direccion" name="direccion" required placeholder="Direccion">
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="text" class="form-control" id="cuil" name="cuil" required placeholder="CUIL">
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="date" class="form-control" id="fechaNac" name="fechaNac" required placeholder="Fecha de Nacimiento">
+                    </div>
+                </div>
 
-          <div class="mb-3">
-            <button type="submit" class=" btn btn-primary w-100 fs-5">Registrarse</button>
-          </div>
-      </form>
+                <!-- Segunda Columna -->
+                <div class="col-md-6 align-items-center mt-3">
+                    
+                    <div class="form-group mb-3">
+                        
+                        <select class="form-control mb-3" id="nacionalidad" name="nacionalidad" placeholder="Nacionalidad">
+                        	<option value="predeterminada" selected>Ejila una opcion</option>
+                            <option value="opcion1">Argentina</option>
+                            <option value="opcion2">Perú</option>
+                            <option value="opcion2">Uruguay</option>
+                            <option value="opcion2">Brasil</option>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <select class="form-control mb-3" id="sexo" name="sexo" placeholder="Sexo">
+                        	<option value="predeterminada" selected>Ejila una opcion</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="text" class="form-control" id="localidad" name="localidad" required placeholder="Localidad">
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="text" class="form-control" id="provincia" name="provincia" required placeholder="Provincia">
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="tel" class="form-control" id="telefono" name="telefono" required placeholder="Telefono">
+                    </div>
+                </div>
+            </div>
+			<div class="text-center mt-2">
+				<button type="submit" class="btn btn-primary" >Registrar</button>
+			</div>
+            
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
   
   </div>
 </section>

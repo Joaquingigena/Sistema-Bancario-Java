@@ -12,40 +12,36 @@
 <style type="text/css">
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
-<title>LOgin</title>
+<title>Login</title>
 </head>
 <body>
 
-<div class="container text-center ">
-        <div class="row ">
-            <section class="col-6 ingreso ">
-                <div class="logo text-center">
-                    <h1>Banco Grupo 4</h1>
+<div class="container text-center">
+    <div class="row">
+        <section class="col-md-6 mx-auto ingreso">
+            <div class="logo bg-primary text-center">
+                <h1>Banco Grupo 4</h1>
+            </div>
+            <h3>Inicia sesión</h3>
+            <form>
+                <div class="text-center">
+                    <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1">
                 </div>
-                <h3>Inicia sesion</h3>
-                <form>
-                    <div class="col-4">
-                      <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" >
-                      
-                    </div>
-                    <div class="col-4">
-                      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    
-                    <input type="submit" class= "btn btn-secondary" value="Ingresar">
-                  </form>
+                <div class="text-center">
+                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
 
-                  <p class="text-body-dark">
-                    No tienes cuenta?<a href="#" class="text-reset">Registrate</a>.
-                  </p>
+                <input type="submit" class="btn btn-secondary" value="Ingresar">
+            </form>
 
-            </section>
-
-
+            <p class="text-body-dark">
+                ¿No tienes cuenta? <a href="Registrarse.jsp" class="text-reset">Regístrate</a>.
+            </p>
+        </section>
     </div>
-    </div>
+</div>
 
 </body>
 </html>
