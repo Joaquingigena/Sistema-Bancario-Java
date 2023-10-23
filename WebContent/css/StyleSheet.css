@@ -27,7 +27,16 @@
 
 .carousel-inner{
 	max-height:39rem !important;
+	
 }
+
+.titulo{
+    margin: 20px;
+}
+.btn{
+    margin-bottom: 20px;
+}
+
 
 /*=========================FOOTER================================*/
 
