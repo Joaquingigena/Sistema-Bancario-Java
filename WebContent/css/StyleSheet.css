@@ -20,6 +20,11 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.dropdown-toggle-no-caret::after {
+    display: none;
+}
+
 .banco{
     width: 100px;
     height: 100px;

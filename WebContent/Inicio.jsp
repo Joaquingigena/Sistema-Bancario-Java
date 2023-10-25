@@ -29,13 +29,13 @@
               <i class="bi bi-bank banco"></i>
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="Inicio.jsp"> Inicio</a>
-              </li>
-              &nbsp
-              <li class="nav-item">
-                <a class="nav-link" href="Login.jsp">Iniciar Sesion</a>
-              </li>   
+	              <li class="nav-item">
+	                <a class="nav-link active" aria-current="page" href="Inicio.jsp"> Inicio</a>
+	              </li>
+	              <li class="nav-item">
+	                <a class="nav-link" href="Login.jsp">Iniciar Sesion</a>
+	              </li> 
+	        </ul>  
           </div>
         </div>
     </nav>
