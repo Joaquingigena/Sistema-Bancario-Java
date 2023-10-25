@@ -96,6 +96,12 @@
 						  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px">
 						</div>
 					</div>
+					<div id="Monto" style="margin-top:20px; display:flex; align-items:center">
+						<h5>Monto: $</h5>
+						<div class="input-group mb-3" style="width:35%;">
+						  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 2px">
+						</div>
+					</div>
 					<div id="btnTransfereir" style="margin-top:20px; display:flex; justify-content:end; width:100%">
 						<button type="button" class="btn btn-success">Transferir</button>
 					</div>
