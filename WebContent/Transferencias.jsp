@@ -16,7 +16,7 @@
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
 
-<title>Movimientos</title>
+<title>Transferencias</title>
 </head>
 <body>
 <!-- Barra de navegacion -->
@@ -44,9 +44,9 @@
 			<label style="text-align:center; margin: 10%;">Nombre Usuario</label>
 			<div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
 			  
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" href="Movimientos.jsp">
 			  <label class="btn btn-outline-danger" for="vbtn-radio1">Movimientos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" checked>
 			  <label class="btn btn-outline-danger" for="vbtn-radio2">Transferencias</label>
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
@@ -56,63 +56,58 @@
 		</div>
 		<div id="Cuerpo">
 			<div id="Encabezado">
-				<h2>Movimientos</h2>
+				<h2>Transferencias</h2>
 			</div>
-			<div style="display:flex;">
-				<h5 style="margin:25px">Cuenta: </h5>
-				<select style="height: 40px; width:500px; margin: 15px" class="form-select" aria-label="Default select example">
-				  <option selected>Seleccione una cuenta</option>
-				  <option value="1">Cuenta 1</option>
-				  <option value="2">Cuenta 2</option>
-				  <option value="3">Cuenta 3</option>
-				</select>
+			<div id="Primario" style="justify-content:center">
+				<form action="">
+				
+				<h5>Origen</h5>
+				<div id="Cuenta Origen" style="display:flex; margin-top: 20px; align-items:center">
+				  <h5>Cuenta: </h5>
+				  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
+					  <option selected>Seleccione una cuenta</option>
+					  <option value="1">Cuenta 1</option>
+					  <option value="2">Cuenta 2</option>
+					  <option value="3">Cuenta 3</option>
+				  </select>
+				</div>
+				<div id=CkeckBox style="margin-top:20px; display:flex; flex-direction:column;">
+					<h5>Destino</h5>
+					<div class="form-check form-check-inline">
+					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+					  <label class="form-check-label" for="inlineRadio1">Cuenta propia</label>
+					</div>
+					<div class="form-check form-check-inline">
+					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+					  <label class="form-check-label" for="inlineRadio2">Otra Cuenta</label>
+					</div>
+					<div id="Cuenta Destino" style="display:flex; margin-top: 20px; align-items:center">
+					  <h5>Cuenta: </h5>
+					  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
+						  <option selected>Seleccione una cuenta</option>
+						  <option value="1">Cuenta 1</option>
+						  <option value="2">Cuenta 2</option>
+						  <option value="3">Cuenta 3</option>
+					  </select>
+					</div>
+					<div id="CBU" style="margin-top:20px; display:flex; align-items:center">
+						<h5>CBU: </h5>
+						<div class="input-group mb-3" style="width:100%;">
+						  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px">
+						</div>
+					</div>
+					<div id="btnTransfereir" style="margin-top:20px; display:flex; justify-content:end; width:100%">
+						<button type="button" class="btn btn-success">Transferir</button>
+					</div>
+				</div>
+				
+				</form>
+
+				
 			</div>
 			<div>
 				
-				<div  id="Busqueda">
-					<h5>Busqueda</h5>
-					<h7>Desde: </h7>
-					<input type="date">
-					<h7>Hasta: </h7>
-					<input type="date">
-					<button type="button" class="btn btn-success">Buscar</button>
-				</div>
-				<table style="margin:25px;" class="table table-striped table-hover">
-					<thead>
-						<tr class="table-primary">
-							<th>Fecha</th>
-							<th>Detalle</th>
-							<th>Importe</th>
-							<th>Tipo movimiento</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th>02/08/2023</th>
-							<th>Transferencia de terceros</th>
-							<th>$15000</th>
-							<th>Deposito</th>
-						</tr>
-						<tr>
-							<th>15/08/2023</th>
-							<th>Compra super Chino</th>
-							<th>$5000</th>
-							<th>Extracción</th>
-						</tr>
-						<tr>
-							<th>20/08/2023</th>
-							<th>Mercado Libre</th>
-							<th>$10000</th>
-							<th>Extracción</th>
-						</tr>
-						<tr>
-							<th>05/09/2023</th>
-							<th>Transferencia de terceros</th>
-							<th>$25000</th>
-							<th>Deposito</th>
-						</tr>
-					</tbody>
-				</table>
+				
 			</div>
 			
 		</div>
