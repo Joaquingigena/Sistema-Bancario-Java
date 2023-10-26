@@ -75,7 +75,7 @@
 </script>
 		<div id="Cuerpo">
 			<div id="Encabezado">
-				<h2>Prestamos</h2>
+				<h2>Pago Prestamo</h2>
 			</div>
 			<div id="Primario">
 				<form action="">
