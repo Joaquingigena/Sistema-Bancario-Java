@@ -26,8 +26,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbar-toggler">
-            <a class="navbar-brand" href="#">
-              <i class="bi bi-bank banco"></i>
+            <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">

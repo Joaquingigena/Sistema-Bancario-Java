@@ -27,7 +27,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbar-toggler">
             <a class="navbar-brand" href="#">
-              <i class="bi bi-bank banco"></i>
+              <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
@@ -73,9 +73,6 @@
                
                 <h3 >Listado de Informes</h3>
             </div>
-           <div>
-                <input type="submit" name="btnSolicitudes" value="Ver solicitudes de cuenta" class="btn btn-secondary btn">
-           </div>
         </div>
 
         <div class="row">
@@ -83,11 +80,12 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">N° Informe</th>
+                        <th scope="col">N° Movimiento</th>
                         <th scope="col">N° Cliente</th>
                         <th scope="col">N° Cuenta</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Comentarios</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Detalle</th>
+                        <th scope="col">Importe</th>
                         <th scope="col">Estado</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -99,32 +97,29 @@
                         <th scope="row">1</th>
                         <td>12312312</td>
                         <td>12313</td>
+                        <td>01/01/01</td>
                         <td>Sin descripcion</td>
-                        <td>Sin comentarios</td>
+                        <td>10.000</td>
                         <td>Activo</td>
-                        <td><button class="btn btn-primary">Modificar</button></td>
-                        <td><button class="btn btn-danger">Eliminar</button></td>
                         
                       </tr>
                       <tr>
                         <th scope="row">2</th>
                         <td>12312312</td>
                         <td>12313</td>
+                        <td>01/01/01</td>
                         <td>Sin descripcion</td>
-                        <td>Sin comentarios</td>
+                        <td>10.000</td>
                         <td>Activo</td>
-                        <td><button class="btn btn-primary">Modificar</button></td>
-                        <td><button class="btn btn-danger">Eliminar</button></td>
                       </tr>
                       <tr>
                         <th scope="row">3</th>
                         <td>12312312</td>
                         <td>12313</td>
+                        <td>01/01/01</td>
                         <td>Sin descripcion</td>
-                        <td>Sin comentarios</td>
+                        <td>10.000</td>
                         <td>Activo</td>
-                        <td><button class="btn btn-primary">Modificar</button></td>
-                        <td><button class="btn btn-danger">Eliminar</button></td>
                       </tr>
                     </tbody>
                   </table>

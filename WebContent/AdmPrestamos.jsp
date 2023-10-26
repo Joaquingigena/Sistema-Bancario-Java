@@ -26,7 +26,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbar-toggler">
             <a class="navbar-brand" href="#">
-              <i class="bi bi-bank banco"></i>
+              <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
@@ -98,8 +98,6 @@
                         <td>12313</td>
                         <td>10.000</td>
                         <td>3</td>
-                        <td><button class="btn btn-outline-primary">Modificar</button></td>
-                        <td><button class="btn btn-outline-danger">Eliminar</button></td>
                         
                       </tr>
                       <tr>
@@ -108,8 +106,6 @@
                         <td>12313</td>
                         <td>20000</td>
                         <td>5</td>
-                        <td><button class="btn btn-outline-primary">Modificar</button></td>
-                        <td><button class="btn btn-outline-danger">Eliminar</button></td>
                       </tr>
                       <tr>
                         <th scope="row">3</th>
@@ -117,8 +113,6 @@
                         <td>12313</td>
                         <td>10000000</td>
                         <td>12</td>
-                        <td><button class="btn btn-outline-primary">Modificar</button></td>
-                        <td><button class="btn btn-outline-danger">Eliminar</button></td>
                       </tr>
                     </tbody>
                   </table>
