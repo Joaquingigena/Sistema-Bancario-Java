@@ -27,7 +27,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbar-toggler">
             <a class="navbar-brand" href="#">
-              <i class="bi bi-bank banco"></i>
+              <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
             </a>
             <div class="navbar-nav d-flex justify-content-center align-items-center">
 				<div class="btn-group mx-5">
@@ -35,9 +35,12 @@
 				   Pepito
 				  </button>
 				  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-				    <li><button class="dropdown-item" type="button">Prestamo</button></li>
-				    <li><button class="dropdown-item" type="button">Cuentas</button></li>
+				    <li><button class="dropdown-item" type="button">Mis Datos</button></li>
+				    <li><button class="dropdown-item" type="button">Dinero</button></li>
 				    <li><button class="dropdown-item" type="button">Transferencias</button></li>
+				    <li><button class="dropdown-item" type="button">Prestamos</button></li>
+				    <li><button class="dropdown-item" type="button">Movimientos</button></li>
+				    <li><button class="dropdown-item" type="button">Pagos</button></li>
 				    <li><button class="dropdown-item" type="button">Cerrar Sesión</button></li>
 				  </ul>
 				</div>

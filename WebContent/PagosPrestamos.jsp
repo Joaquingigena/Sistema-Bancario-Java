@@ -16,7 +16,7 @@
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
 
-<title>Prestamos</title>
+<title>PagosPrestamos</title>
 </head>
 <body>
 <!-- Barra de navegacion -->
@@ -48,9 +48,9 @@
 			  <label class="btn btn-outline-danger" for="vbtn-radio1">Movimientos</label>
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
 			  <label class="btn btn-outline-danger" for="vbtn-radio2">Transferencias</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off"checked >
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off"checked>
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
 			</div>
 		</div>
@@ -61,46 +61,52 @@
 			<div id="Primario">
 				<form action="">
 				
-					<h4>Solicitud de prestamo</h4>
-					<div id="MontoRequerido" style="display:flex; margin:0; margin-top: 20px; align-items:center;">
-					  <h5>Monto requerido: $</h5>
-					  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
-					</div>
-				
-				<div id=CantCuotas style="margin-top:50px; display:flex; align-items:center;">
-					<h5>Cantidad de cuotas: </h5>
-					<select style="height: 40px; width: 70px; margin-left: 20px" class="form-select" aria-label="Default select example">
-						  <option selected>-</option>
-						  <option value="1">6</option>
-						  <option value="2">12</option>
-						  <option value="3">18</option>
-						  <option value="3">24</option>
-						  <option value="3">30</option>
-						  <option value="3">36</option>
-					 </select>
+					<h4>Pago de prestamo</h4>
+				<div id="CuentaPrestamo" style="display:flex; margin-top: 20px; align-items:center">
+				  <h5>Cuenta: </h5>
+				  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
+					  <option selected>Seleccione una cuenta</option>
+					  <option value="1">Cuenta 1</option>
+					  <option value="2">Cuenta 2</option>
+					  <option value="3">Cuenta 3</option>
+				  </select>
 				</div>
-				<div id="ValorCuota" style="margin-top:20px; display:flex; align-items:center">
-					<h5>Valor de cuota: $ </h5>
+<div id="codigoPago" style="margin-top:20px; display:flex; align-items:center">
+					<h5>Codigo del Pago</h5>
+					<div style="width: 200px">
+					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					</div>
+				</div>
+<div id="NumCuenta" style="margin-top:20px; display:flex; align-items:center">
+					<h5>Numero de Cuenta </h5>
+					<div style="width: 200px">
+					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					</div>
+				</div>
+<div id="numCuota" style="margin-top:20px; display:flex; align-items:center">
+					<h5>Cuota N° </h5>
+					<div style="width: 200px">
+					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					</div>
+				</div>	
+				<div id="MontoAPagar" style="margin-top:20px; display:flex; align-items:center">
+					<h5>Monto a Pagar: $ </h5>
 					<div style="width: 200px">
 					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>	 
 					 
-					 
-				<div>	 
-					<div id="Cuenta Destino" style="display:flex; margin-top: 20px; align-items:center">
-					  <h5>Cuenta destino: </h5>
-					  <select style="height: 40px; width: 500px; margin-left: 15px" class="form-select" aria-label="Default select example">
-						  <option selected>Seleccione una cuenta</option>
-						  <option value="1">Cuenta 1</option>
-						  <option value="2">Cuenta 2</option>
-						  <option value="3">Cuenta 3</option>
-					  </select>
+<div id="FechaPago" style="margin-top:20px; display:flex; align-items:center">
+					<h5>Fecha del Pago </h5>
+					<div style="width: 200px">
+					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
+				</div>	 
+				<div>	 
 
 
-					<div id="btnSolicitar" style="margin-top:20px; display:flex; justify-content:end; width:100%">
-						<button type="button" class="btn btn-success" style="margin-right: 30px">Solicitar</button>
+					<div id="btnPagar" style="margin-top:20px; display:flex; justify-content:end; width:100%">
+						<button type="button" class="btn btn-success" style="margin-right: 30px">Pagar</button>
 					</div>
 				</div>
 				
