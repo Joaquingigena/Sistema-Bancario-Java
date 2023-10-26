@@ -27,7 +27,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbar-toggler">
             <a class="navbar-brand" href="#">
-              <i class="bi bi-bank banco"></i>
+              <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
@@ -46,16 +46,33 @@
 			  
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" href="Movimientos.jsp">
 			  <label class="btn btn-outline-danger" for="vbtn-radio1">Movimientos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" href="Transferencias.jsp">
 			  <label class="btn btn-outline-danger" for="vbtn-radio2">Transferencias</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" href="Prestamos.jsp">
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" href="PagosPrestamos.jsp">
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" checked>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" checked href="MisDatos.jsp">
 			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
 			</div>
 		</div>
+		<script>
+  // Obtén todos los botones de radio
+  const radioButtons = document.querySelectorAll('.btn-check');
+
+  // Manejador de eventos para redirigir cuando se selecciona un botón de radio
+  radioButtons.forEach(function (radioButton) {
+    radioButton.addEventListener('change', function () {
+      if (radioButton.checked) {
+        const href = radioButton.getAttribute('href');
+        if (href) {
+          // Redirige a la página JSP correspondiente
+          window.location.href = href;
+        }
+      }
+    });
+  });
+</script>
 		<div id="Cuerpo">
 			<div id="Encabezado">
 				<h2>Mis datos</h2>
