@@ -26,7 +26,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbar-toggler">
-            <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
+            <a class="navbar-brand" href="#">
+              <i class="bi bi-bank banco"></i>
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
@@ -51,26 +52,28 @@
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
 			</div>
 		</div>
 		<div id="Cuerpo">
 			<div id="Encabezado">
 				<h2>Transferencias</h2>
 			</div>
-			<div id="Primario" style="justify-content:center">
+			<div id="Primario">
 				<form action="">
-				
-				<h5>Origen</h5>
-				<div id="Cuenta Origen" style="display:flex; margin-top: 20px; align-items:center">
-				  <h5>Cuenta: </h5>
-				  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
+					<h5>Origen</h5>
+					<div id="Cuenta Origen" style="display:flex; margin-top: 20px; align-items:center">
+					  <h5>Cuenta: </h5>
+					  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
 					  <option selected>Seleccione una cuenta</option>
 					  <option value="1">Cuenta 1</option>
 					  <option value="2">Cuenta 2</option>
 					  <option value="3">Cuenta 3</option>
-				  </select>
-				</div>
-				<div id=CkeckBox style="margin-top:20px; display:flex; flex-direction:column;">
+				  	  </select>
+					</div>
+				
+				<div id=CkeckBox style="margin-top:50px; display:flex; flex-direction:column;">
 					<h5>Destino</h5>
 					<div class="form-check form-check-inline">
 					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">

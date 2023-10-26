@@ -52,6 +52,8 @@
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
 			</div>
 		</div>
 		<div id="Cuerpo">

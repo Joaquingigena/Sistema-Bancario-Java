@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
  <!-- Bootstrap -->
@@ -12,45 +11,57 @@
  
  <!-- Icons de Bootstrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 <style type="text/css">
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
+
 <title>Mis Datos</title>
 </head>
 <body>
-
 <!-- Barra de navegacion -->
-	<nav class="navbar navbar-expand-md navbar-light">
+     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbar-toggler">
             <a class="navbar-brand" href="#">
-              <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
+              <i class="bi bi-bank banco"></i>
             </a>
-            <div class="navbar-nav d-flex justify-content-center align-items-center">
-				<div class="btn-group mx-5">
-				  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-				   Pepito
-				  </button>
-				  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-				    <li><button class="dropdown-item" type="button">Mis datos</button></li>
-				    <li><button class="dropdown-item" type="button">Dinero</button></li>
-				    <li><button class="dropdown-item" type="button">Transferencias</button></li>
-				    <li><button class="dropdown-item" type="button">Prestamos</button></li>
-				    <li><button class="dropdown-item" type="button">Movimientos</button></li>
-				    <li><button class="dropdown-item" type="button">Pagos</button></li>
-				    <li><button class="dropdown-item" type="button">Cerrar Sesión</button></li>
-				  </ul>
-				</div>
-			</div>
+            <ul class="navbar-nav d-flex justify-content-center align-items-center">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="Inicio.jsp"> Usuario</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Login.jsp">Cerrar Sesion</a>
+              </li>   
           </div>
         </div>
     </nav>
-    
+	<div id="General">
+		<div id="Navegacion">
+			<label style="text-align:center; margin: 10%;">Nombre Usuario</label>
+			<div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+			  
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" href="Movimientos.jsp">
+			  <label class="btn btn-outline-danger" for="vbtn-radio1">Movimientos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+			  <label class="btn btn-outline-danger" for="vbtn-radio2">Transferencias</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
+			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" checked>
+			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
+			</div>
+		</div>
+		<div id="Cuerpo">
+			<div id="Encabezado">
+				<h2>Mis datos</h2>
+			</div>
+
     <div class="container">
-    	<h2>Informacion Personal</h2>
 <div id="DNICliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>DNI </h5>
 					<div style="width: 200px">
@@ -100,14 +111,22 @@
 					</div>
 				</div>
 					<div id="contraCliente" style="display:flex; margin:0; margin-top: 20px; align-items:center;">
-					  <h5>Contraseña </h5>
-					  <input type="text" class="form-control" aria-label="Contraseña" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
+					  <h5>Contrase�a </h5>
+					  <input type="text" class="form-control" aria-label="Contrase�a" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
 					  	<div id="btnVerContra" style="margin-top:20px; display:flex; justify-content:end; width:100%">
-						<button type="button" class="btn btn-success">Ver Contraseña</button>
+						<button type="button" class="btn btn-success">Ver Contrase�a</button>
 					</div>
 					</div>
                 
 	  </div>
+
+
+			<div>
+				
+				
+			</div>
+			
+		</div>
 	</div>
 </body>
 </html>

@@ -52,6 +52,8 @@
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
 			</div>
 		</div>
 		<div id="Cuerpo">
@@ -67,6 +69,10 @@
 				  <option value="3">Cuenta 3</option>
 				</select>
 			</div>
+			<div class="border border-success m-3 p-4" style="width: 620px">
+		    		<span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ 540.678,89</b>
+		    		<div style="margin-left:95px; padding:5px">Caja de ahorro en pesos <b>452787-56-7</b></div>
+		    </div>
 			<div>
 				
 				<div  id="Busqueda">
