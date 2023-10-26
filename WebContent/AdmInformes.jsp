@@ -15,7 +15,7 @@
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
 
-<title>Clientes</title>
+<title>Informes</title>
 </head>
 <body>
 
@@ -57,8 +57,9 @@
         </div>
         <div class="col-auto">
             <select class="form-control" id="filtroCampo">
-                <option value="nombre">N° Cliente</option>
-                <option value="id">DNI</option>
+                <option value="nombre">N° Informe</option>
+                <option value="id">N° Cliente</option>
+                <option value="id">N° Cuenta</option>
             </select>
         </div>
         <div class="col-auto">
@@ -70,7 +71,7 @@
         <div class="row">
             <div class="col-3 titulo">
                
-                <h3 >Listado de clientes</h3>
+                <h3 >Listado de Informes</h3>
             </div>
            <div>
                 <input type="submit" name="btnSolicitudes" value="Ver solicitudes de cuenta" class="btn btn-secondary btn">
@@ -82,12 +83,12 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">N° cliente</th>
-                        <th scope="col">Dni</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Usuario</th>
+                        <th scope="col">N° Informe</th>
+                        <th scope="col">N° Cliente</th>
+                        <th scope="col">N° Cuenta</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Comentarios</th>
+                        <th scope="col">Estado</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         
@@ -98,9 +99,9 @@
                         <th scope="row">1</th>
                         <td>12312312</td>
                         <td>12313</td>
-                        <td>nombre</td>
-                        <td>aasdad</td>
-                        <td>User</td>
+                        <td>Sin descripcion</td>
+                        <td>Sin comentarios</td>
+                        <td>Activo</td>
                         <td><button class="btn btn-primary">Modificar</button></td>
                         <td><button class="btn btn-danger">Eliminar</button></td>
                         
@@ -109,9 +110,9 @@
                         <th scope="row">2</th>
                         <td>12312312</td>
                         <td>12313</td>
-                        <td>nombre</td>
-                        <td>aasdad</td>
-                        <td>User</td>
+                        <td>Sin descripcion</td>
+                        <td>Sin comentarios</td>
+                        <td>Activo</td>
                         <td><button class="btn btn-primary">Modificar</button></td>
                         <td><button class="btn btn-danger">Eliminar</button></td>
                       </tr>
@@ -119,9 +120,9 @@
                         <th scope="row">3</th>
                         <td>12312312</td>
                         <td>12313</td>
-                        <td>nombre</td>
-                        <td>aasdad</td>
-                        <td>User</td>
+                        <td>Sin descripcion</td>
+                        <td>Sin comentarios</td>
+                        <td>Activo</td>
                         <td><button class="btn btn-primary">Modificar</button></td>
                         <td><button class="btn btn-danger">Eliminar</button></td>
                       </tr>

@@ -40,7 +40,7 @@
                 <a class="nav-link" href="AdmPrestamos.jsp">Prestamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Informes</a>
+                <a class="nav-link" href="AdmInformes.jsp">Informes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Cerrar sesion</a>
@@ -50,6 +50,21 @@
           </div>
         </div>
     </nav>
+    
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="filtroValor" placeholder="Filtrar por">
+        </div>
+        <div class="col-auto">
+            <select class="form-control" id="filtroCampo">
+                <option value="nombre">N° Cuenta</option>
+                <option value="id">N° Usuario</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" id="btnFiltrar">Filtrar</button>
+        </div>
+    </div>
 
     <div class="container-fluid">
         <div class="row">
