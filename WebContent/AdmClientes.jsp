@@ -105,6 +105,7 @@
                         <th scope="col">Correo</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                         
                       </tr>
                     </thead>
@@ -123,6 +124,7 @@
 		                        <td><%=u.getIdPersona_U().getCorreo_P() %></td>
 		                        <td><button class="btn btn-primary">Modificar</button></td>
 		                        <td><button class="btn btn-danger">Eliminar</button></td>
+		                       <td> <a href="ServletAdmin?eliminarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Eliminar </a> </td>
 			                        
                      		 </tr>
                     		  <%

@@ -45,6 +45,11 @@ public class ServletAdmin extends HttpServlet {
 			
 		}
 		
+		if(request.getParameter("eliminarCliente")!=null) {
+			
+			System.out.println(request.getParameter("eliminarCliente"));
+		}
+		
 	}
 
 
