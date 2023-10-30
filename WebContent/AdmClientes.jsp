@@ -1,3 +1,8 @@
+<%@ page import= "entidades.Usuario" %>
+
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,6 +23,15 @@
 <title>Clientes</title>
 </head>
 <body>
+
+<%
+	List<Usuario> listaClientes= new ArrayList<Usuario>();
+
+	if(request.getAttribute("cargar")!=null){
+		listaClientes= (ArrayList<Usuario>)request.getAttribute("cargar");
+	}
+
+%>
 
  <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
@@ -82,49 +96,44 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        
                         <th scope="col">N° cliente</th>
-                        <th scope="col">Dni</th>
+                        <th scope="col">Usuario</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
-                        <th scope="col">Usuario</th>
+                        <th scope="col">Dni</th>
+                        <th scope="col">Correo</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>nombre</td>
-                        <td>aasdad</td>
-                        <td>User</td>
-                        <td><button class="btn btn-primary">Modificar</button></td>
-                        <td><button class="btn btn-danger">Eliminar</button></td>
-                        
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>nombre</td>
-                        <td>aasdad</td>
-                        <td>User</td>
-                        <td><button class="btn btn-primary">Modificar</button></td>
-                        <td><button class="btn btn-danger">Eliminar</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>nombre</td>
-                        <td>aasdad</td>
-                        <td>User</td>
-                        <td><button class="btn btn-primary">Modificar</button></td>
-                        <td><button class="btn btn-danger">Eliminar</button></td>
-                      </tr>
+                      
+                      <%
+                      if(listaClientes!=null){                   	  
+                    	  for(Usuario u : listaClientes){
+                    		  %>
+                    		 <tr>
+		                        <td><%= u.getIdUsuario_U() %></td>
+		                        <td><%=u.getUsuario_U() %></td>
+		                        <td><%=u.getIdPersona_U().getNombre_P() %></td>
+		                        <td><%=u.getIdPersona_U().getApellido_P() %> </td>
+		                        <td><%=u.getIdPersona_U().getDNI_P()%> </td> 
+		                        <td><%=u.getIdPersona_U().getCorreo_P() %></td>
+		                        <td><button class="btn btn-primary">Modificar</button></td>
+		                        <td><button class="btn btn-danger">Eliminar</button></td>
+			                        
+                     		 </tr>
+                    		  <%
+                    	  }
+                    	  
+                      }
+                      
+                      
+                      %>
+                         
+                     
                     </tbody>
                   </table>
             </div>

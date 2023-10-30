@@ -19,6 +19,8 @@
 </head>
 <body>
 
+
+
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
@@ -31,7 +33,7 @@
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="AdmClientes.jsp"> Clientes</a>
+                <a class="nav-link active" href="ServletAdmin?Param=listarClientes"> Clientes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="AdmCuentas.jsp">Cuentas</a>
