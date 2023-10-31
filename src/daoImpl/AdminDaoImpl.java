@@ -19,7 +19,7 @@ public class AdminDaoImpl implements IAdminDao {
 		
 		List <Usuario> lista= new ArrayList<Usuario>();
 		conexion= new conexion();
-		String query= "select U.IdUsuario_U, U.Usuario_U,P.Nombre_P,P.Apellido_P,P.DNI_P,P.Correo_P from usuario as U inner join personas P on P.IdPersona_P = U.IdPersona_U";
+		String query= "select U.IdUsuario_U, U.Usuario_U,P.Nombre_P,P.Apellido_P,P.DNI_P,P.Correo_P from Usuario as U inner join Personas P on P.IdPersona_P = U.IdPersona_U";
 		
 		try {
 			conexion.Open();

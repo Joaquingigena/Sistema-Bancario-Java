@@ -1,3 +1,7 @@
+<%@page import="entidades.Movimientos"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,7 +22,15 @@
 <title>Informes</title>
 </head>
 <body>
+<%
+	String nombre = (String)request.getAttribute("nombre");
+	List<Movimientos> listaMovimientos= new ArrayList<Movimientos>();
 
+	if(request.getAttribute("listaInformes")!=null){
+		listaMovimientos= (ArrayList<Movimientos>)request.getAttribute("listaInformes");
+	}
+
+%>
  <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
@@ -40,7 +52,7 @@
                 <a class="nav-link" href="AdmPrestamos.jsp">Prestamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdmInformes.jsp">Informes</a>
+                <a class="nav-link" href="ServletInformes?Param=listarInformes">Informes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Cerrar sesion</a>
@@ -77,50 +89,49 @@
 
         <div class="row">
             <div class="col-8">
-                <table class="table">
+                    <table class="table">
                     <thead>
                       <tr>
+                        
                         <th scope="col">N° Movimiento</th>
                         <th scope="col">N° Cliente</th>
-                        <th scope="col">N° Cuenta</th>
-                        <th scope="col">Fecha</th>
+                        <th scope="col">Fecha Movimiento</th>
                         <th scope="col">Detalle</th>
                         <th scope="col">Importe</th>
+                        <th scope="col">Tipo de Movimiento</th>
                         <th scope="col">Estado</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>01/01/01</td>
-                        <td>Sin descripcion</td>
-                        <td>10.000</td>
-                        <td>Activo</td>
-                        
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>01/01/01</td>
-                        <td>Sin descripcion</td>
-                        <td>10.000</td>
-                        <td>Activo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>01/01/01</td>
-                        <td>Sin descripcion</td>
-                        <td>10.000</td>
-                        <td>Activo</td>
-                      </tr>
+                      
+                      <%
+                      if(listaMovimientos!=null){                   	  
+                    	  for(Movimientos m : listaMovimientos){
+                    		  %>
+                    		 <tr>
+		                        <td><%=m.getNumMovimiento_M() %></td>
+		                        <td><%=m.getNumCuenta_M().getNumCuenta_Cta()%></td>
+		                        <td><%=m.getFechaMovimiento_M() %></td>
+		                        <td><%=m.getDetalle_M() %> </td>
+		                        <td><%=m.getImporte_M() %> </td>
+		                        <td><%=m.getIdTipoMovimiento_M().getIdTipoMovimiento_TM()%> </td> 
+		                        <td><%=m.getEstado_M()%></td>
+
+			                        
+                     		 </tr>
+                    		  <%
+                    	  }
+                    	  
+                      }
+                      
+                      
+                      %>
+                         
+                     
                     </tbody>
                   </table>
             </div>

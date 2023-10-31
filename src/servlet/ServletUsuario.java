@@ -61,7 +61,7 @@ public class ServletUsuario extends HttpServlet {
 				break;
 			case 1:
 				request.setAttribute("nombre", usuario);
-				dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+				dispatcher = request.getRequestDispatcher("/ServletAdmin?Param=listarClientes");
 				dispatcher.forward(request, response);
 				break;
 

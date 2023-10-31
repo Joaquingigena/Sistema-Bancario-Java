@@ -42,7 +42,7 @@
                 <a class="nav-link" href="AdmPrestamos.jsp">Prestamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdmInformes.jsp">Informes</a>
+                <a class="nav-link" href="ServletInformes?Param=listarInformes">Informes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Cerrar sesion</a>
