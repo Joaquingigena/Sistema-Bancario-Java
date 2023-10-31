@@ -4,7 +4,7 @@ public class Usuario {
 	private int IdUsuario_U;
 	private Personas IdPersona_U;
 	private String Usuario_U;
-	private String Contraseña_U;
+	private String Password_U;
 	private Roles IdRoles_U;
 	private Boolean Estado_U;
 	
@@ -13,12 +13,12 @@ public class Usuario {
 		IdPersona_U = new Personas();
 		IdRoles_U= new Roles();
 	}
-	public Usuario (int idUsuario, Personas idPersonas, String usuario, String contraseña, Roles idRoles, boolean estado)
+	public Usuario (int idUsuario, Personas idPersonas, String usuario, String Password, Roles idRoles, boolean estado)
 	{
 		this.IdUsuario_U=idUsuario;
 		this.IdPersona_U=idPersonas;
 		this.Usuario_U=usuario;
-		this.Contraseña_U=contraseña;
+		this.Password_U=Password;
 		this.IdRoles_U=idRoles;
 		this.Estado_U=estado;
 		
@@ -41,11 +41,11 @@ public class Usuario {
 	public void setUsuario_U(String usuario_U) {
 		Usuario_U = usuario_U;
 	}
-	public String getContraseña_U() {
-		return Contraseña_U;
+	public String getPassword_U() {
+		return Password_U;
 	}
-	public void setContraseña_U(String contraseña_U) {
-		Contraseña_U = contraseña_U;
+	public void setPassword_U(String password_U) {
+		Password_U = password_U;
 	}
 	public Roles getIdRoles_U() {
 		return IdRoles_U;
@@ -62,7 +62,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [IdUsuario_U=" + IdUsuario_U + ", IdPersona_U=" + IdPersona_U + ", Usuario_U=" + Usuario_U
-				+ ", Contraseña_U=" + Contraseña_U + ", IdRoles_U=" + IdRoles_U + ", Estado_U=" + Estado_U + "]";
+				+ ", Password_U=" + Password_U + ", IdRoles_U=" + IdRoles_U + ", Estado_U=" + Estado_U + "]";
 	}
 	
 

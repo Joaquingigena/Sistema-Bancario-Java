@@ -1,5 +1,4 @@
-<%@ page import= "entidades.Usuario" %>
-
+<%@page import="entidades.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -25,6 +24,7 @@
 <body>
 
 <%
+	String nombre = (String)request.getAttribute("nombre");
 	List<Usuario> listaClientes= new ArrayList<Usuario>();
 
 	if(request.getAttribute("cargar")!=null){
@@ -57,8 +57,10 @@
                 <a class="nav-link" href="AdmInformes.jsp">Informes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Cerrar sesion</a>
+                <a class="nav-link" href="Login.jsp">Cerrar sesion</a>
               </li>
+	           	<ion-icon name="person-circle-outline"></ion-icon> <b><%= nombre %></b>
+              
             </ul>
           
           </div>
@@ -141,6 +143,7 @@
         </div>
     </div>
 
-
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

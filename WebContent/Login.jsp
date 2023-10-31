@@ -15,25 +15,45 @@
 <title>Login</title>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-toggler">
+            <a class="navbar-brand" href="#">
+              <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
+            </a>
+            <ul class="navbar-nav d-flex justify-content-center align-items-center">
+	              <li class="nav-item">
+	                <a class="nav-link active" aria-current="page" href="Inicio.jsp"> Inicio</a>
+	              </li>
+	              <li class="nav-item">
+	                <a class="nav-link" href="Login.jsp"></a>
+	              </li> 
+	        </ul>  
+          </div>
+        </div>
+    </nav>
 <div class="container text-center">
     <div class="row">
         <section class="col-md-6 mx-auto ingreso">
-            <div class="logo bg-primary text-center">
+            <div class="logo text-center">
                 <h1>Banco Grupo 4</h1>
             </div>
             <h3>Inicia sesión</h3>
-            <form>
+            <form method="post" action="ServletUsuario">
                 <div class="text-center">
                     <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1">
+                    <input type="text" class="form-control" name="usuario">
                 </div>
                 <div class="text-center">
                     <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control" name="password">
                 </div>
-
-                <input type="submit" class="btn btn-secondary" value="Ingresar">
+				<div class="mt-3">
+                	<input type="submit" class="btn btn-success" value="Ingresar" name="btnIngresar">
+                </div>
             </form>
 
             <p class="text-body-dark">
