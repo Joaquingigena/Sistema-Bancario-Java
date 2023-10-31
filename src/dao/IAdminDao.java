@@ -8,4 +8,6 @@ public interface IAdminDao {
 
 	public List<Usuario> listarUsuarios();
 	public List<Prestamos> listarPrestamos();
+	
+	public boolean eliminarCliente(int id);
 }

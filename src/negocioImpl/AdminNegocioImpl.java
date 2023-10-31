@@ -23,4 +23,11 @@ public class AdminNegocioImpl implements IAdminNegocio {
 		return adminDao.listarPrestamos();
 	}
 
+	@Override
+	public boolean eliminarCliente(int id) {
+		
+		
+		return adminDao.eliminarCliente(id);
+	}
+
 }

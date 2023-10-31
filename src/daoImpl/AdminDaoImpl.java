@@ -19,7 +19,7 @@ public class AdminDaoImpl implements IAdminDao {
 		
 		List <Usuario> lista= new ArrayList<Usuario>();
 		conexion= new conexion();
-		String query= "select U.IdUsuario_U, U.Usuario_U,P.Nombre_P,P.Apellido_P,P.DNI_P,P.Correo_P from Usuario as U inner join Personas P on P.IdPersona_P = U.IdPersona_U";
+		String query= "select U.IdUsuario_U, U.Usuario_U,P.Nombre_P,P.Apellido_P,P.DNI_P,P.Correo_P from Usuario as U inner join Personas P on P.IdPersona_P = U.IdPersona_U where U.Estado_U= true";
 		
 		try {
 			conexion.Open();
@@ -79,5 +79,29 @@ public class AdminDaoImpl implements IAdminDao {
 		
 		return lista;
 
+	}
+
+
+	@Override
+	public boolean eliminarCliente(int id) {
+		
+		conexion= new conexion();
+		boolean guardado=true;
+		
+		String query= "update usuario set Estado_u=false where IdUsuario_U="+id;
+		try {
+			conexion.Open();
+			guardado=conexion.execute(query);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			guardado=false;
+			conexion.close();
+		}
+		
+		
+		return guardado;
 	}
 }
