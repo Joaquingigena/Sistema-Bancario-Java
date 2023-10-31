@@ -1,3 +1,8 @@
+<%@ page import= "entidades.Prestamos" %>
+
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,6 +23,15 @@
 
 </head>
 <body>
+
+<%
+	List<Prestamos> listaPrestamos= new ArrayList<Prestamos>();
+
+	if(request.getAttribute("cargar")!=null){
+		listaPrestamos = (ArrayList<Prestamos>)request.getAttribute("cargar");
+	}
+%>
+
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
@@ -81,39 +95,37 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
                         <th scope="col">N° Prestamo</th>
-                        <th scope="col">N° Usuario</th>
+                        <th scope="col">N° Cuenta</th>
                         <th scope="col">Importe a pagar</th>
-                        <th scope="col">Cuotas</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th scope="col">Importe pedido</th>
+                        <th scope="col">Cuotas a pagar</th>
                         
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>10.000</td>
-                        <td>3</td>
-                        
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>20000</td>
-                        <td>5</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>10000000</td>
-                        <td>12</td>
-                      </tr>
+                    
+                      <%
+                      if(listaPrestamos!=null){                   	  
+                    	  for(Prestamos p : listaPrestamos){
+                    		  %>
+                    		 <tr>
+		                        <td><%= p.getNumPrestamo_P() %></td>
+		                        <td><%=p.getNumCuenta_P().getNumCuenta_Cta() %></td>
+		                        <td><%=p.getImportePagar_P() %></td>
+		                        <td><%=p.getImportePedido_P() %> </td>
+		                        <td><%=p.getPlazoPago_P() %> </td> 
+
+		                        <td><button class="btn btn-primary">Modificar</button></td>
+		                        <td><button class="btn btn-danger">Eliminar</button></td>                        
+                     		 </tr>
+                    		  <%
+                    	  }
+                    	  
+                      }
+                      
+                      
+                      %>
                     </tbody>
                   </table>
             </div>
