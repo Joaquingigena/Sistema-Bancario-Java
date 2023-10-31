@@ -100,8 +100,6 @@ public class AdminDaoImpl implements IAdminDao {
 			guardado=false;
 			conexion.close();
 		}
-		
-		
 		return guardado;
 	}
 }

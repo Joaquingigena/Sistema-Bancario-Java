@@ -38,6 +38,13 @@ public class ServletAdmin extends HttpServlet {
 				dispatcher.forward(request, response);
 				
 				break;
+			case "listarPrestamos":
+				
+				request.setAttribute("cargarPrestamos" ,adminNeg.listarPrestamos());
+				
+				RequestDispatcher dispa = request.getRequestDispatcher("/AdmPrestamos.jsp");
+				dispa.forward(request, response);
+				break;
 			
 			default:
 				break;

@@ -27,8 +27,8 @@
 <%
 	List<Prestamos> listaPrestamos= new ArrayList<Prestamos>();
 
-	if(request.getAttribute("cargar")!=null){
-		listaPrestamos = (ArrayList<Prestamos>)request.getAttribute("cargar");
+	if(request.getAttribute("cargarPrestamos")!=null){
+		listaPrestamos = (ArrayList<Prestamos>)request.getAttribute("cargarPrestamos");
 	}
 %>
 
@@ -50,7 +50,7 @@
                 <a class="nav-link" href="AdmCuentas.jsp">Cuentas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdmPrestamos.jsp">Prestamos</a>
+               <a class="nav-link" href="ServletAdmin?Param=listarPrestamos">Prestamos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="ServletInformes?Param=listarInformes">Informes</a>
