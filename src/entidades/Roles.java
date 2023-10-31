@@ -18,6 +18,11 @@ public class Roles {
 	public void setIdRoles_R(int idRoles_R) {
 		IdRoles_R = idRoles_R;
 	}
+	
+	public int getIdRol() {
+		return IdRoles_R;
+	}
+	
 	public String getRol_R() {
 		return Rol_R;
 	}

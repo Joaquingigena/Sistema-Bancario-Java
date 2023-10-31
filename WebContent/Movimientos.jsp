@@ -19,6 +19,11 @@
 <title>Movimientos</title>
 </head>
 <body>
+<%
+	String nombre = (String)request.getAttribute("nombre");
+
+%>
+
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
@@ -35,7 +40,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Login.jsp">Cerrar Sesion</a>
-              </li>   
+              </li>
+              <ion-icon name="person-circle-outline"></ion-icon> <b><%= nombre %></b>   
+            </ul>
           </div>
         </div>
     </nav>
@@ -140,5 +147,8 @@
 			
 		</div>
 	</div>
+	
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
