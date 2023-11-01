@@ -65,6 +65,22 @@ public class ServletAdmin extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
+	if(request.getParameter("modificarCliente")!=null) {
+			
+			int id=Integer.parseInt( request.getParameter("modificarCliente"));
+			
+			if(adminNeg.eliminarCliente(id))
+				System.out.println("Cliente eliminado correctamente");
+			
+			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		
+		
+		
 	}
 
 

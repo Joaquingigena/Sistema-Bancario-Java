@@ -124,8 +124,8 @@
 		                        <td><%=u.getIdPersona_U().getApellido_P() %> </td>
 		                        <td><%=u.getIdPersona_U().getDNI_P()%> </td> 
 		                        <td><%=u.getIdPersona_U().getCorreo_P() %></td>
-		                        <td><button class="btn btn-primary">Modificar</button></td>
-		                       <td> <a href="ServletAdmin?eliminarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Eliminar </a> </td>
+		                        <td> <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Modificar </a> </td>
+		                        <td> <a href="ServletAdmin?eliminarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Eliminar </a> </td>
 			                        
                      		 </tr>
                     		  <%
