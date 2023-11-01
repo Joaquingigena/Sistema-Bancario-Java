@@ -69,8 +69,7 @@ public class ServletAdmin extends HttpServlet {
 			
 			int id=Integer.parseInt( request.getParameter("modificarCliente"));
 			
-			if(adminNeg.eliminarCliente(id))
-				System.out.println("Cliente eliminado correctamente");
+			adminNeg.obtenerUsuario(id);
 			
 			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
 			

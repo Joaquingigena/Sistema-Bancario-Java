@@ -11,4 +11,6 @@ public interface IAdminNegocio {
 	public List<Prestamos> listarPrestamos();
 	
 	public boolean eliminarCliente(int id);
+	
+	public Usuario obtenerUsuario(int id);
 }

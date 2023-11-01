@@ -30,4 +30,10 @@ public class AdminNegocioImpl implements IAdminNegocio {
 		return adminDao.eliminarCliente(id);
 	}
 
+	@Override
+	public Usuario obtenerUsuario(int id) {
+		
+		return adminDao.obtenerCliente(id);
+	}
+
 }
