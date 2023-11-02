@@ -35,8 +35,7 @@ public class Localidades {
 	}
 	@Override
 	public String toString() {
-		return "Localidades [CodLocalidad_Loc=" + CodLocalidad_Loc + ", CodProvincia_Loc=" + CodProvincia_Loc
-				+ ", Nombre_Loc=" + Nombre_Loc + "]";
+		return Nombre_Loc;
 	}
 	
 

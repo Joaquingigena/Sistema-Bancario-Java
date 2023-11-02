@@ -27,7 +27,7 @@ public class Provincias {
 	}
 	@Override
 	public String toString() {
-		return "Provincias [Nombre_Prov=" + Nombre_Prov + "]";
+		return Nombre_Prov;
 	}
 	
 

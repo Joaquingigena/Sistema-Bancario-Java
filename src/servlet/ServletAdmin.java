@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daoImpl.AdminDaoImpl;
+import entidades.Personas;
 import negocioImpl.AdminNegocioImpl;
 
 @WebServlet("/ServletAdmin")
@@ -77,8 +80,33 @@ public class ServletAdmin extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
-		
-		
+		if(request.getParameter("btnSolicitudes")!=null) {
+			AdminNegocioImpl AdminNeg = new AdminNegocioImpl();
+			//AdminDaoImpl AdminDao = new AdminDaoImpl();
+			
+			// ----------PRUEBA------------------
+			/*String dni = AdminDao.DNIusuario();
+			if(dni!="") 
+			{
+				request.setAttribute("DNI", dni);
+			}*/
+			// ----------------------------------
+			
+			// Obtengo la lista de personas desde la capa Negocio.
+			List <Personas> ListaPer = null;
+			ListaPer = AdminNeg.listarSolicitudes();
+			
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			if(ListaPer!=null) {
+				request.setAttribute("ListaPersonas", ListaPer);
+			}
+			
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/Solicitudes.jsp");
+			rd.forward(request, response);
+			
+		}
+	
 		
 	}
 

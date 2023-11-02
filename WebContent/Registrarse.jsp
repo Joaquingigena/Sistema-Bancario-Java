@@ -94,7 +94,7 @@
                 </div>
             </div>
 			<div class="text-center mt-2">
-				<button type="submit" class="btn btn-primary" >Registrar</button>
+				<input type="submit" value="Registrarse" name="btnRegistrarse" class="btn btn-primary" ></input>
 			</div>
             
         </form>

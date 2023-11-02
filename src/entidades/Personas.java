@@ -16,6 +16,7 @@ public class Personas {
 	private String Direccion_P;
 	private String Correo_P;
 	private String Telefono_P;
+	private int Solicitud_P;
 	
 	public Personas()
 	{
@@ -24,7 +25,7 @@ public class Personas {
 	}
 	public Personas (int idPersona, String DNI, Localidades CodLocalidad, Provincias CodProvincia, String CUIL, 
 			String nombre, String apellido, String sexo, String nacionalidad, Date FechaNac, String direccion,
-			String Correo, String Telefono)
+			String Correo, String Telefono, int Solicitud)
 	{
 		this.IdPersona_P=idPersona;
 		this.DNI_P=DNI;
@@ -39,6 +40,7 @@ public class Personas {
 		this.Direccion_P=direccion;
 		this.Correo_P=Correo;
 		this.Telefono_P=Telefono;
+		this.Solicitud_P = Solicitud;
 		
 	}
 	public int getIdPersona_P() {
@@ -119,14 +121,23 @@ public class Personas {
 	public void setTelefono_P(String telefono_P) {
 		Telefono_P = telefono_P;
 	}
+	
+	public int getSolicitud_P() {
+		return Solicitud_P;
+	}
+	public void setSolicitud_P(int Solicitud_P) {
+		Solicitud_P = Solicitud_P;
+	}
 	@Override
 	public String toString() {
 		return "Personas [IdPersona_P=" + IdPersona_P + ", DNI_P=" + DNI_P + ", CodLocalidad_P=" + CodLocalidad_P
 				+ ", CodProvincia_P=" + CodProvincia_P + ", CUIL_P=" + CUIL_P + ", Nombre_P=" + Nombre_P
 				+ ", Apellido_P=" + Apellido_P + ", Sexo_P=" + Sexo_P + ", Nacionalidad_P=" + Nacionalidad_P
 				+ ", FechaNac_P=" + FechaNac_P + ", Direccion_P=" + Direccion_P + ", Correo_P=" + Correo_P
-				+ ", Telefono_P=" + Telefono_P + "]";
+				+ ", Telefono_P=" + Telefono_P + ", Solicitud=" + Solicitud_P + "]";
 	}
+	
+	
 	
 	
 

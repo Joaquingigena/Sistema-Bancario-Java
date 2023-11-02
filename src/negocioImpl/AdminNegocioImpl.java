@@ -4,6 +4,7 @@ package negocioImpl;
 import java.util.List;
 
 import daoImpl.AdminDaoImpl;
+import entidades.Personas;
 import entidades.Prestamos;
 import entidades.Usuario;
 import negocio.IAdminNegocio;
@@ -34,6 +35,10 @@ public class AdminNegocioImpl implements IAdminNegocio {
 	public Usuario obtenerUsuario(int id) {
 		
 		return adminDao.obtenerCliente(id);
+	}
+	
+	public List<Personas> listarSolicitudes(){
+		return adminDao.listarSolicitudes();
 	}
 
 }

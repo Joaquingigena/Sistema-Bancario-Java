@@ -1,4 +1,6 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="entidades.Usuario"%>
+<%@page import="entidades.Personas"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -19,7 +21,7 @@
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
 
-<title>Clientes</title>
+<title>Solicitudes</title>
 </head>
 <body>
 
@@ -86,61 +88,56 @@
         <div class="row">
             <div class="col-3 titulo">
                
-                <h3 >Listado de clientes</h3>
+                <h3 >Lista de solicitudes</h3>
             </div>
-          	<form action="ServletAdmin" method="get">
-          		<div>
-                	<input type="submit" name="btnSolicitudes" value="Ver solicitudes de cuenta" class="btn btn-secondary btn">
-           		</div>
-          	</form>
-           
+
         </div>
 
         <div class="row">
             <div class="col-8">
+            	<%
+            		List <Personas> ListaPer = null;
+            		String dni = "";
+            		if(request.getAttribute("ListaPersonas") !=null)
+            		{
+            			ListaPer = (List<Personas>)request.getAttribute("ListaPersonas");
+            		}
+            	
+            	%>
+            
                 <table class="table">
-                    <thead>
                       <tr>
                         
-                        <th scope="col">N° cliente</th>
-                        <th scope="col">Usuario</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Localidad</th>
+                        <th scope="col">Provincia</th>
+                        <th scope="col">CUIL</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
-                        <th scope="col">Dni</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Nacionalidad</th>
+                        <th scope="col">Fecha de Nacimiento</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Estado Solicitud</th>
                         
                       </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                      
-                      <%
-                      if(listaClientes!=null){                   	  
-                    	  for(Usuario u : listaClientes){
-                    		  %>
-                    		 <tr>
-		                        <td><%= u.getIdUsuario_U() %></td>
-		                        <td><%=u.getUsuario_U() %></td>
-		                        <td><%=u.getIdPersona_U().getNombre_P() %></td>
-		                        <td><%=u.getIdPersona_U().getApellido_P() %> </td>
-		                        <td><%=u.getIdPersona_U().getDNI_P()%> </td> 
-		                        <td><%=u.getIdPersona_U().getCorreo_P() %></td>
-		                        <td> <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Modificar </a> </td>
-		                        <td> <a href="ServletAdmin?eliminarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Eliminar </a> </td>
-			                        
-                     		 </tr>
-                    		  <%
-                    	  }
-                    	  
-                      }
-                      
-                      
-                      %>
-                         
+
+  						
+ 					<%
+ 						if(ListaPer!=null)
+ 						//for(int i=0;i<5;i++)
+ 						for(Personas Per : ListaPer)
+ 	                    {
+ 							
+                    %>
+                    	<tr> <td> <%=Per.getIdPersona_P() %> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P() %></td> <td><%=Per.getCodProvincia_P() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> <td><%=Per.getSolicitud_P() %></td> </tr>
+                    <%	
+                    	}
+                    %>
                      
-                    </tbody>
                   </table>
             </div>
         </div>

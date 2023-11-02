@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.List;
 
+import entidades.Personas;
 import entidades.Prestamos;
 import entidades.Usuario;
 
@@ -13,4 +14,8 @@ public interface IAdminNegocio {
 	public boolean eliminarCliente(int id);
 	
 	public Usuario obtenerUsuario(int id);
+	
+	public List <Personas> listarSolicitudes();
+	
+	
 }
