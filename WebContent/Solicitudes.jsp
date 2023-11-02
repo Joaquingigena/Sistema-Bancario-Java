@@ -211,12 +211,12 @@
 							<div class="modal fade" id="Rech<%=DNI%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered">
 							    <div class="modal-content">
-							      <div class="modal-header">
+							      <div style="background-color:red" class="modal-header">
 							        <h1 class="modal-title fs-5" id="exampleModalLabel">ATENCIÓN!</h1>
 							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							      </div>
 							      <div class="modal-body" Style="display:flex;">
-							      	<div>
+							      	<div style="width:90%;">
 							      		<div>Nombre: <%=Per.getNombre_P() %></div>
 								        <div>Apellido: <%=Per.getApellido_P() %></div>
 								        <div>DNI: <%=Per.getDNI_P() %></div>
@@ -228,15 +228,15 @@
 								        <div>Nacionalidad: <%=Per.getNacionalidad_P() %></div>
 								        <div>Teléfono: <%=Per.getTelefono_P() %></div>
 							      	</div>
-							        <div style="margin-left: 10%;display:flex;flex-direction:column;">
-							        	¿Está seguro que desea rechazar esta solicitud?
+							        <div style="margin-left: 0%;display:flex;flex-direction:column; text-align:center;justify-content:center;">
+							        	<h3>¿Está seguro que desea rechazar esta solicitud?</h3> 
 							        	
 							        </div>
 							        
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-							        <button type="button" class="btn btn-primary">SI</button>
+							        <button style="background-color:red; border-color:red;" type="button" class="btn btn-primary">SI</button>
 							      </div>
 							    </div>
 							  </div>
