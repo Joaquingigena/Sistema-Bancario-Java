@@ -157,12 +157,97 @@
 	                    	</td>
 	                    	
 	                    	<td style="width:200px;">
-	                    		<%if(Per.getSolicitud_P()==0){ %>
-	                    			<input type="submit" name="btnAceptarSol" value="Aceptar">
-	                    			<input type="submit" name="btnRechazarSol" value="Rechazar">
+	                    		<%if(Per.getSolicitud_P()==0){ String DNI = Per.getDNI_P();%>
+	                    			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%=DNI%>">Aceptar</button>
+	                    			<!-- <input type="submit" name="btnAceptarSol" value="Aceptar"> -->
+	                    			
+	                    			<!-- DIV MODAL -->
+							<div class="modal fade" id="Modal<%=DNI%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta Usuario</h1>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body" Style="display:flex;">
+							      	<div>
+							      		<div>Nombre: <%=Per.getNombre_P() %></div>
+								        <div>Apellido: <%=Per.getApellido_P() %></div>
+								        <div>DNI: <%=Per.getDNI_P() %></div>
+								        <div>Dirección: <%=Per.getDireccion_P() %></div>
+								        <div>Localidad: <%=Per.getCodLocalidad_P() %></div>
+								        <div>Provincia: <%=Per.getCodProvincia_P() %></div>
+								        <div>Mail: <%=Per.getCorreo_P() %></div>
+								        <div>Sexo: <%=Per.getSexo_P() %></div>
+								        <div>Nacionalidad: <%=Per.getNacionalidad_P() %></div>
+								        <div>Teléfono: <%=Per.getTelefono_P() %></div>
+							      	</div>
+							        <div style="margin-left: 10%;display:flex;flex-direction:column;">
+							        	Usuario
+							        	<input type="text" name="txtUsuario">
+							        	Contraseña
+							        	<input type="password" name="txtContraseña">
+							        	Repetir Contraseña
+							        	<input type="password" name="txtRepetirContraseña">
+							        </div>
+							        
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							        <button type="button" class="btn btn-primary">Guardar</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<!-- ---------------------------------------------------------------------------------------------- -->
+	                    			
+	                    	
+							
+							
+									<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Rech<%=DNI%>">Rechazar</button>
+	                    			<!-- <input type="submit" name="btnRechazarSol" value="Rechazar"> --> 
+	                    			
+	                    			<!-- DIV MODAL -->
+							<div class="modal fade" id="Rech<%=DNI%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h1 class="modal-title fs-5" id="exampleModalLabel">ATENCIÓN!</h1>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body" Style="display:flex;">
+							      	<div>
+							      		<div>Nombre: <%=Per.getNombre_P() %></div>
+								        <div>Apellido: <%=Per.getApellido_P() %></div>
+								        <div>DNI: <%=Per.getDNI_P() %></div>
+								        <div>Dirección: <%=Per.getDireccion_P() %></div>
+								        <div>Localidad: <%=Per.getCodLocalidad_P() %></div>
+								        <div>Provincia: <%=Per.getCodProvincia_P() %></div>
+								        <div>Mail: <%=Per.getCorreo_P() %></div>
+								        <div>Sexo: <%=Per.getSexo_P() %></div>
+								        <div>Nacionalidad: <%=Per.getNacionalidad_P() %></div>
+								        <div>Teléfono: <%=Per.getTelefono_P() %></div>
+							      	</div>
+							        <div style="margin-left: 10%;display:flex;flex-direction:column;">
+							        	¿Está seguro que desea rechazar esta solicitud?
+							        	
+							        </div>
+							        
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+							        <button type="button" class="btn btn-primary">SI</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<!-- ---------------------------------------------------------------------------------------------- -->
+	                    			
 	                    		<%} %>
+	                    		
+							
 	                    	</td>
-
+							
                     	</tr>
                     </form>
                     <%	
@@ -170,6 +255,7 @@
                     %>
                      
                   </table>
+					
             </div>
         </div>
     </div>

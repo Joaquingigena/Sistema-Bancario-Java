@@ -89,6 +89,10 @@
                     </div>
                     <div class="form-group mb-3">
                         
+                        <input type="DNI" class="form-control" id="dni" name="dni" required placeholder="DNI">
+                    </div>
+                    <div class="form-group mb-3">
+                        
                         <input type="tel" class="form-control" id="telefono" name="telefono" required placeholder="Telefono">
                     </div>
                 </div>
