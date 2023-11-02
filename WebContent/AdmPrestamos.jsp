@@ -47,7 +47,7 @@
                 <a class="nav-link active" href="ServletAdmin?Param=listarClientes"> Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdmCuentas.jsp">Cuentas</a>
+                <a class="nav-link" href="ServletCuenta?Param=listarCuentas">Cuentas</a>
               </li>
               <li class="nav-item">
                <a class="nav-link" href="ServletAdmin?Param=listarPrestamos">Prestamos</a>

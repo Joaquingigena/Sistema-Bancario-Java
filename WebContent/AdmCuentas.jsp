@@ -1,3 +1,7 @@
+<%@page import="entidades.Cuenta"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,6 +23,15 @@
 </head>
 <body>
 
+<%
+	String nombre = (String)request.getAttribute("nombre");
+	List<Cuenta> listaCuentas= new ArrayList<Cuenta>();
+
+	if(request.getAttribute("ListaCuentas")!=null){
+		listaCuentas= (ArrayList<Cuenta>)request.getAttribute("ListaCuentas");
+	}
+
+%>
 
 
 <!-- Barra de navegacion -->
@@ -36,7 +49,7 @@
                 <a class="nav-link active" href="ServletAdmin?Param=listarClientes"> Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdmCuentas.jsp">Cuentas</a>
+                <a class="nav-link" href="ServletCuenta?Param=listarCuentas">Cuentas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="ServletAdmin?Param=listarPrestamos">Prestamos</a>
@@ -84,9 +97,9 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
                         <th scope="col">N° cuenta</th>
                         <th scope="col">N° Usuario</th>
+                        <th scope="col">Fecha de creacion</th>
                         <th scope="col">CBU</th>
                         <th scope="col">Saldo</th>
                         <th scope="col"></th>
@@ -95,34 +108,27 @@
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>nombre</td>
-                        <td>10.000</td>
-                        <td><button class="btn btn-outline-primary">Modificar</button></td>
-                        <td><button class="btn btn-outline-danger">Eliminar</button></td>
-                        
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>nombre</td>
-                        <td>10.000</td>
-                        <td><button class="btn btn-outline-primary">Modificar</button></td>
-                        <td><button class="btn btn-outline-danger">Eliminar</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>12312312</td>
-                        <td>12313</td>
-                        <td>nombre</td>
-                        <td>10.000</td>
-                        <td><button class="btn btn-outline-primary">Modificar</button></td>
-                        <td><button class="btn btn-outline-danger">Eliminar</button></td>
-                      </tr>
+                      <%
+                      if(listaCuentas!=null){                   	  
+                    	  for(Cuenta c : listaCuentas){
+                    		  %>
+                    		 <tr>
+		                        <td><%= c.getNumCuenta_Cta() %></td>
+		                        <td><%= c.getIdUsuario_Cta().getIdUsuario_U() %></td>
+		                        <td><%= c.getFechaCreacion_Cta() %></td>
+		                        <td><%= c.getCBU_Cta() %> </td>
+		                        <td><%= c.getSaldo_Cta() %> </td> 
+		                        <td> <a href="" class="btn btn-primary" >Modificar </a> </td>
+		                        <td> <a href="" class="btn btn-danger" >Eliminar </a> </td>
+			                        
+                     		 </tr>
+                    		  <%
+                    	  }
+                    	  
+                      }
+                      
+                      
+                      %>
                     </tbody>
                   </table>
             </div>

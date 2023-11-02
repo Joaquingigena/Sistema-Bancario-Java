@@ -48,7 +48,7 @@
                 <a class="nav-link active" href="ServletAdmin?Param=listarClientes"> Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdmCuentas.jsp">Cuentas</a>
+                <a class="nav-link" href="ServletCuenta?Param=listarCuentas">Cuentas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="ServletAdmin?Param=listarPrestamos">Prestamos</a>
@@ -127,7 +127,7 @@
 		                        <td><%=u.getIdPersona_U().getApellido_P() %> </td>
 		                        <td><%=u.getIdPersona_U().getDNI_P()%> </td> 
 		                        <td><%=u.getIdPersona_U().getCorreo_P() %></td>
-		                        <td> <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Modificar </a> </td>
+		                        <td> <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" >Modificar </a> </td>
 		                        <td> <a href="ServletAdmin?eliminarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Eliminar </a> </td>
 			                        
                      		 </tr>
