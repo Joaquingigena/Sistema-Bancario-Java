@@ -94,7 +94,7 @@
         </div>
 
         <div class="row">
-            <div class="col-8">
+            <div class="Cuerpo">
             	<%
             		List <Personas> ListaPer = null;
             		String dni = "";
@@ -105,8 +105,8 @@
             	
             	%>
             
-                <table class="table">
-                      <tr>
+                <table class="table table-striped">
+                      <tr class="table-primary">
                         
                         <th scope="col">ID</th>
                         <th scope="col">DNI</th>
@@ -118,11 +118,11 @@
                         <th scope="col">Sexo</th>
                         <th scope="col">Nacionalidad</th>
                         <th scope="col">Fecha de Nacimiento</th>
-                        <th scope="col">Dirección</th>
+                        <th scope="col" >Dirección</th>
                         <th scope="col">Mail</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Estado Solicitud</th>
-                        
+                        <th scope="col"></th>
                       </tr>
 
   						
@@ -133,7 +133,38 @@
  	                    {
  							
                     %>
-                    	<tr> <td> <%=Per.getIdPersona_P() %> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P() %></td> <td><%=Per.getCodProvincia_P() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> <td><%=Per.getSolicitud_P() %></td> </tr>
+                    <form action="ServletAdmin" method="get">
+                    	<tr> 
+	                    	<td> <%=Per.getIdPersona_P() %> <input type="hidden" name="idPersona" value="<%=Per.getIdPersona_P() %>"> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P() %></td> <td><%=Per.getCodProvincia_P() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> 
+	                    	<%
+	                    	String ruta = "";
+	                    	switch(Per.getSolicitud_P())
+	                    	{
+	                    	case 0:
+	                    		ruta = "css/imagenes/amarillo.png";
+	                    		break;
+	                    			
+	                    	case 1:
+	                    		ruta = "css/imagenes/verde.png";
+	                    		break;
+	                    	case -1:
+	                    		ruta = "css/imagenes/rojo.png";
+	                    		break;
+	                    	}
+	                    	%>
+	                    	<td>
+	                    		<img alt="Icono" src="<%=ruta %>">
+	                    	</td>
+	                    	
+	                    	<td style="width:200px;">
+	                    		<%if(Per.getSolicitud_P()==0){ %>
+	                    			<input type="submit" name="btnAceptarSol" value="Aceptar">
+	                    			<input type="submit" name="btnRechazarSol" value="Rechazar">
+	                    		<%} %>
+	                    	</td>
+
+                    	</tr>
+                    </form>
                     <%	
                     	}
                     %>

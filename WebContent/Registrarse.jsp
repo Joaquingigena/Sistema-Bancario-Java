@@ -25,7 +25,7 @@
         <h2>Registrarse</h2>
       </div>
       
-      <form>
+      <form action="ServletAdmin" method="get">
             <div class="row bg-secondary border-dark rounded ">
                 <!-- Primera Columna -->
                 <div class="col-md-6 align-items-center mt-3">

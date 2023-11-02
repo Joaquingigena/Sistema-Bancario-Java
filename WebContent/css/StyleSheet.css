@@ -380,3 +380,7 @@ div#Primario{
 	flex-wrap: wrap;
 	margin-top: 2%;
 }
+
+.centrarCelda{
+	justify-content:center;
+}

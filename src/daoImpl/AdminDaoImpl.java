@@ -221,24 +221,6 @@ public class AdminDaoImpl implements IAdminDao {
 		}
 		return Lista;
 			
-			 /*try {
-					Class.forName("com.mysql.jdbc.Driver");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			 
-			   Connection conn = null;
-		       try {
-		    	    conexion.Open();
-		    	    conn = DriverManager.getConnection(host + name, user, pass);
-		            CallableStatement proc = conn.prepareCall(" CALL SP_ListarSolicitudes ");
-		            proc.execute();
-		            Lista = proc.get;
-		        } 
-		       catch (Exception e) {                  
-		            System.out.println(e);
-		       }*/
 	}
 	
 	public String DNIusuario() 
@@ -263,5 +245,25 @@ public class AdminDaoImpl implements IAdminDao {
 		}
 		
 		return DNI;
+	}
+	
+	public boolean cambiarEstadoSolicitud(int ID, int estado) {
+		
+		conexion= new conexion();
+		boolean guardado=true;
+		
+		String query= "update personas set Solicitud_P="+estado+" where IdPersona_P="+ID;
+		try {
+			conexion.Open();
+			guardado=conexion.execute(query);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			guardado=false;
+			conexion.close();
+		}
+		return guardado;
 	}
 }

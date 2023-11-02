@@ -125,8 +125,8 @@ public class Personas {
 	public int getSolicitud_P() {
 		return Solicitud_P;
 	}
-	public void setSolicitud_P(int Solicitud_P) {
-		Solicitud_P = Solicitud_P;
+	public void setSolicitud_P(int solicitud_P) {
+		Solicitud_P = solicitud_P;
 	}
 	@Override
 	public String toString() {

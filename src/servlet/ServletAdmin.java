@@ -82,15 +82,6 @@ public class ServletAdmin extends HttpServlet {
 		
 		if(request.getParameter("btnSolicitudes")!=null) {
 			AdminNegocioImpl AdminNeg = new AdminNegocioImpl();
-			//AdminDaoImpl AdminDao = new AdminDaoImpl();
-			
-			// ----------PRUEBA------------------
-			/*String dni = AdminDao.DNIusuario();
-			if(dni!="") 
-			{
-				request.setAttribute("DNI", dni);
-			}*/
-			// ----------------------------------
 			
 			// Obtengo la lista de personas desde la capa Negocio.
 			List <Personas> ListaPer = null;
@@ -106,7 +97,55 @@ public class ServletAdmin extends HttpServlet {
 			rd.forward(request, response);
 			
 		}
-	
+		
+		
+		if(request.getParameter("btnAceptarSol")!=null) {
+			int estado=1;
+			int ID = Integer.parseInt(request.getParameter("idPersona").toString());
+			List <Personas> ListaPer = null;
+			
+			adminNeg.aceptarSolicitud(ID, estado);
+			
+			// Obtengo la lista de personas desde la capa Negocio.
+			ListaPer = adminNeg.listarSolicitudes();
+						
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			if(ListaPer!=null) {
+				request.setAttribute("ListaPersonas", ListaPer);
+			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/Solicitudes.jsp");
+			rd.forward(request, response);
+		}
+		
+		if(request.getParameter("btnRechazarSol")!=null) {
+			int estado=-1;
+			int ID = Integer.parseInt(request.getParameter("idPersona").toString());
+			List <Personas> ListaPer = null;
+			
+			adminNeg.aceptarSolicitud(ID, estado);
+			
+			// Obtengo la lista de personas desde la capa Negocio.
+			ListaPer = adminNeg.listarSolicitudes();
+						
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			if(ListaPer!=null) {
+				request.setAttribute("ListaPersonas", ListaPer);
+			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/Solicitudes.jsp");
+			rd.forward(request, response);
+		}
+		
+		if(request.getParameter("btnRegistrarse")!=null) {
+			/*adminNeg.aceptarSolicitud(ID, estado);
+			Personas Per = new Personas();
+			
+			Per.setDNI_P(request.getParameter(""));
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/Solicitudes.jsp");
+			rd.forward(request, response);*/
+		}
 		
 	}
 
