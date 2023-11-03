@@ -19,5 +19,5 @@ public interface IAdminNegocio {
 	
 	public boolean aceptarSolicitud(int ID, int estado);
 	
-	public boolean altaUsuario(int ID, String user, String pass);
+	public boolean altaUsuario(int ID, String user, String pass, int rol);
 }

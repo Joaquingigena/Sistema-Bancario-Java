@@ -47,8 +47,8 @@ public class AdminNegocioImpl implements IAdminNegocio {
 	}
 
 	@Override
-	public boolean altaUsuario(int ID, String user, String pass) {
-		return adminDao.altaUsuario(ID, user, pass);
+	public boolean altaUsuario(int ID, String user, String pass, int rol) {
+		return adminDao.altaUsuario(ID, user, pass, rol);
 	}
 
 }

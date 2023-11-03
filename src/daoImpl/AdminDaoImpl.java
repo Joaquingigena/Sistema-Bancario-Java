@@ -3,6 +3,7 @@ package daoImpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -269,14 +270,19 @@ public class AdminDaoImpl implements IAdminDao {
 
 
 	@Override
-	public boolean altaUsuario(int ID, String user, String pass) {
+	public boolean altaUsuario(int ID, String user, String pass, int rol) {
 		conexion= new conexion();
 		boolean guardado=true;
 		
-		String query= "INSERT INTO usuario (`IdPersona_U`, `Usuario_U`, `Contraseña`, `IdRoles_U`, `Estado_U`) VALUES ('6',"+ user +", " +pass+ ", '2', '1')";
+		//String query= "INSERT INTO usuario (IdPersona_U, Usuario_U, Contraseña, IdRoles_U, Estado_U) VALUES (?,?,?,?,?)";
 		try {
-			conexion.Open();
-			guardado=conexion.execute(query);	
+			
+			CallableStatement cst =  conexion.Open().prepareCall("CALL SP_AgregarUsuario(?,?,?,?)");
+			cst.setInt(1, ID);
+			cst.setString(2, user);
+			cst.setString(3, pass);
+			cst.setInt(4, rol);
+			cst.execute();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

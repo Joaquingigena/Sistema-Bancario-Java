@@ -186,9 +186,9 @@
 							        	Usuario
 							        	<input type="text" name="txtUsuario">
 							        	Contraseña
-							        	<input type="password" name="txtContraseña">
+							        	<input type="password" name="txtPass">
 							        	Repetir Contraseña
-							        	<input type="password" name="txtRepetirContraseña">
+							        	<input type="password" name="txtRepetirPass">
 							        </div>
 							        
 							      </div>
@@ -255,7 +255,11 @@
                     %>
                      
                   </table>
-					
+					<div>
+						<form action="ServletAdmin" method="get">
+						<input type="submit" name="prueba">
+						</form>
+					</div>
             </div>
         </div>
     </div>

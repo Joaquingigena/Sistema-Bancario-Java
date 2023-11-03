@@ -103,14 +103,15 @@ public class ServletAdmin extends HttpServlet {
 			int estado=1;
 			int ID = Integer.parseInt(request.getParameter("idPersona").toString());
 			String user = request.getParameter("txtUsuario").toString();
-			String pass = request.getParameter("txtContraseña");
+			String pass = request.getParameter("txtPass").toString();
+			int rol = 2;
 			List <Personas> ListaPer = null;
 			
 			// Cambia estado Solicitud
-			adminNeg.aceptarSolicitud(ID, estado);
+			//adminNeg.aceptarSolicitud(ID, estado);
 			
 			//Alta Usuario
-			adminNeg.altaUsuario(ID, user, pass);
+			adminNeg.altaUsuario(ID, user, pass, rol);
 			
 			// Obtengo la lista de personas desde la capa Negocio.
 			ListaPer = adminNeg.listarSolicitudes();
