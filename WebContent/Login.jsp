@@ -55,10 +55,12 @@
                 	<input type="submit" class="btn btn-success" value="Ingresar" name="btnIngresar">
                 </div>
             </form>
-
+			
             <p class="text-body-dark">
-                ¿No tienes cuenta? <a href="Registrarse.jsp" class="text-reset">Regístrate</a>.
+                ¿No tienes cuenta? 
+                <a href="ServletAdmin?Param=Registrarse" class="text-reset">Regístrate</a>.    
             </p>
+            
         </section>
     </div>
 </div>

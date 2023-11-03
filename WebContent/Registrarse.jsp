@@ -1,3 +1,6 @@
+<%@page import="entidades.Localidades"%>
+<%@page import="entidades.Provincias"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -62,10 +65,10 @@
                         
                         <select class="form-control mb-3" id="nacionalidad" name="nacionalidad" placeholder="Nacionalidad">
                         	<option value="predeterminada" selected>Ejila su Nacionalidad</option>
-                            <option value="opcion1">Argentina</option>
-                            <option value="opcion2">Perú</option>
-                            <option value="opcion2">Uruguay</option>
-                            <option value="opcion2">Brasil</option>
+                            <option value="Argentina">Argentina</option>
+                            <option value="Peru">Perú</option>
+                            <option value="Uruguay">Uruguay</option>
+                            <option value="Brasil">Brasil</option>
                             <!-- Agrega más opciones según sea necesario -->
                         </select>
                     </div>
@@ -78,15 +81,57 @@
                             <option value="Otro">Otro</option>
                             <!-- Agrega más opciones según sea necesario -->
                         </select>
-                    </div>
+                    </div>     
+                    
                     <div class="form-group mb-3">
-                        
-                        <input type="text" class="form-control" id="localidad" name="localidad" required placeholder="Localidad">
+                    	<%
+                    			List <Provincias> ListaProv = null;
+			            		
+			            		if(request.getAttribute("ListaProvincias") !=null)
+			            		{
+			            			ListaProv = (List<Provincias>)request.getAttribute("ListaProvincias");
+			            		}
+			            %>
+                        <select class="form-control mb-3" id="Provincias" name="provincia" placeholder="Provincia">
+                        	<option value="predeterminada" selected>Seleccione Provincia</option>
+                        	
+                        	<%	
+			            		if(ListaProv!=null)
+			            		//for(int i=0; i < 5; i++){
+			            		for(Provincias Prov : ListaProv){
+            				%>
+            				
+                            <option value=" <%=Prov.getNombre_Prov() %>"><%= Prov.getNombre_Prov() %></option>
+                            <!-- Agrega más opciones según sea necesario -->
+                            <%} %>
+                        </select>
                     </div>
+                    
                     <div class="form-group mb-3">
-                        
-                        <input type="text" class="form-control" id="provincia" name="provincia" required placeholder="Provincia">
+                    	<%
+                    		
+			            		List <Localidades> ListaLoc = null;
+			            		if(request.getAttribute("ListaLocalidades") !=null)
+			            		{
+			            			ListaLoc = (List<Localidades>)request.getAttribute("ListaLocalidades");
+			            		}
+			            %>
+                        <select class="form-control mb-3" id="localidad" name="localidad" placeholder="Localidad">
+                        	<option value="predeterminada" selected>Seleccione Localidad</option>
+                            
+                            		
+            				<%	
+			            		if(ListaLoc!=null)
+			            		//for(int i=0; i < 5; i++){
+			            		for(Localidades Loc : ListaLoc){
+            				%>
+                            <option value=" <%=Loc.getNombre_Loc() %>"><%= Loc.getNombre_Loc() %></option>
+                            <!-- Agrega más opciones según sea necesario -->
+                            <%} %>
+                        </select>
+                        <!-- <input type="text" class="form-control" id="localidad" name="localidad" required placeholder="Localidad"> -->
                     </div>
+                    
                     <div class="form-group mb-3">
                         
                         <input type="DNI" class="form-control" id="dni" name="dni" required placeholder="DNI">
@@ -100,7 +145,18 @@
 			<div class="text-center mt-2">
 				<input type="submit" value="Registrarse" name="btnRegistrarse" class="btn btn-primary" ></input>
 			</div>
-            
+			
+			<%
+			if(request.getAttribute("EstadoAlta") !=null){
+				if((boolean)request.getAttribute("EstadoAlta")==true){
+				%>
+            	<h3>Registrado exitosamente</h3>
+            	<%}%>
+            <%
+	            if((boolean)request.getAttribute("EstadoAlta")==false){%>
+	            	<h3>No puedo registrarse</h3>
+	            <%}%>	
+            <%}%>
         </form>
     </div>
 

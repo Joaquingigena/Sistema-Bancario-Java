@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import daoImpl.AdminDaoImpl;
+import entidades.Localidades;
 import entidades.Personas;
+import entidades.Provincias;
 import negocioImpl.AdminNegocioImpl;
 
 @WebServlet("/ServletAdmin")
@@ -49,6 +51,33 @@ public class ServletAdmin extends HttpServlet {
 				dispa.forward(request, response);
 				break;
 			
+			case "Registrarse":
+				
+				AdminNegocioImpl AdminNeg = new AdminNegocioImpl();
+				
+				// Obtengo la lista de Localidades desde la capa Negocio.
+				List <Localidades> ListaLoc = null;
+				ListaLoc = AdminNeg.ListarLocalidades();
+				
+				// Obtengo la lista de Localidades desde la capa Negocio.
+				List <Provincias> ListaProv = null;
+				ListaProv = AdminNeg.ListarProvincias();
+				
+				// Seteo la lista al request para enviarla a la pagina de regreso.
+				if(ListaLoc!=null) {
+					request.setAttribute("ListaLocalidades", ListaLoc);
+				}
+				
+				// Seteo la lista al request para enviarla a la pagina de regreso.
+				if(ListaProv!=null) {
+					request.setAttribute("ListaProvincias", ListaProv);
+				}
+				
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/Registrarse.jsp");
+				rd.forward(request, response);
+				break;
+				
 			default:
 				break;
 			}
@@ -144,14 +173,41 @@ public class ServletAdmin extends HttpServlet {
 			rd.forward(request, response);
 		}
 		
+		
 		if(request.getParameter("btnRegistrarse")!=null) {
-			/*adminNeg.aceptarSolicitud(ID, estado);
-			Personas Per = new Personas();
+			int estado=1;
 			
-			Per.setDNI_P(request.getParameter(""));
+			String dni = request.getParameter("dni").toString();
+			int localidad = 1;//adminNeg.CodLocalidad(request.getParameter("localidad").toString());
+			int provincia = 1;//adminNeg.CodProvincia(request.getParameter("provincia").toString());
+			String cuil = request.getParameter("cuil").toString();
+			String nombre = request.getParameter("nombre").toString();
+			String apellido = request.getParameter("apellido").toString();
+			String sexo = request.getParameter("sexo").toString();
+			String nacionalidad = request.getParameter("nacionalidad").toString();
+			String fecha = request.getParameter("fechaNac").toString();
+			String direccion = request.getParameter("direccion").toString();
+			String mail = request.getParameter("email").toString();
+			String tel = request.getParameter("telefono").toString();
+			boolean solicitud = false;
+			int rol = 2;
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/Solicitudes.jsp");
-			rd.forward(request, response);*/
+			
+			// Cambia estado Solicitud
+			//adminNeg.aceptarSolicitud(ID, estado);
+			
+			//Alta Usuario
+			boolean alta = adminNeg.AgregarPersona(dni, localidad, provincia, cuil, nombre, apellido, sexo, nacionalidad, fecha, direccion, mail, tel, solicitud);
+			
+			// Obtengo la lista de personas desde la capa Negocio.
+			//ListaPer = adminNeg.listarSolicitudes();
+						
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			request.setAttribute("EstadoAlta", alta);
+			
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/Registrarse.jsp");
+			rd.forward(request, response);
 		}
 		
 	}

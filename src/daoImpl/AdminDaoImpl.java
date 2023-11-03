@@ -108,10 +108,10 @@ public class AdminDaoImpl implements IAdminDao {
 			guardado=conexion.execute(query);	
 			
 		} catch (Exception e) {
+			guardado=false;
 			e.printStackTrace();
 		}
 		finally {
-			guardado=false;
 			conexion.close();
 		}
 		return guardado;
@@ -182,12 +182,7 @@ public class AdminDaoImpl implements IAdminDao {
 			
 			while(rs.next()) {
 				Personas persona = new Personas();
-				//Localidades Loc = new Localidades();
-				//Provincias Prov = new Provincias();
-				
-				//Loc.setCodLocalidad_Loc(1);
-				//Prov.setCodProvincia_Prov(1);
-				
+
 				persona.setIdPersona_P(rs.getInt("idPersona_P"));
 				persona.setNombre_P(rs.getString("Nombre_P"));
 				persona.setApellido_P(rs.getString("Apellido_P"));
@@ -211,14 +206,12 @@ public class AdminDaoImpl implements IAdminDao {
 				
 				Lista.add(persona);
 			}
-			//conexion.close();
-			//return Lista;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		finally {
-			//conexion.close();
+			conexion.close();
 		}
 		return Lista;
 			
@@ -259,10 +252,10 @@ public class AdminDaoImpl implements IAdminDao {
 			guardado=conexion.execute(query);	
 			
 		} catch (Exception e) {
+			guardado=false;
 			e.printStackTrace();
 		}
 		finally {
-			guardado=false;
 			conexion.close();
 		}
 		return guardado;
@@ -274,9 +267,7 @@ public class AdminDaoImpl implements IAdminDao {
 		conexion= new conexion();
 		boolean guardado=true;
 		
-		//String query= "INSERT INTO usuario (IdPersona_U, Usuario_U, Contraseña, IdRoles_U, Estado_U) VALUES (?,?,?,?,?)";
 		try {
-			
 			CallableStatement cst =  conexion.Open().prepareCall("CALL SP_AgregarUsuario(?,?,?,?)");
 			cst.setInt(1, ID);
 			cst.setString(2, user);
@@ -285,12 +276,155 @@ public class AdminDaoImpl implements IAdminDao {
 			cst.execute();
 			
 		} catch (Exception e) {
+			guardado=false;
 			e.printStackTrace();
 		}
 		finally {
-			guardado=false;
 			conexion.close();
 		}
 		return guardado;
+	}
+
+
+	@Override
+	public List<Localidades> listarLocalidades() {
+		List <Localidades> Lista = new ArrayList<Localidades>();
+		conexion= new conexion();
+		String query= "SELECT * FROM localidades INNER JOIN provincias ON CodProvincia_Loc=CodProvincia_Prov WHERE CodProvincia_Prov=3";
+		try {
+			conexion.Open();
+			ResultSet rs = conexion.query(query);
+			
+			while(rs.next()) {
+				Localidades Localidad = new Localidades();
+				
+				Localidad.setCodProvincia_Loc(rs.getInt("CodProvincia_Loc"));
+				Localidad.setNombre_Loc(rs.getString("Nombre_Loc"));
+				
+				Lista.add(Localidad);
+			}
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		return Lista;
+
+	}
+
+
+	@Override
+	public List<Provincias> listarProvincias() {
+		
+		List <Provincias> Lista = new ArrayList<Provincias>();
+		conexion= new conexion();
+		String query= "SELECT Nombre_Prov FROM provincias";
+		try {
+			conexion.Open();
+			ResultSet rs = conexion.query(query);
+			
+			while(rs.next()) {
+				Provincias Provincia = new Provincias();
+				
+				Provincia.setNombre_Prov(rs.getString("Nombre_Prov"));
+				
+				Lista.add(Provincia);
+			}
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		return Lista;
+
+	}
+
+
+	@Override
+	public boolean AgregarPersona(String DNI, int localidad, int provincia, String CUIL, String nombre, String apellido,
+			String sexo, String nacionalidad, String fecha, String direccion, String mail, String tel,
+			boolean solicitud) {
+		
+		conexion= new conexion();
+		boolean guardado=true;
+		
+		try {
+			CallableStatement cst =  conexion.Open().prepareCall("CALL SP_AgregarPersona(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			cst.setString(1, DNI);
+			cst.setInt(2, localidad);
+			cst.setInt(3, provincia);
+			cst.setString(4, CUIL);
+			cst.setString(5, nombre);
+			cst.setString(6, apellido);
+			cst.setString(7, sexo);
+			cst.setString(8, nacionalidad);
+			cst.setString(9, fecha);
+			cst.setString(10, direccion);
+			cst.setString(11, mail);
+			cst.setString(12, tel);
+			cst.setBoolean(13, solicitud);
+			cst.execute();
+			
+		} catch (Exception e) {
+			guardado=false;
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		return guardado;
+		
+	}
+
+
+	@Override
+	public int Codlocalidad(String nombre) {
+		int codigo = 0;
+		conexion= new conexion();
+		String query= "SELECT CodLocalidad_Loc FROM localidades WHERE Nombre_Loc="+nombre;
+		
+		try {
+			conexion.Open();
+			ResultSet rs = conexion.query(query);
+			
+			rs.next();
+			codigo = rs.getInt("CodLocalidad_Loc");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		return codigo;
+	}
+
+
+	@Override
+	public int CodProvincia(String nombre) {
+		int codigo = 0;
+		conexion= new conexion();
+		String query= "SELECT CodProvincia_Prov FROM provincias WHERE Nombre_Prov="+nombre;
+		
+		try {
+			conexion.Open();
+			ResultSet rs = conexion.query(query);
+			
+			rs.next();
+			codigo = rs.getInt("CodProvincia_Prov");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		return codigo;
 	}
 }
