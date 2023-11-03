@@ -43,8 +43,12 @@ public class AdminNegocioImpl implements IAdminNegocio {
 
 	@Override
 	public boolean aceptarSolicitud(int ID, int estado) {
-		adminDao.cambiarEstadoSolicitud(ID, estado);
-		return false;
+		return adminDao.cambiarEstadoSolicitud(ID, estado);
+	}
+
+	@Override
+	public boolean altaUsuario(int ID, String user, String pass) {
+		return adminDao.altaUsuario(ID, user, pass);
 	}
 
 }

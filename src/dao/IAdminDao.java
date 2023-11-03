@@ -15,4 +15,6 @@ public interface IAdminDao {
 	public Usuario obtenerCliente(int id);
 	
 	public List<Personas> listarSolicitudes();
+	
+	public boolean altaUsuario(int ID, String user, String pass);
 }

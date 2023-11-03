@@ -266,4 +266,25 @@ public class AdminDaoImpl implements IAdminDao {
 		}
 		return guardado;
 	}
+
+
+	@Override
+	public boolean altaUsuario(int ID, String user, String pass) {
+		conexion= new conexion();
+		boolean guardado=true;
+		
+		String query= "INSERT INTO usuario (`IdPersona_U`, `Usuario_U`, `Contraseña`, `IdRoles_U`, `Estado_U`) VALUES ('6',"+ user +", " +pass+ ", '2', '1')";
+		try {
+			conexion.Open();
+			guardado=conexion.execute(query);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			guardado=false;
+			conexion.close();
+		}
+		return guardado;
+	}
 }

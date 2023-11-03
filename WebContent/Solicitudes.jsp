@@ -194,7 +194,7 @@
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-							        <button type="button" class="btn btn-primary">Guardar</button>
+							        <button name="btnAceptarSol" type="submit" class="btn btn-primary">Guardar</button>
 							      </div>
 							    </div>
 							  </div>
@@ -217,7 +217,7 @@
 							      </div>
 							      <div class="modal-body" Style="display:flex;">
 							      	<div style="width:90%;">
-							      		<div>Nombre: <%=Per.getNombre_P() %></div>
+							      		<div>Nombre: <%=Per.getNombre_P() %> </div> 
 								        <div>Apellido: <%=Per.getApellido_P() %></div>
 								        <div>DNI: <%=Per.getDNI_P() %></div>
 								        <div>Dirección: <%=Per.getDireccion_P() %></div>
@@ -236,7 +236,7 @@
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-							        <button style="background-color:red; border-color:red;" type="button" class="btn btn-primary">SI</button>
+							        <button type="submit" name="btnRechazarSol" style="background-color:red; border-color:red;" type="button" class="btn btn-primary">SI</button>
 							      </div>
 							    </div>
 							  </div>

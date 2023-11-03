@@ -18,4 +18,6 @@ public interface IAdminNegocio {
 	public List <Personas> listarSolicitudes();
 	
 	public boolean aceptarSolicitud(int ID, int estado);
+	
+	public boolean altaUsuario(int ID, String user, String pass);
 }
