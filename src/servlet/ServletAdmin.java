@@ -137,7 +137,7 @@ public class ServletAdmin extends HttpServlet {
 			List <Personas> ListaPer = null;
 			
 			// Cambia estado Solicitud
-			//adminNeg.aceptarSolicitud(ID, estado);
+			adminNeg.aceptarSolicitud(ID, estado);
 			
 			//Alta Usuario
 			adminNeg.altaUsuario(ID, user, pass, rol);
@@ -192,15 +192,8 @@ public class ServletAdmin extends HttpServlet {
 			boolean solicitud = false;
 			int rol = 2;
 			
-			
-			// Cambia estado Solicitud
-			//adminNeg.aceptarSolicitud(ID, estado);
-			
 			//Alta Usuario
 			boolean alta = adminNeg.AgregarPersona(dni, localidad, provincia, cuil, nombre, apellido, sexo, nacionalidad, fecha, direccion, mail, tel, solicitud);
-			
-			// Obtengo la lista de personas desde la capa Negocio.
-			//ListaPer = adminNeg.listarSolicitudes();
 						
 			// Seteo la lista al request para enviarla a la pagina de regreso.
 			request.setAttribute("EstadoAlta", alta);
