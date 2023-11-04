@@ -1,7 +1,7 @@
 <%@page import="entidades.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,6 +45,9 @@
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
+               	<a class="nav-link active" href="ServletAdmin?btnSolicitudes=Ver solicitudes de cuenta&usuario=<%= nombre %>"> Lista de solicitudes</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active" href="ServletAdmin?Param=listarClientes"> Clientes</a>
               </li>
               <li class="nav-item">
@@ -83,20 +86,21 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row d-flex justify-content-center my-3">
             <div class="col-3 titulo">
                
                 <h3 >Listado de clientes</h3>
             </div>
-          	<form action="ServletAdmin" method="get">
+          	<!--<form action="ServletAdmin" method="get">
           		<div>
-                	<input type="submit" name="btnSolicitudes" value="Ver solicitudes de cuenta" class="btn btn-secondary btn">
+                	<input type="text" name="usuario" value="<%=nombre%>" style="display: none;">
+					<input type="submit" name="btnSolicitudes" value="Ver solicitudes de cuenta" class="btn btn-secondary btn"> 
            		</div>
-          	</form>
+          	</form>-->
            
         </div>
 
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             <div class="col-8">
                 <table class="table">
                     <thead>
@@ -117,6 +121,13 @@
                     <tbody class="table-group-divider">
                       
                       <%
+	                      Random random = new Random();
+	                      
+	                      // Generar un número aleatorio de 8 dígitos
+	                      int min1 = 100000000; 
+	                      int max1 = 999999999; 
+	                      int numero1 = random.nextInt(max1 - min1 + 1) + min1;
+
                       if(listaClientes!=null){                   	  
                     	  for(Usuario u : listaClientes){
                     		  %>
@@ -127,19 +138,68 @@
 		                        <td><%=u.getIdPersona_U().getApellido_P() %> </td>
 		                        <td><%=u.getIdPersona_U().getDNI_P()%> </td> 
 		                        <td><%=u.getIdPersona_U().getCorreo_P() %></td>
-		                        <td> <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" >Modificar </a> </td>
-		                        <td> <a href="ServletAdmin?eliminarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Eliminar </a> </td>
-			                        
-                     		 </tr>
-                    		  <%
-                    	  }
-                    	  
-                      }
-                      
-                      
-                      %>
-                         
-                     
+			                    <td style="width:400px;">
+	                    			<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal<%=u.getIdUsuario_U()%>">Abrir cuenta</button>
+	                    			
+	                    			<!-- DIV MODAL ALTA CUENTA -->
+									<div class="modal fade" id="Modal<%= u.getIdUsuario_U()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	                    			<form action="ServletCuenta" method="post">
+	                    				<input type="hidden" name="idUsuario" value="<%=u.getIdUsuario_U() %>">
+									  <div class="modal-dialog modal-dialog-centered">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta Cuenta</h1>
+									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									      </div>
+									      <div class="modal-body" Style="display:flex;">
+									      	<div>
+										        <div><b>ID: </b><%= u.getIdUsuario_U()%></div>
+										        <div><b>DNI:</b> <%= u.getIdPersona_U().getDNI_P()%></div>
+									      		<div><b>Nombre:</b> <%= u.getIdPersona_U().getNombre_P()%></div>
+										        <div><b>Apellido: </b><%= u.getIdPersona_U().getApellido_P()%></div>
+										        <div><b>Mail: </b><%= u.getIdPersona_U().getCorreo_P() %></div>
+									      	</div>
+									        <div style="margin-left: 10%;display:flex;flex-direction:column;">
+									        	<b>Tipo de Cuenta</b>
+									        	<div class="form-check">
+												  <input class="form-check-input" type="radio" name="radioBtn" id="1" value="1" checked>
+												  <label class="form-check-label" for="flexRadioDefault1">
+												    Caja de Ahorro $
+												  </label>
+												</div>
+												<div class="form-check">
+												  <input class="form-check-input" type="radio" name="radioBtn" id="2" value="2">
+												  <label class="form-check-label" for="flexRadioDefault2">
+												    Cuenta Corriente
+												  </label>
+												</div>
+									        	<b>Nro. CBU</b>
+									        	<input type="text" readonly name="nroCbu" value="<%=numero1%>">
+									        	<b>Monto inicial</b>
+									        	<input type="number" name="montoInicial" value="10.000">
+									        	<b>Detalle</b>
+									        	<input type="text" name="detalle" value="Apertura de cuenta">
+									        </div>
+									        
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+									        <input name="btnAltaCuenta" type="submit" value="Guardar" class="btn btn-primary" />
+									      </div>
+									    </div>
+									  </div>
+							        </form>
+										<!-- FIN DIV MODAL ALTA CUENTA -->
+									</div>
+			                    	</td>
+				                        <td> <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" >Modificar </a> </td>
+				                        <td> <a href="ServletAdmin?eliminarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Eliminar </a> </td>
+		                     		 </tr>
+		                    		<%
+                    	  				}
+                    	  			} 
+		                    		%>
+
                     </tbody>
                   </table>
             </div>

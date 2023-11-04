@@ -61,9 +61,9 @@ public class ServletUsuario extends HttpServlet {
 				break;
 			case 1:
 				request.setAttribute("nombre", usuario);
-				//dispatcher = request.getRequestDispatcher("/ServletAdmin?Param=listarClientes");
-				dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
-				dispatcher.forward(request, response);
+				//dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
+				//dispatcher.forward(request, response);
+				response.sendRedirect("/TPIntegrador_Grupo_6/ServletAdmin?btnSolicitudes=ver solicittudes&usuario="+usuario);
 				break;
 
 			default:

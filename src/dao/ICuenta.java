@@ -8,4 +8,9 @@ public interface ICuenta {
 
 	public List<Cuenta> listarCuentas();
 	
+	public boolean altaCuenta(int idUsuario, int idTipoCta, int cbu, float saldo, String detalle, int tipoMovimiento);
+	
+	public int validarTotalCuentas(int idUsuario);
+	
+	public void logMovimientos(int cbu, String descripcion, float importe, int tipoMovimiento);
 }

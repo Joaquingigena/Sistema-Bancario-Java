@@ -29,17 +29,20 @@ public class ServletAdmin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String usuario = request.getParameter("usuario");
+		request.setAttribute("usuario" ,usuario);
+		RequestDispatcher dispatcher;
+		System.out.println(" param "+ request.getParameter("Param"));
 		if(request.getParameter("Param")!=null) {
 			
 			String opcion= request.getParameter("Param").toString();
-			
 			switch(opcion) {
 			
 			case "listarClientes":
 				
 				request.setAttribute("cargar" ,adminNeg.listarUsuarios());
 					
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+				dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
 				dispatcher.forward(request, response);
 				
 				break;
@@ -47,10 +50,9 @@ public class ServletAdmin extends HttpServlet {
 				
 				request.setAttribute("cargarPrestamos" ,adminNeg.listarPrestamos());
 				
-				RequestDispatcher dispa = request.getRequestDispatcher("/AdmPrestamos.jsp");
-				dispa.forward(request, response);
-				break;
-			
+				dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
+				dispatcher.forward(request, response);
+				break;	
 			case "Registrarse":
 				
 				AdminNegocioImpl AdminNeg = new AdminNegocioImpl();
@@ -93,11 +95,11 @@ public class ServletAdmin extends HttpServlet {
 			
 			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+			dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
 			dispatcher.forward(request, response);
 		}
 		
-	if(request.getParameter("modificarCliente")!=null) {
+		if(request.getParameter("modificarCliente")!=null) {
 			
 			int id=Integer.parseInt( request.getParameter("modificarCliente"));
 			
@@ -105,7 +107,7 @@ public class ServletAdmin extends HttpServlet {
 			
 			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+			dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
 			dispatcher.forward(request, response);
 		}
 		
@@ -207,7 +209,8 @@ public class ServletAdmin extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		
 	}
 
 }

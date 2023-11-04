@@ -46,6 +46,9 @@
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
+               	<a class="nav-link active" href="ServletAdmin?btnSolicitudes=Ver solicitudes de cuenta"> Lista de solicitudes</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active" href="ServletAdmin?Param=listarClientes"> Clientes</a>
               </li>
               <li class="nav-item">

@@ -15,4 +15,22 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 		return cuentaDaoImpl.listarCuentas();
 	}
 
+	@Override
+	public boolean altaCuenta(int idUsuario, int idTipoCta, int cbu, float saldo, String detalle, int tipoMovimiento) {
+		// TODO Auto-generated method stub
+		return cuentaDaoImpl.altaCuenta(idUsuario, idTipoCta, cbu, saldo, detalle, tipoMovimiento);
+	}
+
+	@Override
+	public int validarTotalCuentas(int idUsuario) {
+		// TODO Auto-generated method stub
+		return cuentaDaoImpl.validarTotalCuentas(idUsuario);
+	}
+
+	@Override
+	public void logMovimientos(int cbu, String descripcion, float importe, int tipoMovimiento) {
+		// TODO Auto-generated method stub
+		cuentaDaoImpl.logMovimientos(cbu, descripcion, importe, tipoMovimiento);
+	}
+
 }
