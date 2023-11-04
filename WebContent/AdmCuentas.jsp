@@ -119,7 +119,7 @@
 		                        <td><%= c.getCBU_Cta() %> </td>
 		                        <td><%= c.getSaldo_Cta() %> </td> 
 		                        <td> <a href="" class="btn btn-primary" >Modificar </a> </td>
-		                        <td> <a href="" class="btn btn-danger" >Eliminar </a> </td>
+		                        <td> <a href="ServletCuenta?eliminarCuenta=<%=c.getNumCuenta_Cta()%>" class="btn btn-danger" >Eliminar </a> </td>
 			                        
                      		 </tr>
                     		  <%

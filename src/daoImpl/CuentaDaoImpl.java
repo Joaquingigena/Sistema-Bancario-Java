@@ -17,7 +17,7 @@ public class CuentaDaoImpl implements ICuenta {
 		
 		List <Cuenta> lista= new ArrayList<Cuenta>();
 		conexion= new conexion();
-		String query= "Select C.NumCuenta_Cta,C.IdUsuario_Cta, C.FechaCreacion_Cta, C.IdTipoCuenta_Cta, C.CBU_Cta, C.Saldo_Cta, U.IdUsuario_U FROM cuenta AS C inner join usuario U on U.IdUsuario_U = C.IdUsuario_Cta;";
+		String query= "Select C.NumCuenta_Cta,C.IdUsuario_Cta, C.FechaCreacion_Cta, C.IdTipoCuenta_Cta, C.CBU_Cta, C.Saldo_Cta FROM cuenta AS C inner join usuario U on U.IdUsuario_U = C.IdUsuario_Cta where Estado_Cta=true";
 		
 		try {
 			conexion.Open();
@@ -44,6 +44,27 @@ public class CuentaDaoImpl implements ICuenta {
 		
 		return lista;
 	}
+		
+		@Override
+		public boolean eliminarCuenta(int id) {
+			
+			conexion= new conexion();
+			boolean guardado=true;
+			
+			String query= "update Cuenta set Estado_Cta=false where NumCuenta_Cta="+id;
+			try {
+				conexion.Open();
+				guardado=conexion.execute(query);	
+				
+			} catch (Exception e) {
+				guardado=false;
+				e.printStackTrace();
+			}
+			finally {
+				conexion.close();
+			}
+			return guardado;
+		}
 
 }
 

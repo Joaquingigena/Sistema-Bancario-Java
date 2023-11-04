@@ -14,5 +14,11 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 	public List<Cuenta> ListarCuentas() {
 		return cuentaDaoImpl.listarCuentas();
 	}
+	@Override
+	public boolean eliminarCuenta(int id) {
+		
+		
+		return cuentaDaoImpl.eliminarCuenta(id);
+	}
 
 }

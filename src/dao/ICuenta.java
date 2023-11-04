@@ -7,5 +7,7 @@ import entidades.Cuenta;
 public interface ICuenta {
 
 	public List<Cuenta> listarCuentas();
+
+	boolean eliminarCuenta(int id);
 	
 }
