@@ -7,6 +7,8 @@ import entidades.Cuenta;
 public interface ICuenta {
 
 	public List<Cuenta> listarCuentas();
+
+	boolean eliminarCuenta(int id);
 	
 	public boolean altaCuenta(int idUsuario, int idTipoCta, int cbu, float saldo, String detalle, int tipoMovimiento);
 	

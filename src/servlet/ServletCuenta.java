@@ -27,6 +27,18 @@ public class ServletCuenta extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		inicializarAdminCuenta(request,response,null);
+		if(request.getParameter("eliminarCuenta")!=null) {
+			
+			int id=Integer.parseInt( request.getParameter("eliminarCuenta"));
+			
+			if(cuentaNeg.eliminarCuenta(id))
+				System.out.println("Cuenta eliminada correctamente");
+			
+			request.setAttribute("ListaCuentas" ,cuentaNeg.ListarCuentas());
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
