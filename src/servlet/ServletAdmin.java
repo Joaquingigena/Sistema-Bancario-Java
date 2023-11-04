@@ -14,6 +14,7 @@ import daoImpl.AdminDaoImpl;
 import entidades.Localidades;
 import entidades.Personas;
 import entidades.Provincias;
+import entidades.Usuario;
 import negocioImpl.AdminNegocioImpl;
 
 @WebServlet("/ServletAdmin")
@@ -103,9 +104,11 @@ public class ServletAdmin extends HttpServlet {
 			
 			int id=Integer.parseInt( request.getParameter("modificarCliente"));
 			
-			adminNeg.obtenerUsuario(id);
+			Usuario user= adminNeg.obtenerUsuario(id);
+			System.out.println("Aca esta el cliente"+ user.toString());
 			
 			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
+			request.setAttribute("modificar", user);
 			
 			dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
 			dispatcher.forward(request, response);

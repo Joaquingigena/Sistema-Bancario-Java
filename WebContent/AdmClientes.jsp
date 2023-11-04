@@ -30,6 +30,12 @@
 	if(request.getAttribute("cargar")!=null){
 		listaClientes= (ArrayList<Usuario>)request.getAttribute("cargar");
 	}
+	
+	Usuario user= new Usuario();
+	
+	if(request.getAttribute("modificar")!= null){
+		 user= (Usuario)request.getAttribute("modificar");
+	}
 
 %>
 
@@ -192,7 +198,85 @@
 										<!-- FIN DIV MODAL ALTA CUENTA -->
 									</div>
 			                    	</td>
-				                        <td> <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" >Modificar </a> </td>
+				                        <td> 
+				                        <!--  <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" >Modificar </a>-->
+						                  <!-- Button trigger modal -->
+											<a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Modificar</a>
+											
+											
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar cliente</h1>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body">
+											     	 <div class="container">
+											     	  <div class="row">
+											            <div class="col-md-6">
+											              <label for="campo3" class="form-label">Nombre de usuario</label>
+											              <input type="text" class="form-control" value="<%=user.getUsuario_U() %>">
+											            </div>
+											            <div class="col-md-6">
+											              <label for="campo4" class="form-label">Contraseña</label>
+											              <input type="text" class="form-control" value="<%=user.getPassword_U() %>">
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="col-md-6">
+											              <label for="campo1" class="form-label">Nombre</label>
+											              <input type="text" class="form-control" value= "<%=user.getIdPersona_U().getNombre_P()%>">
+											            </div>
+											            <div class="col-md-6">
+											              <label for="campo2" class="form-label">Apellido</label>
+											              <input type="text" class="form-control" id="campo2">
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="col-md-6">
+											              <label for="campo3" class="form-label">Localidad</label>
+											              <input type="text" class="form-control" id="campo3">
+											            </div>
+											            <div class="col-md-6">
+											              <label for="campo4" class="form-label">Provincia</label>
+											              <input type="text" class="form-control" id="campo4">
+											            </div>
+											          </div>
+											           <div class="row">
+											            <div class="col-md-6">
+											              <label for="campo3" class="form-label">Direccion</label>
+											              <input type="text" class="form-control" id="campo3">
+											            </div>
+											            <div class="col-md-6">
+											              <label for="campo4" class="form-label">Telefono</label>
+											              <input type="text" class="form-control" id="campo4">
+											            </div>
+											          </div>
+											           <div class="row">
+											            <div class="col-md-6">
+											              <label for="campo3" class="form-label">Correo</label>
+											              <input type="text" class="form-control" id="campo3">
+											            </div>
+											            <div class="col-md-6">
+											              <label for="campo4" class="form-label">Fecha de nacimiento</label>
+											              <input type="text" class="form-control" id="campo4">
+											            </div>
+											          </div>
+											          
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+											        <button type="button" class="btn btn-primary">Guardar</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>   	
+																						
+				                        
+				                        
+				                         </td>
 				                        <td> <a href="ServletAdmin?eliminarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-danger" >Eliminar </a> </td>
 		                     		 </tr>
 		                    		<%
