@@ -256,7 +256,8 @@ public class ServletAdmin extends HttpServlet {
 			nuevo.setIdUsuario_U(Integer.parseInt(request.getParameter("txtIdCliente")));
 			nuevo.setIdPersona_U(persona);
 			nuevo.setUsuario_U(request.getParameter("txtNombreUsuario"));
-			//Falta la contraseña
+			nuevo.setPassword_U(request.getParameter("txtContrasena"));
+			
 			
 			System.out.println("----------------------------------------------------");
 			System.out.println(nuevo.toString());

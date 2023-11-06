@@ -125,7 +125,7 @@ public class AdminDaoImpl implements IAdminDao {
 		Usuario user= new Usuario();
 		Personas persona= new Personas();
 		
-		String query= "select U.IdUsuario_U as idUsuario,U.IdPersona_U as idPersona,U.Usuario_U as nombreUsuario,U.IdRoles_U as Rol,U.Estado_U as Estado, P.DNI_P as DNI, L.Nombre_Loc as Localidad,Pr.Nombre_Prov as Provincia,P.CUIL_P as Cuil, P.Nombre_P as Nombre,P.Apellido_P as Apellido,P.Sexo_P as Sexo, P.Nacionalidad_P as Nacionalidad,P.FechaNac_P as Fecha,P.Direccion_P as Direccion, P.Correo_P as Correo, P.Telefono_P as Telefono from usuario as U inner join personas P on P.IdPersona_P=U.IdPersona_U inner join localidades L on L.CodLocalidad_Loc=P.CodLocalidad_P inner join provincias Pr on Pr.CodProvincia_Prov=P.CodProvincia_P where U.IdUsuario_U="+id;
+		String query= "select U.IdUsuario_U as idUsuario,U.Contraseña as Contraseña,U.IdPersona_U as idPersona,U.Usuario_U as nombreUsuario,U.IdRoles_U as Rol,U.Estado_U as Estado, P.DNI_P as DNI, L.Nombre_Loc as Localidad,Pr.Nombre_Prov as Provincia,P.CUIL_P as Cuil, P.Nombre_P as Nombre,P.Apellido_P as Apellido,P.Sexo_P as Sexo, P.Nacionalidad_P as Nacionalidad,P.FechaNac_P as Fecha,P.Direccion_P as Direccion, P.Correo_P as Correo, P.Telefono_P as Telefono from usuario as U inner join personas P on P.IdPersona_P=U.IdPersona_U inner join localidades L on L.CodLocalidad_Loc=P.CodLocalidad_P inner join provincias Pr on Pr.CodProvincia_Prov=P.CodProvincia_P where U.IdUsuario_U="+id;
 		
 		//U.ContraseÃ±a as Contraseña, Hay que agregarlo
 		try {
@@ -155,7 +155,7 @@ public class AdminDaoImpl implements IAdminDao {
 			
 			user.setIdUsuario_U(rs.getInt("idUsuario"));
 			user.setUsuario_U(rs.getString("nombreUsuario"));
-			//user.setPassword_U(rs.getString("Contraseña"));
+			user.setPassword_U(rs.getString("Contraseña"));
 			user.setIdPersona_U(persona);
 			
 			System.out.println(user.toString());
@@ -440,11 +440,15 @@ public class AdminDaoImpl implements IAdminDao {
 		conexion= new conexion();
 		
 		String queryPersona= "update personas set CodLocalidad_P="+user.getIdPersona_U().getCodLocalidad_P().getCodLocalidad_Loc()+", CodProvincia_P="+user.getIdPersona_U().getCodProvincia_P().getCodProvincia_Prov()+",Nombre_P='"+user.getIdPersona_U().getNombre_P()+"',Apellido_P='"+user.getIdPersona_U().getApellido_P()+"',Direccion_P='"+user.getIdPersona_U().getDireccion_P()+"',Correo_P='"+user.getIdPersona_U().getCorreo_P()+"',Telefono_P='"+user.getIdPersona_U().getTelefono_P()+"' where IdPersona_P="+user.getIdPersona_U().getIdPersona_P()+"";
+		String cambiarContraseña= "update usuario set Contraseña='"+user.getPassword_U()+"' where IdUsuario_U="+ user.getIdUsuario_U();
 		
 		try {
 			conexion.Open();
 			
-			exito= conexion.execute(queryPersona);
+			if(conexion.execute(queryPersona) && conexion.execute(cambiarContraseña)) {
+				
+				exito=true;
+			}
 			
 			
 		} catch (Exception e) {

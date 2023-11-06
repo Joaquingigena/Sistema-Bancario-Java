@@ -80,8 +80,8 @@
     <form action="ServletAdmin" method="get">
     <div class="container">
     	<h3>Modificar cliente N° <%=user.getIdUsuario_U() %></h3>
-    	<input type="text" name="txtIdPersona" value="<%=user.getIdPersona_U().getIdPersona_P()%>">
-    	<input type="text" name="txtIdCliente" value="<%=user.getIdUsuario_U()%>">
+    	<input type="hidden" name="txtIdPersona" value="<%=user.getIdPersona_U().getIdPersona_P()%>">
+    	<input type="hidden" name="txtIdCliente" value="<%=user.getIdUsuario_U()%>">
     	  <div class="row">
            <div class="col-md-6">
              <label for="campo3" class="form-label">Nombre de usuario</label>
@@ -89,7 +89,7 @@
            </div>
            <div class="col-md-6">
              <label for="campo4" class="form-label">Contraseña</label>
-             <input type="text" class="form-control" value="<%=user.getPassword_U() %>" name="txtContraseña">
+             <input type="text" class="form-control" value="<%=user.getPassword_U() %>" name="txtContrasena">
            </div>
          </div>
          <div class="row">
