@@ -1,3 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entidades.Usuario"%>
+<%@page import="entidades.Provincias"%>
+<%@page import="entidades.Localidades"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,6 +22,26 @@
 <title>Modificar cliente</title>
 </head>
 <body>
+
+<%
+	Usuario user= new Usuario();
+	
+	if(request.getAttribute("modificar")!= null){
+		 user= (Usuario)request.getAttribute("modificar");
+	}
+	
+	List<Provincias> listaProvincias= new ArrayList<Provincias>();
+	List<Localidades> listaLocalidades= new ArrayList<Localidades>();
+	
+	if(request.getAttribute("ListaProvincias")!=null){
+		listaProvincias=(ArrayList<Provincias>)request.getAttribute("ListaProvincias");
+	}
+	
+	if(request.getAttribute("ListaLocalidades")!=null){
+		listaLocalidades=(ArrayList<Localidades>)request.getAttribute("ListaLocalidades");
+	}
+	
+%>
 
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
@@ -52,8 +77,80 @@
         </div>
     </nav>
     
-    
-    
+    <form action="ServletAdmin" method="get">
+    <div class="container">
+    	<h3>Modificar cliente N° <%=user.getIdUsuario_U() %></h3>
+    	<input type="text" name="txtIdPersona" value="<%=user.getIdPersona_U().getIdPersona_P()%>">
+    	<input type="text" name="txtIdCliente" value="<%=user.getIdUsuario_U()%>">
+    	  <div class="row">
+           <div class="col-md-6">
+             <label for="campo3" class="form-label">Nombre de usuario</label>
+             <input type="text" class="form-control" value="<%=user.getUsuario_U() %>" name="txtNombreUsuario">
+           </div>
+           <div class="col-md-6">
+             <label for="campo4" class="form-label">Contraseña</label>
+             <input type="text" class="form-control" value="<%=user.getPassword_U() %>" name="txtContraseña">
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-6">
+             <label for="campo1" class="form-label">Nombre</label>
+             <input type="text" class="form-control" value= "<%=user.getIdPersona_U().getNombre_P()%>" name="txtNombre">
+           </div>
+           <div class="col-md-6">
+             <label for="campo2" class="form-label">Apellido</label>
+             <input type="text" class="form-control" value= "<%=user.getIdPersona_U().getApellido_P()%>" name="txtApellido">
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-6">
+             <label for="campo3" class="form-label">Localidad</label>
+             <select name="ddlLocalidades" class="form-select">
+             	<%for(Localidades L: listaLocalidades){ %>
+             	<option value="<%=L.getCodLocalidad_Loc()%>"><%=L.getNombre_Loc() %> </option>
+             	<%} %>
+             </select>
+           </div>
+           <div class="col-md-6">
+             <label for="campo4" class="form-label">Provincia</label>
+             <select name="ddlProvincias" class="form-select">
+             	<%for(Provincias P: listaProvincias){ %>
+             	<option value="<%=P.getCodProvincia_Prov()%>"><%=P.getNombre_Prov()%> </option>
+             	<%} %>
+             </select>
+           </div>
+         </div>
+          <div class="row">
+           <div class="col-md-6">
+             <label for="campo3" class="form-label">Direccion</label>
+             <input type="text" class="form-control" value="<%=user.getIdPersona_U().getDireccion_P()%>" name="txtDireccion">
+           </div>
+           <div class="col-md-6">
+             <label for="campo4" class="form-label">Telefono</label>
+             <input type="text" class="form-control" value="<%=user.getIdPersona_U().getTelefono_P()%>" name="txtTelefono">
+           </div>
+         </div>
+          <div class="row">
+           <div class="col-md-6">
+             <label for="campo3" class="form-label">Correo</label>
+             <input type="text" class="form-control" value="<%=user.getIdPersona_U().getCorreo_P()%>" name="txtCorreo">
+           </div>
+           <div class="col-md-6">
+             <label for="campo4" class="form-label">Fecha de nacimiento</label>
+             <input type="text" class="form-control" value="<%=user.getIdPersona_U().getFechaNac_P()%>" name="txtFecha">
+           </div>
+         </div>
+         <div class="row">
+        
+         	<div class="col-3">
+         		<input type="submit" name="btnAceptarModificacion" class="btn btn-primary" value="Aceptar">
+         	</div>
+         	<div class="col-3">
+         		<a href="ServletAdmin?Param=listarClientes" class="btn btn-danger">Cancelar</a>
+         	</div>
+         </div>				
+	</div>						          
+    </form>
     
 
 </body>

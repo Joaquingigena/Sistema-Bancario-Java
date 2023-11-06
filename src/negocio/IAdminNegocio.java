@@ -30,4 +30,6 @@ public interface IAdminNegocio {
 	public boolean AgregarPersona(String DNI, int localidad, int provincia, String CUIL, String nombre, String apellido, String sexo, String nacionalidad, String fecha, String direccion, String mail, String tel, boolean solicitud);
 
 	public int CodLocalidad(String nombre);
+	
+	public boolean modificarCliente(Usuario user);
 }

@@ -199,11 +199,11 @@
 									</div>
 			                    	</td>
 				                        <td> 
-				                        <!--  <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" >Modificar </a>-->
-						                  <!-- Button trigger modal -->
+				                        <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" >Modificar </a>
+						                  <!-- Button trigger modal 
 											<a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Modificar</a>
 											
-											
+											-->
 											<!-- Modal -->
 											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											  <div class="modal-dialog">

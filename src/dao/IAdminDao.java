@@ -29,4 +29,8 @@ public interface IAdminDao {
 	public int Codlocalidad(String nombre);
 	
 	public int CodProvincia(String nombre);
+	
+	public boolean modificarCliente(Usuario user);
+	
+	
 }

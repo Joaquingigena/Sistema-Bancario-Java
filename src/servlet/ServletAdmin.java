@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -107,10 +108,28 @@ public class ServletAdmin extends HttpServlet {
 			Usuario user= adminNeg.obtenerUsuario(id);
 			System.out.println("Aca esta el cliente"+ user.toString());
 			
-			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
+			
 			request.setAttribute("modificar", user);
 			
-			dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+			// Obtengo la lista de Localidades desde la capa Negocio.
+			List <Localidades> ListaLoc = null;
+			ListaLoc = adminNeg.ListarLocalidades();
+			
+			// Obtengo la lista de Localidades desde la capa Negocio.
+			List <Provincias> ListaProv = null;
+			ListaProv = adminNeg.ListarProvincias();
+			
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			if(ListaLoc!=null) {
+				request.setAttribute("ListaLocalidades", ListaLoc);
+			}
+			
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			if(ListaProv!=null) {
+				request.setAttribute("ListaProvincias", ListaProv);
+			}
+			
+			dispatcher = request.getRequestDispatcher("/AdmModificarCliente.jsp");
 			dispatcher.forward(request, response);
 		}
 		
@@ -206,6 +225,50 @@ public class ServletAdmin extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Registrarse.jsp");
 			rd.forward(request, response);
+		}
+		
+		if(request.getParameter("btnAceptarModificacion")!=null) {
+			
+			Usuario nuevo= new Usuario();
+			Personas persona= new Personas();
+			Localidades L= new Localidades();
+			Provincias P= new Provincias();
+			
+			persona.setIdPersona_P(Integer.parseInt(request.getParameter("txtIdPersona")));
+			persona.setNombre_P(request.getParameter("txtNombre"));
+			persona.setApellido_P(request.getParameter("txtApellido"));
+			persona.setDireccion_P(request.getParameter("txtDireccion"));
+			persona.setCorreo_P(request.getParameter("txtCorreo"));
+			persona.setTelefono_P(request.getParameter("txtTelefono"));
+			//persona.setFechaNac_P((request.getParameter("txtFecha").toString()));
+		
+			L.setCodLocalidad_Loc(Integer.parseInt(request.getParameter("ddlLocalidades")));
+			
+			P.setCodProvincia_Prov(Integer.parseInt(request.getParameter("ddlProvincias")));
+			
+			persona.setCodLocalidad_P(L);
+			persona.setCodProvincia_P(P);
+			
+			System.out.println(request.getParameter("ddlLocalidades"));
+			
+			System.out.println("Provincia " + P.getCodProvincia_Prov() + "Localidad " + L.getCodLocalidad_Loc() );
+			
+			nuevo.setIdUsuario_U(Integer.parseInt(request.getParameter("txtIdCliente")));
+			nuevo.setIdPersona_U(persona);
+			nuevo.setUsuario_U(request.getParameter("txtNombreUsuario"));
+			//Falta la contraseña
+			
+			System.out.println("----------------------------------------------------");
+			System.out.println(nuevo.toString());
+			
+			if(adminNeg.modificarCliente(nuevo)) {
+				System.out.println("Modificado con exito");
+				
+			}
+			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
+			
+			dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+			dispatcher.forward(request, response);
 		}
 		
 	}

@@ -136,6 +136,7 @@ public class AdminDaoImpl implements IAdminDao {
 			rs.next();
 			persona.setIdPersona_P(rs.getInt("idPersona"));
 			persona.setNombre_P(rs.getString("Nombre"));
+			persona.setApellido_P(rs.getString("Apellido"));
 			persona.setDNI_P(rs.getString("DNI"));
 			persona.setSexo_P(rs.getString("Sexo"));
 			persona.setCUIL_P(rs.getString("Cuil"));
@@ -291,7 +292,7 @@ public class AdminDaoImpl implements IAdminDao {
 	public List<Localidades> listarLocalidades() {
 		List <Localidades> Lista = new ArrayList<Localidades>();
 		conexion= new conexion();
-		String query= "SELECT * FROM localidades INNER JOIN provincias ON CodProvincia_Loc=CodProvincia_Prov WHERE CodProvincia_Prov=3";
+		String query= "select CodLocalidad_Loc,CodProvincia_Loc,Nombre_Loc FROM localidades ";
 		try {
 			conexion.Open();
 			ResultSet rs = conexion.query(query);
@@ -299,6 +300,7 @@ public class AdminDaoImpl implements IAdminDao {
 			while(rs.next()) {
 				Localidades Localidad = new Localidades();
 				
+				Localidad.setCodLocalidad_Loc(rs.getInt("CodLocalidad_Loc"));
 				Localidad.setCodProvincia_Loc(rs.getInt("CodProvincia_Loc"));
 				Localidad.setNombre_Loc(rs.getString("Nombre_Loc"));
 				
@@ -322,7 +324,7 @@ public class AdminDaoImpl implements IAdminDao {
 		
 		List <Provincias> Lista = new ArrayList<Provincias>();
 		conexion= new conexion();
-		String query= "SELECT Nombre_Prov FROM provincias";
+		String query= "SELECT CodProvincia_Prov, Nombre_Prov FROM provincias";
 		try {
 			conexion.Open();
 			ResultSet rs = conexion.query(query);
@@ -330,6 +332,7 @@ public class AdminDaoImpl implements IAdminDao {
 			while(rs.next()) {
 				Provincias Provincia = new Provincias();
 				
+				Provincia.setCodProvincia_Prov(rs.getInt("CodProvincia_Prov"));
 				Provincia.setNombre_Prov(rs.getString("Nombre_Prov"));
 				
 				Lista.add(Provincia);
@@ -427,5 +430,29 @@ public class AdminDaoImpl implements IAdminDao {
 			conexion.close();
 		}
 		return codigo;
+	}
+
+
+	@Override
+	public boolean modificarCliente(Usuario user) {
+		
+		boolean exito=false;
+		conexion= new conexion();
+		
+		String queryPersona= "update personas set CodLocalidad_P="+user.getIdPersona_U().getCodLocalidad_P().getCodLocalidad_Loc()+", CodProvincia_P="+user.getIdPersona_U().getCodProvincia_P().getCodProvincia_Prov()+",Nombre_P='"+user.getIdPersona_U().getNombre_P()+"',Apellido_P='"+user.getIdPersona_U().getApellido_P()+"',Direccion_P='"+user.getIdPersona_U().getDireccion_P()+"',Correo_P='"+user.getIdPersona_U().getCorreo_P()+"',Telefono_P='"+user.getIdPersona_U().getTelefono_P()+"' where IdPersona_P="+user.getIdPersona_U().getIdPersona_P()+"";
+		
+		try {
+			conexion.Open();
+			
+			exito= conexion.execute(queryPersona);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			conexion.close();
+		}
+		
+		return exito;
 	}
 }

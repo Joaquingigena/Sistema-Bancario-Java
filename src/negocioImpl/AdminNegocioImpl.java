@@ -76,4 +76,10 @@ public class AdminNegocioImpl implements IAdminNegocio {
 	public int CodProvincia(String nombre) {
 		return adminDao.CodProvincia(nombre);
 	}
+
+	@Override
+	public boolean modificarCliente(Usuario user) {
+		
+		return adminDao.modificarCliente(user);
+	}
 }
