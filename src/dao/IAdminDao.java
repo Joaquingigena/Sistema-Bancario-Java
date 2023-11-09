@@ -31,6 +31,7 @@ public interface IAdminDao {
 	public int CodProvincia(String nombre);
 	
 	public boolean modificarCliente(Usuario user);
+	Usuario obtenerClientev2(String nombre);
 	
 	
 }

@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entidades.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,6 +22,16 @@
 <title>Mis Datos</title>
 </head>
 <body>
+<%
+	String nombre = (String)request.getAttribute("nombre");
+
+    Usuario user= new Usuario();
+
+    if(request.getAttribute("datos")!= null){
+	 user= (Usuario)request.getAttribute("datos");
+    }
+
+%>
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
@@ -52,7 +65,7 @@
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" href="PagosPrestamos.jsp">
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" checked href="MisDatos.jsp">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" checked href="ServletAdmin?Param=misDatos&usuario=<%= nombre %>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
 			</div>
 		</div>
@@ -77,7 +90,7 @@
 			<div id="Encabezado">
 				<h2>Mis datos</h2>
 			</div>
-
+<form action="ServletAdmin" method="get">
     <div class="container">
 <div id="DNICliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>DNI </h5>
@@ -88,52 +101,54 @@
                 <div id="CUILCliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>CUIL </h5>
 					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="CUIL" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					<input readonly type="text" class="form-control" value= "<%=user.getIdPersona_U().getCUIL_P()%>" aria-label="CUIL" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>
                 <div id="NombreCliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>Nombre </h5>
 					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Nombre" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					<input readonly type="text" class="form-control" value= "<%=user.getIdPersona_U().getNombre_P()%>" aria-label="Nombre" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>
                 <div id="ApellidoCliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>Apellido </h5>
 					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Apellido" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					<input readonly type="text" class="form-control" value= "<%=user.getIdPersona_U().getApellido_P()%>" aria-label="Apellido" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>
                 <div id="DireccionCliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>Direccion </h5>
 					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Direccion" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					<input readonly type="text" class="form-control" value="<%=user.getIdPersona_U().getDireccion_P()%>" aria-label="Direccion" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>
                 <div id="CorreoCliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>Correo </h5>
 					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Correo" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					<input readonly type="text" class="form-control" value="<%=user.getIdPersona_U().getCorreo_P()%>" aria-label="Correo" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>
                 <div id="TelefonoCliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>Numero de Telefono </h5>
 					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Telefono" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					<input readonly type="text" class="form-control" value="<%=user.getIdPersona_U().getTelefono_P()%>" aria-label="Telefono" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>
                 <div id="UsuarioCliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>Usuario </h5>
 					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					<input readonly type="text" class="form-control" value="<%=user.getUsuario_U() %>" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>
 					<div id="contraCliente" style="display:flex; margin:0; margin-top: 20px; align-items:center;">
 					  <h5>Contraseña </h5>
-					  <input type="text" class="form-control" aria-label="Contraseña" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
-					  	<div id="btnVerContra" style="margin-top:20px; display:flex; justify-content:end; width:100%">
-						<button type="button" class="btn btn-success">Ver Contraseña</button>
+					  <input type="text" class="form-control"  value="<%=user.getPassword_U() %>" aria-label="Contraseña" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
+					        	<div class="col-3">
+         		<input type="submit" name="btnAceptarModificacion" class="btn btn-primary" value="Aceptar">
+         	</div>
 					</div>
 					</div>
+					</form>
                 
 	  </div>
 

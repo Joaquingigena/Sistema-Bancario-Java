@@ -32,4 +32,5 @@ public interface IAdminNegocio {
 	public int CodLocalidad(String nombre);
 	
 	public boolean modificarCliente(Usuario user);
+	Usuario obtenerUsuariov2(String nombre);
 }

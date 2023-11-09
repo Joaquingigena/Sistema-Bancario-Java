@@ -38,6 +38,11 @@ public class AdminNegocioImpl implements IAdminNegocio {
 		
 		return adminDao.obtenerCliente(id);
 	}
+	@Override
+	public Usuario obtenerUsuariov2(String nombre) {
+		
+		return adminDao.obtenerClientev2(nombre);
+	}
 	
 	public List<Personas> listarSolicitudes(){
 		return adminDao.listarSolicitudes();

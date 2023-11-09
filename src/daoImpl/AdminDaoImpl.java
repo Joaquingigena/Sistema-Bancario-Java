@@ -170,6 +170,46 @@ public class AdminDaoImpl implements IAdminDao {
 		
 		return user;
 	}
+	@Override
+	public Usuario obtenerClientev2(String nombre) {
+		
+		conexion= new conexion();
+		Usuario user= new Usuario();
+		Personas persona= new Personas();
+		
+		String query= "select U.Contraseña as Contraseña,U.Usuario_U as nombreUsuario, P.DNI_P as DNI,P.CUIL_P as Cuil, P.Nombre_P as Nombre,P.Apellido_P as Apellido, P.Direccion_P as Direccion, P.Correo_P as Correo, P.Telefono_P as Telefono from usuario as U inner join personas P on P.IdPersona_P=U.IdPersona_U where U.Usuario_U="+nombre;
+		
+		//U.ContraseÃ±a as Contraseña, Hay que agregarlo
+		try {
+			conexion.Open();
+			
+			ResultSet rs= conexion.query(query);
+			
+			rs.next();
+			persona.setNombre_P(rs.getString("Nombre"));
+			persona.setApellido_P(rs.getString("Apellido"));
+			persona.setDNI_P(rs.getString("DNI"));
+			persona.setCUIL_P(rs.getString("Cuil"));
+			persona.setDireccion_P(rs.getString("Direccion"));
+			persona.setCorreo_P(rs.getString("Correo"));
+			persona.setTelefono_P(rs.getString("Telefono"));
+		
+			user.setUsuario_U(rs.getString("nombreUsuario"));
+			user.setPassword_U(rs.getString("Contraseña"));
+			user.setIdPersona_U(persona);
+			
+			System.out.println(user.toString());
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		
+		return user;
+	}
 
 
 	@Override

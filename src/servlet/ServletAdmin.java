@@ -133,6 +133,21 @@ public class ServletAdmin extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
+		if(request.getParameter("misDatos")!=null) {
+			
+			String nombre=(String)request.getAttribute("Nombre");
+			
+			Usuario user= adminNeg.obtenerUsuariov2(nombre);
+			System.out.println("Aca esta el cliente"+ user.toString());
+			
+			
+			request.setAttribute("datos", user);
+			
+			
+			dispatcher = request.getRequestDispatcher("/MisDatos.jsp");
+			dispatcher.forward(request, response);
+		}
+		
 		if(request.getParameter("btnSolicitudes")!=null) {
 			AdminNegocioImpl AdminNeg = new AdminNegocioImpl();
 			
