@@ -26,6 +26,9 @@ public class ServletCuenta extends HttpServlet {
 
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String usuario = request.getParameter("usuario");
+		request.setAttribute("usuario" ,usuario);
 		inicializarAdminCuenta(request,response,null);
 		if(request.getParameter("eliminarCuenta")!=null) {
 			

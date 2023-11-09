@@ -27,6 +27,8 @@ public class ServletInformes extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		inicializarAdminInformes(request,response,null);
+		String usuario = request.getParameter("usuario");
+		request.setAttribute("usuario" ,usuario);
 		
 	}
 

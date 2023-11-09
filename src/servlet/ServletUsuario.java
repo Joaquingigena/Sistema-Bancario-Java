@@ -32,7 +32,8 @@ public class ServletUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String usuario = request.getParameter("usuario");
+		request.setAttribute("usuario" ,usuario);
 	}
 
 	/**

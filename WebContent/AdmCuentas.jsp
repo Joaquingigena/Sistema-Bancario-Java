@@ -46,23 +46,24 @@
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
-               	<a class="nav-link active" href="ServletAdmin?btnSolicitudes=Ver solicitudes de cuenta"> Lista de solicitudes</a>
+               	<a class="nav-link active" href="ServletAdmin?btnSolicitudes=Ver solicitudes de cuenta&usuario=<%= nombre %>"> Lista de solicitudes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="ServletAdmin?Param=listarClientes"> Clientes</a>
+                <a class="nav-link active" href="ServletAdmin?Param=listarClientes&usuario=<%= nombre %>"> Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="ServletCuenta?Param=listarCuentas">Cuentas</a>
+                <a class="nav-link" href="ServletCuenta?Param=listarCuentas&usuario=<%= nombre %>">Cuentas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="ServletAdmin?Param=listarPrestamos">Prestamos</a>
+                <a class="nav-link" href="ServletAdmin?Param=listarPrestamos&usuario=<%= nombre %>">Prestamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="ServletInformes?Param=listarInformes">Informes</a>
+                <a class="nav-link" href="ServletInformes?Param=listarInformes&usuario=<%= nombre %>">Informes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Cerrar sesion</a>
               </li>
+              <ion-icon name="person-circle-outline"></ion-icon> <b><%= nombre %></b>
             </ul>
           
           </div>
@@ -85,17 +86,14 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row d-flex justify-content-center my-3">
             <div class="col-3 titulo">
                
                 <h3 >Cuentas</h3>
             </div>
-           <div>
-                <input type="submit" name="btnAltaCuentas" value="Altas de cuentas" class="btn btn-secondary btn">
-           </div>
         </div>
 
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             <div class="col-8">
                 <table class="table">
                     <thead>
@@ -139,6 +137,7 @@
     </div>
 
 
-
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

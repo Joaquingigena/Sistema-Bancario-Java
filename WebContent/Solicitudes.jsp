@@ -49,16 +49,16 @@
                	<a class="nav-link active" href="ServletAdmin?btnSolicitudes=Ver solicitudes de cuenta"> Lista de solicitudes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="ServletAdmin?Param=listarClientes"> Clientes</a>
+                <a class="nav-link active" href="ServletAdmin?Param=listarClientes&usuario=<%= nombre %>"> Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdmCuentas.jsp">Cuentas</a>
+                <a class="nav-link" href="AdmCuentas.jsp&usuario=<%= nombre %>">Cuentas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="ServletAdmin?Param=listarPrestamos">Prestamos</a>
+                <a class="nav-link" href="ServletAdmin?Param=listarPrestamos&usuario=<%= nombre %>">Prestamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="ServletInformes?Param=listarInformes">Informes</a>
+                <a class="nav-link" href="ServletInformes?Param=listarInformes&usuario=<%= nombre %>">Informes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Login.jsp">Cerrar sesion</a>
@@ -260,11 +260,6 @@
                     %>
                      
                   </table>
-					<div>
-						<form action="ServletAdmin" method="get">
-						<input type="submit" name="prueba">
-						</form>
-					</div>
             </div>
         </div>
     </div>
