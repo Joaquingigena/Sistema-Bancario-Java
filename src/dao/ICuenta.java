@@ -15,4 +15,8 @@ public interface ICuenta {
 	public int validarTotalCuentas(int idUsuario);
 	
 	public void logMovimientos(int cbu, String descripcion, float importe, int tipoMovimiento);
+
+	boolean modificarCuenta(Cuenta Cta);
+
+	Cuenta obtenerCuenta(int id);
 }

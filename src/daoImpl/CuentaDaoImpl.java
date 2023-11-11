@@ -7,9 +7,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.catalina.User;
+
 import conexion.conexion;
 import dao.ICuenta;
 import entidades.Cuenta;
+import entidades.Usuario;
+import entidades.TipoCuentas;
+
 
 public class CuentaDaoImpl implements ICuenta {
 
@@ -200,5 +205,67 @@ public class CuentaDaoImpl implements ICuenta {
 			}
 			
 		}
+		
+		@Override
+		public boolean modificarCuenta(Cuenta Cta) {
+			
+			boolean exito=false;
+			conexion= new conexion();
+			
+			String cambio= "update Cliente set Saldo_Cta='"+Cta.getSaldo_Cta()+"' where IdUsuario_Cta="+ Cta.getIdUsuario_Cta();
+			
+			try {
+				conexion.Open();
+				
+				if(conexion.execute(cambio)) {
+					
+					exito=true;
+				}
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				conexion.close();
+			}
+			
+			return exito;
+		}
+		@Override
+		public Cuenta obtenerCuenta(int id) {
+			
+			conexion= new conexion();
+			Cuenta Cta= new Cuenta();
+			Usuario user = new Usuario();
+			TipoCuentas TP = new TipoCuentas();
+			
+			String query= "select C.NumCuenta_Cta as numCuenta, C.IdUsuario_Cta as idUsuario, C.FechaCreacion_Cta as fechaCreacion, C.IdTipoCuenta_Cta as idTipoCuenta, C.CBU_Cta as CBU, C.Saldo_Cta as saldo from Cuenta as C inner join Usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas TC on TC.IdTipoCuenta_TC = C.IdTipoCuenta_Cta where C.NumCuenta_Cta = "+ id;
+			
+			try {
+				conexion.Open();
+				
+				ResultSet rs= conexion.query(query);
+				
+				rs.next();
+				Cta.setNumCuenta_Cta(rs.getInt("numCuenta"));
+				user.setIdUsuario_U(rs.getInt("idUsuario"));
+				Cta.setFechaCreacion_Cta(rs.getDate("fechaCreacion"));
+				TP.setIdTipo_TC(rs.getInt("idTipoCuenta"));
+				Cta.setCBU_Cta(rs.getInt("CBU"));
+				Cta.setSaldo_Cta(rs.getFloat("saldo"));
+				
+				System.out.println(Cta.toString());
+				
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				conexion.close();
+			}
+			
+			return Cta;
+		}
+				
 
 }

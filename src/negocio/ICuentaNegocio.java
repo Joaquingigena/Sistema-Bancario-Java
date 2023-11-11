@@ -15,4 +15,8 @@ public interface ICuentaNegocio {
 
 	boolean eliminarCuenta(int id);
 
+	boolean modificarCuenta(Cuenta cta);
+
+	Cuenta obtenerCuenta(int id);
+
 }

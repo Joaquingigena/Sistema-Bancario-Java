@@ -5,6 +5,7 @@ import java.util.List;
 
 import daoImpl.CuentaDaoImpl;
 import entidades.Cuenta;
+import entidades.Usuario;
 import negocio.ICuentaNegocio;
 
 public class CuentaNegocioImpl implements ICuentaNegocio {
@@ -37,6 +38,16 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 	public void logMovimientos(int cbu, String descripcion, float importe, int tipoMovimiento) {
 		// TODO Auto-generated method stub
 		cuentaDaoImpl.logMovimientos(cbu, descripcion, importe, tipoMovimiento);
+	}
+	@Override
+	public boolean modificarCuenta(Cuenta cta) {
+		
+		return cuentaDaoImpl.modificarCuenta(cta);
+	}
+	@Override
+	public Cuenta obtenerCuenta(int id) {
+		
+		return cuentaDaoImpl.obtenerCuenta(id);
 	}
 
 }

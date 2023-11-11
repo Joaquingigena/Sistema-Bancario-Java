@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entidades.Cuenta;
-
+import entidades.Localidades;
+import entidades.Personas;
+import entidades.Provincias;
+import entidades.Usuario;
 import negocioImpl.CuentaNegocioImpl;
 
 
@@ -41,6 +44,38 @@ public class ServletCuenta extends HttpServlet {
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
 			dispatcher.forward(request, response);
+			
+			if(request.getParameter("modificarCuenta")!=null) {
+				
+				int id2=Integer.parseInt( request.getParameter("modificarCuenta"));
+				
+				Cuenta cta= cuentaNeg.obtenerCuenta(id2);
+				System.out.println("Aca esta la Cuenta"+ cta.toString());
+				
+				
+				request.setAttribute("modificarv2", cta);
+				
+				dispatcher = request.getRequestDispatcher("/AdmModificarCuenta.jsp");
+				dispatcher.forward(request, response);
+			}
+			
+			if(request.getParameter("btnAceptarModificacion")!=null) {
+				
+				Cuenta cta = new Cuenta();
+				
+				cta.setSaldo_Cta(Float.parseFloat(request.getParameter("txtSaldo")));
+		
+				System.out.println(cta.toString());
+				
+				if(cuentaNeg.modificarCuenta(cta)) {
+					System.out.println("Modificado con exito");
+					
+				}
+				request.setAttribute("cargar" ,cuentaNeg.ListarCuentas());
+				
+				dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
+				dispatcher.forward(request, response);
+			}
 		}
 	}
 
