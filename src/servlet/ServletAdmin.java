@@ -81,7 +81,20 @@ public class ServletAdmin extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/Registrarse.jsp");
 				rd.forward(request, response);
 				break;
+			case "misDatos":
+				String nombre=(String)request.getParameter("Nombre");
 				
+				Usuario user= adminNeg.obtenerUsuariov2(nombre);
+				System.out.println("Aca esta el cliente"+ user.toString());
+				
+				
+				request.setAttribute("datos", user);
+				
+				
+				dispatcher = request.getRequestDispatcher("/MisDatos.jsp");
+				dispatcher.forward(request, response);
+				break;
+
 			default:
 				break;
 			}
@@ -130,21 +143,6 @@ public class ServletAdmin extends HttpServlet {
 			}
 			
 			dispatcher = request.getRequestDispatcher("/AdmModificarCliente.jsp");
-			dispatcher.forward(request, response);
-		}
-		
-		if(request.getParameter("misDatos")!=null) {
-			
-			String nombre=(String)request.getAttribute("Nombre");
-			
-			Usuario user= adminNeg.obtenerUsuariov2(nombre);
-			System.out.println("Aca esta el cliente"+ user.toString());
-			
-			
-			request.setAttribute("datos", user);
-			
-			
-			dispatcher = request.getRequestDispatcher("/MisDatos.jsp");
 			dispatcher.forward(request, response);
 		}
 		

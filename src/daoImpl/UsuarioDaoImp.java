@@ -17,7 +17,7 @@ public class UsuarioDaoImp implements IUsuario{
 		cn = new conexion();
 		cn.Open();
 		
-		String query = "SELECT * FROM bd_tpint_grupo_6_lab4.usuario where Usuario_U = " + "'"+usuario+"'" + " and " + " Contraseña = " + "'"+pass+"'";
+		String query = "SELECT * FROM bd_tpint_grupo_6_lab4.usuario where Usuario_U = " + "'"+usuario+"'" + " and " + " ContraseÃ±a = " + "'"+pass+"'";
 		Usuario u = new Usuario();	
 		try {
 			

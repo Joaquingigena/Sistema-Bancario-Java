@@ -95,7 +95,7 @@
 <div id="DNICliente" style="margin-top:20px; display:flex; align-items:center">
 					<h5>DNI </h5>
 					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="DNI" aria-describedby="basic-addon1" style="margin-left: 40px;">
+					<input readonly type="text" class="form-control" value= "<%=user.getIdPersona_U().getDNI_P()%>" aria-label="DNI" aria-describedby="basic-addon1" style="margin-left: 40px;">
 					</div>
 				</div>
                 <div id="CUILCliente" style="margin-top:20px; display:flex; align-items:center">
