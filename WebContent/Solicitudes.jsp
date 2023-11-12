@@ -52,7 +52,7 @@
                 <a class="nav-link active" href="ServletAdmin?Param=listarClientes&usuario=<%= nombre %>"> Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdmCuentas.jsp&usuario=<%= nombre %>">Cuentas</a>
+                <a class="nav-link" href="ServletCuenta?Param=listarCuentas&usuario=<%= nombre %>">Cuentas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="ServletAdmin?Param=listarPrestamos&usuario=<%= nombre %>">Prestamos</a>

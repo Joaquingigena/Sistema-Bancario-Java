@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entidades.Usuario"%>
@@ -24,10 +25,18 @@
 <body>
 
 <%
-	Cuenta cta= new Cuenta();
+	String nombre = (String)request.getAttribute("usuario");
+	Cuenta c= new Cuenta();
 	
 	if(request.getAttribute("modificarv2")!= null){
-		 cta= (Cuenta)request.getAttribute("modificarv2");
+		 c= (Cuenta)request.getAttribute("modificarv2");
+		 	System.out.println("CBU"+ c.getCBU_Cta());
+		 	System.out.println("NUM Cuenta"+ c.getNumCuenta_Cta());
+		 	System.out.println("id user"+ c.getIdUsuario_Cta().getIdUsuario_U());
+		 	System.out.println("fecha"+ c.getFechaCreacion_Cta());
+		 	System.out.println("tipo cuenta"+ c.getIdTipoCuenta_Cta().getIdTipo_TC());
+		 	System.out.println("saldo"+ c.getSaldo_Cta());
+
 	}
 	
 %>
@@ -58,43 +67,44 @@
               <li class="nav-item">
                 <a class="nav-link" href="Login.jsp">Cerrar sesion</a>
               </li>
-	           	<ion-icon name="person-circle-outline"></ion-icon> <b>NOmbreUsuario/b>
+	           	<ion-icon name="person-circle-outline"></ion-icon> <b><%= nombre %></b>
               
             </ul>
           
           </div>
         </div>
     </nav>
-    
+    <% if(c != null){
+    %>
     <form action="ServletAdmin" method="get">
     <div class="container">
-    	<h3>Modificar cuenta N° <%=cta.getNumCuenta_Cta() %></h3>
+    	<h3>Modificar cuenta N° <%=c.getNumCuenta_Cta() %></h3>
     	  <div class="row">
            <div class="col-md-6">
              <label for="campo1" class="form-label">Numero de cuenta</label>
-             <input type="text" class="form-control" value="<%=cta.getNumCuenta_Cta() %>" name="txtnumCuenta">
+             <input type="text" class="form-control" value="<%=c.getNumCuenta_Cta() %>" name="txtnumCuenta">
            </div>
              <div class="col-md-6">
              <label for="campo2" class="form-label">Id de Usuario</label>
-             <input type="text" class="form-control" value="<%=cta.getIdUsuario_Cta().getIdUsuario_U() %>" name="txtIdUsuario">
+              <input type="text" class="form-control" value="<%=c.getIdUsuario_Cta().getIdUsuario_U() %>" name="txtIdUsuario">
            </div>
            <div class="col-md-6">
              <label for="campo3" class="form-label">Fecha de Creacion</label>
-             <input type="text" class="form-control" value="<%=cta.getFechaCreacion_Cta() %>" name="txtFecha">
+             <input type="text" class="form-control" value="<%=c.getFechaCreacion_Cta() %>" name="txtFecha">
            </div>
          </div>
          <div class="row">
            <div class="col-md-6">
              <label for="campo4" class="form-label">Tipo de Cuenta</label>
-             <input type="text" class="form-control" value= "<%=cta.getIdTipoCuenta_Cta().getIdTipo_TC()%>" name="txtTipo">
+             <input type="text" class="form-control" value= "<%=c.getIdTipoCuenta_Cta().getIdTipo_TC()%>" name="txtTipo">
            </div>
            <div class="col-md-6">
              <label for="campo5" class="form-label">CBU</label>
-             <input type="text" class="form-control" value= "<%=cta.getCBU_Cta()%>" name="txtCBU">
+             <input type="text" class="form-control" value= "<%=c.getCBU_Cta()%>" name="txtCBU">
            </div>
              <div class="col-md-6">
              <label for="campo6" class="form-label">Saldo</label>
-             <input type="text" class="form-control" value= "<%=cta.getSaldo_Cta()%>" name="txtCBU">
+             <input type="text" class="form-control" value= "<%=c.getSaldo_Cta()%>" name="txtCBU">
            </div>
          </div>
 
@@ -109,7 +119,12 @@
          </div>				
 	</div>						          
     </form>
+    	
+    <% }     
+    %>
     
-
+    
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -34,7 +34,7 @@ public class ServletAdmin extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		request.setAttribute("usuario" ,usuario);
 		RequestDispatcher dispatcher;
-		System.out.println(" param "+ request.getParameter("Param"));
+
 		if(request.getParameter("Param")!=null) {
 			
 			String opcion= request.getParameter("Param").toString();

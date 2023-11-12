@@ -24,7 +24,7 @@
 <body>
 
 <%
-	String nombre = (String)request.getAttribute("nombre");
+	String nombre = (String)request.getAttribute("usuario");
 	List<Cuenta> listaCuentas= new ArrayList<Cuenta>();
 
 	if(request.getAttribute("ListaCuentas")!=null){
@@ -61,7 +61,7 @@
                 <a class="nav-link" href="ServletInformes?Param=listarInformes&usuario=<%= nombre %>">Informes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Cerrar sesion</a>
+                <a class="nav-link" href="Login.jsp">Cerrar sesion</a>
               </li>
               <ion-icon name="person-circle-outline"></ion-icon> <b><%= nombre %></b>
             </ul>
@@ -119,7 +119,7 @@
 		                        <td><%= c.getFechaCreacion_Cta() %></td>
 		                        <td><%= c.getCBU_Cta() %> </td>
 		                        <td><%= c.getSaldo_Cta() %> </td> 
-		                        <td> <a href="ServletCuenta?modificarCuenta=<%=c.getNumCuenta_Cta()%>" class="btn btn-primary" >Modificar </a> </td>
+		                        <td> <a href="ServletCuenta?modificarCuenta=<%=c.getNumCuenta_Cta()%>&usuario=<%=nombre%>" class="btn btn-primary" >Modificar </a> </td>
 		                        <td> <a href="ServletCuenta?eliminarCuenta=<%=c.getNumCuenta_Cta()%>" class="btn btn-danger" >Eliminar </a> </td>
 			                        
                      		 </tr>

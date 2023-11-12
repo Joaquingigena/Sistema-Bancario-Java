@@ -239,7 +239,7 @@ public class CuentaDaoImpl implements ICuenta {
 			Usuario user = new Usuario();
 			TipoCuentas TP = new TipoCuentas();
 			
-			String query= "select C.NumCuenta_Cta as numCuenta, C.IdUsuario_Cta as idUsuario, C.FechaCreacion_Cta as fechaCreacion, C.IdTipoCuenta_Cta as idTipoCuenta, C.CBU_Cta as CBU, C.Saldo_Cta as saldo from Cuenta as C inner join Usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas TC on TC.IdTipoCuenta_TC = C.IdTipoCuenta_Cta where C.NumCuenta_Cta = "+ id;
+			String query= "select C.NumCuenta_Cta as numCuenta, C.IdUsuario_Cta as idUsuario, C.FechaCreacion_Cta as fechaCreacion, C.IdTipoCuenta_Cta as idTipoCuenta, C.CBU_Cta as CBU, C.Saldo_Cta as saldo from Cuenta as C inner join Usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas TC on TC.IdTipo_TC = C.IdTipoCuenta_Cta where C.NumCuenta_Cta = "+ id;
 			
 			try {
 				conexion.Open();
@@ -249,8 +249,10 @@ public class CuentaDaoImpl implements ICuenta {
 				rs.next();
 				Cta.setNumCuenta_Cta(rs.getInt("numCuenta"));
 				user.setIdUsuario_U(rs.getInt("idUsuario"));
+				Cta.setIdUsuario_Cta(user);
 				Cta.setFechaCreacion_Cta(rs.getDate("fechaCreacion"));
 				TP.setIdTipo_TC(rs.getInt("idTipoCuenta"));
+				Cta.setIdTipoCuenta_Cta(TP);
 				Cta.setCBU_Cta(rs.getInt("CBU"));
 				Cta.setSaldo_Cta(rs.getFloat("saldo"));
 				
