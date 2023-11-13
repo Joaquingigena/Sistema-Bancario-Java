@@ -24,7 +24,7 @@
 <body>
 
 <%
-	String nombre = (String)request.getAttribute("nombre");
+	String nombre = (String)request.getAttribute("usuario");
 	List<Usuario> listaClientes= new ArrayList<Usuario>();
 
 	if(request.getAttribute("cargar")!=null){
@@ -199,7 +199,7 @@
 									</div>
 			                    	</td>
 				                        <td> 
-				                        <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" >Modificar </a>
+				                        <a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>&usuario=<%= nombre %>" class="btn btn-primary" >Modificar </a>
 						                  <!-- Button trigger modal 
 											<a href="ServletAdmin?modificarCliente=<%=u.getIdUsuario_U()%>" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Modificar</a>
 											
