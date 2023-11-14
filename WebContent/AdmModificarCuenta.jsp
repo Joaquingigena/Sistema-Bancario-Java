@@ -76,21 +76,13 @@
     </nav>
     <% if(c != null){
     %>
-    <form action="ServletAdmin" method="get">
+    <form action="ServletCuenta" method="get">
     <div class="container">
     	<h3>Modificar cuenta N° <%=c.getNumCuenta_Cta() %></h3>
     	  <div class="row">
            <div class="col-md-6">
              <label for="campo1" class="form-label">Numero de cuenta</label>
              <input type="text" class="form-control" value="<%=c.getNumCuenta_Cta() %>" name="txtnumCuenta">
-           </div>
-             <div class="col-md-6">
-             <label for="campo2" class="form-label">Id de Usuario</label>
-              <input type="text" class="form-control" value="<%=c.getIdUsuario_Cta().getIdUsuario_U() %>" name="txtIdUsuario">
-           </div>
-           <div class="col-md-6">
-             <label for="campo3" class="form-label">Fecha de Creacion</label>
-             <input type="text" class="form-control" value="<%=c.getFechaCreacion_Cta() %>" name="txtFecha">
            </div>
          </div>
          <div class="row">
@@ -104,7 +96,7 @@
            </div>
              <div class="col-md-6">
              <label for="campo6" class="form-label">Saldo</label>
-             <input type="text" class="form-control" value= "<%=c.getSaldo_Cta()%>" name="txtCBU">
+             <input type="text" class="form-control" value= "<%=c.getSaldo_Cta()%>" name="txtSaldo">
            </div>
          </div>
 
@@ -114,7 +106,7 @@
          		<input type="submit" name="btnAceptarModificacionCuenta" class="btn btn-primary" value="Aceptar">
          	</div>
          	<div class="col-3">
-         		<a href="ServletCuenta?Param=listarClientes" class="btn btn-danger">Cancelar</a>
+         		<a href="ServletCuenta?Param=ListaCuentas" class="btn btn-danger">Cancelar</a>
          	</div>
          </div>				
 	</div>						          

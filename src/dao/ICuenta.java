@@ -19,4 +19,6 @@ public interface ICuenta {
 	boolean modificarCuenta(Cuenta Cta);
 
 	Cuenta obtenerCuenta(int id);
+
+	boolean modificate(Cuenta cuenta);
 }

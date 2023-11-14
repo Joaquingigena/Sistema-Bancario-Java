@@ -61,23 +61,7 @@ public class ServletCuenta extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		if(request.getParameter("btnAceptarModificacion")!=null) {
 
-			Cuenta cta = new Cuenta();
-
-			cta.setSaldo_Cta(Float.parseFloat(request.getParameter("txtSaldo")));
-
-			System.out.println(cta.toString());
-
-			if(cuentaNeg.modificarCuenta(cta)) {
-				System.out.println("Modificado con exito");
-
-			}
-			request.setAttribute("cargar" ,cuentaNeg.ListarCuentas());
-
-			dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
-			dispatcher.forward(request, response);
-		}
 	}
 
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -103,6 +87,32 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			request.setAttribute("isCreated", false);
 		}
 
+	}
+	if(request.getParameter("btnAceptarModificacionCuenta")!=null) {
+
+		Cuenta cta = new Cuenta();
+		
+		int numCuenta=Integer.parseInt(request.getParameter("txtnumCuenta"));
+		int tipoCuenta= Integer.parseInt(request.getParameter("txtTipo"));
+		int CBU = Integer.parseInt(request.getParameter("txtCBU"));
+		float Saldo = Float.parseFloat(request.getParameter("txtSaldo"));
+		
+		
+		cta.setNumCuenta_Cta(numCuenta);
+		cta.getIdTipoCuenta_Cta().setIdTipo_TC(tipoCuenta);
+		cta.setCBU_Cta(CBU);
+		cta.setSaldo_Cta(Saldo);
+
+		System.out.println(cta.toString());
+
+		if(cuentaNeg.modificarCuenta(cta)) {
+			System.out.println("Modificado con exito");
+
+		}
+		request.setAttribute("cargar" ,cuentaNeg.ListarCuentas());
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	response.sendRedirect("/TPIntegrador_Grupo_6/ServletAdmin?Param=listarClientes");

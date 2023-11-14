@@ -1,5 +1,6 @@
 package daoImpl;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.catalina.User;
+
 
 import conexion.conexion;
 import dao.ICuenta;
@@ -207,29 +208,25 @@ public class CuentaDaoImpl implements ICuenta {
 		}
 		
 		@Override
-		public boolean modificarCuenta(Cuenta Cta) {
-			
-			boolean exito=false;
-			conexion= new conexion();
-			
-			String cambio= "update Cliente set Saldo_Cta='"+Cta.getSaldo_Cta()+"' where IdUsuario_Cta="+ Cta.getIdUsuario_Cta();
-			
+		public boolean modificate(Cuenta cuenta) {
+			boolean r=false;
+			Connection cn = null;
 			try {
-				conexion.Open();
+				CallableStatement st = cn.prepareCall("CALL SPActualizarCuentas(?,?,?,?)");
+				st.setInt(1,cuenta.getNumCuenta_Cta());
+				st.setInt(2,cuenta.getIdTipoCuenta_Cta().getIdTipo_TC());
+				st.setInt(3,cuenta.getCBU_Cta());
+				st.setFloat(4, cuenta.getSaldo_Cta());
+				if (st.executeUpdate()>0) r=true;
 				
-				if(conexion.execute(cambio)) {
-					
-					exito=true;
-				}
-				
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				conexion.close();
 			}
-			
-			return exito;
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			  finally {
+				
+			}
+			return r;
 		}
 		@Override
 		public Cuenta obtenerCuenta(int id) {
@@ -267,6 +264,13 @@ public class CuentaDaoImpl implements ICuenta {
 			}
 			
 			return Cta;
+		}
+
+
+		@Override
+		public boolean modificarCuenta(Cuenta Cta) {
+			// TODO Auto-generated method stub
+			return false;
 		}
 				
 
