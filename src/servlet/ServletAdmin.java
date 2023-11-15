@@ -215,8 +215,8 @@ public class ServletAdmin extends HttpServlet {
 			int estado=1;
 			
 			String dni = request.getParameter("dni").toString();
-			int localidad = 1;//adminNeg.CodLocalidad(request.getParameter("localidad").toString());
-			int provincia = 1;//adminNeg.CodProvincia(request.getParameter("provincia").toString());
+			int localidad = Integer.parseInt(request.getParameter("localidad").trim());
+			int provincia = Integer.parseInt(request.getParameter("provincia").trim());
 			String cuil = request.getParameter("cuil").toString();
 			String nombre = request.getParameter("nombre").toString();
 			String apellido = request.getParameter("apellido").toString();

@@ -1,4 +1,4 @@
-<%@page import="entidades.Localidades"%>
+0 +7<%@page import="entidades.Localidades"%>
 <%@page import="entidades.Provincias"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -86,13 +86,13 @@
                     <div class="form-group mb-3">
                     	<%
                     			List <Provincias> ListaProv = null;
-			            		
+                    			int locali = 0;
 			            		if(request.getAttribute("ListaProvincias") !=null)
 			            		{
 			            			ListaProv = (List<Provincias>)request.getAttribute("ListaProvincias");
 			            		}
 			            %>
-                        <select class="form-control mb-3" id="Provincias" name="provincia" placeholder="Provincia">
+                        <select class="form-control mb-3" id="provincias" name="provincia" placeholder="Provincia">
                         	<option value="predeterminada" selected>Seleccione Provincia</option>
                         	
                         	<%	
@@ -100,9 +100,7 @@
 			            		//for(int i=0; i < 5; i++){
 			            		for(Provincias Prov : ListaProv){
             				%>
-            				
-                            <option value=" <%=Prov.getNombre_Prov() %>"><%= Prov.getNombre_Prov() %></option>
-                            <!-- Agrega más opciones según sea necesario -->
+            				<option value=" <%=Prov.getCodProvincia_Prov() %>"><%= Prov.getNombre_Prov() %></option>                          
                             <%} %>
                         </select>
                     </div>
@@ -125,7 +123,7 @@
 			            		//for(int i=0; i < 5; i++){
 			            		for(Localidades Loc : ListaLoc){
             				%>
-                            <option value=" <%=Loc.getNombre_Loc() %>"><%= Loc.getNombre_Loc() %></option>
+                            <option value=" <%=Loc.getCodLocalidad_Loc() %>"><%= Loc.getNombre_Loc() %></option>
                             <!-- Agrega más opciones según sea necesario -->
                             <%} %>
                         </select>
@@ -151,10 +149,12 @@
 				if((boolean)request.getAttribute("EstadoAlta")==true){
 				%>
             	<h3>Registrado exitosamente</h3>
+            	<h3><%= locali %></h3>
             	<%}%>
             <%
 	            if((boolean)request.getAttribute("EstadoAlta")==false){%>
 	            	<h3>No puedo registrarse</h3>
+	            	<h3><%= locali %></h3>
 	            <%}%>	
             <%}%>
         </form>
