@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import entidades.Cuenta;
+import entidades.TipoCuentas;
 
 public interface ICuenta {
 
@@ -21,4 +22,6 @@ public interface ICuenta {
 	Cuenta obtenerCuenta(int id);
 
 	boolean modificate(Cuenta cuenta);
+
+	List<TipoCuentas> listarTipoCuentas();
 }

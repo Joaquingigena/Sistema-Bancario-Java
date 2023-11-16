@@ -3,6 +3,7 @@ package negocio;
 import java.util.List;
 
 import entidades.Cuenta;
+import entidades.TipoCuentas;
 
 public interface ICuentaNegocio {
 	public List<Cuenta> ListarCuentas();
@@ -18,5 +19,7 @@ public interface ICuentaNegocio {
 	boolean modificarCuenta(Cuenta cta);
 
 	Cuenta obtenerCuenta(int id);
+
+	List<TipoCuentas> ListarTipoCuentas();
 
 }

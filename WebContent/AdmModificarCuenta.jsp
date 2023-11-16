@@ -30,13 +30,10 @@
 	
 	if(request.getAttribute("modificarv2")!= null){
 		 c= (Cuenta)request.getAttribute("modificarv2");
-		 	System.out.println("CBU"+ c.getCBU_Cta());
-		 	System.out.println("NUM Cuenta"+ c.getNumCuenta_Cta());
-		 	System.out.println("id user"+ c.getIdUsuario_Cta().getIdUsuario_U());
-		 	System.out.println("fecha"+ c.getFechaCreacion_Cta());
-		 	System.out.println("tipo cuenta"+ c.getIdTipoCuenta_Cta().getIdTipo_TC());
-		 	System.out.println("saldo"+ c.getSaldo_Cta());
-
+	}
+	List<TipoCuentas> listaTC= new ArrayList<TipoCuentas>();
+	if(request.getAttribute("ListaTipoCuentas")!=null){
+		listaTC=(ArrayList<TipoCuentas>)request.getAttribute("ListaTipoCuentas");
 	}
 	
 %>
@@ -79,16 +76,15 @@
     <form action="ServletCuenta" method="get">
     <div class="container">
     	<h3>Modificar cuenta N° <%=c.getNumCuenta_Cta() %></h3>
-    	  <div class="row">
-           <div class="col-md-6">
-             <label for="campo1" class="form-label">Numero de cuenta</label>
-             <input type="text" class="form-control" value="<%=c.getNumCuenta_Cta() %>" name="txtnumCuenta">
-           </div>
-         </div>
          <div class="row">
+         <td><%=c.getNumCuenta_Cta() %> <input type="hidden" name="hiddenId" value="<%=c.getNumCuenta_Cta()%>"> </td> 
            <div class="col-md-6">
-             <label for="campo4" class="form-label">Tipo de Cuenta</label>
-             <input type="text" class="form-control" value= "<%=c.getIdTipoCuenta_Cta().getIdTipo_TC()%>" name="txtTipo">
+             <label for="campo4" class="form-label">Tipo Cuenta</label>
+             <select name="ddlTipoCuentas" class="form-select">
+             	<%for(TipoCuentas tc: listaTC){ %>
+             	<option value="<%=tc.getIdTipo_TC()%>"><%=tc.getDescripcion_TC()%> </option>
+             	<%} %>
+             </select>
            </div>
            <div class="col-md-6">
              <label for="campo5" class="form-label">CBU</label>

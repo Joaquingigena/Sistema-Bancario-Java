@@ -5,6 +5,7 @@ import java.util.List;
 
 import daoImpl.CuentaDaoImpl;
 import entidades.Cuenta;
+import entidades.TipoCuentas;
 import entidades.Usuario;
 import negocio.ICuentaNegocio;
 
@@ -42,12 +43,17 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 	@Override
 	public boolean modificarCuenta(Cuenta cta) {
 		
-		return cuentaDaoImpl.modificarCuenta(cta);
+		return cuentaDaoImpl.modificate(cta);
 	}
 	@Override
 	public Cuenta obtenerCuenta(int id) {
 		
 		return cuentaDaoImpl.obtenerCuenta(id);
+	}
+	
+	@Override
+	public List<TipoCuentas> ListarTipoCuentas() {
+		return cuentaDaoImpl.listarTipoCuentas();
 	}
 
 }

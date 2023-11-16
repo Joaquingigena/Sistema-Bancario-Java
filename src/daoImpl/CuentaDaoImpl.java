@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 
-
 import conexion.conexion;
 import dao.ICuenta;
 import entidades.Cuenta;
@@ -25,7 +24,7 @@ public class CuentaDaoImpl implements ICuenta {
 		
 			List <Cuenta> lista= new ArrayList<Cuenta>();
 			conexion= new conexion();
-			String query= "Select C.NumCuenta_Cta,C.IdUsuario_Cta, C.FechaCreacion_Cta, C.IdTipoCuenta_Cta, C.CBU_Cta, C.Saldo_Cta FROM cuenta AS C inner join usuario U on U.IdUsuario_U = C.IdUsuario_Cta where Estado_Cta=true";
+			String query= "Select C.NumCuenta_Cta,C.IdUsuario_Cta, C.FechaCreacion_Cta, C.IdTipoCuenta_Cta, C.CBU_Cta, C.Saldo_Cta FROM cuenta AS C inner join usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas tc on tc.IdTipo_TC = C.IdTipoCuenta_Cta where Estado_Cta=true";
 			
 			try {
 				conexion.Open();
@@ -207,27 +206,37 @@ public class CuentaDaoImpl implements ICuenta {
 			
 		}
 		
+
 		@Override
-		public boolean modificate(Cuenta cuenta) {
-			boolean r=false;
-			Connection cn = null;
+		public List<TipoCuentas> listarTipoCuentas() {
+			
+			List <TipoCuentas> Lista = new ArrayList<TipoCuentas>();
+			conexion= new conexion();
+			String query= "SELECT IdTipo_TC, Descripcion_TC FROM TipoCuentas";
 			try {
-				CallableStatement st = cn.prepareCall("CALL SPActualizarCuentas(?,?,?,?)");
-				st.setInt(1,cuenta.getNumCuenta_Cta());
-				st.setInt(2,cuenta.getIdTipoCuenta_Cta().getIdTipo_TC());
-				st.setInt(3,cuenta.getCBU_Cta());
-				st.setFloat(4, cuenta.getSaldo_Cta());
-				if (st.executeUpdate()>0) r=true;
+				conexion.Open();
+				ResultSet rs = conexion.query(query);
 				
+				while(rs.next()) {
+					TipoCuentas tc = new TipoCuentas();
+					
+					tc.setIdTipo_TC(rs.getInt("IdTipo_TC"));
+					tc.setDescripcion_TC(rs.getString("Descripcion_TC"));
+					
+					Lista.add(tc);
+				}
+
 			}
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-			  finally {
-				
+			finally {
+				conexion.close();
 			}
-			return r;
+			return Lista;
+
 		}
+		
 		@Override
 		public Cuenta obtenerCuenta(int id) {
 			
@@ -268,9 +277,52 @@ public class CuentaDaoImpl implements ICuenta {
 
 
 		@Override
-		public boolean modificarCuenta(Cuenta Cta) {
-			// TODO Auto-generated method stub
-			return false;
+		public boolean modificarCuenta(Cuenta cta) {
+			
+			boolean exito=false;
+			conexion= new conexion();
+			
+			String queryPersona= "update Cuenta set IdTipoCuenta_Cta="+cta.getIdTipoCuenta_Cta().getIdTipo_TC()+", CBU_Cta"+cta.getCBU_Cta()+",Saldo_Cta='"+cta.getSaldo_Cta()+"' where NumCuenta_Cta="+cta.getNumCuenta_Cta()+"";
+			
+			try {
+				conexion.Open();
+				
+				if(conexion.execute(queryPersona)) {
+					
+					exito=true;
+				}
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				conexion.close();
+			}
+			
+			return exito;
+		}
+
+
+		@Override
+		public boolean modificate(Cuenta cta) {
+			boolean r=false;
+			conexion= new conexion();
+			try {
+				CallableStatement st = conexion.Open().prepareCall("CALL SPActualizarCuentas(?,?,?,?)");
+				st.setInt(1,cta.getNumCuenta_Cta());
+				st.setInt(2,cta.getIdTipoCuenta_Cta().getIdTipo_TC());
+				st.setInt(3,cta.getCBU_Cta());
+				st.setFloat(4, cta.getSaldo_Cta());
+				if (st.executeUpdate()>0) r=true;
+				
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			  finally {
+				conexion.close();
+			}
+			return r;
 		}
 				
 

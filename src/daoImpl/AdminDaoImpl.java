@@ -481,12 +481,12 @@ public class AdminDaoImpl implements IAdminDao {
 		conexion= new conexion();
 		
 		String queryPersona= "update personas set CodLocalidad_P="+user.getIdPersona_U().getCodLocalidad_P().getCodLocalidad_Loc()+", CodProvincia_P="+user.getIdPersona_U().getCodProvincia_P().getCodProvincia_Prov()+",Nombre_P='"+user.getIdPersona_U().getNombre_P()+"',Apellido_P='"+user.getIdPersona_U().getApellido_P()+"',Direccion_P='"+user.getIdPersona_U().getDireccion_P()+"',Correo_P='"+user.getIdPersona_U().getCorreo_P()+"',Telefono_P='"+user.getIdPersona_U().getTelefono_P()+"' where IdPersona_P="+user.getIdPersona_U().getIdPersona_P()+"";
-		String cambiarContraseña= "update usuario set Contraseña='"+user.getPassword_U()+"' where IdUsuario_U="+ user.getIdUsuario_U();
+		String cambiarContraseÃ±a= "update usuario set Contraseï¿½a='"+user.getPassword_U()+"' where IdUsuario_U="+ user.getIdUsuario_U();
 		
 		try {
 			conexion.Open();
 			
-			if(conexion.execute(queryPersona) && conexion.execute(cambiarContraseña)) {
+			if(conexion.execute(queryPersona) && conexion.execute(cambiarContraseÃ±a)) {
 				
 				exito=true;
 			}

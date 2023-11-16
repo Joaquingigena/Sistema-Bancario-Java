@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entidades.Cuenta;
-import entidades.Localidades;
 import entidades.Personas;
-import entidades.Provincias;
 import entidades.Usuario;
+import entidades.TipoCuentas;
 import negocioImpl.CuentaNegocioImpl;
 
 
@@ -54,10 +53,44 @@ public class ServletCuenta extends HttpServlet {
 			int id2=Integer.parseInt( request.getParameter("modificarCuenta"));
 
 			Cuenta cta= cuentaNeg.obtenerCuenta(id2);
-
+			
 			request.setAttribute("modificarv2", cta);
+			
+			// Obtengo la lista de Localidades desde la capa Negocio.
+			List <TipoCuentas> ListaTipoCuentas = null;
+			ListaTipoCuentas = cuentaNeg.ListarTipoCuentas();
+			
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			if(ListaTipoCuentas!=null) {
+				request.setAttribute("ListaTipoCuentas", ListaTipoCuentas);
+			}
 
 			dispatcher = request.getRequestDispatcher("/AdmModificarCuenta.jsp");
+			dispatcher.forward(request, response);
+		}
+		if(request.getParameter("btnAceptarModificacionCuenta")!=null) {
+
+			Cuenta cta = new Cuenta();
+			TipoCuentas tc = new TipoCuentas();
+			
+			cta.setNumCuenta_Cta(Integer.parseInt(request.getParameter("hiddenId")));
+			cta.setCBU_Cta(Integer.parseInt(request.getParameter("txtCBU")));
+			cta.setSaldo_Cta(Float.parseFloat(request.getParameter("txtSaldo")));
+			
+			tc.setIdTipo_TC(Integer.parseInt(request.getParameter("ddlTipoCuentas")));
+			
+			cta.setIdTipoCuenta_Cta(tc);
+			
+			System.out.println("----------------------------------------------------");
+			System.out.println(cta.toString());
+
+			if(cuentaNeg.modificarCuenta(cta)) {
+				System.out.println("Modificado con exito");
+
+			}
+			request.setAttribute("cargar" ,cuentaNeg.ListarCuentas());
+
+			dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
 			dispatcher.forward(request, response);
 		}
 
@@ -87,32 +120,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			request.setAttribute("isCreated", false);
 		}
 
-	}
-	if(request.getParameter("btnAceptarModificacionCuenta")!=null) {
-
-		Cuenta cta = new Cuenta();
-		
-		int numCuenta=Integer.parseInt(request.getParameter("txtnumCuenta"));
-		int tipoCuenta= Integer.parseInt(request.getParameter("txtTipo"));
-		int CBU = Integer.parseInt(request.getParameter("txtCBU"));
-		float Saldo = Float.parseFloat(request.getParameter("txtSaldo"));
-		
-		
-		cta.setNumCuenta_Cta(numCuenta);
-		cta.getIdTipoCuenta_Cta().setIdTipo_TC(tipoCuenta);
-		cta.setCBU_Cta(CBU);
-		cta.setSaldo_Cta(Saldo);
-
-		System.out.println(cta.toString());
-
-		if(cuentaNeg.modificarCuenta(cta)) {
-			System.out.println("Modificado con exito");
-
-		}
-		request.setAttribute("cargar" ,cuentaNeg.ListarCuentas());
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	response.sendRedirect("/TPIntegrador_Grupo_6/ServletAdmin?Param=listarClientes");

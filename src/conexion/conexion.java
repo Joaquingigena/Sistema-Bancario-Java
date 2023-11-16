@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class conexion {
 
-
+	public static conexion instancia;
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "root";//root
@@ -75,6 +75,20 @@ public class conexion {
 			e.printStackTrace();
 		}
 		return ok;
+	}
+	
+	public static conexion getConexion()  
+	{								
+		if(instancia == null)
+		{
+			instancia = new conexion();
+		}
+		return instancia;
+	}
+
+	public Connection getSQLConexion() 
+	{
+		return this.connection;
 	}
 }
 
