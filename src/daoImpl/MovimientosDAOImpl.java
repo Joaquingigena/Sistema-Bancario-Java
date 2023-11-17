@@ -14,15 +14,11 @@ public class MovimientosDAOImpl implements IMovimientos{
 
 	private conexion conexion; 
 	@Override
-	public List<Movimientos> obtenerMovimientosPorUsuario(int idUsuario, int numCuenta) {
+	public List<Movimientos> obtenerMovimientosPorUsuario(String Nombre) {
 		
 		List<Movimientos> Movs = new ArrayList<Movimientos>();
 		conexion= new conexion();
-		String query= "SELECT m.*, c.*"+
-				"FROM movimientos m"+
-				"JOIN cuenta c ON m.NumCuenta_M = c.NumCuenta_Cta"+
-				"WHERE c.IdUsuario_Cta = " + idUsuario +
-				"AND c.NumCuenta_Cta = "+ numCuenta;
+		String query= "SELECT m.*, tm.Descripcion_TM as Descripcion FROM movimientos m JOIN cuenta c ON m.NumCuenta_M = c.NumCuenta_Cta JOIN usuario u on c.IdUsuario_Cta = u.IdUsuario_U  JOIN tipoMovimientos TM on m.IdTipoMovimiento_M = TM.IdTipoMovimiento_TM  WHERE u.Usuario_U = '" + Nombre + "'";
 
 		try {
 			conexion.Open();
@@ -35,6 +31,7 @@ public class MovimientosDAOImpl implements IMovimientos{
 				movimiento.setDetalle_M(rs.getString(4));
 				movimiento.setImporte_M(rs.getFloat(5));
 				movimiento.setEstado_M(rs.getString(7));
+				movimiento.getIdTipoMovimiento_M().setDescripcion_TM(rs.getString("Descripcion"));
                 //movimiento.getNumCuenta_M().setIdUsuario_Cta(rs.getInt(9));
                
 			

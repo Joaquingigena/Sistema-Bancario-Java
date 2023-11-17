@@ -25,6 +25,7 @@
 
 <%
 	String nombre = (String)request.getAttribute("usuario");
+
 	List<Cuenta> listaCuentas= new ArrayList<Cuenta>();
 
 	if(request.getAttribute("ListaCuentas")!=null){

@@ -56,7 +56,7 @@ public class ServletUsuario extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			case 0:
-				request.setAttribute("nombre", usuario);
+				request.setAttribute("nombre", usuario);				
 				dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
 				dispatcher.forward(request, response);
 				break;

@@ -6,6 +6,6 @@ import entidades.Movimientos;
 
 public interface IMovimientos {
 
-	public List<Movimientos> obtenerMovimientosPorUsuario(int idUsuario, int numCuenta);
+	public List<Movimientos> obtenerMovimientosPorUsuario(String Nombre);
 	
 }

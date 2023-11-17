@@ -10,9 +10,9 @@ public class MovimientoNegocioImpl implements IMovimientoNegocio{
 
 	private MovimientosDAOImpl mDaoImp = new MovimientosDAOImpl();
 	@Override
-	public List<Movimientos> obtenerMovimientosPorUsuario(int idUsuario, int numCuenta) {
+	public List<Movimientos> obtenerMovimientosPorUsuario(String nombre) {
 		
-		return mDaoImp.obtenerMovimientosPorUsuario(idUsuario, numCuenta);
+		return mDaoImp.obtenerMovimientosPorUsuario(nombre);
 	}
 
 }

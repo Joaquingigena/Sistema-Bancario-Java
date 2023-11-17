@@ -1,3 +1,9 @@
+<%@page import="entidades.Movimientos"%>
+<%@page import="entidades.Usuario"%>
+<%@page import="entidades.Cuenta"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,6 +27,12 @@
 <body>
 <%
 	String nombre = (String)request.getAttribute("nombre");
+
+List<Movimientos> listaMovimientos= new ArrayList<Movimientos>();
+
+if(request.getAttribute("Movimientos")!=null){
+	listaMovimientos= (ArrayList<Movimientos>)request.getAttribute("Movimientos");
+}
 
 %>
 
@@ -116,23 +128,34 @@
 	    <table style="margin:25px;" class="table table-striped table-hover">
 	        <thead>
 	            <tr class="table-primary">
+	                <th>Numero de Movimiento</th>
 	                <th>Fecha</th>
 	                <th>Detalle</th>
 	                <th>Importe</th>
 	                <th>Tipo movimiento</th>
 	            </tr>
 	        </thead>
-	        <tbody>
-	            <!-- Itera sobre la lista de movimientos -->
-	            <c:forEach var="movimiento" items="${movimientos}">
-	                <tr>
-	                    <td>${movimiento.fechaMovimiento_M}</td>
-	                    <td>${movimiento.detalle_M}</td>
-	                    <td>${movimiento.importe_M}</td>
-	                    <td>${movimiento.tipoMovimiento_M}</td>
-	                </tr>
-	            </c:forEach>
-	        </tbody>
+                    <tbody class="table-group-divider">
+                      <%
+                      if(listaMovimientos!=null){                   	  
+                    	  for(Movimientos m : listaMovimientos){
+                    		  %>
+                    		 <tr>
+                    		    <td><%= m.getNumMovimiento_M() %></td>
+		                        <td><%= m.getFechaMovimiento_M() %></td>
+		                        <td><%= m.getDetalle_M() %></td>
+		                        <td><%= m.getImporte_M() %></td>
+		                        <td><%= m.getIdTipoMovimiento_M().getDescripcion_TM() %> </td>
+			                        
+                     		 </tr>
+                    		  <%
+                    	  }
+                    	  
+                      }
+                      
+                      
+                      %>
+                    </tbody>
 	    </table>
 	</div>
 

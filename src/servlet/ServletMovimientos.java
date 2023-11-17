@@ -26,15 +26,30 @@ public class ServletMovimientos extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-        int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
-        int numCuenta = Integer.parseInt(request.getParameter("numCuenta"));    
-        
-        List<Movimientos> movimientos = movNeg.obtenerMovimientosPorUsuario(idUsuario, numCuenta);
-        
-        request.setAttribute("movimientos", movimientos);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/movimiento.jsp");
-        dispatcher.forward(request, response);
+	if(request.getParameter("Param")!=null) {
+			
+		String opcion= request.getParameter("Param").toString();
+		 String nombre = request.getParameter("idUsuario"); 
+
+			switch(opcion) {
+			
+			case "listarMovimientos":
+				
+		        List<Movimientos> movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
+		        
+		        request.setAttribute("Movimientos", movimientos);
+		        RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
+		        dispatcher.forward(request, response);
+				
+				break;
+				
+				default:
+					
+				break;
+			}
+		 }
 	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	

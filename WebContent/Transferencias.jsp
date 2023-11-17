@@ -19,6 +19,10 @@
 <title>Transferencias</title>
 </head>
 <body>
+<%
+	String nombre = (String)request.getAttribute("nombre");
+
+%>
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
@@ -52,7 +56,7 @@
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" href="PagosPrestamos.jsp">
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" href="MisDatos.jsp">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" href="ServletMovimientos?Param=listarMovimientos&usuario=<%= nombre %>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
 			</div>
 		</div>
