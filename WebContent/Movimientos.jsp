@@ -79,74 +79,63 @@
       }
     });
   });
-</script>
-		<div id="Cuerpo">
-			<div id="Encabezado">
-				<h2>Movimientos</h2>
-			</div>
-			<div style="display:flex;">
-				<h5 style="margin:25px">Cuenta: </h5>
-				<select style="height: 40px; width:500px; margin: 15px" class="form-select" aria-label="Default select example">
-				  <option selected>Seleccione una cuenta</option>
-				  <option value="1">Cuenta 1</option>
-				  <option value="2">Cuenta 2</option>
-				  <option value="3">Cuenta 3</option>
-				</select>
-			</div>
-			<div class="border border-success m-3 p-4" style="width: 620px">
-		    		<span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ 540.678,89</b>
-		    		<div style="margin-left:95px; padding:5px">Caja de ahorro en pesos <b>452787-56-7</b></div>
-		    </div>
-			<div>
-				
-				<div  id="Busqueda">
-					<h5>Busqueda</h5>
-					<h7>Desde: </h7>
-					<input type="date">
-					<h7>Hasta: </h7>
-					<input type="date">
-					<button type="button" class="btn btn-success">Buscar</button>
+	</script>
+			<div id="Cuerpo">
+				<div id="Encabezado">
+					<h2>Movimientos</h2>
 				</div>
-				<table style="margin:25px;" class="table table-striped table-hover">
-					<thead>
-						<tr class="table-primary">
-							<th>Fecha</th>
-							<th>Detalle</th>
-							<th>Importe</th>
-							<th>Tipo movimiento</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th>02/08/2023</th>
-							<th>Transferencia de terceros</th>
-							<th>$15000</th>
-							<th>Deposito</th>
-						</tr>
-						<tr>
-							<th>15/08/2023</th>
-							<th>Compra super Chino</th>
-							<th>$5000</th>
-							<th>Extracción</th>
-						</tr>
-						<tr>
-							<th>20/08/2023</th>
-							<th>Mercado Libre</th>
-							<th>$10000</th>
-							<th>Extracción</th>
-						</tr>
-						<tr>
-							<th>05/09/2023</th>
-							<th>Transferencia de terceros</th>
-							<th>$25000</th>
-							<th>Deposito</th>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			
-		</div>
+				<div style="display:flex;">
+					<h5 style="margin:25px">Cuenta: </h5>
+					<form action="ServletMovimientos" method="GET">
+				    <div style="display:flex;">
+				        <h5 style="margin:25px">Cuenta: </h5>
+				        <select name="numCuenta" style="height: 40px; width:500px; margin: 15px" class="form-select" aria-label="Default select example">
+				            <option selected>Seleccione una cuenta</option>
+				            <option value="1">Cuenta 1</option>
+				            <option value="2">Cuenta 2</option>
+				            <option value="3">Cuenta 3</option>
+				        </select>
+				        <input type="hidden" name="idUsuario" value="<%= nombre %>">
+				        <button type="submit" class="btn btn-success">Buscar</button>
+				    </div>
+				</form>
+				</div>
+				<div class="border border-success m-3 p-4" style="width: 620px">
+	    <span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ 540.678,89</b>
+	    <div style="margin-left:95px; padding:5px">Caja de ahorro en pesos <b>452787-56-7</b></div>
 	</div>
+	<div>
+	    <div id="Busqueda">
+	        <h5>Busqueda</h5>
+	        <h7>Desde: </h7>
+	        <input type="date">
+	        <h7>Hasta: </h7>
+	        <input type="date">
+	        <button type="button" class="btn btn-success">Buscar</button>
+	    </div>
+	    <table style="margin:25px;" class="table table-striped table-hover">
+	        <thead>
+	            <tr class="table-primary">
+	                <th>Fecha</th>
+	                <th>Detalle</th>
+	                <th>Importe</th>
+	                <th>Tipo movimiento</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <!-- Itera sobre la lista de movimientos -->
+	            <c:forEach var="movimiento" items="${movimientos}">
+	                <tr>
+	                    <td>${movimiento.fechaMovimiento_M}</td>
+	                    <td>${movimiento.detalle_M}</td>
+	                    <td>${movimiento.importe_M}</td>
+	                    <td>${movimiento.tipoMovimiento_M}</td>
+	                </tr>
+	            </c:forEach>
+	        </tbody>
+	    </table>
+	</div>
+
 	
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

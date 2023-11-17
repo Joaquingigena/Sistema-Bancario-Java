@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entidades.Cuenta;
-import entidades.Personas;
-import entidades.Usuario;
 import entidades.TipoCuentas;
 import negocioImpl.CuentaNegocioImpl;
 
