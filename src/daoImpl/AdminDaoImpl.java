@@ -481,12 +481,12 @@ public class AdminDaoImpl implements IAdminDao {
 		conexion= new conexion();
 		
 		String queryPersona= "update personas set CodLocalidad_P="+user.getIdPersona_U().getCodLocalidad_P().getCodLocalidad_Loc()+", CodProvincia_P="+user.getIdPersona_U().getCodProvincia_P().getCodProvincia_Prov()+",Nombre_P='"+user.getIdPersona_U().getNombre_P()+"',Apellido_P='"+user.getIdPersona_U().getApellido_P()+"',Direccion_P='"+user.getIdPersona_U().getDireccion_P()+"',Correo_P='"+user.getIdPersona_U().getCorreo_P()+"',Telefono_P='"+user.getIdPersona_U().getTelefono_P()+"' where IdPersona_P="+user.getIdPersona_U().getIdPersona_P()+"";
-		String cambiarContraseÃ±a= "update usuario set Contraseï¿½a='"+user.getPassword_U()+"' where IdUsuario_U="+ user.getIdUsuario_U();
+		String cambiarContraseÃa= "update usuario set Contraseï¿½a='"+user.getPassword_U()+"' where IdUsuario_U="+ user.getIdUsuario_U();
 		
 		try {
 			conexion.Open();
 			
-			if(conexion.execute(queryPersona) && conexion.execute(cambiarContraseÃ±a)) {
+			if(conexion.execute(queryPersona) && conexion.execute(cambiarContraseÃa)) {
 				
 				exito=true;
 			}
@@ -499,5 +499,40 @@ public class AdminDaoImpl implements IAdminDao {
 		}
 		
 		return exito;
+	}
+
+
+	@Override
+	public List<Usuario> filtrarListaUsuarios(String filtro) {
+		
+		List <Usuario> lista= new ArrayList<Usuario>();
+		conexion= new conexion();
+		String query= "select U.IdUsuario_U, U.Usuario_U,P.Nombre_P,P.Apellido_P,P.DNI_P,P.Correo_P from Usuario as U inner join Personas P on P.IdPersona_P = U.IdPersona_U where U.Estado_U= true and Usuario_U LIKE '%"+ filtro+"%'";
+		
+		try {
+			conexion.Open();
+			ResultSet rs= conexion.query(query);
+			
+			while(rs.next()) {
+				Usuario usuario= new Usuario();
+				
+				usuario.setIdUsuario_U(rs.getInt(1));
+				usuario.setUsuario_U(rs.getString(2));
+				usuario.getIdPersona_U().setNombre_P(rs.getString(3));
+				usuario.getIdPersona_U().setApellido_P(rs.getString(4));
+				usuario.getIdPersona_U().setDNI_P(rs.getString(5));
+				usuario.getIdPersona_U().setCorreo_P(rs.getString(6));
+						
+				lista.add(usuario);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		
+		return lista;
 	}
 }

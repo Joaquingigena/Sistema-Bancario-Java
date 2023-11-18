@@ -118,9 +118,30 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			request.setAttribute("isCreated", false);
 		}
 
+		response.sendRedirect("/TPIntegrador_Grupo_6/ServletAdmin?Param=listarClientes");
+	}
+	
+	if(request.getParameter("btnBuscar")!=null) {
+		
+		RequestDispatcher dispatcher;
+		String filtro= request.getParameter("filtroValor").toString();
+		
+		if(filtro!=null ) {
+			request.setAttribute("ListaCuentas" ,cuentaNeg.filtrarListaCuentas(filtro));
+			
+			dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
+			dispatcher.forward(request, response);
+			
+		}else {
+			request.setAttribute("ListaCuentas" ,cuentaNeg.ListarCuentas());
+			
+			dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		
 	}
 
-	response.sendRedirect("/TPIntegrador_Grupo_6/ServletAdmin?Param=listarClientes");
 }
 
 

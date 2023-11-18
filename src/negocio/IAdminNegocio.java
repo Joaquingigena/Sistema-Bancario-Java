@@ -33,4 +33,6 @@ public interface IAdminNegocio {
 	
 	public boolean modificarCliente(Usuario user);
 	Usuario obtenerUsuariov2(String nombre);
+	
+	public List<Usuario> filtrarListaUsuarios(String filtro);
 }

@@ -87,4 +87,10 @@ public class AdminNegocioImpl implements IAdminNegocio {
 		
 		return adminDao.modificarCliente(user);
 	}
+
+	@Override
+	public List<Usuario> filtrarListaUsuarios(String filtro) {
+		// TODO Auto-generated method stub
+		return adminDao.filtrarListaUsuarios(filtro);
+	}
 }

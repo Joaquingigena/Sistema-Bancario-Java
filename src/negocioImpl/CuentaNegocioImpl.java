@@ -55,5 +55,10 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 	public List<TipoCuentas> ListarTipoCuentas() {
 		return cuentaDaoImpl.listarTipoCuentas();
 	}
+	@Override
+	public List<Cuenta> filtrarListaCuentas(String filtro) {
+		// TODO Auto-generated method stub
+		return cuentaDaoImpl.filtrarListaCuentas(filtro);
+	}
 
 }

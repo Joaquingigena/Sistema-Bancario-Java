@@ -290,7 +290,26 @@ public class ServletAdmin extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		if(request.getParameter("btnBuscar")!=null) {
+			
+			RequestDispatcher dispatcher;
+			String filtro= request.getParameter("filtroValor").toString();
+			
+			if(filtro!=null ) {
+				request.setAttribute("cargar" ,adminNeg.filtrarListaUsuarios(filtro));
+				
+				dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+				dispatcher.forward(request, response);
+				
+			}else {
+				request.setAttribute("cargar" ,adminNeg.listarUsuarios());
+				
+				dispatcher = request.getRequestDispatcher("/AdmClientes.jsp");
+				dispatcher.forward(request, response);
+			}
+			
+			
+		}
 	}
 
 }

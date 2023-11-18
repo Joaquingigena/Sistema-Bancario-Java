@@ -33,5 +33,5 @@ public interface IAdminDao {
 	public boolean modificarCliente(Usuario user);
 	Usuario obtenerClientev2(String nombre);
 	
-	
+	public List<Usuario> filtrarListaUsuarios(String filtro);
 }

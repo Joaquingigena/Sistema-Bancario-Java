@@ -70,22 +70,16 @@
           </div>
         </div>
     </nav>
-    
+    <form action="ServletCuenta" method="post">
     <div class="d-flex justify-content-center">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="filtroValor" placeholder="Filtrar por">
+            <input type="text" class="form-control" name="filtroValor" placeholder="Buscar N° cuenta">
         </div>
         <div class="col-auto">
-            <select class="form-control" id="filtroCampo">
-                <option value="nombre">N° Cuenta</option>
-                <option value="id">N° Usuario</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-primary" id="btnFiltrar">Filtrar</button>
+            <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-primary" >
         </div>
     </div>
-
+	</form>
     <div class="container-fluid">
         <div class="row d-flex justify-content-center my-3">
             <div class="col-3 titulo">

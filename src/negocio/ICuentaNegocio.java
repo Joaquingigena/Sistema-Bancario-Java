@@ -21,5 +21,7 @@ public interface ICuentaNegocio {
 	Cuenta obtenerCuenta(int id);
 
 	List<TipoCuentas> ListarTipoCuentas();
+	
+	public List<Cuenta> filtrarListaCuentas(String filtro);
 
 }
