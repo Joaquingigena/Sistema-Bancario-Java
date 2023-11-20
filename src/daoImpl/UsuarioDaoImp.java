@@ -17,7 +17,7 @@ public class UsuarioDaoImp implements IUsuario{
 		cn = new conexion();
 		cn.Open();
 		
-		String query = "SELECT * FROM bd_tpint_grupo_6_lab4.usuario where Usuario_U = " + "'"+usuario+"'" + " and " + " ContraseÃ±a = " + "'"+pass+"'";
+		String query = "SELECT * FROM bd_tpint_grupo_6_lab4.usuario where Usuario_U = " + "'"+usuario+"'" + " and " + " Contraseña = " + "'"+pass+"'";
 		Usuario u = new Usuario();	
 		try {
 			
@@ -29,7 +29,7 @@ public class UsuarioDaoImp implements IUsuario{
 				
 				u.setIdUsuario_U(rs.getInt("IdUsuario_U"));
 				u.setUsuario_U(rs.getString("Usuario_U"));
-				u.setPassword_U(rs.getString("ContraseÃ±a"));
+				u.setPassword_U(rs.getString("Contraseña"));
 				r.setIdRoles_R(rs.getInt("IdRoles_U"));
 				u.setIdRoles_U(r);
 
@@ -51,7 +51,7 @@ public class UsuarioDaoImp implements IUsuario{
 		Usuario u = ValidarDatos(usuario, pass);
 		System.out.println("datos: "+ u);
 		if(u.getIdUsuario_U() != 0) {
-			if(u.getIdRoles_U().getIdRol() == ROL) {
+			if(u.getIdRoles_U().getIdRol() == 1) {
 				return 1;// user admin
 			}	
 			return 0; // user no admin

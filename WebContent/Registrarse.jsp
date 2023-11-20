@@ -1,4 +1,4 @@
-0 +7<%@page import="entidades.Localidades"%>
+<%@page import="entidades.Localidades"%>
 <%@page import="entidades.Provincias"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -15,7 +15,7 @@
 <style type="text/css">
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
-<title>LOgin</title>
+<title>Login</title>
 </head>
 <body>
 
@@ -28,7 +28,7 @@
         <h2>Registrarse</h2>
       </div>
       
-      <form action="ServletAdmin" method="get">
+      <form action="ServletAdmin" method="get" name=registrar>
             <div class="row bg-secondary border-dark rounded ">
                 <!-- Primera Columna -->
                 <div class="col-md-6 align-items-center mt-3">
@@ -92,7 +92,8 @@
 			            			ListaProv = (List<Provincias>)request.getAttribute("ListaProvincias");
 			            		}
 			            %>
-                        <select class="form-control mb-3" id="provincias" name="provincia" placeholder="Provincia">
+			            
+                        <select class="form-control mb-3" id="provincias" name="provincia" placeholder="Provincia" onchange="cambia_localidad()">
                         	<option value="predeterminada" selected>Seleccione Provincia</option>
                         	
                         	<%	
@@ -100,7 +101,7 @@
 			            		//for(int i=0; i < 5; i++){
 			            		for(Provincias Prov : ListaProv){
             				%>
-            				<option value=" <%=Prov.getCodProvincia_Prov() %>"><%= Prov.getNombre_Prov() %></option>                          
+            				<option value="<%=Prov.getCodProvincia_Prov() %>"><%= Prov.getNombre_Prov() %></option>                          
                             <%} %>
                         </select>
                     </div>
@@ -118,15 +119,16 @@
                         	<option value="predeterminada" selected>Seleccione Localidad</option>
                             
                             		
-            				<%	
-			            		if(ListaLoc!=null)
-			            		//for(int i=0; i < 5; i++){
-			            		for(Localidades Loc : ListaLoc){
-            				%>
-                            <option value=" <%=Loc.getCodLocalidad_Loc() %>"><%= Loc.getNombre_Loc() %></option>
-                            <!-- Agrega más opciones según sea necesario -->
-                            <%} %>
+            				
                         </select>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         <!-- <input type="text" class="form-control" id="localidad" name="localidad" required placeholder="Localidad"> -->
                     </div>
                     
@@ -164,5 +166,43 @@
   
   </div>
 </section>
+
+
+						<!-- FUNCION JAVASCRIPT -->{
+                        <script type="text/javascript">
+                        var localidades = [];
+                        
+                        <%	
+		            		if(ListaLoc!=null)
+		            		//for(int i=0; i < 5; i++){
+		            		for(Localidades Loc : ListaLoc){
+	    				%>
+	    				localidades.push( ["<%=Loc.getCodProvincia_Loc() %>","<%=Loc.getCodLocalidad_Loc() %>","<%= Loc.getNombre_Loc() %>"] );                          
+	                    <%} %>
+                        
+                        	function cambia_localidad(){
+                        		
+                        		var provincia = document.getElementById('provincias');
+                        		var locSelect = document.getElementById('localidad');                    		
+                        		
+                        		if(provincia!=0){
+                        			
+                        			locSelect.innerHTML = '<option value="predeterminada" selected>Seleccione Localidad</option>';
+                        			
+                        			for (var i=0; i < localidades.length; i++) {
+                            			if(provincia.value == localidades[i][0]){
+	                        				var opt = document.createElement('option');
+	                            		    opt.value = localidades[i][1];
+	                            		    opt.innerHTML = localidades[i][2];
+	                            		    locSelect.append(opt);
+                            			}
+                        			}
+                        		}
+                        	}
+                        
+                        </script>
+
+
+
 </body>
 </html>
