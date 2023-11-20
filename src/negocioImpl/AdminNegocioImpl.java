@@ -20,11 +20,6 @@ public class AdminNegocioImpl implements IAdminNegocio {
 		
 		return adminDao.listarUsuarios();
 	}
-	
-	@Override
-	public List<Prestamos> listarPrestamos(){
-		return adminDao.listarPrestamos();
-	}
 
 	@Override
 	public boolean eliminarCliente(int id) {

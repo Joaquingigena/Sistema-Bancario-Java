@@ -48,13 +48,6 @@ public class ServletAdmin extends HttpServlet {
 				dispatcher.forward(request, response);
 				
 				break;
-			case "listarPrestamos":
-				
-				request.setAttribute("cargarPrestamos" ,adminNeg.listarPrestamos());
-				
-				dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
-				dispatcher.forward(request, response);
-				break;	
 			case "Registrarse":
 				
 				AdminNegocioImpl AdminNeg = new AdminNegocioImpl();
