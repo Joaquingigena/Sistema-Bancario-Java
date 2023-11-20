@@ -168,38 +168,44 @@
 </section>
 
 
-						<!-- FUNCION JAVASCRIPT -->{
+						<!-- FUNCION JAVASCRIPT -->
                         <script type="text/javascript">
                         var localidades = [];
                         
                         <%	
-		            		if(ListaLoc!=null)
-		            		//for(int i=0; i < 5; i++){
+		            		//if(ListaLoc!=null)
+		            		// Recorro localidades
 		            		for(Localidades Loc : ListaLoc){
-	    				%>
-	    				localidades.push( ["<%=Loc.getCodProvincia_Loc() %>","<%=Loc.getCodLocalidad_Loc() %>","<%= Loc.getNombre_Loc() %>"] );                          
-	                    <%} %>
+		    			%>
+		    				// Agrego al vector localidades de JS cada localidad de la tabla. 
+		    				localidades.push( ["<%=Loc.getCodProvincia_Loc() %>","<%=Loc.getCodLocalidad_Loc() %>","<%= Loc.getNombre_Loc() %>"] );                          
+		                <%} %>
                         
                         	function cambia_localidad(){
                         		
+                        		// Obtengo el elemento seleccionado en el SELECT "provincias".
                         		var provincia = document.getElementById('provincias');
+                        		// Obtengo el elemento seleccionado en el SELECT "localidades".
                         		var locSelect = document.getElementById('localidad');                    		
                         		
+                        		
                         		if(provincia!=0){
-                        			
                         			locSelect.innerHTML = '<option value="predeterminada" selected>Seleccione Localidad</option>';
                         			
                         			for (var i=0; i < localidades.length; i++) {
                             			if(provincia.value == localidades[i][0]){
-	                        				var opt = document.createElement('option');
+	                        				// Creo una variable "OPTION"
+                            				var opt = document.createElement('option');
+	                        				// Seteo en el VALUE de la variable OPTION la posición 1 del arrey LOCALIDADES (Código localidad)
 	                            		    opt.value = localidades[i][1];
-	                            		    opt.innerHTML = localidades[i][2];
+	                            		 	// Seteo en el INNER de la variable OPTION la posición 2 del arrey LOCALIDADES (Nombre localidad)
+	                        				opt.innerHTML = localidades[i][2];
+	                            		 	// Agrego al select de localidades la opción creada. 
 	                            		    locSelect.append(opt);
                             			}
                         			}
                         		}
                         	}
-                        
                         </script>
 
 
