@@ -70,6 +70,7 @@
           </div>
         </div>
     </nav>
+    <!-- Busqueda -->
     <form action="ServletCuenta" method="post">
     <div class="d-flex justify-content-center">
         <div class="col-sm-4">
@@ -80,6 +81,67 @@
         </div>
     </div>
 	</form>
+	
+	<!-- Filtro -->
+	<div class="container">
+		<div class="row">
+			<div class="col-3">
+				<div class="mb-3">
+				
+				<label class="form-label"> Campo</label>
+				<select name="ddlCampo" class="form-control">
+					<option value="1" > N° Usuario </option>
+					<option value="2" > Fecha</option>
+					<option value="3" > Saldo </option>
+				</select>			
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				
+				<label class="form-label"> Criterio</label>
+				<select name="ddlCriterio" class="form-control"></select>			
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				<label class="form-label"> Filtro</label>
+				<input type="text" name="filtro" class="form-control"> 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		var criteriosXcampos= {
+				1:["Igual a","Contiene"],
+				2: ["Igual a","Mayor que","Menor que"],
+				3: ["Igual a","Mayor que","Menor que"]
+		}
+		
+		var campoSelect = document.getElementById("ddlCampo");
+        var criterioSelect = document.getElementById("ddlCriterio");
+        
+        campoSelect.addEventListener("change", function() {
+        	
+        	alert("Se ejecuto");
+        	var criterios = criteriosPorCampo[campoSelect.value];
+        	
+        	criterioSelect.innerHTML="";
+        	
+        	 if (criterios) {
+                 criterios.forEach(function(criterio) {
+                     var opcion = document.createElement("option");
+                     opcion.value = criterio;
+                     opcion.textContent = criterio;
+                     criterioSelect.appendChild(opcion);
+                 });
+             }
+        });
+	</script>
+	
+	
+	<!-- Listado -->
     <div class="container-fluid">
         <div class="row d-flex justify-content-center my-3">
             <div class="col-3 titulo">
