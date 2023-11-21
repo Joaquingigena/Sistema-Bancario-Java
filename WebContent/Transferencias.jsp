@@ -20,7 +20,7 @@
 </head>
 <body>
 <%
-	String nombre = (String)request.getAttribute("nombre");
+	String nombre = (String)request.getParameter("usuario");
 
 %>
 <!-- Barra de navegacion -->
@@ -37,6 +37,7 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="Inicio.jsp"> Usuario</a>
               </li>
+              <ion-icon name="person-circle-outline"></ion-icon> <b><%= nombre %></b>
               <li class="nav-item">
                 <a class="nav-link" href="Login.jsp">Cerrar Sesion</a>
               </li>   
@@ -45,18 +46,18 @@
     </nav>
 	<div id="General">
 		<div id="Navegacion">
-			<label style="text-align:center; margin: 10%;">Nombre Usuario</label>
+			<label style="text-align:center; margin: 10%;"><b><%= nombre %></b></label>
 			<div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
 			  
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" href="Movimientos.jsp">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" href="ServletMovimientos?Param=listarMovimientos&usuario=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio1">Movimientos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" checked href="Transferencias.jsp">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" checked href="ServletMovimientos?Param=transferencias&usuario=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio2">Transferencias</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" href="Prestamos.jsp">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" href="ServletMovimientos?Param=prestamos&usuario=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" href="PagosPrestamos.jsp">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" href="ServletMovimientos?Param=pagos&usuario=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" href="ServletMovimientos?Param=listarMovimientos&usuario=<%= nombre %>">
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" href="ServletAdmin?Param=misDatos&Nombre=<%= nombre %>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
 			</div>
 		</div>
@@ -141,5 +142,8 @@
 			
 		</div>
 	</div>
+	
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

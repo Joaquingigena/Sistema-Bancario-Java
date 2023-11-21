@@ -25,12 +25,13 @@ public class ServletMovimientos extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	System.out.println("param:"+request.getParameter("Param"));
+	RequestDispatcher dispatcher;
 	if(request.getParameter("Param")!=null) {
 			
 		String opcion= request.getParameter("Param").toString();
-		 String nombre = request.getParameter("idUsuario"); 
-
+		String nombre = request.getParameter("usuario"); 
+		
 			switch(opcion) {
 			
 			case "listarMovimientos":
@@ -38,12 +39,27 @@ public class ServletMovimientos extends HttpServlet {
 		        List<Movimientos> movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
 		        
 		        request.setAttribute("Movimientos", movimientos);
-		        RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
+		        dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario"+nombre);
 		        dispatcher.forward(request, response);
 				
 				break;
-				
-				default:
+			case "transferencias" :
+				dispatcher = request.getRequestDispatcher("/Transferencias.jsp?usuario"+nombre);
+		        dispatcher.forward(request, response);
+				break;
+			case "prestamos" :
+				dispatcher = request.getRequestDispatcher("/Prestamos.jsp?usuario"+nombre);
+		        dispatcher.forward(request, response);
+				break;
+			case "pagos" :
+				dispatcher = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario"+nombre);
+		        dispatcher.forward(request, response);
+				break;
+			case "misDatos" :
+				dispatcher = request.getRequestDispatcher("/MisDatos.jsp?usuario"+nombre);
+		        dispatcher.forward(request, response);
+				break;
+			default:
 					
 				break;
 			}
