@@ -24,11 +24,17 @@ public class ServletPrestamo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if(request.getParameter("Param")!=null) {
+			
+			String opcion= request.getParameter("Param").toString();
+			switch(opcion) {
+	case "listarPrestamos":
 		
-		RequestDispatcher dispatcher;
 		request.setAttribute("cargarPrestamos" ,preNeg.listarPrestamos());	
-		dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
 		dispatcher.forward(request, response);
+			}
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
