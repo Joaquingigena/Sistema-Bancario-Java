@@ -76,9 +76,6 @@
         <div class="col-sm-4">
             <input type="text" class="form-control" name="filtroValor" id="filtroValor" onkeyup="filtroRapido()" placeholder="Buscar N° cuenta">
         </div>
-        <div class="col-auto">
-            <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-primary" >
-        </div>
     </div>
 	 <!-- </form>-->
 	<script>
@@ -132,6 +129,10 @@
 				<br>
 				<input type="submit" name="btnFiltrar" value="Filtrar" class="btn btn-primary"> 
 				</div>
+				<div class="col-auto">
+				<br>
+                <input type="submit" name="btnQuitarFiltro" value="QuitarFiltro" class="btn btn-primary" >
+                </div>
 			</div>
 		</div>
 	</div>

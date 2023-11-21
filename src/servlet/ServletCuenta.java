@@ -157,6 +157,12 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+	if(request.getParameter("btnQuitarFiltro")!=null) {
+		request.setAttribute("ListaCuentas" ,cuentaNeg.ListarCuentas());	
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
+		dispatcher.forward(request, response);
+	}
 
 }
 
