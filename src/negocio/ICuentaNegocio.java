@@ -23,5 +23,7 @@ public interface ICuentaNegocio {
 	List<TipoCuentas> ListarTipoCuentas();
 	
 	public List<Cuenta> filtrarListaCuentas(String filtro);
+	
+	public List<Cuenta> queryFiltro(String campo,String criterio,String filtro);
 
 }

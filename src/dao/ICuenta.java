@@ -26,4 +26,6 @@ public interface ICuenta {
 	List<TipoCuentas> listarTipoCuentas();
 	
 	public List<Cuenta> filtrarListaCuentas(String filtro);
+	
+	public List<Cuenta> filtroAvanzado(String query);
 }

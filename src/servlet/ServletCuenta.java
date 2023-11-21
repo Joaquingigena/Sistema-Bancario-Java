@@ -141,6 +141,22 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		
 	}
+	
+	if(request.getParameter("btnFiltrar")!=null) {
+		
+		RequestDispatcher dispatcher;
+		String campo= request.getParameter("ddlCampo");
+		String criterio= request.getParameter("ddlCriterio");
+		String filtro= request.getParameter("filtro");
+		
+		System.out.println(campo+criterio+filtro);
+		
+		
+		request.setAttribute("ListaCuentas" ,cuentaNeg.queryFiltro(campo, criterio, filtro));
+		
+		dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
+		dispatcher.forward(request, response);
+	}
 
 }
 

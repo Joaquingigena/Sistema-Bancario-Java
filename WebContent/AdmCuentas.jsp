@@ -83,16 +83,17 @@
 	</form>
 	
 	<!-- Filtro -->
+	<form action="ServletCuenta" method="post">
 	<div class="container">
 		<div class="row">
 			<div class="col-3">
 				<div class="mb-3">
 				
 				<label class="form-label"> Campo</label>
-				<select name="ddlCampo" class="form-control">
-					<option value="1" > N° Usuario </option>
-					<option value="2" > Fecha</option>
-					<option value="3" > Saldo </option>
+				<select id="ddlCampo" name="ddlCampo" class="form-control">
+					<option value="usuario" >N° Usuario </option>
+					<option value="fecha" > Fecha</option>
+					<option value="saldo" > Saldo </option>
 				</select>			
 				</div>
 			</div>
@@ -100,7 +101,7 @@
 				<div class="mb-3">
 				
 				<label class="form-label"> Criterio</label>
-				<select name="ddlCriterio" class="form-control"></select>			
+				<select id="ddlCriterio" name="ddlCriterio" class="form-control"></select>			
 				</div>
 			</div>
 			<div class="col-3">
@@ -109,14 +110,20 @@
 				<input type="text" name="filtro" class="form-control"> 
 				</div>
 			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				<br>
+				<input type="submit" name="btnFiltrar" value="Filtrar" class="btn btn-primary"> 
+				</div>
+			</div>
 		</div>
 	</div>
-	
+	</form>
 	<script>
 		var criteriosXcampos= {
-				1:["Igual a","Contiene"],
-				2: ["Igual a","Mayor que","Menor que"],
-				3: ["Igual a","Mayor que","Menor que"]
+				usuario:["Contiene","Igual a"],
+				fecha: ["Mayor que","Menor que","Igual a"],
+				saldo: ["Mayor que","Menor que","Igual a"]
 		}
 		
 		var campoSelect = document.getElementById("ddlCampo");
@@ -124,8 +131,7 @@
         
         campoSelect.addEventListener("change", function() {
         	
-        	alert("Se ejecuto");
-        	var criterios = criteriosPorCampo[campoSelect.value];
+        	var criterios = criteriosXcampos[campoSelect.value];
         	
         	criterioSelect.innerHTML="";
         	
