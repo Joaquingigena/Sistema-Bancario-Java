@@ -67,21 +67,34 @@
         </div>
     </nav>
     
+     <!-- Busqueda -->
+     <!-- <form action="ServletCuenta" method="post">-->
     <div class="d-flex justify-content-center">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="filtroValor" placeholder="Filtrar por">
+            <input type="text" class="form-control" name="filtroValor" id="filtroValor" onkeyup="filtroRapido()" placeholder="Buscar N° de movimiento">
         </div>
         <div class="col-auto">
-            <select class="form-control" id="filtroCampo">
-                <option value="nombre">N° Informe</option>
-                <option value="id">N° Cliente</option>
-                <option value="id">N° Cuenta</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-primary" id="btnFiltrar">Filtrar</button>
+            <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-primary" >
         </div>
     </div>
+	 <!-- </form>-->
+	<script>
+	function filtroRapido(){
+		
+		var filtro= document.getElementById("filtroValor").value.toLowerCase();;
+		var tablaMovimientos= document.getElementById("tablaMovimientos")
+		var filas= tablaMovimientos.getElementsByTagName("tr");
+		
+		for (var i = 1; i < filas.length; i++) {  
+            var numMovimiento = filas[i].getAttribute("data-nombre").toLowerCase();
+            if (numMovimiento.includes(filtro)) {
+                filas[i].style.display = "";
+            } else {
+                filas[i].style.display = "none";
+            }
+        }
+	}
+	</script>
 
     <div class="container-fluid">
         <div class="row">
@@ -93,7 +106,7 @@
 
         <div class="row">
             <div class="col-8">
-                    <table class="table">
+                    <table class="table" id="tablaMovimientos">
                     <thead>
                       <tr>
                         
@@ -116,7 +129,7 @@
                       if(listaMovimientos!=null){                   	  
                     	  for(Movimientos m : listaMovimientos){
                     		  %>
-                    		 <tr>
+                    		 <tr data-nombre="<%=m.getNumMovimiento_M() %>">
 		                        <td><%=m.getNumMovimiento_M() %></td>
 		                        <td><%=m.getNumCuenta_M().getNumCuenta_Cta()%></td>
 		                        <td><%=m.getFechaMovimiento_M() %></td>

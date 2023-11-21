@@ -71,16 +71,33 @@
         </div>
     </nav>
     <!-- Busqueda -->
-    <form action="ServletCuenta" method="post">
+     <!-- <form action="ServletCuenta" method="post">-->
     <div class="d-flex justify-content-center">
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="filtroValor" placeholder="Buscar N° cuenta">
+            <input type="text" class="form-control" name="filtroValor" id="filtroValor" onkeyup="filtroRapido()" placeholder="Buscar N° cuenta">
         </div>
         <div class="col-auto">
             <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-primary" >
         </div>
     </div>
-	</form>
+	 <!-- </form>-->
+	<script>
+	function filtroRapido(){
+		
+		var filtro= document.getElementById("filtroValor").value.toLowerCase();;
+		var tablaCuentas= document.getElementById("tablaCuentas")
+		var filas= tablaCuentas.getElementsByTagName("tr");
+		
+		for (var i = 1; i < filas.length; i++) {  
+            var numCuenta = filas[i].getAttribute("data-nombre").toLowerCase();
+            if (numCuenta.includes(filtro)) {
+                filas[i].style.display = "";
+            } else {
+                filas[i].style.display = "none";
+            }
+        }
+	}
+	</script>
 	
 	<!-- Filtro -->
 	<form action="ServletCuenta" method="post">
@@ -131,6 +148,9 @@
         
         campoSelect.addEventListener("change", function() {
         	
+        	var lista= document.getElementById("listaCuenta");
+        	console.log(lista);
+        	
         	var criterios = criteriosXcampos[campoSelect.value];
         	
         	criterioSelect.innerHTML="";
@@ -144,6 +164,8 @@
                  });
              }
         });
+        
+        
 	</script>
 	
 	
@@ -158,7 +180,7 @@
 
         <div class="row d-flex justify-content-center">
             <div class="col-8">
-                <table class="table">
+                <table class="table" id="tablaCuentas">
                     <thead>
                       <tr>
                         <th scope="col">N° cuenta</th>
@@ -176,7 +198,7 @@
                       if(listaCuentas!=null){                   	  
                     	  for(Cuenta c : listaCuentas){
                     		  %>
-                    		 <tr>
+                    		 <tr data-nombre="<%= c.getNumCuenta_Cta() %>">
 		                        <td><%= c.getNumCuenta_Cta() %></td>
 		                        <td><%= c.getIdUsuario_Cta().getIdUsuario_U() %></td>
 		                        <td><%= c.getFechaCreacion_Cta() %></td>

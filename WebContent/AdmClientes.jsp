@@ -75,11 +75,28 @@
           </div>
         </div>
     </nav>
-    <form method="post" action="ServletAdmin">
+    
     <div class="d-flex justify-content-center">
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="filtroValor" placeholder="Buscar usuario">
+            <input type="text" class="form-control"  id="filtroValor" onkeyup="filtroRapido()" placeholder="Buscar usuario">
         </div>
+        <script>
+        	function filtroRapido(){
+        		
+        		var filtro= document.getElementById("filtroValor").value.toLowerCase();;
+        		var tablaClientes= document.getElementById("tablaClientes")
+        		var filas= tablaClientes.getElementsByTagName("tr");
+        		
+        		for (var i = 1; i < filas.length; i++) {  
+                    var nombreUsuario = filas[i].getAttribute("data-nombre").toLowerCase();
+                    if (nombreUsuario.includes(filtro)) {
+                        filas[i].style.display = "";
+                    } else {
+                        filas[i].style.display = "none";
+                    }
+                }
+        	}
+        </script>
         <!--
         <div class="col-auto">
             <select class="form-control" id="filtroCampo">
@@ -92,7 +109,7 @@
             <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-primary" >
         </div>
     </div>
-	</form>
+	
 	
     <div class="container-fluid">
         <div class="row d-flex justify-content-center my-3">
@@ -111,9 +128,9 @@
 
         <div class="row d-flex justify-content-center">
             <div class="col-8">
-                <table class="table">
+                <table class="table" id="tablaClientes">
                     <thead>
-                      <tr>
+                      <tr >
                         
                         <th scope="col">N° cliente</th>
                         <th scope="col">Usuario</th>
@@ -140,7 +157,7 @@
                       if(listaClientes!=null){                   	  
                     	  for(Usuario u : listaClientes){
                     		  %>
-                    		 <tr>
+                    		 <tr data-nombre="<%=u.getUsuario_U() %>">
 		                        <td><%= u.getIdUsuario_U() %></td>
 		                        <td><%=u.getUsuario_U() %></td>
 		                        <td><%=u.getIdPersona_U().getNombre_P() %></td>
