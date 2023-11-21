@@ -56,11 +56,12 @@ public class ServletUsuario extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			case 0:
-				request.setAttribute("nombre", usuario);				
-				dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
-				dispatcher.forward(request, response);
+				request.setAttribute("nombre", usuario);	
+				System.out.println("user: "+usuario);
+				response.sendRedirect("/TPIntegrador_Grupo_6/ServletMovimientos?Param=listarMovimientos&usuario="+usuario);
+				
 				break;
-			case 1:
+			case 1: // usuario admin
 				request.setAttribute("nombre", usuario);
 				//dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
 				//dispatcher.forward(request, response);

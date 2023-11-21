@@ -26,9 +26,9 @@
 </head>
 <body>
 <%
-	String nombre = (String)request.getAttribute("nombre");
+	String nombre = (String)request.getParameter("usuario");
 
-List<Movimientos> listaMovimientos= new ArrayList<Movimientos>();
+	List<Movimientos> listaMovimientos= new ArrayList<Movimientos>();
 
 if(request.getAttribute("Movimientos")!=null){
 	listaMovimientos= (ArrayList<Movimientos>)request.getAttribute("Movimientos");
@@ -60,44 +60,45 @@ if(request.getAttribute("Movimientos")!=null){
     </nav>
 	<div id="General">
 		<div id="Navegacion">
-			<label style="text-align:center; margin: 10%;">Nombre Usuario</label>
+			<label style="text-align:center; margin: 10%;"><%=nombre%></label>
 			<div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
 			  
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked href="Movimientos.jsp">
-			  <label class="btn btn-outline-danger" for="vbtn-radio1">Movimientos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" href="Transferencias.jsp">
-			  <label class="btn btn-outline-danger" for="vbtn-radio2">Transferencias</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" href="Prestamos.jsp">
-			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" href="PagosPrestamos.jsp">
-			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" href="ServletAdmin?Param=misDatos&Nombre=<%=nombre%>">
-			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked >
+			  <label class="btn btn-outline-danger" for="vbtn-radio1" data-href="ServletMovimientos?Param=listarMovimientos&usuario=<%=nombre%>">Movimientos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" >
+			  <label class="btn btn-outline-danger" for="vbtn-radio2" data-href="ServletMovimientos?Param=transferencias&usuario=<%=nombre%>">Transferencias</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" >
+			  <label class="btn btn-outline-danger" for="vbtn-radio3" data-href="ServletMovimientos?Param=prestamos&usuario=<%=nombre%>">Prestamos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" >
+			  <label class="btn btn-outline-danger" for="vbtn-radio4" data-href="ServletMovimientos?Param=pagos&usuario=<%=nombre%>">Pagos</label>
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" >
+			  <label class="btn btn-outline-danger" for="vbtn-radio5" data-href="ServletAdmin?Param=misDatos&Nombre=<%=nombre%>">Mis Datos</label>
 			</div>
 		</div>
-		<script>
-  // Obtén todos los botones de radio
-  const radioButtons = document.querySelectorAll('.btn-check');
 
-  // Manejador de eventos para redirigir cuando se selecciona un botón de radio
-  radioButtons.forEach(function (radioButton) {
-    radioButton.addEventListener('change', function () {
-      if (radioButton.checked) {
-        const href = radioButton.getAttribute('href');
-        if (href) {
-          // Redirige a la página JSP correspondiente
-          window.location.href = href;
-        }
-      }
-    });
-  });
-	</script>
-			<div id="Cuerpo">
+		<script>
+			  // Obtén todos los botones de radio
+			  const radioButtons = document.querySelectorAll('.btn-check');
+			
+			  // Manejador de eventos para redirigir cuando se selecciona un botón de radio
+			  radioButtons.forEach(function (radioButton) {
+			    radioButton.addEventListener('change', function () {
+			      if (radioButton.checked) {
+			        const href = radioButton.nextElementSibling.getAttribute('data-href');
+			        if (href) {
+			          // Redirige a la página JSP correspondiente
+			          window.location.href = href;
+			        }
+			      }
+			    });
+			  });
+		</script>
+	<div id="Cuerpo">
+			<div class="text-center">
 				<div id="Encabezado">
 					<h2>Movimientos</h2>
 				</div>
-				<div style="display:flex;">
-					<h5 style="margin:25px">Cuenta: </h5>
+				<div >
 					<form action="ServletMovimientos" method="GET">
 				    <div style="display:flex;">
 				        <h5 style="margin:25px">Cuenta: </h5>
@@ -112,54 +113,56 @@ if(request.getAttribute("Movimientos")!=null){
 				    </div>
 				</form>
 				</div>
-				<div class="border border-success m-3 p-4" style="width: 620px">
-	    <span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ 540.678,89</b>
-	    <div style="margin-left:95px; padding:5px">Caja de ahorro en pesos <b>452787-56-7</b></div>
+			</div>
+			<div class="border border-success m-3 p-4 " style="width: 620px">
+			    <span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ 540.678,89</b>
+			    <div style="margin-left:95px; padding:5px">Caja de ahorro en pesos <b>452787-56-7</b></div>
+			</div>
+			<div>
+			    <div id="Busqueda">
+			        <h5>Busqueda</h5>
+			        <h7>Desde: </h7>
+			        <input type="date">
+			        <h7>Hasta: </h7>
+			        <input type="date">
+			        <button type="button" class="btn btn-success">Buscar</button>
+			    </div>
+			    <table style="margin:25px;" class="table table-striped table-hover text-center">
+			        <thead>
+			            <tr class="table-primary">
+			                <th>Numero de Movimiento</th>
+			                <th>Fecha</th>
+			                <th>Detalle</th>
+			                <th>Importe</th>
+			                <th>Tipo movimiento</th>
+			            </tr>
+			        </thead>
+		                    <tbody class="table-group-divider">
+		                      <%
+		                      if(listaMovimientos!=null){                   	  
+		                    	  for(Movimientos m : listaMovimientos){
+		                    		  %>
+		                    		 <tr>
+		                    		    <td><%= m.getNumMovimiento_M() %></td>
+				                        <td><%= m.getFechaMovimiento_M() %></td>
+				                        <td><%= m.getDetalle_M() %></td>
+				                        <td><%= m.getImporte_M() %></td>
+				                        <td><%= m.getIdTipoMovimiento_M().getDescripcion_TM() %> </td>
+					                        
+		                     		 </tr>
+		                    		  <%
+		                    	  }
+		                    	  
+		                      }
+		                      
+		                      
+		                      %>
+		                    </tbody>
+			    </table>
+			</div>
+			
 	</div>
-	<div>
-	    <div id="Busqueda">
-	        <h5>Busqueda</h5>
-	        <h7>Desde: </h7>
-	        <input type="date">
-	        <h7>Hasta: </h7>
-	        <input type="date">
-	        <button type="button" class="btn btn-success">Buscar</button>
-	    </div>
-	    <table style="margin:25px;" class="table table-striped table-hover">
-	        <thead>
-	            <tr class="table-primary">
-	                <th>Numero de Movimiento</th>
-	                <th>Fecha</th>
-	                <th>Detalle</th>
-	                <th>Importe</th>
-	                <th>Tipo movimiento</th>
-	            </tr>
-	        </thead>
-                    <tbody class="table-group-divider">
-                      <%
-                      if(listaMovimientos!=null){                   	  
-                    	  for(Movimientos m : listaMovimientos){
-                    		  %>
-                    		 <tr>
-                    		    <td><%= m.getNumMovimiento_M() %></td>
-		                        <td><%= m.getFechaMovimiento_M() %></td>
-		                        <td><%= m.getDetalle_M() %></td>
-		                        <td><%= m.getImporte_M() %></td>
-		                        <td><%= m.getIdTipoMovimiento_M().getDescripcion_TM() %> </td>
-			                        
-                     		 </tr>
-                    		  <%
-                    	  }
-                    	  
-                      }
-                      
-                      
-                      %>
-                    </tbody>
-	    </table>
-	</div>
-
-	
+  </div>	
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
