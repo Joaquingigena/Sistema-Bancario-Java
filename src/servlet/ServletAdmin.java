@@ -78,7 +78,6 @@ public class ServletAdmin extends HttpServlet {
 				String nombre=(String)request.getParameter("Nombre");
 				
 				Usuario user= adminNeg.obtenerUsuariov2(nombre);
-				System.out.println("Aca esta el cliente"+ user.toString());
 				
 				
 				request.setAttribute("datos", user);

@@ -25,7 +25,7 @@ public class ServletMovimientos extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println("param:"+request.getParameter("Param"));
+
 	RequestDispatcher dispatcher;
 	if(request.getParameter("Param")!=null) {
 			

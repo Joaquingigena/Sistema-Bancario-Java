@@ -46,7 +46,7 @@
     </nav>
 	<div id="General">
 		<div id="Navegacion">
-			<label style="text-align:center; margin: 10%;"><b><%= nombre %></label>
+			<label style="text-align:center; margin: 10%;"><b><%= nombre %></b></label>
 			<div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
 			  
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" href="ServletMovimientos?Param=listarMovimientos&usuario=<%=nombre%>">

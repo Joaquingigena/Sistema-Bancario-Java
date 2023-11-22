@@ -51,33 +51,37 @@
 			  
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" href="ServletMovimientos?Param=listarMovimientos&usuario=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio1">Movimientos</label>
+			  
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" href="ServletMovimientos?Param=transferencias&usuario=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio2">Transferencias</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" checked href="ServletMovimientos?Param=prestamos&usuario=<%=nombre%>">
+			  
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" href="ServletMovimientos?Param=prestamos&usuario=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio3">Prestamos</label>
-			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" href="ServletMovimientos?Param=pagos&usuario=<%=nombre%>">
+			  
+			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" checked href="ServletMovimientos?Param=pagos&usuario=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio4">Pagos</label>
+			  
 			  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" href="ServletAdmin?Param=misDatos&Nombre=<%=nombre%>">
 			  <label class="btn btn-outline-danger" for="vbtn-radio5">Mis Datos</label>
 			</div>
 		</div>
 		<script>
-  // Obtén todos los botones de radio
-  const radioButtons = document.querySelectorAll('.btn-check');
-
-  // Manejador de eventos para redirigir cuando se selecciona un botón de radio
-  radioButtons.forEach(function (radioButton) {
-    radioButton.addEventListener('change', function () {
-      if (radioButton.checked) {
-        const href = radioButton.getAttribute('href');
-        if (href) {
-          // Redirige a la página JSP correspondiente
-          window.location.href = href;
-        }
-      }
-    });
-  });
-</script>
+		  // Obtén todos los botones de radio
+		  const radioButtons = document.querySelectorAll('.btn-check');
+		
+		  // Manejador de eventos para redirigir cuando se selecciona un botón de radio
+		  radioButtons.forEach(function (radioButton) {
+		    radioButton.addEventListener('change', function () {
+		      if (radioButton.checked) {
+		        const href = radioButton.getAttribute('href');
+		        if (href) {
+		          // Redirige a la página JSP correspondiente
+		          window.location.href = href;
+		        }
+		      }
+		    });
+		  });
+		</script>
 		<div id="Cuerpo">
 			<div id="Encabezado">
 				<h2>Pago Prestamo</h2>
