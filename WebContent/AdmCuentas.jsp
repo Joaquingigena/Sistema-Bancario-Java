@@ -168,6 +168,53 @@
         
         
 	</script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+	    const table = document.getElementById("tablaCuentas");
+	    const rows = table.getElementsByTagName("tr");
+	    const rowsPerPage = 5; // Define el número de filas por página
+	    let currentPage = 0;
+
+	    function showPage(page) {
+	        const startIndex = 1 + page * rowsPerPage; // Comienza desde la primera fila de datos
+	        const endIndex = startIndex + rowsPerPage;
+	        for (let i = 1; i < rows.length; i++) {
+	            if (i >= startIndex && i < endIndex) {
+	                rows[i].style.display = "table-row";
+	            } else {
+	                rows[i].style.display = "none";
+	            }
+	        }
+	    }
+
+	    function updatePageButtons() {
+	        const pages = Math.ceil(rows.length / rowsPerPage);
+	        document.getElementById("pages").textContent = `Página ${currentPage + 1} de ${pages}`;
+	        document.getElementById("prevPage").disabled = currentPage === 0;
+	        document.getElementById("nextPage").disabled = currentPage === pages - 1;
+	    }
+
+	    showPage(currentPage);
+	    updatePageButtons();
+
+	    document.getElementById("prevPage").addEventListener("click", function () {
+	        if (currentPage > 0) {
+	            currentPage--;
+	            showPage(currentPage);
+	            updatePageButtons();
+	        }
+	    });
+
+	    document.getElementById("nextPage").addEventListener("click", function () {
+	        const pages = Math.ceil(rows.length / rowsPerPage);
+	        if (currentPage < pages - 1) {
+	            currentPage++;
+	            showPage(currentPage);
+	            updatePageButtons();
+	        }
+	    });
+	});
+	</script>
 	
 	
 	<!-- Listado -->
@@ -218,6 +265,11 @@
                       %>
                     </tbody>
                   </table>
+            <div id="pagination">
+            <button id="prevPage">Anterior</button>
+            <span id="pages"></span>
+            <button id="nextPage">Siguiente</button>
+            </div>
             </div>
         </div>
     </div>
