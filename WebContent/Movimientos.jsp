@@ -128,7 +128,7 @@
 				</div>
 			</div>
 			<div class="border border-success m-3 p-4 " style="width: 620px">
-			    <span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ <%= %></b>
+			    <span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ 545000</b>
 			    <div style="margin-left:95px; padding:5px">Cuenta de ahorro en pesos <b>452787-56-7</b></div>
 			</div>
 			<div>
