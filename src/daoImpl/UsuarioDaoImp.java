@@ -59,4 +59,30 @@ public class UsuarioDaoImp implements IUsuario{
 		return -1;// user no existe o datos inválidos
 	}
 
+	@Override
+	public int ObtenerIdUsuario(String nombre) {
+		cn = new conexion();
+		cn.Open();
+		
+		String query = "SELECT IdUsuario_U FROM bd_tpint_grupo_6_lab4.usuario where Usuario_U = " + "'"+nombre+"'";
+		
+		try {
+			
+			ResultSet rs = cn.query(query);
+			
+			while (rs.next()) {
+				int idUsuario = rs.getInt("IdUsuario_U");
+				System.out.println("id usuario: "+ idUsuario);
+	            return idUsuario;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			cn.close();
+		}
+		return 0; // retorna 0 si no existe usuario
+	}
+
 }

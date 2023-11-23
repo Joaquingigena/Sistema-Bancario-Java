@@ -91,6 +91,9 @@ public class ServletCuenta extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
 			dispatcher.forward(request, response);
 		}
+		if (request.getParameter("buscarCuenta")!=null) {
+			
+		}
 
 
 	}

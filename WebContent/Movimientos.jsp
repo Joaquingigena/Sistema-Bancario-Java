@@ -29,10 +29,16 @@
 	String nombre = (String)request.getParameter("usuario");
 
 	List<Movimientos> listaMovimientos= new ArrayList<Movimientos>();
+	
+	List<Cuenta> listCuentas = new ArrayList<Cuenta>();
 
-if(request.getAttribute("Movimientos")!=null){
-	listaMovimientos= (ArrayList<Movimientos>)request.getAttribute("Movimientos");
-}
+	if(request.getAttribute("Movimientos")!=null){
+		listaMovimientos= (ArrayList<Movimientos>)request.getAttribute("Movimientos");
+	}
+	
+	if(request.getAttribute("cuentas")!=null){
+		listCuentas = (ArrayList<Cuenta>)request.getAttribute("cuentas");
+	}
 
 %>
 
@@ -103,31 +109,34 @@ if(request.getAttribute("Movimientos")!=null){
 					<h2>Movimientos</h2>
 				</div>
 				<div >
-					<form action="ServletMovimientos" method="GET">
+					<form action="ServletMovimientos" method="get">
 				    <div style="display:flex;">
 				        <h5 style="margin:25px">Cuenta: </h5>
 				        <select name="numCuenta" style="height: 40px; width:500px; margin: 15px" class="form-select" aria-label="Default select example">
 				            <option selected>Seleccione una cuenta</option>
-				            <option value="1">Cuenta 1</option>
-				            <option value="2">Cuenta 2</option>
-				            <option value="3">Cuenta 3</option>
+				            <%
+				            	if(listCuentas != null){
+				            		for(Cuenta c : listCuentas){%>
+				            			<option value="<%=c.getNumCuenta_Cta()%>"><%= c.getCBU_Cta() %></option>
+				            	<%	}
+				            	}
+				            %>
 				        </select>
-				        <input type="hidden" name="idUsuario" value="<%= nombre %>">
-				        <button type="submit" class="btn btn-success">Buscar</button>
+				        <button type="submit" class="btn btn-success" name="buscarCuenta">Buscar</button>
 				    </div>
 				</form>
 				</div>
 			</div>
 			<div class="border border-success m-3 p-4 " style="width: 620px">
-			    <span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ 540.678,89</b>
-			    <div style="margin-left:95px; padding:5px">Caja de ahorro en pesos <b>452787-56-7</b></div>
+			    <span class="rounded bg-success p-2 h3 mx-3"><b>CA$</b></span> <b class="h3"> $ <%= %></b>
+			    <div style="margin-left:95px; padding:5px">Cuenta de ahorro en pesos <b>452787-56-7</b></div>
 			</div>
 			<div>
 			    <div id="Busqueda">
 			        <h5>Busqueda</h5>
-			        <h7>Desde: </h7>
+			        <h6>Desde: </h6>
 			        <input type="date">
-			        <h7>Hasta: </h7>
+			        <h6>Hasta: </h6>
 			        <input type="date">
 			        <button type="button" class="btn btn-success">Buscar</button>
 			    </div>

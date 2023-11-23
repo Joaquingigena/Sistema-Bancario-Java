@@ -128,5 +128,10 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 		
 		return cuentaDaoImpl.filtroAvanzado(query);
 	}
+	@Override
+	public List<Cuenta> listarCuentasPorUsuario(String nombre) {
+		// TODO Auto-generated method stub
+		return cuentaDaoImpl.listarCuentasPorUsuario(nombre);
+	}
 
 }

@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-
 import conexion.conexion;
 import dao.ICuenta;
 import entidades.Cuenta;
@@ -387,6 +385,46 @@ public class CuentaDaoImpl implements ICuenta {
 				e.printStackTrace();
 			}
 			return lista;
+		}
+
+
+		@Override
+		public List<Cuenta> listarCuentasPorUsuario(String nombre) {
+			
+			List <Cuenta> lista= new ArrayList<Cuenta>();
+			conexion= new conexion();
+			
+			UsuarioDaoImp usuarioDaoImp = new UsuarioDaoImp();
+			int idUsuario = usuarioDaoImp.ObtenerIdUsuario(nombre);
+			
+			String query= "Select * FROM cuenta where IdUsuario_Cta = "+idUsuario;
+			
+			try {
+				conexion.Open();
+				ResultSet rs= conexion.query(query);
+				
+
+				while(rs.next()) {
+					Cuenta cuenta= new Cuenta();
+					
+					cuenta.setNumCuenta_Cta(rs.getInt(1));
+					cuenta.getIdUsuario_Cta().setIdUsuario_U(rs.getInt(2));
+					cuenta.setFechaCreacion_Cta(rs.getDate(3));
+					cuenta.setCBU_Cta(rs.getInt(5));
+					cuenta.setSaldo_Cta(rs.getFloat(6));
+				
+					lista.add(cuenta);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				conexion.close();
+			}
+			
+			return lista;
+			
 		}
 				
 

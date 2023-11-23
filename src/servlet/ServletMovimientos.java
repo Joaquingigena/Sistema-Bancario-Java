@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import negocioImpl.CuentaNegocioImpl;
 import negocioImpl.MovimientoNegocioImpl;
+import entidades.Cuenta;
 import entidades.Movimientos;;
 
 @WebServlet("/ServletMovimientos")
@@ -19,7 +20,7 @@ public class ServletMovimientos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     // private CuentaNegocioImpl cuentaNeg = new CuentaNegocioImpl();
 	private MovimientoNegocioImpl movNeg = new MovimientoNegocioImpl();
-   
+   private CuentaNegocioImpl cuentaNegocioImpl = new CuentaNegocioImpl();
     public ServletMovimientos() {
         super();     
     }
@@ -37,8 +38,11 @@ public class ServletMovimientos extends HttpServlet {
 			case "listarMovimientos":
 				
 		        List<Movimientos> movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
-		        
+		        List<Cuenta> cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre); 
+		     
 		        request.setAttribute("Movimientos", movimientos);
+		        request.setAttribute("cuentas", cuentas);
+		        
 		        dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario"+nombre);
 		        dispatcher.forward(request, response);
 				

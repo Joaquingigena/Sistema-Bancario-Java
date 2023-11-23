@@ -23,9 +23,11 @@ public interface ICuenta {
 
 	boolean modificate(Cuenta cuenta);
 
-	List<TipoCuentas> listarTipoCuentas();
+	public List<TipoCuentas> listarTipoCuentas();
 	
 	public List<Cuenta> filtrarListaCuentas(String filtro);
 	
 	public List<Cuenta> filtroAvanzado(String query);
+	
+	public List<Cuenta> listarCuentasPorUsuario(String nombre);
 }
