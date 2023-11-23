@@ -145,7 +145,7 @@
 					  <h5>Contraseña </h5>
 					  <input type="text" class="form-control"  value="<%=user.getPassword_U() %>" aria-label="Contraseña" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
 					        	<div class="col-3">
-         		<input type="submit" name="btnAceptarModificacion" class="btn btn-primary" value="Aceptar">
+         		<input type="submit" name="ServletAdmin?btnAceptarModificacion=<%=user.getUsuario_U() %>" class="btn btn-primary" value="Aceptar">
          	</div>
 					</div>
 					</div>

@@ -1,3 +1,5 @@
+<%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"%>
+<%@page import="entidades.Cuenta"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,7 +23,6 @@
 <body>
 <%
 	String nombre = (String)request.getParameter("usuario");
-
 %>
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
@@ -88,10 +89,9 @@
 					<div id="Cuenta Origen" style="display:flex; margin-top: 20px; align-items:center">
 					  <h5>Cuenta: </h5>
 					  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
-					  <option selected>Seleccione una cuenta</option>
-					  <option value="1">Cuenta 1</option>
-					  <option value="2">Cuenta 2</option>
-					  <option value="3">Cuenta 3</option>
+					  <%
+					  
+					  %>
 				  	  </select>
 					</div>
 				
