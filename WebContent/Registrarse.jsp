@@ -181,8 +181,11 @@
 									  icon: "success",
 									  confirmButtonColor: "#43B814",
 									  allowOutsideClick: false
-								});	
-								//window.location = "Inicio.jsp";
+								}).then((result) => {
+	            					if(result.isConfirmed){
+	            						location.href ='Inicio.jsp';
+	            					}
+	            				})
 					</script>
 					
             	<%}%>
@@ -195,9 +198,8 @@
 									  icon: "error",
 									  confirmButtonColor: "#DE3419",
 									  allowOutsideClick: false,
-									  
-									        	//window.location = "Inicio.jsp";
-								});
+	            				})
+								
 								
 					</script>
 	            <%}%>	
