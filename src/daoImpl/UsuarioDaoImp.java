@@ -17,7 +17,7 @@ public class UsuarioDaoImp implements IUsuario{
 		cn = new conexion();
 		cn.Open();
 		
-		String query = "SELECT * FROM bd_tpint_grupo_6_lab4.usuario where Usuario_U = " + "'"+usuario+"'" + " and " + " ContraseÃ±a = " + "'"+pass+"'";
+		String query = "SELECT * FROM bd_tpint_grupo_6_lab4.usuario where Usuario_U = " + "'"+usuario+"'" + " and " + " Contraseña = " + "'"+pass+"'";
 		Usuario u = new Usuario();	
 		try {
 			
@@ -29,7 +29,7 @@ public class UsuarioDaoImp implements IUsuario{
 				
 				u.setIdUsuario_U(rs.getInt("IdUsuario_U"));
 				u.setUsuario_U(rs.getString("Usuario_U"));
-				u.setPassword_U(rs.getString("ContraseÃ±a"));
+				u.setPassword_U(rs.getString("Contraseña"));
 				r.setIdRoles_R(rs.getInt("IdRoles_U"));
 				u.setIdRoles_U(r);
 

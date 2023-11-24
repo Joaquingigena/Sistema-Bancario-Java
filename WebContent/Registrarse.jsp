@@ -11,7 +11,9 @@
  <!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
- 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <style type="text/css">
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
@@ -19,10 +21,32 @@
 </head>
 <body>
 
+<!-- Barra de navegacion -->
+     <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-toggler">
+            <a class="navbar-brand" href="#">
+              <img src="css/imagenes/logoBanco.png" class="logo img-fluid " alt="logo" />
+            </a>
+            <ul class="navbar-nav d-flex justify-content-center align-items-center">
+	              <li class="nav-item">
+	                <a class="nav-link active" aria-current="page" href="Inicio.jsp"> Inicio</a>
+	              </li>
+	              <li class="nav-item">
+	                <a class="nav-link" href="Login.jsp">Iniciar Sesion</a>
+	              </li> 
+	        </ul>  
+          </div>
+        </div>
+    </nav>
+
 <!--========================================================== -->
                       <!-- CONTENEDOR DEL FORMULARIO -->
 <!--========================================================== -->
-
+	
   <div class="container  border-top border-primary " style="max-width: 500px" id="contenedor-formulario">
       <div class="text-center mb-4" id="titulo-formulario">
         <h2>Registrarse</h2>
@@ -150,13 +174,32 @@
 			if(request.getAttribute("EstadoAlta") !=null){
 				if((boolean)request.getAttribute("EstadoAlta")==true){
 				%>
-            	<h3>Registrado exitosamente</h3>
-            	<h3><%= locali %></h3>
+					<script type="text/javascript">
+								Swal.fire({
+									  title: "Registro exitoso!",
+									  text: "El banco se contactará con usted a la brevedad.",
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								});	
+								//window.location = "Inicio.jsp";
+					</script>
+					
             	<%}%>
             <%
 	            if((boolean)request.getAttribute("EstadoAlta")==false){%>
-	            	<h3>No puedo registrarse</h3>
-	            	<h3><%= locali %></h3>
+	            	<script type="text/javascript">
+								Swal.fire({
+									  title: "No pudo registrarse",
+									  text: "Por favor vuelva a intentarlo.",
+									  icon: "error",
+									  confirmButtonColor: "#DE3419",
+									  allowOutsideClick: false,
+									  
+									        	//window.location = "Inicio.jsp";
+								});
+								
+					</script>
 	            <%}%>	
             <%}%>
         </form>
@@ -173,7 +216,7 @@
                         var localidades = [];
                         
                         <%	
-		            		//if(ListaLoc!=null)
+		            		if(ListaLoc!=null)
 		            		// Recorro localidades
 		            		for(Localidades Loc : ListaLoc){
 		    			%>
@@ -208,7 +251,7 @@
                         	}
                         </script>
 
-
+						
 
 </body>
 </html>

@@ -56,7 +56,7 @@ public class ServletAdmin extends HttpServlet {
 				List <Localidades> ListaLoc = null;
 				ListaLoc = AdminNeg.ListarLocalidades();
 				
-				// Obtengo la lista de Localidades desde la capa Negocio.
+				// Obtengo la lista de Provincias desde la capa Negocio.
 				List <Provincias> ListaProv = null;
 				ListaProv = AdminNeg.ListarProvincias();
 				
@@ -205,6 +205,7 @@ public class ServletAdmin extends HttpServlet {
 		
 		if(request.getParameter("btnRegistrarse")!=null) {
 			int estado=1;
+			AdminNegocioImpl AdminNeg = new AdminNegocioImpl();
 			
 			String dni = request.getParameter("dni").toString();
 			int localidad = Integer.parseInt(request.getParameter("localidad").trim());
@@ -227,6 +228,23 @@ public class ServletAdmin extends HttpServlet {
 			// Seteo la lista al request para enviarla a la pagina de regreso.
 			request.setAttribute("EstadoAlta", alta);
 			
+			// Obtengo la lista de Localidades desde la capa Negocio.
+			List <Localidades> ListaLoc = null;
+			ListaLoc = AdminNeg.ListarLocalidades();
+			
+			// Obtengo la lista de Provincias desde la capa Negocio.
+			List <Provincias> ListaProv = null;
+			ListaProv = AdminNeg.ListarProvincias();
+			
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			if(ListaLoc!=null) {
+				request.setAttribute("ListaLocalidades", ListaLoc);
+			}
+			
+			// Seteo la lista al request para enviarla a la pagina de regreso.
+			if(ListaProv!=null) {
+				request.setAttribute("ListaProvincias", ListaProv);
+			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Registrarse.jsp");
 			rd.forward(request, response);
