@@ -27,10 +27,13 @@
 <body>
 <%
 	String nombre = (String)request.getParameter("usuario");
-	Cuenta cuenta = new Cuenta();
+	float saldo = 0;
+	
 	List<Movimientos> listaMovimientos= new ArrayList<Movimientos>();
 	
 	List<Cuenta> listCuentas = new ArrayList<Cuenta>();
+	
+	Cuenta listCuentaFilter = new Cuenta();
 
 	if(request.getAttribute("Movimientos")!=null){
 		listaMovimientos= (ArrayList<Movimientos>)request.getAttribute("Movimientos");
@@ -38,6 +41,10 @@
 	
 	if(request.getAttribute("cuentas")!=null){
 		listCuentas = (ArrayList<Cuenta>)request.getAttribute("cuentas");
+	}
+	
+	if(request.getAttribute("cuentaFilter")!=null){
+		listCuentaFilter = (Cuenta)request.getAttribute("cuentaFilter");
 	}
 
 %>
@@ -104,41 +111,73 @@
 			  });
 		</script>
 	<div id="Cuerpo">
+		<div >
 			<div class="text-center">
-				<div id="Encabezado">
-					<h2>Movimientos</h2>
-				</div>
-				<div >
+				<div class="d-flex justify-content-center">
 					<form action="ServletMovimientos" method="get">
 				    <div style="display:flex;">
 				        <h5 style="margin:25px">Cuenta: </h5>
-				        <select name="numCuenta" style="height: 40px; width:500px; margin: 15px" class="form-select" aria-label="Default select example">
-				            <option selected>Seleccione una cuenta</option>
+				        <select name="numCuenta" style="height: 40px; width:400px; margin: 15px" class="form-select" aria-label="Default select example">
+
 				            <%
-				            	if(listCuentas != null){
-				            		for(Cuenta c : listCuentas){%>
+				            	if(listCuentas != null || listCuentaFilter != null){
+				            		for(Cuenta c : listCuentas){
+				            		%>
 				            			<option value="<%=c.getNumCuenta_Cta()%>"><%= c.getCBU_Cta() %></option>
 				            	<%	}
+				            		for(Cuenta c : listCuentas){
+				            			saldo = c.getSaldo_Cta();
+				            			break;
+				            		}
 				            	}
 				            %>
+				            
 				        </select>
-				        <button type="submit" class="btn btn-success" name="buscarCuenta">Buscar</button>
+				        <button type="submit" class="btn btn-success btn-sm" name="buscarCuenta" value="filtrar">Buscar</button>
 				    </div>
 				</form>
 				</div>
 			</div>
-			<div class="border border-success m-3 p-4 " style="width: 620px">
-			    <span class="rounded bg-success p-2 h3 mx-3"><b>CASH</b></span> <b class="h3"> <%= cuenta.getSaldo_Cta() %></b>
+			<div class="d-flex justify-content-center">
+				<div class="border border-success m-3 p-4" style="width: 620px">
+						 <%
+				            	if(listCuentas != null){%>
+				            		<span class="rounded bg-success p-2 h3 mx-3"><b>CASH</b></span> <b class="h3">$ <%= saldo %></b>
+				            	<%}
+				         %>
+				            
+				            
+						<%
+				            	if(listCuentaFilter.getNumCuenta_Cta() != 0){
+				            		
+				            			saldo = listCuentaFilter.getSaldo_Cta();
+				            		%>
+				            			<span class="rounded bg-success p-2 h3 mx-3"><b>CASH</b></span> <b class="h3">$ <%= saldo %></b>
+				            	<%	
+				            	}
+				            %>
+				</div>
 			</div>
+		</div>
 			<div>
-			    <div id="Busqueda">
-			        <h5>Busqueda</h5>
-			        <h6>Desde: </h6>
-			        <input type="date">
-			        <h6>Hasta: </h6>
-			        <input type="date">
-			        <button type="button" class="btn btn-success">Buscar</button>
-			    </div>
+				    <div class="container text-center d-flex justify-content-center aligne-content-center">
+					  <div class="row">
+					    <div class="col-md">
+					      <h6>Desde: </h6>
+					        <input type="date">
+					    </div>
+					    <div class="col-md">
+					      <h6>Hasta: </h6>
+					        <input type="date">
+					    </div>
+					    <div class="col-md py-4">
+					      <button class="btn btn-success btn-sm">Buscar</button>
+					    </div>
+					  </div>
+					</div>
+			    <div id="Encabezado" class="text-center">
+					<h2>Movimientos</h2>
+				</div>
 			    <table style="margin:25px;" class="table table-striped table-hover text-center">
 			        <thead>
 			            <tr class="table-primary">

@@ -18,61 +18,77 @@ import entidades.Movimientos;;
 @WebServlet("/ServletMovimientos")
 public class ServletMovimientos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    // private CuentaNegocioImpl cuentaNeg = new CuentaNegocioImpl();
+	// private CuentaNegocioImpl cuentaNeg = new CuentaNegocioImpl();
 	private MovimientoNegocioImpl movNeg = new MovimientoNegocioImpl();
-   private CuentaNegocioImpl cuentaNegocioImpl = new CuentaNegocioImpl();
-    public ServletMovimientos() {
-        super();     
-    }
+	private CuentaNegocioImpl cuentaNegocioImpl = new CuentaNegocioImpl();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletMovimientos() {
+		super();
+	}
 
-	RequestDispatcher dispatcher;
-	if(request.getParameter("Param")!=null) {
-			
-		String opcion= request.getParameter("Param").toString();
-		String nombre = request.getParameter("usuario"); 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher dispatcher;
+		String nombre = request.getParameter("usuario");
+		if(request.getParameter("buscarCuenta") != null) {
+			int numCuenta = Integer.parseInt(request.getParameter("numCuenta"));
+			System.out.println(request.getParameter("buscarCuenta"));
+			if (request.getParameter("buscarCuenta").toString() != null) {
+				System.out.println("entra al filter");
+				Cuenta cuentaFilter = cuentaNegocioImpl.obtenerCuenta(numCuenta);
+				request.setAttribute("cuentaFilter", cuentaFilter);
+				dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario" + nombre);
+				dispatcher.forward(request, response);
+			}			
+		}
 		
-			switch(opcion) {
+		
+		if (request.getParameter("Param") != null) {
+
+			String opcion = request.getParameter("Param").toString();
 			
+			switch (opcion) {
+
 			case "listarMovimientos":
-				
-		        List<Movimientos> movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
-		        List<Cuenta> cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre); 
-		     
-		        request.setAttribute("Movimientos", movimientos);
-		        request.setAttribute("cuentas", cuentas);
-		        
-		        dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario"+nombre);
-		        dispatcher.forward(request, response);
-				
+
+				List<Movimientos> movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
+				List<Cuenta> cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
+
+				request.setAttribute("Movimientos", movimientos);
+				request.setAttribute("cuentas", cuentas);
+
+				dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario" + nombre);
+				dispatcher.forward(request, response);
+
 				break;
-			case "transferencias" :
-				dispatcher = request.getRequestDispatcher("/Transferencias.jsp?usuario"+nombre);
-		        dispatcher.forward(request, response);
+			case "transferencias":
+				dispatcher = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
+				dispatcher.forward(request, response);
 				break;
-			case "prestamos" :
-				dispatcher = request.getRequestDispatcher("/Prestamos.jsp?usuario"+nombre);
-		        dispatcher.forward(request, response);
+			case "prestamos":
+				dispatcher = request.getRequestDispatcher("/Prestamos.jsp?usuario" + nombre);
+				dispatcher.forward(request, response);
 				break;
-			case "pagos" :
-				dispatcher = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario"+nombre);
-		        dispatcher.forward(request, response);
+			case "pagos":
+				dispatcher = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario" + nombre);
+				dispatcher.forward(request, response);
 				break;
-			case "misDatos" :
-				dispatcher = request.getRequestDispatcher("/MisDatos.jsp?usuario"+nombre);
-		        dispatcher.forward(request, response);
+			case "misDatos":
+				dispatcher = request.getRequestDispatcher("/MisDatos.jsp?usuario" + nombre);
+				dispatcher.forward(request, response);
 				break;
+
 			default:
-					
+
 				break;
 			}
-		 }
+		}
 	}
-	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 
