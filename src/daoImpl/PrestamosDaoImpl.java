@@ -69,5 +69,37 @@ public class PrestamosDaoImpl implements IPrestamos{
 		return false;
 		
 	}
+	@Override
+	public List<Prestamos> filtroAvanzado(String query) {
+		
+		List<Prestamos> lista = new ArrayList<Prestamos>();
+		conexion = new conexion();
+		
+		try {
+			conexion.Open();
+			ResultSet rs= conexion.query(query);
+			
+			while(rs.next()) {
+				Prestamos prestamos= new Prestamos();
+				
+				prestamos.setNumPrestamo_P(rs.getInt(1));
+				prestamos.getNumCuenta_P().setNumCuenta_Cta(rs.getInt(2));
+				prestamos.setImportePagar_P(rs.getFloat(3));
+				prestamos.setImportePedido_P(rs.getFloat(4));
+				prestamos.setPlazoPago_P(rs.getString(5));
+						
+				lista.add(prestamos);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		
+		return lista;
+		
+	}
 
 }

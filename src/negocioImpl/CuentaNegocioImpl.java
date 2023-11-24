@@ -66,15 +66,11 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 		String query= "Select C.NumCuenta_Cta,C.IdUsuario_Cta, C.FechaCreacion_Cta, C.IdTipoCuenta_Cta, C.CBU_Cta, C.Saldo_Cta FROM cuenta AS C inner join usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas tc on tc.IdTipo_TC = C.IdTipoCuenta_Cta where Estado_Cta=true and ";
 		try {
 			
-		System.out.println("El campo que llega al negocio es: " + campo);
-		System.out.println("El criterio que llega al negocio es: " + criterio);
-		System.out.println("El filtro que llega al negocio es: " + filtro);
 		if("usuario".equals(campo)) {
-			System.out.println("Entro a usuario");
 			switch(criterio) {
 			
 			case "Contiene":
-				System.out.println("Entro a contiene");
+				
 					query+= "C.IdUsuario_Cta LIKE '%" + filtro + "%'";
 				break;
 				

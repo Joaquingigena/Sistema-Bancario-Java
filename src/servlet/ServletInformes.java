@@ -35,6 +35,19 @@ public class ServletInformes extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		if(request.getParameter("btnFiltrar")!=null) {
+					
+					RequestDispatcher dispatcher;
+					String campo= request.getParameter("ddlCampo");
+					String criterio= request.getParameter("ddlCriterio");
+					String filtro= request.getParameter("filtro");
+					
+					request.setAttribute("listaInformes" ,infNeg.queryFiltro(campo, criterio, filtro));
+					
+					dispatcher = request.getRequestDispatcher("/AdmInformes.jsp");
+					dispatcher.forward(request, response);
+				}
+		
 	}
 	
 	public void inicializarAdminInformes(HttpServletRequest request, HttpServletResponse response, List<Movimientos> listaMovimientos) throws ServletException, IOException {

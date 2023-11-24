@@ -39,6 +39,19 @@ public class ServletPrestamo extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+		
+		if(request.getParameter("btnFiltrar")!=null) {
+			
+			RequestDispatcher dispatcher;
+			String campo= request.getParameter("ddlCampo");
+			String criterio= request.getParameter("ddlCriterio");
+			String filtro= request.getParameter("filtro");
+			
+			request.setAttribute("cargarPrestamos" ,preNeg.queryFiltro(campo, criterio, filtro));
+			
+			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }

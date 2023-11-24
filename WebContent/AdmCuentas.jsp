@@ -76,6 +76,10 @@
         <div class="col-sm-4">
             <input type="text" class="form-control" name="filtroValor" id="filtroValor" onkeyup="filtroRapido()" placeholder="Buscar N° cuenta">
         </div>
+        <div class="col-sm-4">
+			<input type="checkbox"  class="form-check-input" id="chkFiltro" onchange="activarFiltroAvanzado()" >
+			<label class="form-check-label" for="chkFiltro">Filtro avanzado </label>
+        </div>
     </div>
 	 <!-- </form>-->
 	<script>
@@ -94,9 +98,11 @@
             }
         }
 	}
+	
 	</script>
 	
 	<!-- Filtro -->
+	<div id="filtroAvanzado" style="display:none;"> 
 	<form action="ServletCuenta" method="post">
 	<div class="container">
 		<div class="row">
@@ -115,7 +121,11 @@
 				<div class="mb-3">
 				
 				<label class="form-label"> Criterio</label>
-				<select id="ddlCriterio" name="ddlCriterio" class="form-control"></select>			
+				<select id="ddlCriterio" name="ddlCriterio" class="form-control">
+						<option value="Contiene" >Contiene</option>
+						<option value="Igual a" > Igual a</option>
+						
+			    </select>			
 				</div>
 			</div>
 			<div class="col-3">
@@ -137,6 +147,7 @@
 		</div>
 	</div>
 	</form>
+	</div>
 	<script>
 		var criteriosXcampos= {
 				usuario:["Contiene","Igual a"],
@@ -168,6 +179,8 @@
         
         
 	</script>
+	
+	
 	<script>
 	document.addEventListener("DOMContentLoaded", function () {
 	    const table = document.getElementById("tablaCuentas");
@@ -273,7 +286,23 @@
             </div>
         </div>
     </div>
-
+	
+	<script>
+	
+	function activarFiltroAvanzado(){
+		
+		var check= document.getElementById("chkFiltro");
+		var div = document.getElementById("filtroAvanzado");
+		
+		console.log("Entro");
+			if(check.checked){
+				div.style.display='block';
+			}
+			else{
+				div.style.display='none';
+			}
+		}
+	</script>
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

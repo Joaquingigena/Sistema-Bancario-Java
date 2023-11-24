@@ -14,4 +14,68 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	public List<Prestamos> listarPrestamos(){
 		return preDao.listarPrestamos();
 	}
+
+	@Override
+	public List<Prestamos> queryFiltro(String campo, String criterio, String filtro) {
+		
+		String query= "SELECT P.NumPrestamo_P,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, P.PlazoPago, C.NumCuenta_Cta FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta and ";
+		try {
+			
+		if("cuenta".equals(campo)) {
+			switch(criterio) {
+			
+			case "Contiene":
+				
+					query+= "P.NumCuenta_P LIKE '%" + filtro + "%'";
+				break;
+				
+			case "Igual a":
+				query+= "P.NumCuenta_P = " + filtro;
+				break;
+			
+			}
+			
+		}
+		else if("importe".equals(campo)) {
+			
+			switch(criterio) {
+			
+			case "Mayor que":
+				query+= "P.ImportePagar_P > "+  filtro;
+				
+				break;
+			case "Menor que":
+				query+= "P.ImportePagar_P < " + filtro;
+				break;
+			case "Igual a":
+				
+				query+= "P.ImportePagar_P = " + filtro;
+				break;
+			}
+			
+		}
+		else {
+			switch(criterio) {
+			
+			case "Mayor que":
+				query+= "P.PlazoPago > " + filtro;
+				break;
+			case "Menor que":
+				
+				query+= "P.PlazoPago < " + filtro;
+				break;
+			case "Igual a":
+				query+= "P.PlazoPago = " + filtro;
+				break;
+			}
+		
+		}
+		System.out.println(query);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return preDao.filtroAvanzado(query);
+	}
 }

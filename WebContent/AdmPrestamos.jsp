@@ -69,20 +69,108 @@
         </div>
     </nav>
     
-    <div class="d-flex justify-content-center">
+   <div class="d-flex justify-content-center">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="filtroValor" placeholder="Filtrar por">
+            <input type="text" class="form-control" name="filtroValor" id="filtroValor" onkeyup="filtroRapido()" placeholder="Buscar N° de prestamo">
+        	<div class="col-sm-4">
+			<input type="checkbox"  class="form-check-input" id="chkFiltro" onchange="activarFiltroAvanzado()" >
+			<label class="form-check-label" for="chkFiltro">Filtro avanzado </label>
         </div>
-        <div class="col-auto">
-            <select class="form-control" id="filtroCampo">
-                <option value="nombre">N° Prestamo</option>
-                <option value="id">N° Usuario</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-primary" id="btnFiltrar">Filtrar</button>
         </div>
     </div>
+	 <!-- </form>-->
+	<script>
+	function filtroRapido(){
+		
+		var filtro= document.getElementById("filtroValor").value.toLowerCase();;
+		var tablaPrestamos= document.getElementById("tablaPrestamos")
+		var filas= tablaPrestamos.getElementsByTagName("tr");
+		
+		for (var i = 1; i < filas.length; i++) {  
+            var numPrestamo = filas[i].getAttribute("data-nombre").toLowerCase();
+            if (numPrestamo.includes(filtro)) {
+                filas[i].style.display = "";
+            } else {
+                filas[i].style.display = "none";
+            }
+        }
+	}
+	</script>
+	
+	<!-- Filtro Avanzado -->
+	<div id="filtroAvanzado" style="display:none;"> 
+	<form action="ServletPrestamo" method="post">
+	<div class="container">
+		<div class="row">
+			<div class="col-3">
+				<div class="mb-3">
+				
+				<label class="form-label"> Campo</label>
+				<select id="ddlCampo" name="ddlCampo" class="form-control">
+					<option value="cuenta" >N° Cuenta </option>
+					<option value="importe" > Importe a pagar</option>
+					<option value="plazo" > Plazo </option>
+				</select>			
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				
+				<label class="form-label"> Criterio</label>
+				<select id="ddlCriterio" name="ddlCriterio" class="form-control"></select>			
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				<label class="form-label"> Filtro</label>
+				<input type="text" name="filtro" class="form-control"> 
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				<br>
+				<input type="submit" name="btnFiltrar" value="Filtrar" class="btn btn-primary"> 
+				</div>
+				<div class="col-auto">
+				<br>
+                <input type="submit" name="btnQuitarFiltro" value="QuitarFiltro" class="btn btn-primary" >
+                </div>
+			</div>
+		</div>
+	</div>
+	</form>
+	</div>
+	<script>
+		var criteriosXcampos= {
+				cuenta:["Contiene","Igual a"],
+				importe: ["Mayor que","Menor que","Igual a"],
+				plazo: ["Mayor que","Menor que","Igual a"]
+		}
+		
+		var campoSelect = document.getElementById("ddlCampo");
+        var criterioSelect = document.getElementById("ddlCriterio");
+        
+        campoSelect.addEventListener("change", function() {
+        	
+        	var lista= document.getElementById("listaCuenta");
+        	console.log(lista);
+        	
+        	var criterios = criteriosXcampos[campoSelect.value];
+        	
+        	criterioSelect.innerHTML="";
+        	
+        	 if (criterios) {
+                 criterios.forEach(function(criterio) {
+                     var opcion = document.createElement("option");
+                     opcion.value = criterio;
+                     opcion.textContent = criterio;
+                     criterioSelect.appendChild(opcion);
+                 });
+             }
+        });
+        
+        
+	</script>
     
     <div class="container-fluid">
         <div class="row">
@@ -97,7 +185,7 @@
 
         <div class="row">
             <div class="col-8">
-                <table class="table">
+                <table class="table" id="tablaPrestamos">
                     <thead>
                       <tr>
                         <th scope="col">N° Prestamo</th>
@@ -114,7 +202,7 @@
                       if(listaPrestamos!=null){                   	  
                     	  for(Prestamos p : listaPrestamos){
                     		  %>
-                    		 <tr>
+                    		 <tr data-nombre="<%= p.getNumPrestamo_P() %>">
 		                        <td><%= p.getNumPrestamo_P() %></td>
 		                        <td><%=p.getNumCuenta_P().getNumCuenta_Cta() %></td>
 		                        <td><%=p.getImportePagar_P() %></td>
@@ -136,7 +224,22 @@
             </div>
         </div>
     </div>
-    
+    <script>
+	
+	function activarFiltroAvanzado(){
+		
+		var check= document.getElementById("chkFiltro");
+		var div = document.getElementById("filtroAvanzado");
+		
+		console.log("Entro");
+			if(check.checked){
+				div.style.display='block';
+			}
+			else{
+				div.style.display='none';
+			}
+		}
+	</script>
     
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

@@ -76,6 +76,10 @@
         <div class="col-auto">
             <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-primary" >
         </div>
+         <div class="col-sm-4">
+			<input type="checkbox"  class="form-check-input" id="chkFiltro" onchange="activarFiltroAvanzado()" >
+			<label class="form-check-label" for="chkFiltro">Filtro avanzado </label>
+        </div>
     </div>
 	 <!-- </form>-->
 	<script>
@@ -95,6 +99,84 @@
         }
 	}
 	</script>
+	
+	<!-- Filtro -->
+	<div id="filtroAvanzado"  style="display:none;"> 
+	<form action="ServletInformes" method="post">
+	<div class="container">
+		<div class="row">
+			<div class="col-3">
+				<div class="mb-3">
+				
+				<label class="form-label"> Campo</label>
+				<select id="ddlCampo" name="ddlCampo" class="form-control">
+					<option value="movimiento" >N° Movimiento </option>
+					<option value="fecha" > Fecha</option>
+					<option value="importe" > importe </option>
+				</select>			
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				
+				<label class="form-label"> Criterio</label>
+				<select id="ddlCriterio" name="ddlCriterio" class="form-control">
+						<option value="Contiene" >Contiene</option>
+						<option value="Igual a" > Igual a</option>
+						
+			    </select>			
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				<label class="form-label"> Filtro</label>
+				<input type="text" name="filtro" class="form-control"> 
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="mb-3">
+				<br>
+				<input type="submit" name="btnFiltrar" value="Filtrar" class="btn btn-primary"> 
+				</div>
+				<div class="col-auto">
+				<br>
+                <input type="submit" name="btnQuitarFiltro" value="QuitarFiltro" class="btn btn-primary" >
+                </div>
+			</div>
+		</div>
+	</div>
+	</form>
+	</div>
+	<script>
+		var criteriosXcampos= {
+				movimiento:["Contiene","Igual a"],
+				fecha: ["Mayor que","Menor que","Igual a"],
+				importe: ["Mayor que","Menor que","Igual a"]
+		}
+		
+		var campoSelect = document.getElementById("ddlCampo");
+        var criterioSelect = document.getElementById("ddlCriterio");
+        
+        campoSelect.addEventListener("change", function() {
+        	
+        	var criterios = criteriosXcampos[campoSelect.value];
+        	
+        	criterioSelect.innerHTML="";
+        	
+        	 if (criterios) {
+                 criterios.forEach(function(criterio) {
+                     var opcion = document.createElement("option");
+                     opcion.value = criterio;
+                     opcion.textContent = criterio;
+                     criterioSelect.appendChild(opcion);
+                 });
+             }
+        });
+        
+        
+	</script>
+	
+	
 	
     <div class="container-fluid">
         <div class="row">
@@ -154,6 +236,23 @@
             </div>
         </div>
     </div>
+    
+    <script>
+	
+	function activarFiltroAvanzado(){
+		
+		var check= document.getElementById("chkFiltro");
+		var div = document.getElementById("filtroAvanzado");
+		
+		console.log("Entro");
+			if(check.checked){
+				div.style.display='block';
+			}
+			else{
+				div.style.display='none';
+			}
+		}
+	</script>
 
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
