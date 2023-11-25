@@ -228,7 +228,6 @@ public class ServletAdmin extends HttpServlet {
 			
 			if(alta==false) {
 				existe = adminNeg.existePersona(dni);
-				
 			}
 			
 			// Seteo la lista al request para enviarla a la pagina de regreso.

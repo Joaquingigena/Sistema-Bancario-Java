@@ -185,7 +185,7 @@
 	            					if(result.isConfirmed){
 	            						location.href ='Inicio.jsp';
 	            					}
-	            				})
+	            				});
 					</script>
 					
             	<%}%>
@@ -199,12 +199,12 @@
 										  text: "Por favor pongase en contacto con el banco.",
 										  icon: "warning",
 										  confirmButtonColor: "#43B814",
-										  allowOutsideClick: false,
-		            				}).then((result) = > {
-		            					if(result.isConfirmed){
-		            						location.href ='Inicio.jsp';
-		            					}
-		            				})			
+										  allowOutsideClick: false
+		            				}).then((result) => {
+	            					if(result.isConfirmed){
+	            						location.href ='Inicio.jsp';
+	            					}
+	            				});
 						</script>
 	            	<%
 	            	}else{
@@ -216,7 +216,7 @@
 								  icon: "error",
 								  confirmButtonColor: "#DE3419",
 								  allowOutsideClick: false,
-	        				})			
+	        				});		
 						</script>
 	            	<% }%>
 	            <%}%>	
