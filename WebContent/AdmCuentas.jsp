@@ -179,55 +179,68 @@
         
         
 	</script>
-	
-	
-	<script>
-	document.addEventListener("DOMContentLoaded", function () {
-	    const table = document.getElementById("tablaCuentas");
-	    const rows = table.getElementsByTagName("tr");
-	    const rowsPerPage = 5; // Define el número de filas por página
-	    let currentPage = 0;
-
-	    function showPage(page) {
-	        const startIndex = 1 + page * rowsPerPage; // Comienza desde la primera fila de datos
-	        const endIndex = startIndex + rowsPerPage;
-	        for (let i = 1; i < rows.length; i++) {
-	            if (i >= startIndex && i < endIndex) {
-	                rows[i].style.display = "table-row";
-	            } else {
-	                rows[i].style.display = "none";
-	            }
-	        }
-	    }
-
-	    function updatePageButtons() {
-	        const pages = Math.ceil(rows.length / rowsPerPage);
-	        document.getElementById("pages").textContent = `Página ${currentPage + 1} de ${pages}`;
-	        document.getElementById("prevPage").disabled = currentPage === 0;
-	        document.getElementById("nextPage").disabled = currentPage === pages - 1;
-	    }
-
-	    showPage(currentPage);
-	    updatePageButtons();
-
-	    document.getElementById("prevPage").addEventListener("click", function () {
-	        if (currentPage > 0) {
-	            currentPage--;
-	            showPage(currentPage);
-	            updatePageButtons();
-	        }
-	    });
-
-	    document.getElementById("nextPage").addEventListener("click", function () {
-	        const pages = Math.ceil(rows.length / rowsPerPage);
-	        if (currentPage < pages - 1) {
-	            currentPage++;
-	            showPage(currentPage);
-	            updatePageButtons();
-	        }
-	    });
-	});
-	</script>
+ 
+<script>
+Paginador = function(divPaginador, tabla, tamPagina) {
+    this.miDiv = divPaginador;
+    this.tabla = tabla;
+    this.tamPagina = tamPagina;
+    this.pagActual = 1;
+    this.paginas = Math.ceil((this.tabla.rows.length - 1) / this.tamPagina);
+ 
+    this.SetPagina = function(num) {
+        if (num < 1 || num > this.paginas)
+            return;
+ 
+        this.pagActual = num;
+        var min = 1 + (this.pagActual - 1) * this.tamPagina;
+        var max = Math.min(min + this.tamPagina - 1, this.tabla.rows.length - 1);
+ 
+        for (var i = 1; i < this.tabla.rows.length; i++) {
+            if (i < min || i > max)
+                this.tabla.rows[i].style.display = 'none';
+            else
+                this.tabla.rows[i].style.display = '';
+        }
+        this.miDiv.getElementsByClassName('pag_num')[0].innerHTML = 'Página ' + this.pagActual + ' de ' + this.paginas;
+    }
+ 
+    this.Mostrar = function() {
+        var tblPaginador = document.createElement('table');
+        var fil = tblPaginador.insertRow(tblPaginador.rows.length);
+ 
+        var ant = fil.insertCell(fil.cells.length);
+        ant.innerHTML = 'Anterior';
+        ant.className = "btn btn-primary";
+        var self = this;
+        ant.onclick = function() {
+            if (self.pagActual == 1)
+                return;
+            self.SetPagina(self.pagActual - 1);
+        }
+ 
+        var num = fil.insertCell(fil.cells.length);
+        num.innerHTML = 'Página ' + this.pagActual + ' de ' + this.paginas;
+        num.className = 'pag_num'; ---aca es el pagina x de y
+ 
+        var sig = fil.insertCell(fil.cells.length);
+        sig.innerHTML = 'Siguiente';
+        sig.className = "btn btn-primary";
+        sig.onclick = function() {
+            if (self.pagActual == self.paginas)
+                return;
+            self.SetPagina(self.pagActual + 1);
+        }
+ 
+        this.miDiv.appendChild(tblPaginador);
+ 
+        if (this.tabla.rows.length - 1 > this.paginas * this.tamPagina)
+            this.paginas = this.paginas + 1;
+ 
+        this.SetPagina(this.pagActual);
+    }
+}
+</script>
 	
 	
 	<!-- Listado -->
@@ -238,7 +251,6 @@
                 <h3 >Cuentas</h3>
             </div>
         </div>
-
         <div class="row d-flex justify-content-center">
             <div class="col-8">
                 <table class="table" id="tablaCuentas">
@@ -278,12 +290,15 @@
                       %>
                     </tbody>
                   </table>
-            <div id="pagination">
-            <button id="prevPage">Anterior</button>
-            <span id="pages"></span>
-            <button id="nextPage">Siguiente</button>
-            </div>
-            </div>
+                  <div id="paginador"></div>
+<script>
+
+    var miTabla = document.getElementById('tablaCuentas');
+    var miDivPaginador = document.getElementById('paginador');
+    var paginador = new Paginador(miDivPaginador, miTabla, 5);
+    paginador.Mostrar();
+</script>  
+</div>
         </div>
     </div>
 	
