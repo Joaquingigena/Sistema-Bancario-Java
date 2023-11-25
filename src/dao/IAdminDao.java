@@ -34,4 +34,6 @@ public interface IAdminDao {
 	Usuario obtenerClientev2(String nombre);
 	
 	public List<Usuario> filtrarListaUsuarios(String filtro);
+	
+	public boolean existePersona(String DNI);
 }
