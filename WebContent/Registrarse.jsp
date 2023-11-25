@@ -197,7 +197,7 @@
 									Swal.fire({
 										  title: "Ya existe un registro con el DNI ingresado",
 										  text: "Por favor pongase en contacto con el banco.",
-										  icon: "info",
+										  icon: "warning",
 										  confirmButtonColor: "#43B814",
 										  allowOutsideClick: false,
 		            				}).then((result) => {
