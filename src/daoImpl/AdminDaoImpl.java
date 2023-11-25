@@ -535,4 +535,32 @@ public class AdminDaoImpl implements IAdminDao {
 		
 		return lista;
 	}
+	
+	public boolean existePersona(String DNI) {
+		conexion = new conexion();
+		boolean guardado = false;
+		
+		String query= "SELECT DNI_P FROM personas WHERE DNI_P ="+DNI;
+		int count = 0;
+		
+		try {
+			conexion.Open();
+			ResultSet rs = conexion.query(query);
+			while(rs.next()) {
+				count ++;
+			}
+			
+			if(count > 0 ) {
+				guardado=true;
+			}
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		return guardado;
+	}
 }

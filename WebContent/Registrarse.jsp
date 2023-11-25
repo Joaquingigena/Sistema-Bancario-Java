@@ -190,18 +190,35 @@
 					
             	<%}%>
             <%
-	            if((boolean)request.getAttribute("EstadoAlta")==false){%>
-	            	<script type="text/javascript">
-								Swal.fire({
-									  title: "No pudo registrarse",
-									  text: "Por favor vuelva a intentarlo.",
-									  icon: "error",
-									  confirmButtonColor: "#DE3419",
-									  allowOutsideClick: false,
-	            				})
-								
-								
-					</script>
+	            if((boolean)request.getAttribute("EstadoAlta")==false){
+	            	if((boolean)request.getAttribute("Existe")){
+	            	%>
+	            		<script type="text/javascript">
+									Swal.fire({
+										  title: "Ya existe un registro con el DNI ingresado",
+										  text: "Por favor pongase en contacto con el banco.",
+										  icon: "info",
+										  confirmButtonColor: "#43B814",
+										  allowOutsideClick: false,
+		            				}).then((result) => {
+		            					if(result.isConfirmed){
+		            						location.href ='Inicio.jsp';
+		            					}
+		            				})			
+						</script>
+	            	<%
+	            	}else{
+	            	%>	
+	            		<script type="text/javascript">
+							Swal.fire({
+								  title: "No pudo registrarse",
+								  text: "Por favor vuelva a intentarlo.",
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				})			
+						</script>
+	            	<% }%>
 	            <%}%>	
             <%}%>
         </form>

@@ -88,4 +88,8 @@ public class AdminNegocioImpl implements IAdminNegocio {
 		// TODO Auto-generated method stub
 		return adminDao.filtrarListaUsuarios(filtro);
 	}
+	
+	public boolean existePersona(String DNI) {
+		return adminDao.existePersona(DNI);
+	}
 }

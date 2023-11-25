@@ -224,9 +224,17 @@ public class ServletAdmin extends HttpServlet {
 			
 			//Alta Usuario
 			boolean alta = adminNeg.AgregarPersona(dni, localidad, provincia, cuil, nombre, apellido, sexo, nacionalidad, fecha, direccion, mail, tel, solicitud);
-						
+			boolean existe = false;
+			
+			if(alta==false) {
+				existe = adminNeg.existePersona(dni);
+				
+			}
+			
 			// Seteo la lista al request para enviarla a la pagina de regreso.
 			request.setAttribute("EstadoAlta", alta);
+			
+			request.setAttribute("Existe", existe);
 			
 			// Obtengo la lista de Localidades desde la capa Negocio.
 			List <Localidades> ListaLoc = null;
