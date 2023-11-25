@@ -109,6 +109,7 @@
             <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-primary" >
         </div>
     </div>
+    
 	
 	
     <div class="container-fluid">
