@@ -17,7 +17,33 @@
 
 <style type="text/css">
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
+	.dataTables_wrapper .dataTables_paginate .paginate_button {
+    margin: 0 5px; /* Ajusta el valor de margen según sea necesario */
+}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#tablaMovimientos').DataTable({
+                language: {
+                    paginate: {
+                        first: "Primero",
+                        previous: "Anterior",
+                        next: "Siguiente",
+                        last: "Ultimo"
+                    },
+                },
+                lengthMenu: [ [5, 25, -1], [10, 25, "All"] ],
+                "bLengthChange" : false,
+                "bFilter": false,
+                "bInfo": false
+            });
+        });
+    </script>
 
 <title>Informes</title>
 </head>
@@ -233,6 +259,13 @@
                      
                     </tbody>
                   </table>
+          <div class="card-footer">
+          <nav aria-label="Page navigation example">
+            <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">
+               
+            </ul>
+        </nav>
+      </div>
             </div>
         </div>
     </div>

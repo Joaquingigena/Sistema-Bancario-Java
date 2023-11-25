@@ -16,7 +16,33 @@
 
 <style type="text/css">
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
+		.dataTables_wrapper .dataTables_paginate .paginate_button {
+    margin: 0 5px; /* Ajusta el valor de margen según sea necesario */
+}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#tablaCuentas').DataTable({
+                language: {
+                    paginate: {
+                        first: "Primero",
+                        previous: "Anterior",
+                        next: "Siguiente",
+                        last: "Ultimo"
+                    },
+                },
+                lengthMenu: [ [5, 25, -1], [10, 25, "All"] ],
+                "bLengthChange" : false,
+                "bFilter": false,
+                "bInfo": false
+            });
+        });
+    </script>
 
 <title>Cuentas</title>
 
@@ -178,70 +204,7 @@
         });
         
         
-	</script>
- 
-<script>
-Paginador = function(divPaginador, tabla, tamPagina) {
-    this.miDiv = divPaginador;
-    this.tabla = tabla;
-    this.tamPagina = tamPagina;
-    this.pagActual = 1;
-    this.paginas = Math.ceil((this.tabla.rows.length - 1) / this.tamPagina);
- 
-    this.SetPagina = function(num) {
-        if (num < 1 || num > this.paginas)
-            return;
- 
-        this.pagActual = num;
-        var min = 1 + (this.pagActual - 1) * this.tamPagina;
-        var max = Math.min(min + this.tamPagina - 1, this.tabla.rows.length - 1);
- 
-        for (var i = 1; i < this.tabla.rows.length; i++) {
-            if (i < min || i > max)
-                this.tabla.rows[i].style.display = 'none';
-            else
-                this.tabla.rows[i].style.display = '';
-        }
-        this.miDiv.getElementsByClassName('pag_num')[0].innerHTML = 'Página ' + this.pagActual + ' de ' + this.paginas;
-    }
- 
-    this.Mostrar = function() {
-        var tblPaginador = document.createElement('table');
-        var fil = tblPaginador.insertRow(tblPaginador.rows.length);
- 
-        var ant = fil.insertCell(fil.cells.length);
-        ant.innerHTML = 'Anterior';
-        ant.className = "btn btn-primary";
-        var self = this;
-        ant.onclick = function() {
-            if (self.pagActual == 1)
-                return;
-            self.SetPagina(self.pagActual - 1);
-        }
- 
-        var num = fil.insertCell(fil.cells.length);
-        num.innerHTML = 'Página ' + this.pagActual + ' de ' + this.paginas;
-        num.className = 'pag_num'; ---aca es el pagina x de y
- 
-        var sig = fil.insertCell(fil.cells.length);
-        sig.innerHTML = 'Siguiente';
-        sig.className = "btn btn-primary";
-        sig.onclick = function() {
-            if (self.pagActual == self.paginas)
-                return;
-            self.SetPagina(self.pagActual + 1);
-        }
- 
-        this.miDiv.appendChild(tblPaginador);
- 
-        if (this.tabla.rows.length - 1 > this.paginas * this.tamPagina)
-            this.paginas = this.paginas + 1;
- 
-        this.SetPagina(this.pagActual);
-    }
-}
-</script>
-	
+	</script>	
 	
 	<!-- Listado -->
     <div class="container-fluid">
@@ -290,14 +253,13 @@ Paginador = function(divPaginador, tabla, tamPagina) {
                       %>
                     </tbody>
                   </table>
-                  <div id="paginador"></div>
-<script>
-
-    var miTabla = document.getElementById('tablaCuentas');
-    var miDivPaginador = document.getElementById('paginador');
-    var paginador = new Paginador(miDivPaginador, miTabla, 5);
-    paginador.Mostrar();
-</script>  
+                          <div class="card-footer">
+          <nav aria-label="Page navigation example">
+            <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">
+               
+            </ul>
+        </nav>
+      </div> 
 </div>
         </div>
     </div>
