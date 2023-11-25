@@ -200,7 +200,7 @@
 										  icon: "warning",
 										  confirmButtonColor: "#43B814",
 										  allowOutsideClick: false,
-		            				}).then((result) => {
+		            				}).then((result) = > {
 		            					if(result.isConfirmed){
 		            						location.href ='Inicio.jsp';
 		            					}
