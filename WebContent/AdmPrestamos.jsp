@@ -248,11 +248,10 @@
                   </table>
           <div class="card-footer">
           <nav aria-label="Page navigation example">
-            <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">
-               
+            <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">  
             </ul>
         </nav>
-      </div>
+      </div> 
             </div>
         </div>
     </div>

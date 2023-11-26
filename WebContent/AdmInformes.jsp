@@ -26,24 +26,7 @@
 <script type="text/javascript" charset="utf8"
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
-<script type="text/javascript">
-        $(document).ready(function () {
-            $('#tablaMovimientos').DataTable({
-                language: {
-                    paginate: {
-                        first: "Primero",
-                        previous: "Anterior",
-                        next: "Siguiente",
-                        last: "Ultimo"
-                    },
-                },
-                lengthMenu: [ [5, 25, -1], [10, 25, "All"] ],
-                "bLengthChange" : false,
-                "bFilter": false,
-                "bInfo": false
-            });
-        });
-    </script>
+
 
 <title>Informes</title>
 </head>
