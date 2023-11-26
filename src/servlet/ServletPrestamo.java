@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
+
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import negocioImpl.PrestamosNegocioImpl;
 
 @WebServlet("/ServletPrestamo")
@@ -33,9 +36,27 @@ public class ServletPrestamo extends HttpServlet {
 		request.setAttribute("cargarPrestamos" ,preNeg.listarPrestamos());	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
 		dispatcher.forward(request, response);
+		break;
 			}
+	if (request.getParameter("btnSolicitarPrestamo") != null) {
+		
+	PrestamosNegocioImpl PresNeg = new PrestamosNegocioImpl();
+	
+	int estado = 1;
+	String monto = request.getParameter("monto").toString();
+	int Cuotas = Integer.parseInt(request.getParameter("cuota").trim());
+	String valorCuota = request.getParameter("valorCuota").toString();
+	int Cuenta = Integer.parseInt(request.getParameter("destino").trim());
+	
+	//alta de prestamos
+
+	}
+	
+	
 		}
 	}
+	
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
