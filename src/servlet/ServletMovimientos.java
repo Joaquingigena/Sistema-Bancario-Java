@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -31,16 +32,30 @@ public class ServletMovimientos extends HttpServlet {
 
 		RequestDispatcher dispatcher;
 		String nombre = request.getParameter("usuario");
+		
+		List<Movimientos> movimientos = new ArrayList<Movimientos>();
+		List<Cuenta> cuentas = new ArrayList<Cuenta>();
 		if(request.getParameter("buscarCuenta") != null) {
+			
+			cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
 			int numCuenta = Integer.parseInt(request.getParameter("numCuenta"));
-			System.out.println(request.getParameter("buscarCuenta"));
-			if (request.getParameter("buscarCuenta").toString() != null) {
-				System.out.println("entra al filter");
-				Cuenta cuentaFilter = cuentaNegocioImpl.obtenerCuenta(numCuenta);
-				request.setAttribute("cuentaFilter", cuentaFilter);
-				dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario" + nombre);
-				dispatcher.forward(request, response);
-			}			
+			
+			if(numCuenta == 0) {
+				movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
+			}
+			else {
+				movimientos = movNeg.getMovimientosPorCuenta(numCuenta);				
+			}
+			
+			Cuenta cuentaFilter = cuentaNegocioImpl.obtenerCuenta(numCuenta);
+			
+			request.setAttribute("cuentaFilter", cuentaFilter);
+			request.setAttribute("cuentas", cuentas);
+			request.setAttribute("numCuenta", numCuenta);
+			request.setAttribute("Movimientos", movimientos);
+
+			dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario=" + nombre);
+			dispatcher.forward(request, response);		
 		}
 		
 		
@@ -52,8 +67,8 @@ public class ServletMovimientos extends HttpServlet {
 
 			case "listarMovimientos":
 
-				List<Movimientos> movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
-				List<Cuenta> cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
+				movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
+				cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
 
 				request.setAttribute("Movimientos", movimientos);
 				request.setAttribute("cuentas", cuentas);

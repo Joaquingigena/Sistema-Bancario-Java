@@ -8,4 +8,5 @@ public interface IMovimientos {
 
 	public List<Movimientos> obtenerMovimientosPorUsuario(String Nombre);
 	
+	public List<Movimientos> getMovimientosPorCuenta(int codMovimiento);
 }

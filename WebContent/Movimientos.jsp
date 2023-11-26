@@ -27,6 +27,10 @@
 <body>
 <%
 	String nombre = (String)request.getParameter("usuario");
+	int numCuenta = 0;
+	if(request.getAttribute("numCuenta")!=null){
+		numCuenta = Integer.parseInt( request.getParameter("numCuenta"));
+	}
 	float saldo = 0;
 	
 	List<Movimientos> listaMovimientos= new ArrayList<Movimientos>();
@@ -117,13 +121,29 @@
 					<form action="ServletMovimientos" method="get">
 				    <div style="display:flex;">
 				        <h5 style="margin:25px">Cuenta: </h5>
+				        <input type="hidden" name="usuario" value="<%=nombre %>"/>
 				        <select name="numCuenta" style="height: 40px; width:400px; margin: 15px" class="form-select" aria-label="Default select example">
-
+								
 				            <%
-				            	if(listCuentas != null || listCuentaFilter != null){
+				            	if(numCuenta==0){%>
+				            		<option value="0">Seleccione una cuenta</option>
+				            	<%}%>
+				            <%
+				            	if(listCuentas != null){
+									int ban = 0;
+									int auxNumCuenta = 0;
 				            		for(Cuenta c : listCuentas){
+				            			if(listCuentaFilter.getNumCuenta_Cta() != 0 && ban == 0){
 				            		%>
+				            			<option value="<%=numCuenta%>"><%= listCuentaFilter.getCBU_Cta() %></option>
+				            			<option value="0">Seleccione una cuenta</option>
+				            		<%
+				            				ban = 1;
+				            			}
+				            			if(numCuenta != c.getNumCuenta_Cta()){
+				            		%>	
 				            			<option value="<%=c.getNumCuenta_Cta()%>"><%= c.getCBU_Cta() %></option>
+										<%}	%>
 				            	<%	}
 				            		for(Cuenta c : listCuentas){
 				            			saldo = c.getSaldo_Cta();
@@ -133,6 +153,7 @@
 				            %>
 				            
 				        </select>
+				        
 				        <button type="submit" class="btn btn-success btn-sm" name="buscarCuenta" value="filtrar">Buscar</button>
 				    </div>
 				</form>
@@ -141,7 +162,7 @@
 			<div class="d-flex justify-content-center">
 				<div class="border border-success m-3 p-4" style="width: 620px">
 						 <%
-				            	if(listCuentas != null){%>
+				            	if(listCuentas != null && listCuentaFilter.getNumCuenta_Cta() == 0){%>
 				            		<span class="rounded bg-success p-2 h3 mx-3"><b>CASH</b></span> <b class="h3">$ <%= saldo %></b>
 				            	<%}
 				         %>

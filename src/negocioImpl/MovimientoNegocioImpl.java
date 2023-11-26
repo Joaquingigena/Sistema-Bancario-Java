@@ -14,5 +14,10 @@ public class MovimientoNegocioImpl implements IMovimientoNegocio{
 		
 		return mDaoImp.obtenerMovimientosPorUsuario(nombre);
 	}
+	@Override
+	public List<Movimientos> getMovimientosPorCuenta(int codMovimiento) {
+		// TODO Auto-generated method stub
+		return mDaoImp.getMovimientosPorCuenta(codMovimiento);
+	}
 
 }

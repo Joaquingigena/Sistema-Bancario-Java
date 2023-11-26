@@ -47,5 +47,35 @@ public class MovimientosDAOImpl implements IMovimientos{
 		
 		return Movs;
 	}
+	@Override
+	public List<Movimientos> getMovimientosPorCuenta(int codMovimiento) {
+		List<Movimientos> Movs = new ArrayList<Movimientos>();
+		conexion= new conexion();
+		String query= "SELECT m.* FROM movimientos m  WHERE m.NumCuenta_M =" + codMovimiento;
+
+		try {
+			conexion.Open();
+			ResultSet rs= conexion.query(query);
+			
+			while(rs.next()) {
+				Movimientos movimiento = new Movimientos();
+				movimiento.setNumMovimiento_M(rs.getInt(1));
+				movimiento.setFechaMovimiento_M(rs.getDate(3));
+				movimiento.setDetalle_M(rs.getString(4));
+				movimiento.setImporte_M(rs.getFloat(5));
+				movimiento.setEstado_M(rs.getString(7));           
+			
+                Movs.add(movimiento);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		
+		return Movs;
+	}
 
 }
