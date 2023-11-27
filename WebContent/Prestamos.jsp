@@ -117,8 +117,7 @@
 					<div id="MontoRequerido" style="display:flex; margin:0; margin-top: 20px; align-items:center;">
 					  <h5>Monto requerido: $</h5>
 					  <input type="text" class="form-control" id="monto" name ="monto" aria-label="Username" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
-					</div>
-				
+					</div>	
 				<div id=CantCuotas style="margin-top:50px; display:flex; align-items:center;">
 					<h5>Cantidad de cuotas: </h5>
 					<select style="height: 40px; width: 70px; margin-left: 20px" class="form-select" aria-label="Default select example">
@@ -140,15 +139,7 @@
 					    }
 					%>
 					 
-				</div>
-				<div id="ValorCuota" style="margin-top:20px; display:flex; align-items:center">
-					<h5>Valor de cuota: $ </h5>
-					<div style="width: 200px">
-					<input readonly type="text" class="form-control" id="valorCuota" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-					</div>
-				</div>	 
-					 
-					 
+				</div>				 
 				<div>	 
 					<div id="Cuenta Destino" style="display:flex; margin-top: 20px; align-items:center">
 					  <h5>Cuenta destino: </h5>

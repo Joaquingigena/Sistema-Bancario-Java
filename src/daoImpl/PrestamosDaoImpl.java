@@ -45,22 +45,20 @@ public class PrestamosDaoImpl implements IPrestamos{
 		return lista;
 	}
 	@Override
-	public boolean agregarPrestamo(Prestamos prestamo) {
+	public boolean agregarPrestamo(String monto, int cuotas, int cuenta) {
 		conexion= new conexion();
 		try {
 			
-			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?,?)");
-			cst.setInt(1, prestamo.getNumPrestamo_P());
-			cst.setInt(2, prestamo.getNumCuenta_P().getNumCuenta_Cta());
-			cst.setFloat(3, prestamo.getImportePagar_P());
-			cst.setFloat(4, prestamo.getImportePedido_P());
-			cst.setString(5, prestamo.getPlazoPago_P());
-			cst.setInt(6, prestamo.getIdCuota_P().getIdCuota_C());
+			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?)");
+			
+			cst.setInt(1, cuenta);
+			cst.setString(2, monto);
+			cst.setString(3, monto);
+			cst.setInt(4, cuotas);
 			
 			int fila = cst.executeUpdate();
 			if(fila > 0) return true;
-			
-			
+	
 			
 		}
 		catch (Exception e) {

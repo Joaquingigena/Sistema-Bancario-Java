@@ -78,4 +78,10 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 		
 		return preDao.filtroAvanzado(query);
 	}
+
+	@Override
+	public boolean agregarPrestamo(String monto, int cuotas, int cuenta) {
+		preDao.agregarPrestamo( monto, cuotas, cuenta);
+		return false;
+	}
 }

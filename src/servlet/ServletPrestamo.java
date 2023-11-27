@@ -45,11 +45,12 @@ public class ServletPrestamo extends HttpServlet {
 	int estado = 1;
 	String monto = request.getParameter("monto").toString();
 	int Cuotas = Integer.parseInt(request.getParameter("cuota").trim());
-	String valorCuota = request.getParameter("valorCuota").toString();
 	int Cuenta = Integer.parseInt(request.getParameter("destino").trim());
 	
 	//alta de prestamos
-
+	preNeg.agregarPrestamo(monto, Cuotas, Cuenta);
+	
+	
 	}
 	
 	
