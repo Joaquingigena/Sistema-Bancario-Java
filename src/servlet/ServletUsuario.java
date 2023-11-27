@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Excepciones.UsuarioEnBlancoException;
 import negocioImpl.UsuarioNegocioImpl;
 
 /**
@@ -45,12 +46,22 @@ public class ServletUsuario extends HttpServlet {
 			String usuario = request.getParameter("usuario"); 
 			String pass = request.getParameter("password");
 			RequestDispatcher dispatcher;
+			String msgString = "";
 			
-			int codValidacion = usuarioNegocioImpl.LoginUser(usuario, pass);
+			int codValidacion; 
+			
+			try {
+				codValidacion = usuarioNegocioImpl.LoginUser(usuario, pass);
+			}
+			catch(UsuarioEnBlancoException e) {
+				codValidacion = 3;
+				System.out.println("El nombre de usuario no puede estar en blanco");
+				msgString = "El nombre de usuario no puede estar en blanco";
+			}
 			System.out.println("codValidacion: "+codValidacion);
 			switch (codValidacion) {
 			case -1:// usuario no existe  o datos son inválidos
-				String msgString = "Verifique los datos ingresados. Si no tiene cuenta REGISTRESE.";
+				msgString = "Verifique los datos ingresados. Si no tiene cuenta REGISTRESE.";
 				request.setAttribute("msgError", msgString);
 				dispatcher = request.getRequestDispatcher("/Login.jsp");
 				dispatcher.forward(request, response);
@@ -69,8 +80,11 @@ public class ServletUsuario extends HttpServlet {
 				break;
 
 			default:
-				dispatcher = request.getRequestDispatcher("/Inicio.jsp");
+				dispatcher = request.getRequestDispatcher("/Login.jsp");
+				
+				request.setAttribute("msgError", msgString);
 				dispatcher.forward(request, response);
+				System.out.println("entro en default");
 				break;
 			}
 					
