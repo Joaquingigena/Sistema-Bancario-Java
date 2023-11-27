@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group mb-3">
                         
-                        <input type="text" class="form-control" id="cuil" name="cuil" required placeholder="CUIL">
+                        <input  type="text" maxlength="11" class="form-control" id="cuil" name="cuil" required placeholder="CUIL">
                     </div>
                     <div class="form-group mb-3">
                         
@@ -87,8 +87,8 @@
                     
                     <div class="form-group mb-3">
                         
-                        <select class="form-control mb-3" id="nacionalidad" name="nacionalidad" placeholder="Nacionalidad">
-                        	<option value="predeterminada" selected>Ejila su Nacionalidad</option>
+                        <select class="form-control mb-3" required id="nacionalidad" name="nacionalidad" placeholder="Nacionalidad">
+                        	<option value="" selected>Ejila su Nacionalidad</option>
                             <option value="Argentina">Argentina</option>
                             <option value="Peru">Perú</option>
                             <option value="Uruguay">Uruguay</option>
@@ -98,8 +98,8 @@
                     </div>
                     <div class="form-group mb-3">
                         
-                        <select class="form-control mb-3" id="sexo" name="sexo" placeholder="Sexo">
-                        	<option value="predeterminada" selected>Ejila su Sexo</option>
+                        <select class="form-control mb-3" required id="sexo" name="sexo" placeholder="Sexo">
+                        	<option value="" selected>Ejila su Sexo</option>
                             <option value="masculino">Masculino</option>
                             <option value="femenino">Femenino</option>
                             <option value="Otro">Otro</option>
@@ -117,8 +117,8 @@
 			            		}
 			            %>
 			            
-                        <select class="form-control mb-3" id="provincias" name="provincia" placeholder="Provincia" onchange="cambia_localidad()">
-                        	<option value="predeterminada" selected>Seleccione Provincia</option>
+                        <select class="form-control mb-3" required id="provincias" name="provincia" placeholder="Provincia" onchange="cambia_localidad()">
+                        	<option value="" selected>Seleccione Provincia</option>
                         	
                         	<%	
 			            		if(ListaProv!=null)
@@ -139,11 +139,8 @@
 			            			ListaLoc = (List<Localidades>)request.getAttribute("ListaLocalidades");
 			            		}
 			            %>
-                        <select class="form-control mb-3" id="localidad" name="localidad" placeholder="Localidad">
-                        	<option value="predeterminada" selected>Seleccione Localidad</option>
-                            
-                            		
-            				
+                        <select class="form-control mb-3" required id="localidad" name="localidad" placeholder="Localidad">
+                        	<option value="" selected>Seleccione Localidad</option>	  				
                         </select>
                         
                         
@@ -158,11 +155,11 @@
                     
                     <div class="form-group mb-3">
                         
-                        <input type="DNI" class="form-control" id="dni" name="dni" required placeholder="DNI">
+                        <input type="DNI" maxlength="9" class="form-control" id="dni" name="dni" required placeholder="DNI">
                     </div>
                     <div class="form-group mb-3">
                         
-                        <input type="tel" class="form-control" id="telefono" name="telefono" required placeholder="Telefono">
+                        <input type="tel" maxlength="15" class="form-control" id="telefono" name="telefono" required placeholder="Telefono">
                     </div>
                 </div>
             </div>
@@ -252,7 +249,7 @@
                         		
                         		
                         		if(provincia!=0){
-                        			locSelect.innerHTML = '<option value="predeterminada" selected>Seleccione Localidad</option>';
+                        			locSelect.innerHTML = '<option value="" selected>Seleccione Localidad</option>';
                         			
                         			for (var i=0; i < localidades.length; i++) {
                             			if(provincia.value == localidades[i][0]){
