@@ -241,8 +241,27 @@
 		                        <td><%= c.getCBU_Cta() %> </td>
 		                        <td><%= c.getSaldo_Cta() %> </td> 
 		                        <td> <a href="ServletCuenta?modificarCuenta=<%=c.getNumCuenta_Cta()%>&usuario=<%=nombre%>" class="btn btn-primary" >Modificar </a> </td>
-		                        <td> <a href="ServletCuenta?eliminarCuenta=<%=c.getNumCuenta_Cta()%>" class="btn btn-danger" >Eliminar </a> </td>
-			                        
+		                      
+			                    <td> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<%=c.getNumCuenta_Cta()%>"> Eliminar</button> </td>
+				                        
+				                        
+				                        <!-- Modal -->
+										<div class="modal fade" id="modalEliminar<%=c.getNumCuenta_Cta()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar cuenta</h1>
+										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										      </div>
+										      <div class="modal-body">
+										        Estas seguro que desea eliminar la cuenta N°  <%=c.getNumCuenta_Cta()%>
+										      </div>
+										      <div class="modal-footer">
+										        <a href="ServletCuenta?eliminarCuenta=<%=c.getNumCuenta_Cta()%>" class="btn btn-danger" >Eliminar </a>
+										        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+										      </div>
+										    </div>
+										  </div>
                      		 </tr>
                     		  <%
                     	  }
