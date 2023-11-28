@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group mb-3">
                         
-                        <input  type="text" maxlength="11" class="form-control" id="cuil" name="cuil" required placeholder="CUIL">
+                        <input  type="text" maxlength="11" minlength="10" class="form-control" id="cuil" name="cuil" required placeholder="CUIL">
                     </div>
                     <div class="form-group mb-3">
                         
@@ -155,7 +155,7 @@
                     
                     <div class="form-group mb-3">
                         
-                        <input type="DNI" maxlength="9" class="form-control" id="dni" name="dni" required placeholder="DNI">
+                        <input type="DNI" maxlength="9" minlength="7" class="form-control" id="dni" name="dni" required placeholder="DNI">
                     </div>
                     <div class="form-group mb-3">
                         
