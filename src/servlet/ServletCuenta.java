@@ -86,7 +86,7 @@ public class ServletCuenta extends HttpServlet {
 				System.out.println("Modificado con exito");
 
 			}
-			request.setAttribute("cargar" ,cuentaNeg.ListarCuentas());
+			request.setAttribute("listaCuentas" ,cuentaNeg.ListarCuentas());
 
 			dispatcher = request.getRequestDispatcher("/AdmCuentas.jsp");
 			dispatcher.forward(request, response);
