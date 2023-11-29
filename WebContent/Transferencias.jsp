@@ -1,5 +1,7 @@
-<%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"%>
+<%@page import="entidades.Usuario"%>
 <%@page import="entidades.Cuenta"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,10 +21,18 @@
 </style>
 
 <title>Transferencias</title>
+ 
 </head>
 <body>
 <%
 	String nombre = (String)request.getParameter("usuario");
+
+ArrayList <Cuenta> listaCuentasOrigen = null;
+if (request.getAttribute("listaCuentasOrigen")!=null) listaCuentasOrigen=(ArrayList <Cuenta>)request.getAttribute("listaCuentasOrigen");
+
+ArrayList <Cuenta> listaCuentasDestino = null;
+if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(ArrayList <Cuenta>)request.getAttribute("listaCuentasDestino");
+
 %>
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
@@ -79,69 +89,117 @@
     });
   });
 </script>
-		<div id="Cuerpo">
-			<div id="Encabezado">
-				<h2>Transferencias</h2>
-			</div>
-			<div id="Primario">
-				<form action="">
-					<h5>Origen</h5>
-					<div id="Cuenta Origen" style="display:flex; margin-top: 20px; align-items:center">
-					  <h5>Cuenta: </h5>
-					  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
-					  <%
-					  
-					  %>
-				  	  </select>
-					</div>
-				
-				<div id=CkeckBox style="margin-top:50px; display:flex; flex-direction:column;">
-					<h5>Destino</h5>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-					  <label class="form-check-label" for="inlineRadio1">Cuenta propia</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					  <label class="form-check-label" for="inlineRadio2">Otra Cuenta</label>
-					</div>
-					<div id="Cuenta Destino" style="display:flex; margin-top: 20px; align-items:center">
-					  <h5>Cuenta: </h5>
-					  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
-						  <option selected>Seleccione una cuenta</option>
-						  <option value="1">Cuenta 1</option>
-						  <option value="2">Cuenta 2</option>
-						  <option value="3">Cuenta 3</option>
-					  </select>
-					</div>
-					<div id="CBU" style="margin-top:20px; display:flex; align-items:center">
-						<h5>CBU: </h5>
-						<div class="input-group mb-3" style="width:100%;">
-						  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px">
-						</div>
-					</div>
-					<div id="Monto" style="margin-top:20px; display:flex; align-items:center">
-						<h5>Monto: $</h5>
-						<div class="input-group mb-3" style="width:35%;">
-						  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 2px">
-						</div>
-					</div>
-					<div id="btnTransfereir" style="margin-top:20px; display:flex; justify-content:end; width:100%">
-						<button type="button" class="btn btn-success">Transferir</button>
-					</div>
-				</div>
-				
-				</form>
+<div id="Cuerpo">
+        <div id="Encabezado">
+            <h2>Transferencias</h2>
+        </div>
+        <div id="Primario">
+            <form action="">
+                <!-- Cuenta origen -->
+                <div class="col-md-12">
+                <label for="ddlCuentaOrigen">Cuenta origen</label>
+                    <select name="ddlCuentaOrigen" class="form-select" required>
+                        <% if (listaCuentasOrigen != null)
+                            for (Cuenta cuenta : listaCuentasOrigen) { %>
+                                <option value=<%=cuenta.getNumCuenta_Cta() %>>  <%="ID " + cuenta.getNumCuenta_Cta() + " - $" + cuenta.getSaldo_Cta() + " - " + cuenta.getCBU_Cta() + " - " + cuenta.getIdUsuario_Cta().getIdPersona_U().getNombre_P() + " " + cuenta.getIdUsuario_Cta().getIdPersona_U().getApellido_P() %></option>
+                        <% } %>
+                    </select>
+                    
+                </div>
+                <br>
+                <!-- Cuenta destino -->
+                <div class="col-md-12">
+                <label for="ddlCuentaDestino">Cuenta destino</label>
+                    <select name="ddlCuentaDestino" class="form-select" required>
+                        <% if (listaCuentasDestino != null)
+                            for (Cuenta cuenta : listaCuentasDestino) { %>
+                                <option value=<%=cuenta.getNumCuenta_Cta() %>>  <%="ID " + cuenta.getNumCuenta_Cta() + " - " + cuenta.getCBU_Cta() + " - " + cuenta.getIdUsuario_Cta().getIdPersona_U().getNombre_P() + " " + cuenta.getIdUsuario_Cta().getIdPersona_U().getApellido_P() %></option>
+                        <% } %>
+                    </select>
+                    
+                </div>
+                <br>
+                <!-- Detalle -->
+                <div class="col-md-12">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="txtDetalle" placeholder="-" required />
+                        <label for="txtDetalle">Detalle</label>
+                    </div>
+                </div>
+                <!-- Importe -->
+                <div class="col-md-12">
+                    <div class="form-floating mb-3">
+                        <input type="number" step=0.01 class="form-control" name="txtImporte" placeholder="-" required />
+                        <label for="txtImporte">Importe</label>
+                    </div>
+                </div>
+                <br>
+                <!-- Botón de transferir -->
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-outline-dark form-control btn-lg" name="btnTransferir" value="Transferir" min=0.01 onclick="return confirm('¿Está seguro de realizar esta transferencia?')" />
+                </div>
+            </form>
+        </div>
+    </div>
+	<%
+int mensaje=-3;
+if (request.getAttribute("mensaje")!=null) mensaje=(int)request.getAttribute("mensaje");   
 
-				
-			</div>
-			<div>
-				
-				
-			</div>
-			
-		</div>
-	</div>
+                		
+Boolean importeNegativo = false;
+if (request.getAttribute("importeNegativo")!=null) {
+	importeNegativo= (boolean)request.getAttribute("importeNegativo");
+}
+%>  
+
+
+
+    <div style="display: flex; justify-content: center;">
+    
+  		<%
+	    if (importeNegativo == true){
+	    %>
+	   <div ID="MsgErrorDiv" class="col-md-4 alert alert-danger" runat="server" visible="false">
+	         <strong>Error</strong> El importe no debe ser negativo!
+	         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+	   </div>
+       <%}%>    
+        <%
+        if (mensaje == -2){
+        %>
+        <div ID="MsgErrorDiv" class="col-md-4 alert alert-danger" runat="server" visible="false">
+            <strong>Error</strong> La cuenta de origen no puede ser la misma que la de destino.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <%
+        }
+        else if (mensaje == -1){
+        %>
+        <div ID="MsgErrorDiv" class="col-md-4 alert alert-danger" runat="server" visible="false">
+            <strong>Error</strong> La cuenta no tiene saldo disponible para la transferencia.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <%
+        }
+        else if (mensaje == 0){
+        %>
+        <div ID="MsgErrorDiv" class="col-md-4 alert alert-danger" runat="server" visible="false">
+            <strong>Error</strong> Hubo un error al realizar la transferencia.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <%
+        }
+        else if (mensaje == 1){
+        %>
+        
+        <div ID="MsgCorrectoDiv" class="col-md-4 alert alert-success" runat="server" visible="false">
+            <strong>Correcto</strong> Transferencia realizada correctamente!
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <%
+        }
+        %>
+   </div>
 	
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

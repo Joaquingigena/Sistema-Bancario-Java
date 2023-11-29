@@ -426,6 +426,77 @@ public class CuentaDaoImpl implements ICuenta {
 			return lista;
 			
 		}
+		@Override
+		public ArrayList<Cuenta> obtenerTodos() {
+			ResultSet rs; //Guarda el resultado de la query
+			ArrayList<Cuenta> cuenta= new ArrayList<Cuenta>();
+			conexion= new conexion();
+			String consulta = 
+			"Select * from cuenta inner join tipocuentas " + 
+			"	on (cuenta.IdTipoCuenta_Cta = tipocuentas.IdTipo_TC) inner join usuario " + 
+			"		on (cuenta.IdUsuario_Cta = usuario.IdUsuario_U)"; 
+			try 
+			{
+				conexion.Open();
+				rs= conexion.query(consulta);
+				while(rs.next())
+				{
+					Cuenta cta= new Cuenta();
+					
+					cta.setNumCuenta_Cta(rs.getInt(1));
+					cta.getIdUsuario_Cta().setIdUsuario_U(rs.getInt(2));
+					cta.setFechaCreacion_Cta(rs.getDate(3));
+					cta.setCBU_Cta(rs.getInt(5));
+					cta.setSaldo_Cta(rs.getFloat(6));
+					cuenta.add(cta);
+				}
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				conexion.close();
+			}
+			return cuenta;
+		}
+
+
+		@Override
+		public ArrayList<Cuenta> cuentasXPropietario(String nombre) {
+			ResultSet rs; //Guarda el resultado de la query
+			ArrayList<Cuenta> cuenta= new ArrayList<Cuenta>();
+			
+			UsuarioDaoImp usuarioDaoImp = new UsuarioDaoImp();
+	        int idUsuario = usuarioDaoImp.ObtenerIdUsuario(nombre);
+			String consulta = 
+			"Select * from cuenta inner join tipocuentas " + 
+			"	on (cuenta.IdTipoCuenta_Cta = tipocuentas.IdTipo_TC) inner join usuario on (cuenta.IdUsuario_Cta = usuario.IdUsuario_U)" +  
+			"where  usuario.IdUsuario_U = '" + idUsuario + "'"; 
+			try 
+			{
+				conexion.Open();
+				rs= conexion.query(consulta);
+				while(rs.next())
+				{
+					Cuenta cta= new Cuenta();
+					
+					cta.setNumCuenta_Cta(rs.getInt(1));
+					cta.getIdUsuario_Cta().setIdUsuario_U(rs.getInt(2));
+					cta.setFechaCreacion_Cta(rs.getDate(3));
+					cta.setCBU_Cta(rs.getInt(5));
+					cta.setSaldo_Cta(rs.getFloat(6));
+					cuenta.add(cta);
+				}
+				
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				conexion.close();
+			}
+			return cuenta;
+		}
 				
 
 }

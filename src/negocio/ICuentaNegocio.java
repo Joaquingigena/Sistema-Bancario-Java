@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import entidades.Cuenta;
@@ -27,5 +28,9 @@ public interface ICuentaNegocio {
 	public List<Cuenta> queryFiltro(String campo,String criterio,String filtro);
 	
 	public List<Cuenta> listarCuentasPorUsuario(String nombre);
+
+	ArrayList<Cuenta> obtenerTodos();
+
+	ArrayList<Cuenta> cuentasXPropietario(String nombre);
 
 }

@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import negocioImpl.CuentaNegocioImpl;
 import negocioImpl.MovimientoNegocioImpl;
 import entidades.Cuenta;
-import entidades.Movimientos;;
+import entidades.Movimientos;
+import entidades.Usuario;
 
 @WebServlet("/ServletMovimientos")
 public class ServletMovimientos extends HttpServlet {
@@ -78,8 +79,10 @@ public class ServletMovimientos extends HttpServlet {
 
 				break;
 			case "transferencias":
-				dispatcher = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
-				dispatcher.forward(request, response);
+				cargarCuentasOrigen(request);
+				cargarCuentasDestino(request);
+				RequestDispatcher rd = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
+				rd.forward(request, response);	
 				break;
 			case "prestamos":
 				dispatcher = request.getRequestDispatcher("/Prestamos.jsp?usuario" + nombre);
@@ -105,6 +108,18 @@ public class ServletMovimientos extends HttpServlet {
 			throws ServletException, IOException {
 
 		doGet(request, response);
+	}
+	private void cargarCuentasOrigen(HttpServletRequest request) {
+		String nombre = request.getParameter("usuario");
+		ArrayList<Cuenta> listaCuentasOrigen = cuentaNegocioImpl.cuentasXPropietario(nombre);
+		request.setAttribute("listaCuentasOrigen", listaCuentasOrigen);
+		
+	}
+	
+	private void cargarCuentasDestino(HttpServletRequest request) {
+		ArrayList<Cuenta> listaCuentasDestino = cuentaNegocioImpl.obtenerTodos();
+		request.setAttribute("listaCuentasDestino", listaCuentasDestino);
+		
 	}
 
 }

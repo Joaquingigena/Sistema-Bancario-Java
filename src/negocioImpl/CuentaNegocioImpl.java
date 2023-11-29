@@ -1,5 +1,6 @@
 package negocioImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -128,6 +129,16 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 	public List<Cuenta> listarCuentasPorUsuario(String nombre) {
 		// TODO Auto-generated method stub
 		return cuentaDaoImpl.listarCuentasPorUsuario(nombre);
+	}
+	
+	@Override
+	public ArrayList<Cuenta> obtenerTodos() {
+		return cuentaDaoImpl.obtenerTodos();
+	}
+
+	@Override
+	public ArrayList<Cuenta> cuentasXPropietario(String nombre) {
+		return cuentaDaoImpl.cuentasXPropietario(nombre);
 	}
 
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import entidades.Cuenta;
@@ -30,4 +31,8 @@ public interface ICuenta {
 	public List<Cuenta> filtroAvanzado(String query);
 	
 	public List<Cuenta> listarCuentasPorUsuario(String nombre);
+
+	ArrayList<Cuenta> obtenerTodos();
+
+	ArrayList<Cuenta> cuentasXPropietario(String nombre);
 }
