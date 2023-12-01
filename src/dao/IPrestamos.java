@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import entidades.Cuotas;
 import entidades.Prestamos;
 
 public interface IPrestamos {
@@ -9,4 +10,5 @@ public interface IPrestamos {
 	public boolean agregarPrestamo(String monto, int cuotas, int cuenta);
 	
 	public List<Prestamos> filtroAvanzado(String query);
+	List<Cuotas> listarCuotas();
 }

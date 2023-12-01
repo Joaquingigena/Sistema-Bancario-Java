@@ -23,28 +23,13 @@
 <title>Prestamos</title>
 </head>
 <%
-	String nombre = (String)request.getParameter("usuario");
+String nombre = (String)request.getParameter("usuario");
 
-	List<Cuenta> listCuentas = new ArrayList<Cuenta>();	
-	if(request.getAttribute("cuentas")!=null){
-		listCuentas = (ArrayList<Cuenta>)request.getAttribute("cuentas");
-	}
-	int numCuenta = 0;
-	if(request.getAttribute("numCuenta")!=null){
-		numCuenta = Integer.parseInt( request.getParameter("numCuenta"));
-	}
-	float saldo = 0;
-	
-	Cuenta listCuentaFilter = new Cuenta();
-	if(request.getAttribute("cuentaFilter")!=null){
-		listCuentaFilter = (Cuenta)request.getAttribute("cuentaFilter");
-	}
-	
-	List<Cuotas> ListCuota = new ArrayList<Cuotas>();
-	Cuotas listCuotaFilter = new Cuotas();
-	if(request.getAttribute("coutaFilter")!= null){
-		listCuotaFilter = (Cuotas)request.getAttribute("cuotaFilter");
-	}
+ArrayList <Cuenta> listaCuentasOrigen = null;
+if (request.getAttribute("cuentas")!=null) listaCuentasOrigen=(ArrayList <Cuenta>)request.getAttribute("cuentas");
+
+ArrayList <Cuotas> listaCuotas = null;
+if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)request.getAttribute("cuotas");
 %>
 <body>
 <!-- Barra de navegacion -->
@@ -111,7 +96,7 @@
 				<h2>Prestamos</h2>
 			</div>
 			<div id="Primario">
-				<form action="">
+				<form action="ServletPrestamos" method="post">
 				
 					<h4>Solicitud de prestamo</h4>
 					<div id="MontoRequerido" style="display:flex; margin:0; margin-top: 20px; align-items:center;">
@@ -120,58 +105,25 @@
 					</div>	
 				<div id=CantCuotas style="margin-top:50px; display:flex; align-items:center;">
 					<h5>Cantidad de cuotas: </h5>
-					<select style="height: 40px; width: 70px; margin-left: 20px" class="form-select" aria-label="Default select example">
+				    <select id="cuotas" name="ddlCuotas" class="form-select" required>
 					<%
-					    if (ListCuota != null) {
-					%>
-					    <select id="cuota">
-					        <option value="0">Seleccione una cuota</option>
-					        <%
-					            for (Cuotas c : ListCuota) {
-					            	System.out.println("Cantidad de cuota: " + c.getCantidadCuota_C());
-					        %>
-					                <option value="<%= c.getIdCuota_C() %>"><%= c.getCantidadCuota_C() %></option>
-					        <%
-					            }
-					        %>
+					    if (listaCuotas != null) 
+					            for (Cuotas c : listaCuotas) { %>
+					                <option value=<%= c.getIdCuota_C() %>><%=c.getCantidadCuota_C() %></option>
+					        <% }%>
 					    </select>
-					<%
-					    }
-					%>
+					
 					 
 				</div>				 
 				<div>	 
 					<div id="Cuenta Destino" style="display:flex; margin-top: 20px; align-items:center">
 					  <h5>Cuenta destino: </h5>
-					  <select style="height: 40px; width: 500px; margin-left: 15px" class="form-select" id="destino" aria-label="Default select example">
-						  <%
-				            	if(numCuenta==0){%>
-				            		<option value="0">Seleccione una cuenta</option>
-				            	<%}%>
-				            <%
-				            	if(listCuentas != null){
-									int ban = 0;
-									int auxNumCuenta = 0;
-				            		for(Cuenta c : listCuentas){
-				            			if(listCuentaFilter.getNumCuenta_Cta() != 0 && ban == 0){
-				            		%>
-				            			<option value="<%=numCuenta%>"><%= listCuentaFilter.getCBU_Cta() %></option>
-				            			<option value="0">Seleccione una cuenta</option>
-				            		<%
-				            				ban = 1;
-				            			}
-				            			if(numCuenta != c.getNumCuenta_Cta()){
-				            		%>	
-				            			<option value="<%=c.getNumCuenta_Cta()%>"><%= c.getCBU_Cta() %></option>
-										<%}	%>
-				            	<%	}
-				            		for(Cuenta c : listCuentas){
-				            			saldo = c.getSaldo_Cta();
-				            			break;
-				            		}
-				            	}
-				            %>
-					  </select>
+		                    <select id="cuentas" name="ddlCuentaOrigen" class="form-select" required>
+                        <% if (listaCuentasOrigen != null)
+                            for (Cuenta cuenta : listaCuentasOrigen) { %>
+                                <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
+                        <% } %>
+                    </select>
 					</div>
 
 

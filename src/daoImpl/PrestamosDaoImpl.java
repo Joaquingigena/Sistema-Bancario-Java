@@ -10,6 +10,7 @@ import java.sql.CallableStatement;
 import conexion.conexion;
 import dao.IPrestamos;
 import entidades.Prestamos;
+import entidades.Cuotas;
 
 public class PrestamosDaoImpl implements IPrestamos{
 	private conexion conexion;
@@ -99,5 +100,36 @@ public class PrestamosDaoImpl implements IPrestamos{
 		return lista;
 		
 	}
+	
+	@Override
+	public List<Cuotas> listarCuotas() {
+		List<Cuotas> lista = new ArrayList<Cuotas>();
+		conexion = new conexion();
+		String query = "SELECT * from Cuotas";
+		
+		try {
+			conexion.Open();
+			ResultSet rs= conexion.query(query);
+			
+			while(rs.next()) {
+				Cuotas c = new Cuotas();
+				
+				c.setIdCuota_C(rs.getInt(1));
+				c.setCantidadCuota_C(rs.getString(2));
+						
+				lista.add(c);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		
+		return lista;
+	}
+	
+	
 
 }

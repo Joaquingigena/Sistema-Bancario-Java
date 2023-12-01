@@ -5,6 +5,7 @@ import java.util.List;
 
 import daoImpl.PrestamosDaoImpl;
 import entidades.Prestamos;
+import entidades.Cuotas;
 import negocio.IPrestamosNegocio;
 
 public class PrestamosNegocioImpl implements IPrestamosNegocio{
@@ -83,5 +84,9 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	public boolean agregarPrestamo(String monto, int cuotas, int cuenta) {
 		preDao.agregarPrestamo( monto, cuotas, cuenta);
 		return false;
+	}
+	
+	public List<Cuotas> listarCuotas(){
+		return preDao.listarCuotas();
 	}
 }
