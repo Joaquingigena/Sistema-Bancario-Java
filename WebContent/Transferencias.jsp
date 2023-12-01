@@ -28,7 +28,7 @@
 	String nombre = (String)request.getParameter("usuario");
 
 ArrayList <Cuenta> listaCuentasOrigen = null;
-if (request.getAttribute("listaCuentasOrigen")!=null) listaCuentasOrigen=(ArrayList <Cuenta>)request.getAttribute("listaCuentasOrigen");
+if (request.getAttribute("cuentas")!=null) listaCuentasOrigen=(ArrayList <Cuenta>)request.getAttribute("cuentas");
 
 ArrayList <Cuenta> listaCuentasDestino = null;
 if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(ArrayList <Cuenta>)request.getAttribute("listaCuentasDestino");
@@ -93,15 +93,17 @@ if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(Arra
         <div id="Encabezado">
             <h2>Transferencias</h2>
         </div>
+	<div class="d-flex justify-content-center">
         <div id="Primario">
-            <form action="">
+            <form action="ServletTransferencia" method="post">
                 <!-- Cuenta origen -->
                 <div class="col-md-12">
                 <label for="ddlCuentaOrigen">Cuenta origen</label>
+                	<input type="hidden" name="usuario" value="<%=nombre %>"/>
                     <select name="ddlCuentaOrigen" class="form-select" required>
                         <% if (listaCuentasOrigen != null)
                             for (Cuenta cuenta : listaCuentasOrigen) { %>
-                                <option value=<%=cuenta.getNumCuenta_Cta() %>>  <%="ID " + cuenta.getNumCuenta_Cta() + " - $" + cuenta.getSaldo_Cta() + " - " + cuenta.getCBU_Cta() + " - " + cuenta.getIdUsuario_Cta().getIdPersona_U().getNombre_P() + " " + cuenta.getIdUsuario_Cta().getIdPersona_U().getApellido_P() %></option>
+                                <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
                         <% } %>
                     </select>
                     
@@ -109,15 +111,21 @@ if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(Arra
                 <br>
                 <!-- Cuenta destino -->
                 <div class="col-md-12">
-                <label for="ddlCuentaDestino">Cuenta destino</label>
-                    <select name="ddlCuentaDestino" class="form-select" required>
-                        <% if (listaCuentasDestino != null)
-                            for (Cuenta cuenta : listaCuentasDestino) { %>
-                                <option value=<%=cuenta.getNumCuenta_Cta() %>>  <%="ID " + cuenta.getNumCuenta_Cta() + " - " + cuenta.getCBU_Cta() + " - " + cuenta.getIdUsuario_Cta().getIdPersona_U().getNombre_P() + " " + cuenta.getIdUsuario_Cta().getIdPersona_U().getApellido_P() %></option>
-                        <% } %>
-                    </select>
-                    
+                	<label for="CBUDestino">Cuenta destino</label>
+                    <input type="text" class="form-control" name="CBUDestino" placeholder="CBU destino" required />                    
                 </div>
+                <div class="container text-center">
+					  <div class="row">
+					    <div class="col form-floating mb-3">
+					      	<input type="text" class="form-control" name="nombreDestino" placeholder="-" required />
+                        	<label for="nombreDestino">Nombre</label>
+					    </div>
+					    <div class="col form-floating mb-3">
+					     	<input type="text" class="form-control" name="apellidoDestino" placeholder="-" required />
+                        	<label for="apellidoDestino">Apellido</label>
+					    </div>
+					  </div>
+					</div>
                 <br>
                 <!-- Detalle -->
                 <div class="col-md-12">
@@ -136,10 +144,11 @@ if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(Arra
                 <br>
                 <!-- Botón de transferir -->
                 <div class="col-md-12">
-                    <input type="submit" class="btn btn-outline-dark form-control btn-lg" name="btnTransferir" value="Transferir" min=0.01 onclick="return confirm('¿Está seguro de realizar esta transferencia?')" />
+                    <input type="submit" class="btn btn-outline-success form-control btn-lg" name="btnTransferir" value="Transferir" min=0.01 onclick="return confirm('¿Está seguro de realizar esta transferencia?')" />
                 </div>
             </form>
         </div>
+	</div>
     </div>
 	<%
 int mensaje=-3;

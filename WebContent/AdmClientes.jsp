@@ -229,7 +229,7 @@
 									        	<b>Nro. CBU</b>
 									        	<input type="text" readonly name="nroCbu" value="<%=numero1%>">
 									        	<b>Monto inicial</b>
-									        	<input type="number" name="montoInicial" value="10.000">
+									        	<input type="number" name="montoInicial" value="10000">
 									        	<b>Detalle</b>
 									        	<input type="text" name="detalle" value="Apertura de cuenta">
 									        </div>

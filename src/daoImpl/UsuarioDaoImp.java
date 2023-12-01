@@ -1,9 +1,12 @@
 package daoImpl;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import conexion.conexion;
 import dao.IUsuario;
+import entidades.Personas;
 import entidades.Roles;
 import entidades.Usuario;
 
@@ -83,6 +86,42 @@ public class UsuarioDaoImp implements IUsuario{
 			cn.close();
 		}
 		return 0; // retorna 0 si no existe usuario
+	}
+
+	@Override
+	public List<Personas> getUsuarioPorCBU(String cbu) {
+		cn = new conexion();
+		cn.Open();
+		
+		String query = "SELECT p.* FROM bd_tpint_grupo_6_lab4.personas p" +
+					   "join bd_tpint_grupo_6_lab4.usuario u on u.IdPersona_U = p.IdPersona_P" +
+				       "join bd_tpint_grupo_6_lab4.cuenta c on c.IdUsuario_Cta = u.IdUsuario_U" + 
+					   "WHERE c.CBU_Cta =" +"'"+cbu+"'";
+		
+		List <Personas> lista= new ArrayList<Personas>();
+		try {
+			
+			ResultSet rs = cn.query(query);
+			
+			while (rs.next()) {
+				Personas personas = new Personas();
+				
+				personas.setIdPersona_P(rs.getInt(1));
+				personas.setDNI_P(rs.getString(2));
+				personas.setCUIL_P(rs.getString(5));
+				personas.setNombre_P(rs.getString(6));
+				personas.setApellido_P(rs.getString(7));
+				
+				lista.add(personas);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			cn.close();
+		}
+		return lista; 
 	}
 	
 	

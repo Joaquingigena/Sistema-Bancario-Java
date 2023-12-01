@@ -11,56 +11,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import negocioImpl.CuentaNegocioImpl;
-import negocioImpl.MovimientoNegocioImpl;
 import entidades.Cuenta;
 import entidades.Movimientos;
-import entidades.Usuario;
+import negocioImpl.CuentaNegocioImpl;
+import negocioImpl.MovimientoNegocioImpl;
 
-@WebServlet("/ServletMovimientos")
-public class ServletMovimientos extends HttpServlet {
+/**
+ * Servlet implementation class ServletTransferencia
+ */
+@WebServlet("/ServletTransferencia")
+public class ServletTransferencia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	// private CuentaNegocioImpl cuentaNeg = new CuentaNegocioImpl();
 	private MovimientoNegocioImpl movNeg = new MovimientoNegocioImpl();
 	private CuentaNegocioImpl cuentaNegocioImpl = new CuentaNegocioImpl();
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletTransferencia() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public ServletMovimientos() {
-		super();
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher;
 		String nombre = request.getParameter("usuario");
 		
 		List<Movimientos> movimientos = new ArrayList<Movimientos>();
 		List<Cuenta> cuentas = new ArrayList<Cuenta>();
-		if(cuentas.isEmpty()) cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
-		
-		if(request.getParameter("buscarCuenta") != null) {
-			
-			int numCuenta = Integer.parseInt(request.getParameter("numCuenta"));
-			
-			if(numCuenta == 0) {
-				movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
-			}
-			else {
-				movimientos = movNeg.getMovimientosPorCuenta(numCuenta);				
-			}
-			
-			Cuenta cuentaFilter = cuentaNegocioImpl.obtenerCuenta(numCuenta);
-			
-			request.setAttribute("cuentaFilter", cuentaFilter);
-			request.setAttribute("cuentas", cuentas);
-			request.setAttribute("numCuenta", numCuenta);
-			request.setAttribute("Movimientos", movimientos);
-
-			dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario=" + nombre);
-			dispatcher.forward(request, response);		
-		}
-		
-		
+		cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
 		if (request.getParameter("Param") != null) {
 
 			String opcion = request.getParameter("Param").toString();
@@ -80,7 +61,6 @@ public class ServletMovimientos extends HttpServlet {
 				break;
 			case "transferencias":
 				request.setAttribute("cuentas", cuentas);
-				cargarCuentasDestino(request);
 				RequestDispatcher rd = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
 				rd.forward(request, response);	
 				break;
@@ -104,16 +84,24 @@ public class ServletMovimientos extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		doGet(request, response);
-	}
-	
-	private void cargarCuentasDestino(HttpServletRequest request) {
-		ArrayList<Cuenta> listaCuentasDestino = cuentaNegocioImpl.obtenerTodos();
-		request.setAttribute("listaCuentasDestino", listaCuentasDestino);
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		RequestDispatcher dispatcher;
+		String nombre = request.getParameter("usuario");
+		
+		if (request.getParameter("btnTransferir") != null) {
+			String ddlString = request.getParameter("ddlCuentaOrigen");
+			String cbuDestino = request.getParameter("CBUDestino");
+			String detalle = request.getParameter("txtDetalle");
+			String importe = request.getParameter("txtImporte");
+			System.out.println(ddlString + " " + cbuDestino + " " +  detalle + " " + importe);
+		}
+		
+		dispatcher = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
+		dispatcher.forward(request, response);
 	}
 
 }
