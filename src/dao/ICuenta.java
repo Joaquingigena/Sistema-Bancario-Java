@@ -35,4 +35,7 @@ public interface ICuenta {
 	ArrayList<Cuenta> obtenerTodos();
 
 	ArrayList<Cuenta> cuentasXPropietario(String nombre);
+	
+	public boolean transaccionCuentaPorUsuario(int numCta, String cbuOrigen, float saldo, String cbuDestino);
+	
 }

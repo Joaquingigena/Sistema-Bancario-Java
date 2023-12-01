@@ -102,8 +102,6 @@ public class CuentaDaoImpl implements ICuenta {
 					
 					// Ejecutar la declaración de inserción
 					preparedStatement.executeUpdate();
-					
-					logMovimientos(cbu,detalle, saldo, tipoMovimiento);
 					isCreate = true;
 				}
 				else {
@@ -180,7 +178,7 @@ public class CuentaDaoImpl implements ICuenta {
 				Date fechaCreacionDate = new Date();
 				java.sql.Date sqlDate = new java.sql.Date(fechaCreacionDate.getTime());
 				int numCuenta = obtenerNumCuenta(cbu);
-				String estado = "Completado" ;
+				boolean estado = true ;
 				// Crear una declaración preparada con la consulta SQL
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				
@@ -190,7 +188,7 @@ public class CuentaDaoImpl implements ICuenta {
 				preparedStatement.setString(3, descripcion); 
 				preparedStatement.setFloat(4, importe);
 				preparedStatement.setInt(5, tipoMovimiento);
-				preparedStatement.setString(6, estado);
+				preparedStatement.setBoolean(6, estado);
 				// Ejecutar la declaración de inserción
 				preparedStatement.executeUpdate();
 				
@@ -497,6 +495,59 @@ public class CuentaDaoImpl implements ICuenta {
 			}
 			return cuenta;
 		}
+
+
+		@Override
+		public boolean transaccionCuentaPorUsuario(int numCta, String cbuOrigen, float saldo, String cbuDestino) {
+			Connection connection = null;
+			conexion= new conexion();
+			PreparedStatement preparedStatement = null;
+			try {
+				
+				connection = conexion.Open();
+				String text = " UPDATE bd_tpint_grupo_6_lab4.cuenta SET Saldo_Cta = Saldo_Cta ";
+				String query = "";
+				
+				if(!cbuOrigen.isEmpty()) {
+					query = text + " - " + saldo + " WHERE CBU_Cta = " + "'"+ cbuOrigen + "'";					
+				}
+				else {
+					query = text + " + " + saldo + " WHERE CBU_Cta = " + "'"+ cbuDestino + "'";					
+				}
+				
+				Date fechaCreacionDate = new Date();
+				java.sql.Date sqlDate = new java.sql.Date(fechaCreacionDate.getTime());
+				String estado = "Aprobado" ;
+				// Crear una declaración preparada con la consulta SQL
+				preparedStatement = connection.prepareStatement(query);
+
+	            // Establece los parámetros
+	            preparedStatement.setFloat(1, saldo);
+	            preparedStatement.setString(2, (!cbuOrigen.isEmpty()) ? cbuOrigen : cbuDestino);
+
+	            // Ejecuta la actualización
+	            preparedStatement.executeUpdate();
+
+	            // Si llegamos aquí, la actualización fue exitosa
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            // Cierra los recursos
+	            try {
+	                if (preparedStatement != null) {
+	                    preparedStatement.close();
+	                }
+	                if (connection != null) {
+	                    connection.close();
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+						
+			return true;
+		}
+
 				
 
 }

@@ -1,6 +1,7 @@
 package daoImpl;
 
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,11 @@ public class MovimientosDAOImpl implements IMovimientos{
 		}
 		
 		return Movs;
+	}
+	@Override
+	public boolean updateMovimientoPorUsuario(int numCta, Date fechaMov, String Detalle, float importe, int tipoMov, String estado) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

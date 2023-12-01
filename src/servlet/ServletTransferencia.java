@@ -98,6 +98,11 @@ public class ServletTransferencia extends HttpServlet {
 			String detalle = request.getParameter("txtDetalle");
 			String importe = request.getParameter("txtImporte");
 			System.out.println(ddlString + " " + cbuDestino + " " +  detalle + " " + importe);
+			//update cuenta usuario inicial, y generar movimiento
+			
+			
+			//update cuenta usuario final, y generar movimiento
+			
 		}
 		
 		dispatcher = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
