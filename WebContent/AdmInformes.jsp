@@ -202,7 +202,9 @@
                       <tr>
                         
                         <th scope="col">N° Movimiento</th>
-                        <th scope="col">N° Cliente</th>
+                        <th scope="col">N° Cuenta</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
                         <th scope="col">Fecha Movimiento</th>
                         <th scope="col">Detalle</th>
                         <th scope="col">Importe</th>
@@ -223,6 +225,8 @@
                     		 <tr data-nombre="<%=m.getNumMovimiento_M() %>">
 		                        <td><%=m.getNumMovimiento_M() %></td>
 		                        <td><%=m.getNumCuenta_M().getNumCuenta_Cta()%></td>
+		                        <td><%=m.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().getNombre_P() %></td>
+		                        <td><%=m.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().getApellido_P() %></td>
 		                        <td><%=m.getFechaMovimiento_M() %></td>
 		                        <td><%=m.getDetalle_M() %> </td>
 		                        <td><%=m.getImporte_M() %> </td>

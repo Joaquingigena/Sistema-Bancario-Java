@@ -16,8 +16,28 @@ public class InformesDaoImpl implements IInformes{
 		
 		List <Movimientos> lista= new ArrayList<Movimientos>();
 		conexion= new conexion();
-		String query= "select M.numMovimiento_M, M.numCuenta_M, M.fechaMovimiento_M, M.detalle_M, M.importe_M, M.idTipoMovimiento_M, M.estado_M from Movimientos as M inner join Cuenta C on C.numCuenta_Cta = M.numCuenta_M inner join TipoMovimientos TM on TM.idTipoMovimiento_TM = M.idTipoMovimiento_M";
-		
+		String query= "SELECT\r\n" + 
+				"    M.NumMovimiento_M,\r\n" + 
+				"    M.NumCuenta_M,\r\n" + 
+				"    C.IdUsuario_Cta,\r\n" + 
+				"    U.Usuario_U,\r\n" + 
+				"    P.Nombre_P,\r\n" + 
+				"    P.Apellido_P,\r\n" + 
+				"    M.FechaMovimiento_M,\r\n" + 
+				"    M.Detalle_M,\r\n" + 
+				"    M.Importe_M,\r\n" + 
+				"    M.IdTipoMovimiento_M,\r\n" + 
+				"    M.Estado_M\r\n" + 
+				"FROM\r\n" + 
+				"    Movimientos AS M\r\n" + 
+				"INNER JOIN\r\n" + 
+				"    Cuenta AS C ON C.NumCuenta_Cta = M.NumCuenta_M\r\n" + 
+				"INNER JOIN\r\n" + 
+				"    usuario AS U ON U.IdUsuario_U = C.IdUsuario_Cta\r\n" + 
+				"INNER JOIN\r\n" + 
+				"    personas AS P ON U.IdPersona_U = P.IdPersona_P\r\n" + 
+				"INNER JOIN\r\n" + 
+				"    TipoMovimientos AS TM ON TM.IdTipoMovimiento_TM = M.IdTipoMovimiento_M;";
 		try {
 			conexion.Open();
 			ResultSet rs= conexion.query(query);
@@ -27,11 +47,13 @@ public class InformesDaoImpl implements IInformes{
 				
 				movimiento.setNumMovimiento_M(rs.getInt(1));
 				movimiento.getNumCuenta_M().setNumCuenta_Cta(rs.getInt(2));
-				movimiento.setFechaMovimiento_M(rs.getDate(3));
-				movimiento.setDetalle_M(rs.getString(4));
-				movimiento.setImporte_M(rs.getFloat(5));
-				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt(6));
-				movimiento.setEstado_M(rs.getString(7));
+				movimiento.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().setNombre_P(rs.getString(3));
+				movimiento.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().setApellido_P(rs.getString(4));
+				movimiento.setFechaMovimiento_M(rs.getDate(5));
+				movimiento.setDetalle_M(rs.getString(6));
+				movimiento.setImporte_M(rs.getFloat(7));
+				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt(8));
+				movimiento.setEstado_M(rs.getString(9));
 				
 						
 				lista.add(movimiento);
