@@ -221,6 +221,8 @@
                       <tr>
                         <th scope="col">N° cuenta</th>
                         <th scope="col">N° Usuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
                         <th scope="col">Fecha de creacion</th>
                         <th scope="col">CBU</th>
                         <th scope="col">Saldo</th>
@@ -237,9 +239,12 @@
                     		 <tr data-nombre="<%= c.getNumCuenta_Cta() %>">
 		                        <td><%= c.getNumCuenta_Cta() %></td>
 		                        <td><%= c.getIdUsuario_Cta().getIdUsuario_U() %></td>
+		                        <td><%= c.getIdUsuario_Cta().getIdPersona_U().getNombre_P() %></td>
+		                        <td><%= c.getIdUsuario_Cta().getIdPersona_U().getApellido_P() %></td>
 		                        <td><%= c.getFechaCreacion_Cta() %></td>
 		                        <td><%= c.getCBU_Cta() %> </td>
 		                        <td><%= c.getSaldo_Cta() %> </td> 
+		                        
 		                        <td> <a href="ServletCuenta?modificarCuenta=<%=c.getNumCuenta_Cta()%>&usuario=<%=nombre%>" class="btn btn-primary" >Modificar </a> </td>
 		                      
 			                    <td> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<%=c.getNumCuenta_Cta()%>"> Eliminar</button> </td>

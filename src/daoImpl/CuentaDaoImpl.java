@@ -10,6 +10,7 @@ import java.util.List;
 import conexion.conexion;
 import dao.ICuenta;
 import entidades.Cuenta;
+import entidades.Personas;
 import entidades.Usuario;
 import entidades.TipoCuentas;
 
@@ -22,7 +23,25 @@ public class CuentaDaoImpl implements ICuenta {
 		
 			List <Cuenta> lista= new ArrayList<Cuenta>();
 			conexion= new conexion();
-			String query= "Select C.NumCuenta_Cta,C.IdUsuario_Cta, C.FechaCreacion_Cta, C.IdTipoCuenta_Cta, C.CBU_Cta, C.Saldo_Cta FROM cuenta AS C inner join usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas tc on tc.IdTipo_TC = C.IdTipoCuenta_Cta where Estado_Cta=true";
+			String query= "SELECT\r\n" + 
+					"    C.NumCuenta_Cta,\r\n" + 
+					"    C.IdUsuario_Cta,\r\n" + 
+					"    P.Nombre_P,\r\n" + 
+					"    P.Apellido_P,\r\n" + 
+					"    C.FechaCreacion_Cta,\r\n" + 
+					"    C.IdTipoCuenta_Cta,\r\n" + 
+					"    C.CBU_Cta,\r\n" + 
+					"    C.Saldo_Cta\r\n" + 
+					"FROM\r\n" + 
+					"    cuenta AS C\r\n" + 
+					"INNER JOIN\r\n" + 
+					"    usuario AS U ON U.IdUsuario_U = C.IdUsuario_Cta\r\n" + 
+					"INNER JOIN\r\n" + 
+					"    personas AS P ON U.IdPersona_U = P.IdPersona_P\r\n" + 
+					"INNER JOIN\r\n" + 
+					"    TipoCuentas AS TC ON TC.IdTipo_TC = C.IdTipoCuenta_Cta\r\n" + 
+					"WHERE\r\n" + 
+					"    C.Estado_Cta = true;";
 			
 			try {
 				conexion.Open();
@@ -33,9 +52,11 @@ public class CuentaDaoImpl implements ICuenta {
 					
 					cuenta.setNumCuenta_Cta(rs.getInt(1));
 					cuenta.getIdUsuario_Cta().setIdUsuario_U(rs.getInt(2));
-					cuenta.setFechaCreacion_Cta(rs.getDate(3));
-					cuenta.setCBU_Cta(rs.getInt(5));
-					cuenta.setSaldo_Cta(rs.getFloat(6));
+					cuenta.getIdUsuario_Cta().getIdPersona_U().setNombre_P(rs.getString(3));
+					cuenta.getIdUsuario_Cta().getIdPersona_U().setApellido_P(rs.getString(4));
+					cuenta.setFechaCreacion_Cta(rs.getDate(5));
+					cuenta.setCBU_Cta(rs.getInt(7));
+					cuenta.setSaldo_Cta(rs.getFloat(8));
 				
 					lista.add(cuenta);
 				}
