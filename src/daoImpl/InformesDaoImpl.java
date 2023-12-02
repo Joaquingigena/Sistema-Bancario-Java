@@ -47,13 +47,15 @@ public class InformesDaoImpl implements IInformes{
 				
 				movimiento.setNumMovimiento_M(rs.getInt(1));
 				movimiento.getNumCuenta_M().setNumCuenta_Cta(rs.getInt(2));
-				movimiento.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().setNombre_P(rs.getString(3));
-				movimiento.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().setApellido_P(rs.getString(4));
-				movimiento.setFechaMovimiento_M(rs.getDate(5));
-				movimiento.setDetalle_M(rs.getString(6));
-				movimiento.setImporte_M(rs.getFloat(7));
-				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt(8));
-				movimiento.setEstado_M(rs.getString(9));
+				movimiento.getNumCuenta_M().getIdUsuario_Cta().setIdUsuario_U(rs.getInt(3));
+				movimiento.getNumCuenta_M().getIdUsuario_Cta().setUsuario_U(rs.getString(4));
+				movimiento.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().setNombre_P(rs.getString(5));
+				movimiento.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().setApellido_P(rs.getString(6));
+				movimiento.setFechaMovimiento_M(rs.getTimestamp(7));
+				movimiento.setDetalle_M(rs.getString(8));
+				movimiento.setImporte_M(rs.getFloat(9));
+				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt(10));
+				movimiento.setEstado_M(rs.getBoolean(11));
 				
 						
 				lista.add(movimiento);
@@ -83,11 +85,11 @@ public class InformesDaoImpl implements IInformes{
 				
 				movimiento.setNumMovimiento_M(rs.getInt(1));
 				movimiento.getNumCuenta_M().setNumCuenta_Cta(rs.getInt(2));
-				movimiento.setFechaMovimiento_M(rs.getDate(3));
+				movimiento.setFechaMovimiento_M(rs.getTimestamp(3));
 				movimiento.setDetalle_M(rs.getString(4));
 				movimiento.setImporte_M(rs.getFloat(5));
 				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt(6));
-				movimiento.setEstado_M(rs.getString(7));
+				movimiento.setEstado_M(rs.getBoolean(7));
 				
 						
 				lista.add(movimiento);
