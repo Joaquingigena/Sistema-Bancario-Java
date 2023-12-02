@@ -160,7 +160,9 @@ public class ServletTransferencia extends HttpServlet {
 			
 			
 		}
-		
+		List<Cuenta> cuentas = new ArrayList<Cuenta>();
+		cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
+		request.setAttribute("cuentas", cuentas);
 		dispatcher = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
 		dispatcher.forward(request, response);
 	}
