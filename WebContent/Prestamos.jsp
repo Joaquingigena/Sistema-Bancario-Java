@@ -96,7 +96,7 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
 				<h2>Prestamos</h2>
 			</div>
 			<div id="Primario">
-				<form action="ServletPrestamos" method="post">
+				<form action="ServletPrestamo" method="post">
 				
 					<h4>Solicitud de prestamo</h4>
 					<div id="MontoRequerido" style="display:flex; margin:0; margin-top: 20px; align-items:center;">
