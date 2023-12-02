@@ -23,7 +23,7 @@ public class UsuarioNegocioImpl implements IUsuarioNegocio{
 	}
 
 	@Override
-	public List<Personas> getUsuarioPorCBU(String cbu) {
+	public Personas getUsuarioPorCBU(String cbu) {
 		
 		return uDaoImp.getUsuarioPorCBU(cbu);
 	}

@@ -32,5 +32,9 @@ public interface ICuentaNegocio {
 	ArrayList<Cuenta> obtenerTodos();
 
 	ArrayList<Cuenta> cuentasXPropietario(String nombre);
+	
+	public int obtenerNumCuenta(int cbu);
+	
+	public boolean validarSaldo(int numCtaOrigen, float importe);
 
 }

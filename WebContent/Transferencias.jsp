@@ -1,5 +1,6 @@
 <%@page import="entidades.Usuario"%>
 <%@page import="entidades.Cuenta"%>
+<%@page import="entidades.Personas"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -26,12 +27,21 @@
 <body>
 <%
 	String nombre = (String)request.getParameter("usuario");
-
-ArrayList <Cuenta> listaCuentasOrigen = null;
-if (request.getAttribute("cuentas")!=null) listaCuentasOrigen=(ArrayList <Cuenta>)request.getAttribute("cuentas");
-
-ArrayList <Cuenta> listaCuentasDestino = null;
-if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(ArrayList <Cuenta>)request.getAttribute("listaCuentasDestino");
+	String cbuDestino = (String)request.getParameter("CBUDestino");
+	String detalle = (String)request.getParameter("txtDetalle");
+	String importe = (String)request.getParameter("txtImporte");
+	
+	boolean esValido = false;
+	if (request.getAttribute("datosOk")!=null) esValido = (boolean)request.getAttribute("datosOk");
+	
+	ArrayList <Cuenta> listaCuentasOrigen = null;
+	if (request.getAttribute("cuentas")!=null) listaCuentasOrigen=(ArrayList <Cuenta>)request.getAttribute("cuentas");
+	
+	ArrayList <Cuenta> listaCuentasDestino = null;
+	if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(ArrayList <Cuenta>)request.getAttribute("listaCuentasDestino");
+	
+	Personas listaPersonas = null;
+	if (request.getAttribute("listPersonas")!=null) listaPersonas=(Personas)request.getAttribute("listPersonas");
 
 %>
 <!-- Barra de navegacion -->
@@ -95,7 +105,7 @@ if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(Arra
         </div>
 	<div class="d-flex justify-content-center">
         <div id="Primario">
-            <form action="ServletTransferencia" method="post">
+            <form action="ServletTransferencia" method="<%=esValido? "post" : "get"%>">
                 <!-- Cuenta origen -->
                 <div class="col-md-12">
                 <label for="ddlCuentaOrigen">Cuenta origen</label>
@@ -110,41 +120,51 @@ if (request.getAttribute("listaCuentasDestino")!=null) listaCuentasDestino=(Arra
                 </div>
                 <br>
                 <!-- Cuenta destino -->
+                
                 <div class="col-md-12">
                 	<label for="CBUDestino">Cuenta destino</label>
-                    <input type="text" class="form-control" name="CBUDestino" placeholder="CBU destino" required />                    
+                    <input type="text" class="form-control" name="CBUDestino" placeholder="CBU destino" required value="<%= esValido ? cbuDestino : ""%>"/>                    
                 </div>
                 <div class="container text-center">
 					  <div class="row">
-					    <div class="col form-floating mb-3">
-					      	<input type="text" class="form-control" name="nombreDestino" placeholder="-" required />
-                        	<label for="nombreDestino">Nombre</label>
-					    </div>
-					    <div class="col form-floating mb-3">
-					     	<input type="text" class="form-control" name="apellidoDestino" placeholder="-" required />
-                        	<label for="apellidoDestino">Apellido</label>
-					    </div>
+					    	<%
+					    		if(listaPersonas != null){%>
+					    			
+							    <div class="col form-floating mb-3">
+							      	<input type="text" class="form-control" value="<%= listaPersonas.getNombre_P()%>" name="nombreDestino"/>
+		                        	<label for="nombreDestino">Nombre</label>
+							    </div>
+							    <div class="col form-floating mb-3">
+							     	<input type="text" class="form-control" value="<%= listaPersonas.getApellido_P()%>" name="apellidoDestino"/>
+		                        	<label for="apellidoDestino">Apellido</label>
+							    </div>
+					    	<%	}%>
 					  </div>
 					</div>
                 <br>
                 <!-- Detalle -->
                 <div class="col-md-12">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="txtDetalle" placeholder="-" required />
+                        <input type="text" class="form-control" name="txtDetalle" placeholder="-" required value="<%= esValido ? detalle : ""%>"/>
                         <label for="txtDetalle">Detalle</label>
                     </div>
                 </div>
                 <!-- Importe -->
                 <div class="col-md-12">
                     <div class="form-floating mb-3">
-                        <input type="number" step=0.01 class="form-control" name="txtImporte" placeholder="-" required />
+                        <input type="number" step=0.01 class="form-control" name="txtImporte" placeholder="-" required value="<%= esValido ? importe : ""%>"/>
                         <label for="txtImporte">Importe</label>
                     </div>
                 </div>
                 <br>
                 <!-- Botón de transferir -->
                 <div class="col-md-12">
-                    <input type="submit" class="btn btn-outline-success form-control btn-lg" name="btnTransferir" value="Transferir" min=0.01 onclick="return confirm('¿Está seguro de realizar esta transferencia?')" />
+                	<%if(!esValido){%>
+                		<input type="submit" class="btn btn-outline-success form-control btn-lg" name="validarDatos" value="Verificar datos"/>
+                    <%	}
+                	else{%>	
+                    	<input type="submit" class="btn btn-outline-success form-control btn-lg" name="btnTransferir" value="Transferir" min=0.01 onclick="return confirm('¿Está seguro de realizar esta transferencia?')" />
+                	<%	}%>
                 </div>
             </form>
         </div>

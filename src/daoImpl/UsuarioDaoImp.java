@@ -89,7 +89,7 @@ public class UsuarioDaoImp implements IUsuario{
 	}
 
 	@Override
-	public List<Personas> getUsuarioPorCBU(String cbu) {
+	public Personas getUsuarioPorCBU(String cbu) {
 		cn = new conexion();
 		cn.Open();
 		
@@ -98,21 +98,19 @@ public class UsuarioDaoImp implements IUsuario{
 				       " join bd_tpint_grupo_6_lab4.cuenta c on c.IdUsuario_Cta = u.IdUsuario_U" + 
 					   " WHERE c.CBU_Cta =" +"'"+cbu+"'";
 		
-		List <Personas> lista= new ArrayList<Personas>();
+		Personas persona = new Personas();
 		try {
 			
 			ResultSet rs = cn.query(query);
 			
 			while (rs.next()) {
-				Personas personas = new Personas();
 				
-				personas.setIdPersona_P(rs.getInt(1));
-				personas.setDNI_P(rs.getString(2));
-				personas.setCUIL_P(rs.getString(5));
-				personas.setNombre_P(rs.getString(6));
-				personas.setApellido_P(rs.getString(7));
-				
-				lista.add(personas);
+				persona.setIdPersona_P(rs.getInt(1));
+				persona.setDNI_P(rs.getString(2));
+				persona.setCUIL_P(rs.getString(5));
+				persona.setNombre_P(rs.getString(6));
+				persona.setApellido_P(rs.getString(7));
+
 			}
 			
 		} catch (Exception e) {
@@ -121,7 +119,7 @@ public class UsuarioDaoImp implements IUsuario{
 		finally {
 			cn.close();
 		}
-		return lista; 
+		return persona; 
 	}
 	
 	

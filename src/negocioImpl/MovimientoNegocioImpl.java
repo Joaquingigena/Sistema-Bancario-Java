@@ -19,5 +19,11 @@ public class MovimientoNegocioImpl implements IMovimientoNegocio{
 		// TODO Auto-generated method stub
 		return mDaoImp.getMovimientosPorCuenta(codMovimiento);
 	}
+	@Override
+	public boolean insertMovimientoPorUsuario(int numCtaOrigen, int numCtaDestino, String Detalle, float importe,
+			int tipoMov, boolean estado) {
+		// TODO Auto-generated method stub
+		return mDaoImp.insertMovimientoPorUsuario(numCtaOrigen, numCtaDestino , Detalle, importe, tipoMov, estado);
+	}
 
 }

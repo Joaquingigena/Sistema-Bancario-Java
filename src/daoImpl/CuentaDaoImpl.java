@@ -162,6 +162,7 @@ public class CuentaDaoImpl implements ICuenta {
 			return count;
 		}
 		
+		@Override
 		public int obtenerNumCuenta(int cbu) {
 			conexion= new conexion();
 			String query= "SELECT NumCuenta_Cta FROM bd_tpint_grupo_6_lab4.cuenta where CBU_Cta = " + "'" + cbu +"'";
@@ -567,6 +568,41 @@ public class CuentaDaoImpl implements ICuenta {
 	        }
 						
 			return true;
+		}
+
+
+		@Override
+		public boolean validarSaldo(int numCtaOrigen, float importe) {
+			ResultSet rs; //Guarda el resultado de la query
+			conexion= new conexion();
+			String consulta = "Select Saldo_Cta from cuenta where NumCuenta_Cta ="+ numCtaOrigen;
+			boolean esValido = true;
+			float saldo = 0;
+			
+			
+			try 
+			{
+				conexion.Open();
+				rs= conexion.query(consulta);
+				while(rs.next()) {
+					saldo = rs.getFloat(1);
+				}
+				System.out.println("saldo: "+ saldo);
+				
+				if (saldo >= importe) {
+					esValido = true;
+				}else {
+					esValido = false;
+				}
+				
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				conexion.close();
+			}
+			return esValido;
 		}
 
 				

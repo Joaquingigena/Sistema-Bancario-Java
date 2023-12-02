@@ -11,5 +11,5 @@ public interface IMovimientos {
 	
 	public List<Movimientos> getMovimientosPorCuenta(int codMovimiento);
 	
-	public boolean updateMovimientoPorUsuario(int numCta, Date fechaMov, String Detalle, float importe, int tipoMov, String estado);
+	public boolean insertMovimientoPorUsuario(int numCtaOrigen, int numCtaDestino ,String Detalle, float importe, int tipoMov, boolean estado);
 }

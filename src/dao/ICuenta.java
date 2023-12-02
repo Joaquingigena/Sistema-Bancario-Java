@@ -38,4 +38,8 @@ public interface ICuenta {
 	
 	public boolean transaccionCuentaPorUsuario(int numCta, String cbuOrigen, float saldo, String cbuDestino);
 	
+	public int obtenerNumCuenta(int cbu);
+	
+	public boolean validarSaldo(int numCtaOrigen, float importe);
+	
 }

@@ -9,5 +9,5 @@ public interface IUsuario {
 	
 	public int ObtenerIdUsuario(String nombre);
 	
-	public List<Personas> getUsuarioPorCBU(String cbu);
+	public Personas getUsuarioPorCBU(String cbu);
 }

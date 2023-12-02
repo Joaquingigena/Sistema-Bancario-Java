@@ -140,5 +140,15 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 	public ArrayList<Cuenta> cuentasXPropietario(String nombre) {
 		return cuentaDaoImpl.cuentasXPropietario(nombre);
 	}
+	@Override
+	public int obtenerNumCuenta(int cbu) {
+		// TODO Auto-generated method stub
+		return cuentaDaoImpl.obtenerNumCuenta(cbu);
+	}
+	@Override
+	public boolean validarSaldo(int numCtaOrigen, float importe) {
+		// TODO Auto-generated method stub
+		return  cuentaDaoImpl.validarSaldo(numCtaOrigen, importe);
+	}
 
 }

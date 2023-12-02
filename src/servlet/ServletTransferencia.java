@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daoImpl.UsuarioDaoImp;
 import entidades.Cuenta;
 import entidades.Movimientos;
+import entidades.Personas;
 import negocioImpl.CuentaNegocioImpl;
 import negocioImpl.MovimientoNegocioImpl;
+import negocioImpl.UsuarioNegocioImpl;
 
 /**
  * Servlet implementation class ServletTransferencia
@@ -22,8 +25,18 @@ import negocioImpl.MovimientoNegocioImpl;
 @WebServlet("/ServletTransferencia")
 public class ServletTransferencia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	private MovimientoNegocioImpl movNeg = new MovimientoNegocioImpl();
 	private CuentaNegocioImpl cuentaNegocioImpl = new CuentaNegocioImpl();
+	private UsuarioNegocioImpl usuarioNegocioImpl = new UsuarioNegocioImpl();
+	
+	//Tipos de movimientos
+	public static final int ALTA_CUENTA = 1; 
+	public static final int ALTA_PRESTAMO = 2;
+	public static final int PAGO_PRESTAMO = 3;
+	public static final int TRANSFERENCIA = 4;
+	public static final int EXTRACCION = 5;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -82,6 +95,31 @@ public class ServletTransferencia extends HttpServlet {
 				break;
 			}
 		}
+		
+		if (request.getParameter("validarDatos") != null) {
+			String opcion = request.getParameter("validarDatos").toString();
+			Personas listPersonas = new Personas();
+			
+			switch (opcion) {
+				
+			case "Verificar datos" :
+				String cbuDestino = request.getParameter("CBUDestino");
+				listPersonas = usuarioNegocioImpl.getUsuarioPorCBU(cbuDestino);
+				
+				request.setAttribute("listPersonas", listPersonas);
+				System.out.println("persona: "+ listPersonas.getApellido_P());
+				
+				request.setAttribute("cuentas", cuentas);
+				request.setAttribute("datosOk", true);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
+				rd.forward(request, response);	
+				
+				break;
+			
+			}
+			
+		}
 	}
 
 	/**
@@ -93,15 +131,33 @@ public class ServletTransferencia extends HttpServlet {
 		String nombre = request.getParameter("usuario");
 		
 		if (request.getParameter("btnTransferir") != null) {
-			String ddlString = request.getParameter("ddlCuentaOrigen");
-			String cbuDestino = request.getParameter("CBUDestino");
+			int numCtaOrigen = Integer.parseInt(request.getParameter("ddlCuentaOrigen"));
+			int cbuDestino = Integer.parseInt(request.getParameter("CBUDestino"));
 			String detalle = request.getParameter("txtDetalle");
-			String importe = request.getParameter("txtImporte");
-			System.out.println(ddlString + " " + cbuDestino + " " +  detalle + " " + importe);
-			//update cuenta usuario inicial, y generar movimiento
+			float importe = Float.parseFloat(request.getParameter("txtImporte"));
 			
+			int numCtaDestino = cuentaNegocioImpl.obtenerNumCuenta(cbuDestino);
 			
-			//update cuenta usuario final, y generar movimiento
+			String msgString = "";
+			if(cuentaNegocioImpl.validarSaldo(numCtaOrigen, importe)) {
+				//acá se ejecuta el trigger actualizarSaldoCuentas despues de hacer el insert
+				boolean creado = movNeg.insertMovimientoPorUsuario(numCtaOrigen, numCtaDestino, detalle, importe, TRANSFERENCIA, true);
+				
+				if (creado) {
+					msgString = " Transferencia exitosa";
+					request.setAttribute("msgTransferencia", msgString);
+				}
+				else {
+					msgString = " Transferencia rechazada";
+					request.setAttribute("msgTransferencia", msgString);
+				}				
+			}
+			else {
+				msgString = " Saldo insuficiente para realizar operacion";
+				request.setAttribute("msgTransferencia", msgString);
+			}	
+			System.out.println(numCtaOrigen + " " + numCtaDestino + " " +  detalle + " " + importe);
+			
 			
 		}
 		
