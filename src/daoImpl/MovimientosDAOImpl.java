@@ -19,7 +19,7 @@ public class MovimientosDAOImpl implements IMovimientos{
 		
 		List<Movimientos> Movs = new ArrayList<Movimientos>();
 		conexion= new conexion();
-		String query= "SELECT m.*, tm.Descripcion_TM as Descripcion FROM movimientos m JOIN cuenta c ON m.NumCuenta_M = c.NumCuenta_Cta JOIN usuario u on c.IdUsuario_Cta = u.IdUsuario_U  JOIN tipoMovimientos TM on m.IdTipoMovimiento_M = TM.IdTipoMovimiento_TM  WHERE u.Usuario_U = '" + Nombre + "'";
+		String query= "SELECT m.*, tm.Descripcion_TM as Descripcion FROM movimientos m JOIN cuenta c ON m.NumCuentaDestino_Mo = c.NumCuenta_Cta JOIN usuario u on c.IdUsuario_Cta = u.IdUsuario_U  JOIN tipoMovimientos TM on m.IdTipoMovimiento_M = TM.IdTipoMovimiento_TM  WHERE u.Usuario_U = '" + Nombre + "'";
 
 		try {
 			conexion.Open();
@@ -28,10 +28,10 @@ public class MovimientosDAOImpl implements IMovimientos{
 			while(rs.next()) {
 				Movimientos movimiento = new Movimientos();
 				movimiento.setNumMovimiento_M(rs.getInt(1));
-				movimiento.setFechaMovimiento_M(rs.getDate(3));
-				movimiento.setDetalle_M(rs.getString(4));
-				movimiento.setImporte_M(rs.getFloat(5));
-				movimiento.setEstado_M(rs.getString(7));
+				movimiento.setFechaMovimiento_M(rs.getDate(4));
+				movimiento.setDetalle_M(rs.getString(5));
+				movimiento.setImporte_M(rs.getFloat(7));
+				movimiento.setEstado_M(rs.getString(8));
 				movimiento.getIdTipoMovimiento_M().setDescripcion_TM(rs.getString("Descripcion"));
                 //movimiento.getNumCuenta_M().setIdUsuario_Cta(rs.getInt(9));
                
@@ -52,7 +52,7 @@ public class MovimientosDAOImpl implements IMovimientos{
 	public List<Movimientos> getMovimientosPorCuenta(int codMovimiento) {
 		List<Movimientos> Movs = new ArrayList<Movimientos>();
 		conexion= new conexion();
-		String query= "SELECT m.* FROM movimientos m  WHERE m.NumCuenta_M =" + codMovimiento;
+		String query= "SELECT m.* FROM movimientos m  WHERE m.NumCuentaDestino_Mo =" + codMovimiento;
 
 		try {
 			conexion.Open();
