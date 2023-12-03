@@ -236,5 +236,40 @@ public class PrestamosDaoImpl implements IPrestamos{
 		}
 		return iscreate;
 	}*/
+	
+	/*
+	 Y LA NUEVA TABLA DE PRESTAMOS, SOLO SE ELIMINA EL PLAZOPAGOS:
+	 
+	 create table Prestamos
+(
+NumPrestamo_P int not null auto_increment,
+NumCuenta_P int not null,
+ImportePagar_P float (10,2) not null default 0,
+ImportePedido_P float (10,2) not null default 0,
+IdCuota_P int not null,
+Estado boolean not null default 1, -- ???
+constraint PK_PRESTAMOS primary key (NumPrestamo_P, NumCuenta_P),
+constraint FK_PRESTAMOS_CUENTA foreign key (NumCuenta_P)
+references Cuenta (NumCuenta_Cta),
+constraint FK_PRESTAMOS_CUOTAS foreign key (IdCuota_P)
+references Cuotas (IdCuota_C)
+);
+
+
+	PROCEDIMIENTO ALMACENADO PARA AGREGAR UN PRESTAMO A LA DB:
+	CREATE DEFINER=`root`@`localhost` PROCEDURE `SPAgregarPrestamo`(
+     IN NumCuenta INT,
+     IN ImpPagar DECIMAL(10,2),
+     IN impPedido DECIMAL(10,2),
+     IN IdCuota INT,
+     IN estado boolean
+)
+BEGIN
+    INSERT INTO Prestamos (NumCuenta_P, ImportePagar_P, ImportePedido_P, IdCuota_P, Estado) 
+    VALUES (NumCuenta, ImpPagar, impPedido, IdCuota, estado);
+END //
+
+DELIMITER ;
+	 */
 
 }
