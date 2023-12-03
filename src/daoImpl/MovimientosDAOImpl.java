@@ -22,7 +22,7 @@ public class MovimientosDAOImpl implements IMovimientos{
 		
 		List<Movimientos> Movs = new ArrayList<Movimientos>();
 		conexion= new conexion();
-		String query= "SELECT m.*, tm.Descripcion_TM as Descripcion FROM movimientos m JOIN cuenta c ON m.NumCuentaDestino_Mo = c.NumCuenta_Cta JOIN usuario u on c.IdUsuario_Cta = u.IdUsuario_U  JOIN tipoMovimientos TM on m.IdTipoMovimiento_M = TM.IdTipoMovimiento_TM  WHERE u.Usuario_U = '" + Nombre + "'";
+		String query= "SELECT m.*, tm.Descripcion_TM as Descripcion FROM movimientos m JOIN cuenta c ON m.NumCuentaDestino_Mo = c.NumCuenta_Cta or m.NumCuenta_M = c.NumCuenta_Cta  JOIN usuario u on c.IdUsuario_Cta = u.IdUsuario_U  JOIN tipoMovimientos TM on m.IdTipoMovimiento_M = TM.IdTipoMovimiento_TM  WHERE u.Usuario_U = '" + Nombre + "'";
 
 		try {
 			conexion.Open();

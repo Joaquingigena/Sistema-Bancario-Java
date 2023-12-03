@@ -67,7 +67,7 @@
                 <a class="nav-link" href="ServletInformes?Param=listarInformes&usuario=<%= nombre %>">Informes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Cerrar sesion</a>
+                <a class="nav-link" href="Login.jsp">Cerrar sesion</a>
               </li>
               <ion-icon name="person-circle-outline"></ion-icon> <b><%= nombre %></b>
             </ul>
