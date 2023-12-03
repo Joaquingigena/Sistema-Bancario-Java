@@ -31,10 +31,10 @@ public class MovimientosDAOImpl implements IMovimientos{
 			while(rs.next()) {
 				Movimientos movimiento = new Movimientos();
 				movimiento.setNumMovimiento_M(rs.getInt(1));
-				movimiento.setFechaMovimiento_M(rs.getDate(4));
+				movimiento.setFechaMovimiento_M(rs.getTimestamp(4));
 				movimiento.setDetalle_M(rs.getString(5));
 				movimiento.setImporte_M(rs.getFloat(7));
-				movimiento.setEstado_M(rs.getString(8));
+				movimiento.setEstado_M(rs.getBoolean(8));
 				movimiento.getIdTipoMovimiento_M().setDescripcion_TM(rs.getString("Descripcion"));
                 //movimiento.getNumCuenta_M().setIdUsuario_Cta(rs.getInt(9));
                
@@ -64,10 +64,10 @@ public class MovimientosDAOImpl implements IMovimientos{
 			while(rs.next()) {
 				Movimientos movimiento = new Movimientos();
 				movimiento.setNumMovimiento_M(rs.getInt(1));
-				movimiento.setFechaMovimiento_M(rs.getDate(3));
+				movimiento.setFechaMovimiento_M(rs.getTimestamp(3));
 				movimiento.setDetalle_M(rs.getString(4));
 				movimiento.setImporte_M(rs.getFloat(5));
-				movimiento.setEstado_M(rs.getString(7));           
+				movimiento.setEstado_M(rs.getBoolean(7));           
 			
                 Movs.add(movimiento);
 			}

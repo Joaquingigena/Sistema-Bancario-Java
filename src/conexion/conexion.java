@@ -12,7 +12,7 @@ public class conexion {
 	public static conexion instancia;
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
-	private String pass = "admin";//root
+	private String pass = "root";//root
 	private String dbName = "bd_tpint_grupo_6_lab4";
 
 	protected Connection connection;
@@ -61,6 +61,19 @@ public class conexion {
 			e.printStackTrace();
 		}
 		return save;
+	}
+	
+	public boolean executeDelete(String query) {
+	    Statement st;
+	    boolean deleted = true;
+	    try {
+	        st = connection.createStatement();
+	        st.executeUpdate(query);
+	    } catch(SQLException e) {
+	        deleted = false;
+	        e.printStackTrace();
+	    }
+	    return deleted;
 	}
 	
 	public boolean close()

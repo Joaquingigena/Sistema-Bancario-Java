@@ -1,23 +1,26 @@
 package entidades;
 
 import java.util.Date;
+import java.sql.Timestamp;
 
 public class Movimientos {
 	private int NumMovimiento_M;
 	private Cuenta NumCuenta_M;
-	private Date FechaMovimiento_M;
+	private Timestamp FechaMovimiento_M;
 	private String Detalle_M;
 	private float Importe_M;
 	private TipoMovimientos IdTipoMovimiento_M;
-	private String Estado_M;
+	private Cuenta NumCuentaDestino_Mo;
+	private boolean Estado_M;
 	
 	public Movimientos()
 	{
 		NumCuenta_M = new Cuenta();
 		IdTipoMovimiento_M = new TipoMovimientos();
+		NumCuentaDestino_Mo = new Cuenta();
 	}
-	public Movimientos (int numMovimiento, Cuenta numCuenta, Date fechaMovimiento, String detalle,
-			float importe, TipoMovimientos idTipoMovimiento, String estado)
+	public Movimientos (int numMovimiento, Cuenta numCuenta, Timestamp fechaMovimiento, String detalle,
+			float importe, TipoMovimientos idTipoMovimiento, Cuenta numCuentaDestino, boolean estado)
 	{
 		this.NumMovimiento_M=numMovimiento;
 		this.NumCuenta_M=numCuenta;
@@ -25,6 +28,7 @@ public class Movimientos {
 		this.Detalle_M=detalle;
 		this.Importe_M=importe;
 		this.IdTipoMovimiento_M=idTipoMovimiento;
+		this.NumCuentaDestino_Mo=numCuentaDestino;
 		this.Estado_M=estado;
 	}
 	public int getNumMovimiento_M() {
@@ -39,10 +43,10 @@ public class Movimientos {
 	public void setNumCuenta_M(Cuenta numCuenta_M) {
 		NumCuenta_M = numCuenta_M;
 	}
-	public Date getFechaMovimiento_M() {
+	public Timestamp getFechaMovimiento_M() {
 		return FechaMovimiento_M;
 	}
-	public void setFechaMovimiento_M(Date fechaMovimiento_M) {
+	public void setFechaMovimiento_M(Timestamp fechaMovimiento_M) {
 		FechaMovimiento_M = fechaMovimiento_M;
 	}
 	public String getDetalle_M() {
@@ -63,18 +67,26 @@ public class Movimientos {
 	public void setIdTipoMovimiento_M(TipoMovimientos idTipoMovimiento_M) {
 		IdTipoMovimiento_M = idTipoMovimiento_M;
 	}
-	public String getEstado_M() {
+	public boolean getEstado_M() {
 		return Estado_M;
 	}
-	public void setEstado_M(String estado_M) {
+	public void setEstado_M(boolean estado_M) {
 		Estado_M = estado_M;
+	}
+	public Cuenta getNumCuentaDestino_Mo() {
+		return NumCuentaDestino_Mo;
+	}
+	public void setNumCuentaDestino_Mo(Cuenta numCuentaDestino_Mo) {
+		NumCuentaDestino_Mo = numCuentaDestino_Mo;
 	}
 	@Override
 	public String toString() {
 		return "Movimientos [NumMovimiento_M=" + NumMovimiento_M + ", NumCuenta_M=" + NumCuenta_M
 				+ ", FechaMovimiento_M=" + FechaMovimiento_M + ", Detalle_M=" + Detalle_M + ", Importe_M=" + Importe_M
-				+ ", IdTipoMovimiento_M=" + IdTipoMovimiento_M + ", Estado_M=" + Estado_M + "]";
+				+ ", IdTipoMovimiento_M=" + IdTipoMovimiento_M + ", NumCuentaDestino_Mo=" + NumCuentaDestino_Mo
+				+ ", Estado_M=" + Estado_M + "]";
 	}
+
 	
 
 }
