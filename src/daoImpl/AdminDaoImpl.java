@@ -564,4 +564,19 @@ public class AdminDaoImpl implements IAdminDao {
 		}
 		return guardado;
 	}
+	
+	public boolean CompararCuilDNI(String Cuil, String DNI) {
+		
+		String DNIdelCuil = "";
+		int cant = Cuil.length();
+		
+		for(int i=2; i<cant-1;i++) {
+			DNIdelCuil += Cuil.charAt(i);
+		}
+		
+		if(DNIdelCuil.equals(DNI)) {
+			return true;
+		}
+		return false;
+	}
 }

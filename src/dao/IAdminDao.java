@@ -36,4 +36,6 @@ public interface IAdminDao {
 	public List<Usuario> filtrarListaUsuarios(String filtro);
 	
 	public boolean existePersona(String DNI);
+	
+	public boolean CompararCuilDNI(String Cuil, String DNI);
 }

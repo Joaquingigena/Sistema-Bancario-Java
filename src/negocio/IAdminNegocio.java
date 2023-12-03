@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.List;
 
+import Excepciones.CuilDNIException;
 import entidades.Localidades;
 import entidades.Personas;
 import entidades.Prestamos;
@@ -36,4 +37,6 @@ public interface IAdminNegocio {
 	public List<Usuario> filtrarListaUsuarios(String filtro);
 	
 	public boolean existePersona(String DNI);
+	
+	public boolean CompararCuilDNI(String Cuil, String DNI) throws CuilDNIException;
 }

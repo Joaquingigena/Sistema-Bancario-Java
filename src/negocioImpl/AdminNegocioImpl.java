@@ -3,6 +3,7 @@ package negocioImpl;
 
 import java.util.List;
 
+import Excepciones.CuilDNIException;
 import daoImpl.AdminDaoImpl;
 import entidades.Localidades;
 import entidades.Personas;
@@ -91,5 +92,12 @@ public class AdminNegocioImpl implements IAdminNegocio {
 	
 	public boolean existePersona(String DNI) {
 		return adminDao.existePersona(DNI);
+	}
+	
+	public boolean CompararCuilDNI(String Cuil, String DNI) throws CuilDNIException {
+		if(adminDao.CompararCuilDNI(Cuil, DNI)==false) {
+			throw new CuilDNIException();
+		}
+		return true;
 	}
 }

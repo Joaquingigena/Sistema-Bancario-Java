@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Excepciones.CuilDNIException;
 import daoImpl.AdminDaoImpl;
 import entidades.Localidades;
 import entidades.Personas;
@@ -206,6 +207,8 @@ public class ServletAdmin extends HttpServlet {
 		if(request.getParameter("btnRegistrarse")!=null) {
 			int estado=1;
 			AdminNegocioImpl AdminNeg = new AdminNegocioImpl();
+			String mensaje = "";
+			boolean alta = false;
 			
 			String dni = request.getParameter("dni").toString();
 			int localidad = Integer.parseInt(request.getParameter("localidad").trim());
@@ -222,8 +225,18 @@ public class ServletAdmin extends HttpServlet {
 			boolean solicitud = false;
 			int rol = 2;
 			
-			//Alta Usuario
-			boolean alta = adminNeg.AgregarPersona(dni, localidad, provincia, cuil, nombre, apellido, sexo, nacionalidad, fecha, direccion, mail, tel, solicitud);
+			try{
+				adminNeg.CompararCuilDNI(cuil, dni);
+				System.out.println("DNI y CUIL OK!");
+				//Alta Usuario
+				alta = adminNeg.AgregarPersona(dni, localidad, provincia, cuil, nombre, apellido, sexo, nacionalidad, fecha, direccion, mail, tel, solicitud);	
+			}
+			catch(CuilDNIException e) {
+				mensaje = e.getMessage();
+				System.out.println(e.getMessage());
+			}
+			
+			
 			boolean existe = false;
 			
 			if(alta==false) {
@@ -234,6 +247,8 @@ public class ServletAdmin extends HttpServlet {
 			request.setAttribute("EstadoAlta", alta);
 			
 			request.setAttribute("Existe", existe);
+			
+			request.setAttribute("Mensaje", mensaje);
 			
 			// Obtengo la lista de Localidades desde la capa Negocio.
 			List <Localidades> ListaLoc = null;

@@ -166,9 +166,12 @@
 			<div class="text-center mt-2">
 				<input type="submit" value="Registrarse" name="btnRegistrarse" class="btn btn-primary" ></input>
 			</div>
-			
+				
 			<%
-			if(request.getAttribute("EstadoAlta") !=null){
+			if(request.getAttribute("Mensaje") !=null){
+				String mens = "chacha";
+				if(request.getAttribute("Mensaje").toString() == ""){
+					
 				if((boolean)request.getAttribute("EstadoAlta")==true){
 				%>
 					<script type="text/javascript">
@@ -216,8 +219,20 @@
 	        				});		
 						</script>
 	            	<% }%>
-	            <%}%>	
+	            <%}%>
+	           <%} else{ %>	
+            	<script type="text/javascript">
+							Swal.fire({
+								  title: "No pudo registrarse",
+								  text: "El DNI no corresponde al CUIL ingresado.",
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+				</script>
+            
             <%}%>
+            <%} %>
         </form>
     </div>
 
