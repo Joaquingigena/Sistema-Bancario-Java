@@ -63,6 +63,19 @@ public class conexion {
 		return save;
 	}
 	
+	public boolean executeDelete(String query) {
+	    Statement st;
+	    boolean deleted = true;
+	    try {
+	        st = connection.createStatement();
+	        st.executeUpdate(query);
+	    } catch(SQLException e) {
+	        deleted = false;
+	        e.printStackTrace();
+	    }
+	    return deleted;
+	}
+	
 	public boolean close()
 	{
 		boolean ok=true;

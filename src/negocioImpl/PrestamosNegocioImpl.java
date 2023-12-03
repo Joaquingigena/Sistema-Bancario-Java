@@ -89,4 +89,23 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	public List<Cuotas> listarCuotas(){
 		return preDao.listarCuotas();
 	}
+	public boolean validarPrestamo(int numCuenta)
+	{
+		return preDao.validarPrestamo(numCuenta);
+	}
+	/*
+	@Override
+	public boolean insertPrestamo(int numCtaOrigen, float importePrestamo, float importe, int cuotas, boolean estado) {
+		// TODO Auto-generated method stub
+		return preDao.insertPrestamo(numCtaOrigen, importePrestamo, importe, cuotas, estado);
+	}
+	
+	public boolean altaPrestamo(int numPrestamo) {
+		// TODO Auto-generated method stub
+		return preDao.altaPrestamo(numPrestamo);
+	}
+	public boolean deletePrestamo(int numPrestamo) {
+		// TODO Auto-generated method stub
+		return preDao.deletePrestamo(numPrestamo);
+	}*/
 }

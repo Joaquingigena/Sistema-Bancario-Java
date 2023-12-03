@@ -2,10 +2,11 @@ package daoImpl;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.CallableStatement;
-
+import java.sql.Connection;
 
 import conexion.conexion;
 import dao.IPrestamos;
@@ -18,7 +19,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 	public List<Prestamos> listarPrestamos() {
 		List<Prestamos> lista = new ArrayList<Prestamos>();
 		conexion = new conexion();
-		String query = "SELECT P.NumPrestamo_P,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, P.PlazoPago, C.NumCuenta_Cta FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta";
+		String query = "SELECT P.NumPrestamo_P,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, Cu.CantidadCuota_C, P.Estado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta INNER JOIN Cuotas Cu on IdCuota_P = IdCuota_C";
 		
 		try {
 			conexion.Open();
@@ -31,7 +32,8 @@ public class PrestamosDaoImpl implements IPrestamos{
 				prestamos.getNumCuenta_P().setNumCuenta_Cta(rs.getInt(2));
 				prestamos.setImportePagar_P(rs.getFloat(3));
 				prestamos.setImportePedido_P(rs.getFloat(4));
-				prestamos.setPlazoPago_P(rs.getString(5));
+				prestamos.getIdCuota_P().setCantidadCuota_C(rs.getString(5));
+				prestamos.setEstado(rs.getBoolean(6));
 						
 				lista.add(prestamos);
 			}
@@ -85,7 +87,8 @@ public class PrestamosDaoImpl implements IPrestamos{
 				prestamos.getNumCuenta_P().setNumCuenta_Cta(rs.getInt(2));
 				prestamos.setImportePagar_P(rs.getFloat(3));
 				prestamos.setImportePedido_P(rs.getFloat(4));
-				prestamos.setPlazoPago_P(rs.getString(5));
+				prestamos.getIdCuota_P().setIdCuota_C(rs.getInt(5));
+				prestamos.setEstado(rs.getBoolean(6));
 						
 				lista.add(prestamos);
 			}
@@ -130,6 +133,108 @@ public class PrestamosDaoImpl implements IPrestamos{
 		return lista;
 	}
 	
+	/*public boolean validarPrestamo(int numCuenta)
+	{
+		ResultSet rs;
+		conexion = new conexion();
+		String consulta = "Select COUNT(NumCuenta_P) as NumeroC from Prestamos where NumCuenta_P = '"+ numCuenta + "' and Estado = 1";
+		boolean esValido= true;
+		int num=0;
+		try
+		{
+			conexion.Open();
+			rs=conexion.query(consulta);
+			while(rs.next())
+			{
+				num=rs.getInt("NumeroC");
+			}
+			System.out.println("numero de prestamos en la misma cuenta: "+ num);
+			if(num<=1)
+			{
+				esValido=true;
+			}
+			else
+			{
+				esValido=false;
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			conexion.close();
+		}
+		return esValido;
+	}
 	
+	public boolean insertPrestamo(int numCtaOrigen, float importePrestamo, float importe, int cuotas, boolean estado)
+	{
+		conexion = new conexion();
+		boolean isPrestado=true;
+		try
+		{
+			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?");
+			cst.setInt(1,numCtaOrigen);
+			cst.setFloat(2, importePrestamo);
+			cst.setFloat(3,importe);
+			cst.setInt(4, cuotas);
+			cst.setBoolean(5, estado);
+		}
+		catch (Exception e)
+		{
+			isPrestado=false;
+			e.printStackTrace();
+		}
+		finally
+		{
+			conexion.close();
+		}
+		return isPrestado;
+	}
+	@Override
+	public boolean altaPrestamo(int numPrestamo) {
+		ResultSet rs;
+		conexion= new conexion();
+		String consulta = "UPDATE Prestamos set Estado = 1 where NumPrestamo_P= '" + numPrestamo + "'";
+		boolean iscreate= false;
+		try
+		{
+			conexion.Open();
+			iscreate=conexion.execute(consulta);
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			conexion.close();
+		}
+		return iscreate;
+	}
+	public boolean deletePrestamo(int numPrestamo) {
+		ResultSet rs;
+		conexion = new conexion();
+		String consulta = "DELETE from Prestamos where NumPrestamo_P= '" + numPrestamo + "'";
+		boolean iscreate= false;
+		try
+		{
+			conexion.Open();
+			iscreate=conexion.executeDelete(consulta);
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			conexion.close();
+		}
+		return iscreate;
+	}*/
 
 }

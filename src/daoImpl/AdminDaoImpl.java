@@ -66,7 +66,7 @@ public class AdminDaoImpl implements IAdminDao {
 	public List<Prestamos> listarPrestamos() {
 		List<Prestamos> lista = new ArrayList<Prestamos>();
 		conexion = new conexion();
-		String query = "SELECT P.NumPrestamo_P,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, P.PlazoPago, C.NumCuenta_Cta FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta";
+		String query = "SELECT P.NumPrestamo_P,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, P.IdCuota_P, P.Estado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta";
 		
 		try {
 			conexion.Open();
@@ -79,7 +79,8 @@ public class AdminDaoImpl implements IAdminDao {
 				prestamos.getNumCuenta_P().setNumCuenta_Cta(rs.getInt(2));
 				prestamos.setImportePagar_P(rs.getFloat(3));
 				prestamos.setImportePedido_P(rs.getFloat(4));
-				prestamos.setPlazoPago_P(rs.getString(5));
+				prestamos.getIdCuota_P().setIdCuota_C(rs.getInt(5));
+				prestamos.setEstado(rs.getBoolean(6));
 						
 				lista.add(prestamos);
 			}

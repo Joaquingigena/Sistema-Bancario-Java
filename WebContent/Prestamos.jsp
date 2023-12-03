@@ -101,7 +101,7 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
 					<h4>Solicitud de prestamo</h4>
 					<div id="MontoRequerido" style="display:flex; margin:0; margin-top: 20px; align-items:center;">
 					  <h5>Monto requerido: $</h5>
-					  <input type="text" class="form-control" id="monto" name ="monto" aria-label="Username" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
+					  <input type="text" class="form-control" id="monto" name ="monto"  aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
 					</div>	
 				<div id=CantCuotas style="margin-top:50px; display:flex; align-items:center;">
 					<h5>Cantidad de cuotas: </h5>
@@ -128,7 +128,7 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
 
 
 					<div id="btnSolicitar" style="margin-top:20px; display:flex; justify-content:end; width:100%">
-						<input type="submit" value="Solicitar prestamos" name="btnSolicitarPrestamo" class="btn btn-primary" ></input>
+						<input type="submit" value="Solicitar prestamos" name="btnSolicitarPrestamo" class="btn btn-primary" onclick="return confirm('¿Está seguro de pedir este prestamo?')"></input>
 					</div>
 				</div>
 				
