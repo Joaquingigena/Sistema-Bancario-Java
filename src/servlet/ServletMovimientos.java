@@ -89,6 +89,7 @@ public class ServletMovimientos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			case "pagos":
+				request.setAttribute("cuentas" , cuentas);	
 				dispatcher = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario" + nombre);
 				dispatcher.forward(request, response);
 				break;

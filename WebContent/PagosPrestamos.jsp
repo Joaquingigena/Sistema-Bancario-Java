@@ -1,3 +1,7 @@
+<%@page import="entidades.Cuenta"%>
+<%@page import="entidades.PagoCuotasPrestamo"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,6 +24,9 @@
 </head>
 <%
 	String nombre = (String)request.getParameter("usuario");
+
+	ArrayList <Cuenta> listaCuentas = null;
+	if (request.getAttribute("cuentas")!=null) listaCuentas=(ArrayList <Cuenta>)request.getAttribute("cuentas");
 
 %>
 <body>
@@ -90,65 +97,62 @@
 				<form action="">
 				
 					<h4>Pago de prestamo</h4>
+			<form action="ServletMovimientos" method="post">
 				<div id="CuentaPrestamo" style="display:flex; margin-top: 20px; align-items:center">
 				  <h5>Cuenta: </h5>
-				  <select style="height: 40px; width:100%; margin-left: 15px" class="form-select" aria-label="Default select example">
-					  <option selected>Seleccione una cuenta</option>
-					  <option value="1">Cuenta 1</option>
-					  <option value="2">Cuenta 2</option>
-					  <option value="3">Cuenta 3</option>
-				  </select>
+				  <select id="cuentas" name="ddlCuenta" class="form-select" required>
+                        <% if (listaCuentas != null)
+                            for (Cuenta cuenta : listaCuentas) { %>
+                                <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
+                        <% } %>
+                    </select>
+                    <% 
+                    %>
 				</div>
-<div id="codigoPago" style="margin-top:20px; display:flex; align-items:center">
-					<h5>Codigo del Pago</h5>
-					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+		<div id="codigoPago" style="margin-top:20px; display:flex; align-items:center">
+							<h5>Codigo del Pago</h5>
+							<div style="width: 200px">
+							<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+							</div>
+						</div>
+		<div id="numCuota" style="margin-top:20px; display:flex; align-items:center">
+							<h5>Cuota N° </h5>
+							<div style="width: 200px">
+							<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+							</div>
+						</div>	
+						<div id="MontoAPagar" style="margin-top:20px; display:flex; align-items:center">
+							<h5>Monto a Pagar: $ </h5>
+							<div style="width: 200px">
+							<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+							</div>
+						</div>	 
+							 
+		<div id="FechaPago" style="margin-top:20px; display:flex; align-items:center">
+							<h5>Fecha del Pago </h5>
+							<div style="width: 200px">
+							<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
+							</div>
+						</div>	 
+						<div>	 
+		
+		
+							<div id="btnPagar" style="margin-top:20px; display:flex; justify-content:end; width:100%">
+								<button type="button" class="btn btn-success" style="margin-right: 30px">Pagar</button>
+							</div>
+						</div>
+						
+						</form>
+		
+						
 					</div>
+					<div>
+						
+						
+					</div>
+					
 				</div>
-<div id="NumCuenta" style="margin-top:20px; display:flex; align-items:center">
-					<h5>Numero de Cuenta </h5>
-					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-					</div>
-				</div>
-<div id="numCuota" style="margin-top:20px; display:flex; align-items:center">
-					<h5>Cuota N° </h5>
-					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-					</div>
-				</div>	
-				<div id="MontoAPagar" style="margin-top:20px; display:flex; align-items:center">
-					<h5>Monto a Pagar: $ </h5>
-					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-					</div>
-				</div>	 
-					 
-<div id="FechaPago" style="margin-top:20px; display:flex; align-items:center">
-					<h5>Fecha del Pago </h5>
-					<div style="width: 200px">
-					<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-					</div>
-				</div>	 
-				<div>	 
-
-
-					<div id="btnPagar" style="margin-top:20px; display:flex; justify-content:end; width:100%">
-						<button type="button" class="btn btn-success" style="margin-right: 30px">Pagar</button>
-					</div>
-				</div>
-				
-				</form>
-
-				
 			</div>
-			<div>
-				
-				
-			</div>
-			
-		</div>
-	</div>
 	
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
