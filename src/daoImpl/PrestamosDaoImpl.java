@@ -175,14 +175,13 @@ public class PrestamosDaoImpl implements IPrestamos{
 		boolean isPrestado=true;
 		try
 		{
-			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?,?,?)");
+			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?,?)");
 			cst.setInt(1,numCtaOrigen);
-			cst.setInt(2,7);
-			cst.setFloat(3, importePrestamo);
-			cst.setFloat(4,importe);
-			cst.setString(5, plazo);
-			cst.setInt(6, cuotas);
-			cst.setBoolean(7, estado);
+			cst.setFloat(2, importePrestamo);
+			cst.setFloat(3,importe);
+			cst.setString(4, plazo);
+			cst.setInt(5, cuotas);
+			cst.setBoolean(6, estado);
 			cst.execute();
 		}
 		catch (Exception e)

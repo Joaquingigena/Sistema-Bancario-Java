@@ -156,6 +156,15 @@ public class ServletPrestamo extends HttpServlet {
 				System.out.println("ERROOOOOOOOOR!!!!!");
 			}
 			
+			List<Cuenta> cuentas = new ArrayList<Cuenta>();
+			cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
+			List<Cuotas> cuo = new ArrayList<Cuotas>();
+			cuo = preNeg.listarCuotas();
+			
+			request.setAttribute("usuario", nombre);
+			request.setAttribute("cuentas", cuentas);
+			request.setAttribute("cuotas", cuo);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/Prestamos.jsp");
 			rd.forward(request, response);
 			

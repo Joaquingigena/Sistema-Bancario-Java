@@ -143,7 +143,8 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
                     <input type="hidden" name="IDusuario" value="<%=user.getIdUsuario_U()%>">
                     
 					</div>
-
+					
+					<input type="hidden" name="usuario" value="<%= nombre %>">
 
 					<div id="btnSolicitar" style="margin-top:20px; display:flex; justify-content:end; width:100%">
 						<input type="submit" value="Solicitar prestamos" name="btnSolicitarPrestamo" class="btn btn-primary" onclick="return confirm('¿Está seguro de pedir este prestamo?')"></input>
