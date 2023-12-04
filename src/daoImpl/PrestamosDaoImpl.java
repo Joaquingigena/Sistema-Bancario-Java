@@ -242,6 +242,30 @@ public class PrestamosDaoImpl implements IPrestamos{
 		return iscreate;
 	}
 	
+	public boolean aceptarPrestamo(int numCuenta, int idUsuario, float importe) {
+		
+		ResultSet rs;
+		conexion= new conexion();
+		String consulta = "UPDATE cuenta set Saldo_Cta = Saldo_Cta +'"+importe+"' where NumCuenta_Cta= '" + numCuenta + "'";
+		boolean iscreate= false;
+		try
+		{
+			conexion.Open();
+			iscreate=conexion.execute(consulta);
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			conexion.close();
+		}
+		return iscreate;
+
+	}
+	
 	
 	/*
 	 Y LA NUEVA TABLA DE PRESTAMOS, SOLO SE ELIMINA EL PLAZOPAGOS:

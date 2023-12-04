@@ -108,4 +108,8 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 		// TODO Auto-generated method stub
 		return preDao.deletePrestamo(numPrestamo);
 	}
+	
+	public boolean aceptarPrestamo(int numCuenta, int idUsuario, float importe) {
+		return preDao.aceptarPrestamo(numCuenta, idUsuario, importe);
+	}
 }

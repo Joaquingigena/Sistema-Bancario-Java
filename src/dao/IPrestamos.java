@@ -15,4 +15,5 @@ public interface IPrestamos {
 	public boolean validarPrestamo(int numCuenta);
 	boolean altaPrestamo(int numPrestamo);
 	public boolean deletePrestamo(int numPrestamo);
+	public boolean aceptarPrestamo(int numCuenta, int idUsuario, float importe);
 }

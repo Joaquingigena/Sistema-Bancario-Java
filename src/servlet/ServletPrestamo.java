@@ -110,15 +110,24 @@ public class ServletPrestamo extends HttpServlet {
 		
 		if(request.getParameter("btnAceptarPrestamo") != null) {
 
-			int numPrestamo =Integer.parseInt(request.getParameter("numPrestamo"));
-
-			if(preNeg.altaPrestamo(numPrestamo)){
+			int numPrestamo =16;//Integer.parseInt(request.getParameter("txtPrestamo"));
+			int numCuenta = Integer.parseInt(request.getParameter("txtCuenta").trim());
+			int idUsuario = 7; //Integer.parseInt(request.getParameter("txtCliente"));
+			float importe = 1500; //Float.parseFloat(request.getParameter("txtImporte"));
+			
+			
+			
+			/*if(preNeg.altaPrestamo(numPrestamo)){
 				request.setAttribute("isCreated", true);
 			}else {
 				request.setAttribute("isCreated", false);
-			}
-
-			response.sendRedirect("/TPIntegrador_Grupo_6/ServletPrestamo?Param=listarPrestamos");
+			}*/
+			
+			preNeg.aceptarPrestamo(numCuenta, idUsuario, importe);
+			
+			request.setAttribute("cargarPrestamos" ,preNeg.listarPrestamos());	
+			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
+			dispatcher.forward(request, response);
 		}
 		/*if(request.getParameter("btnRechazarPrestamo") != null) {
 

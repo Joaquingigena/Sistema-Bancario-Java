@@ -207,6 +207,7 @@
 
         <div class="row">
             <div class="col-8">
+            <form action="ServletPrestamo" method="post">
                 <table class="table" id="tablaPrestamos">
                     <thead>
                       <tr>
@@ -221,6 +222,7 @@
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
+                    
                     
                       <%
                       if(listaPrestamos!=null){                   	  
@@ -263,14 +265,16 @@
 							        	Cliente
 							        	<input type="text" name="txtCliente" value="<%=ID%>" disabled>
 							        	Cuenta
-							        	<input type="text" name="txtCuenta" value="<%=cuenta%>" disabled>
+							        	<input type="text" name="txtCuenta" value="<%=cuenta%>">
+							        	Importe
+							        	<input type="number" name="txtImporte" value="<%=p.getImportePedido_P()%>" disabled>
 							        	
 							        </div>
 							        
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-							        <button name="btnAceptarSPrestamo" type="submit" class="btn btn-primary">Guardar</button>
+							        <button name="btnAceptarPrestamo" type="submit" class="btn btn-primary">Guardar</button>
 							      </div>
 							    </div>
 							  </div>
@@ -371,6 +375,7 @@
 						<%} %>
                     </tbody>
                   </table>
+                 </form>
           <div class="card-footer">
           <nav aria-label="Page navigation example">
             <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">  
