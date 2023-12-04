@@ -38,6 +38,8 @@ public class UsuarioNegocioImpl implements IUsuarioNegocio{
 		return user;
 	}
 	
-	
+	public int idUsuario(String nombre) {
+		return uDaoImp.ObtenerIdUsuario(nombre);
+	}
 	
 }

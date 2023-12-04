@@ -13,4 +13,6 @@ public interface IUsuarioNegocio {
 	public Personas getUsuarioPorCBU(String cbu);
 	
 	public Usuario datosUsuario(String usuario, String pass);
+	
+	public int idUsuario (String nombre);
 }

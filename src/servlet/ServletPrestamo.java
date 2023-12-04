@@ -29,6 +29,7 @@ public class ServletPrestamo extends HttpServlet {
 	private PrestamosNegocioImpl preNeg = new PrestamosNegocioImpl();
 	private CuentaNegocioImpl cuentaNegocioImpl = new CuentaNegocioImpl();
 	private MovimientoNegocioImpl movNeg = new MovimientoNegocioImpl();
+	private UsuarioNegocioImpl userImpl = new UsuarioNegocioImpl();
 	
 	//Tipos de movimientos
 	public static final int ALTA_CUENTA = 1; 
@@ -67,6 +68,10 @@ public class ServletPrestamo extends HttpServlet {
 	case "prestamos":
 		request.setAttribute("cuentas", cuentas);
 		request.setAttribute("cuotas", cuotas);
+		
+		int id = userImpl.idUsuario(nombre);
+		request.setAttribute("idUser", id);
+		
 		dispatcher = request.getRequestDispatcher("/Prestamos.jsp?usuario" + nombre);
 		dispatcher.forward(request, response);
 		break;
@@ -110,12 +115,17 @@ public class ServletPrestamo extends HttpServlet {
 		
 		if(request.getParameter("btnAceptarPrestamo") != null) {
 
-			int numPrestamo =16;//Integer.parseInt(request.getParameter("txtPrestamo"));
-			int numCuenta = Integer.parseInt(request.getParameter("txtCuenta").trim());
-			int idUsuario = 7; //Integer.parseInt(request.getParameter("txtCliente"));
-			float importe = 1500; //Float.parseFloat(request.getParameter("txtImporte"));
+			int numPrestamo = Integer.parseInt(request.getParameter("txtPrestamo"));
+			int numCuenta = Integer.parseInt(request.getParameter("txtCuenta1"));
+			int idUsuario = Integer.parseInt(request.getParameter("txtCliente"));
+			float importe = Float.parseFloat(request.getParameter("txtImporte"));
 			
-			
+			// Se utilizó para probar resultados por consola --------------------
+			System.out.println("NUMERO DE PRESTAMO: " + numPrestamo);
+			/*System.out.println("NUMERO DE CUENTA: " + numCuenta);
+			System.out.println("NUMERO DE USUARIO: " + idUsuario);
+			System.out.println("IMPORTE: " + importe);*/
+			//--------------------------------------------------------------------
 			
 			/*if(preNeg.altaPrestamo(numPrestamo)){
 				request.setAttribute("isCreated", true);
@@ -150,13 +160,16 @@ public class ServletPrestamo extends HttpServlet {
 			user = adminNeg.obtenerUsuariov2(nombre);
 			request.setAttribute("Usuario", user);
 			
-			int idUser = 7; //Integer.parseInt(request.getParameter("IDusuario"));
+			int idUser = Integer.parseInt(request.getParameter("IDusuario"));
 			int numCtaOrigen = Integer.parseInt(request.getParameter("ddlCuentaOrigen"));
 			int cuotas = Integer.parseInt(request.getParameter("ddlCuotas"));
-			float importe = Float.parseFloat(request.getParameter("monto").trim());
-			float importePrestamo = 1500; //Float.parseFloat(request.getParameter("montoApagar").toString());
-			String plazo = "24";
+			float importe = Float.parseFloat(request.getParameter("MontoTotal").toString());
+			float importePrestamo = Float.parseFloat(request.getParameter("monto").toString());
+			String plazo = request.getParameter("plazo").toString() + " Meses";//"24";
 			boolean estado = false;
+			
+			System.out.println("ID USUARIO:::: "+idUser);
+			System.out.println("IMPORTE PRESTAMO:::: "+importePrestamo);
 			
 			if(preNeg.insertPrestamo(numCtaOrigen, idUser, importe, importePrestamo, plazo, cuotas, estado)) {
 				System.out.println("Solicitud exitosa!!");

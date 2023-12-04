@@ -261,14 +261,19 @@
 							      	</div>
 							        <div style="margin-left: 10%;display:flex;flex-direction:column;">
 							        	Nº Préstamo
-							        	<input type="text" name="txtPrestamo" value="<%=p.getNumPrestamo_P()%>" disabled>
+							        	<input type="text" name="Pres" value="<%=p.getNumPrestamo_P()%>" disabled>
 							        	Cliente
-							        	<input type="text" name="txtCliente" value="<%=ID%>" disabled>
+							        	<input type="text" name="Cli" value="<%=ID%>" disabled>
 							        	Cuenta
-							        	<input type="text" name="txtCuenta" value="<%=cuenta%>">
+							        	<input type="text" name="Cue" value="<%=p.getNumCuenta_P().getNumCuenta_Cta()%>" disabled>
 							        	Importe
-							        	<input type="number" name="txtImporte" value="<%=p.getImportePedido_P()%>" disabled>
+							        	<input type="number" name="Imp" value="<%=p.getImportePedido_P()%>" disabled>
 							        	
+							        	<!-- SE UTILIZA PARA ENVIAR LOS DATOS AL SERVLET -->
+							        	<input type="hidden" name="txtPrestamo" value="<%=p.getNumPrestamo_P()%>">
+							        	<input type="hidden" name="txtCliente" value="<%=ID%>">
+							        	<input type="hidden" name="txtCuenta1" value="<%=p.getNumCuenta_P().getNumCuenta_Cta()%>">
+							        	<input type="hidden" name="txtImporte" value="<%=p.getImportePedido_P()%>">
 							        </div>
 							        
 							      </div>
