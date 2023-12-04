@@ -211,6 +211,7 @@
                     <thead>
                       <tr>
                         <th scope="col">N° Prestamo</th>
+                        <th scope="col">N° Cliente</th>
                         <th scope="col">N° Cuenta</th>
                         <th scope="col">Importe a pagar</th>
                         <th scope="col">Importe pedido</th>
@@ -226,7 +227,8 @@
                     	  for(Prestamos p : listaPrestamos){
                     		  %>
                     		 <tr data-nombre="<%= p.getNumPrestamo_P() %>">
-		                        <td><%= p.getNumPrestamo_P() %></td>
+		                        <td><%=p.getNumPrestamo_P() %></td>
+		                        <td><%=p.getNumCliente() %></td>
 		                        <td><%=p.getNumCuenta_P().getNumCuenta_Cta() %></td>
 		                        <td><%=p.getImportePagar_P() %></td>
 		                        <td><%=p.getImportePedido_P() %> </td>

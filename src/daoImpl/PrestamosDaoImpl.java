@@ -19,7 +19,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 	public List<Prestamos> listarPrestamos() {
 		List<Prestamos> lista = new ArrayList<Prestamos>();
 		conexion = new conexion();
-		String query = "SELECT P.NumPrestamo_P,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, Cu.CantidadCuota_C, P.Estado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta INNER JOIN Cuotas Cu on IdCuota_P = IdCuota_C";
+		String query = "SELECT P.NumPrestamo_P, IDusuario_P ,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, Cu.CantidadCuota_C, P.Estado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta INNER JOIN Cuotas Cu on IdCuota_P = IdCuota_C";
 		
 		try {
 			conexion.Open();
@@ -29,11 +29,12 @@ public class PrestamosDaoImpl implements IPrestamos{
 				Prestamos prestamos= new Prestamos();
 				
 				prestamos.setNumPrestamo_P(rs.getInt(1));
-				prestamos.getNumCuenta_P().setNumCuenta_Cta(rs.getInt(2));
-				prestamos.setImportePagar_P(rs.getFloat(3));
-				prestamos.setImportePedido_P(rs.getFloat(4));
-				prestamos.getIdCuota_P().setCantidadCuota_C(rs.getString(5));
-				prestamos.setEstado(rs.getBoolean(6));
+				prestamos.setNumCliente_P(rs.getInt(2));
+				prestamos.getNumCuenta_P().setNumCuenta_Cta(rs.getInt(3));
+				prestamos.setImportePagar_P(rs.getFloat(4));
+				prestamos.setImportePedido_P(rs.getFloat(5));
+				prestamos.getIdCuota_P().setCantidadCuota_C(rs.getString(6));
+				prestamos.setEstado(rs.getBoolean(7));
 						
 				lista.add(prestamos);
 			}
@@ -175,13 +176,14 @@ public class PrestamosDaoImpl implements IPrestamos{
 		boolean isPrestado=true;
 		try
 		{
-			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?,?)");
+			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?,?,?)");
 			cst.setInt(1,numCtaOrigen);
-			cst.setFloat(2, importePrestamo);
-			cst.setFloat(3,importe);
-			cst.setString(4, plazo);
-			cst.setInt(5, cuotas);
-			cst.setBoolean(6, estado);
+			cst.setInt(2,idUsuario);
+			cst.setFloat(3, importePrestamo);
+			cst.setFloat(4,importe);
+			cst.setString(5, plazo);
+			cst.setInt(6, cuotas);
+			cst.setBoolean(7, estado);
 			cst.execute();
 		}
 		catch (Exception e)

@@ -2,6 +2,7 @@ package entidades;
 
 public class Prestamos {
 	private int NumPrestamo_P;
+	private int NumCliente_P;
 	private Cuenta NumCuenta_P;
 	private float ImportePagar_P;
 	private float ImportePedido_P;
@@ -13,10 +14,11 @@ public class Prestamos {
 		NumCuenta_P = new Cuenta();
 		IdCuota_P = new Cuotas();
 	}
-	public Prestamos(int numPrestamo, Cuenta numCuenta, float importePagar, float importePedido,
+	public Prestamos(int numPrestamo, int numCliente, Cuenta numCuenta, float importePagar, float importePedido,
 			Cuotas idCuota, boolean estado)
 	{
 		this.NumPrestamo_P=numPrestamo;
+		this.NumCliente_P = numCliente; 
 		this.NumCuenta_P=numCuenta;
 		this.ImportePagar_P=importePagar;
 		this.ImportePedido_P=importePedido;
@@ -29,6 +31,12 @@ public class Prestamos {
 	}
 	public void setNumPrestamo_P(int numPrestamo_P) {
 		NumPrestamo_P = numPrestamo_P;
+	}
+	public int getNumCliente() {
+		return NumCliente_P;
+	}
+	public void setNumCliente_P(int numCliente_P) {
+		NumCliente_P = numCliente_P;
 	}
 	public Cuenta getNumCuenta_P() {
 		return NumCuenta_P;
@@ -62,7 +70,7 @@ public class Prestamos {
 	}
 	@Override
 	public String toString() {
-		return "Prestamos [NumPrestamo_P=" + NumPrestamo_P + ", NumCuenta_P=" + NumCuenta_P + ", ImportePagar_P="
+		return "Prestamos [NumPrestamo_P=" + NumPrestamo_P + ",NumCliente_P="+NumCliente_P + ", NumCuenta_P=" + NumCuenta_P + ", ImportePagar_P="
 				+ ImportePagar_P + ", ImportePedido_P=" + ImportePedido_P + "IdCuota_P=" + IdCuota_P + ", Estado=" + Estado + "]";
 	}
 	
