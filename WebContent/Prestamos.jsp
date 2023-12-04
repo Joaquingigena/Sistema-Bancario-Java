@@ -126,9 +126,9 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
 					<input type="number" class="form-control" id="montoApagar" name ="montoApagar" disabled aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
 				</div>
 				
-				<div id=ImporteMes style="display:flex; margin-top: 20px; align-items:center"> 
+				<div id=ImporteTotal style="display:flex; margin-top: 20px; align-items:center"> 
 					<h5>Total a pagar: $</h5>
-					<input type="number" class="form-control" id="MontoTotal" name ="MontoTotal" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
+					<input type="number" class="form-control" disabled id="Total" name ="Total" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
 				</div>
 							 
 				<div>	 
@@ -150,6 +150,7 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
 					
 					<input type="hidden" name="usuario" value="<%= nombre %>">
 					<input type="hidden" id="plazo" name="plazo" value="">
+					<input type="hidden" id="MontoTotal" name="MontoTotal" value="">
 
 					<div id="btnSolicitar" style="margin-top:20px; display:flex; justify-content:end; width:100%">
 						<input type="submit" value="Solicitar prestamos" name="btnSolicitarPrestamo" class="btn btn-primary" onclick="return confirm('¿Está seguro de pedir este prestamo?')"></input>
@@ -176,7 +177,7 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
                         	
                         	var montoSolicitado = document.getElementById('monto').value;
                         	var montoApagar = document.getElementById('montoApagar');
-                        	var MontoTotal = document.getElementById('MontoTotal');
+                        	var Total = document.getElementById('Total');
                         	var plazo = document.getElementById('plazo');
                         	var interes = 1;
                         	var seleccion = document.getElementById("cuotas");
@@ -210,7 +211,8 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
                         		var m = montoSolicitado*interes/cuotas;
                         		montoApagar.value = m.toFixed(2);
                         		var total = m*cuotas;
-                        		MontoTotal.value = total.toFixed(2);
+                        		Total.value = total.toFixed(2);
+                        		document.getElementById('MontoTotal').value = document.getElementById('Total').value;
                         		plazo.value = cuotas;
                         	}
                         	else{
