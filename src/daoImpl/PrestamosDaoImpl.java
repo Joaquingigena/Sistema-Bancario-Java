@@ -246,7 +246,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 		
 		ResultSet rs;
 		conexion= new conexion();
-		String consulta = "UPDATE cuenta set Saldo_Cta = Saldo_Cta +'"+importe+"' where NumCuenta_Cta= '" + numCuenta + "'";
+		String consulta = "UPDATE Prestamos set Estado = 1 where NumCuenta_P= '" + numCuenta + "'";
 		boolean iscreate= false;
 		try
 		{
