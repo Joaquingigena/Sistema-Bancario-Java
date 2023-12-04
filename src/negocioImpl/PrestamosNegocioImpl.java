@@ -93,11 +93,11 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	{
 		return preDao.validarPrestamo(numCuenta);
 	}
-	/*
+	
 	@Override
-	public boolean insertPrestamo(int numCtaOrigen, float importePrestamo, float importe, int cuotas, boolean estado) {
+	public boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo, int cuotas, boolean estado) {
 		// TODO Auto-generated method stub
-		return preDao.insertPrestamo(numCtaOrigen, importePrestamo, importe, cuotas, estado);
+		return preDao.insertPrestamo(numCtaOrigen, idUsuario, importePrestamo, importe, plazo, cuotas, estado);
 	}
 	
 	public boolean altaPrestamo(int numPrestamo) {
@@ -107,5 +107,5 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	public boolean deletePrestamo(int numPrestamo) {
 		// TODO Auto-generated method stub
 		return preDao.deletePrestamo(numPrestamo);
-	}*/
+	}
 }

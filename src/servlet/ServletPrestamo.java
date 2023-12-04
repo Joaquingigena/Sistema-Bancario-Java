@@ -15,7 +15,9 @@ import org.apache.jasper.tagplugins.jstl.core.If;
 
 import entidades.Cuenta;
 import entidades.Cuotas;
+import entidades.Usuario;
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
+import negocioImpl.AdminNegocioImpl;
 import negocioImpl.CuentaNegocioImpl;
 import negocioImpl.MovimientoNegocioImpl;
 import negocioImpl.PrestamosNegocioImpl;
@@ -42,6 +44,9 @@ public class ServletPrestamo extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		
+		System.out.println(request.getAttribute("Usuario"));
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String nombre = request.getParameter("usuario");
@@ -126,17 +131,35 @@ public class ServletPrestamo extends HttpServlet {
 			}
 
 			response.sendRedirect("/TPIntegrador_Grupo_6/ServletPrestamo?Param=listarPrestamos");
-		}
+		}*/
 		
 		
 		if (request.getParameter("btnSolicitarPrestamo") != null) {
+			Usuario user = new Usuario();
+			AdminNegocioImpl adminNeg = new AdminNegocioImpl();
+			
+			user = adminNeg.obtenerUsuariov2(nombre);
+			request.setAttribute("Usuario", user);
+			
+			int idUser = 7; //Integer.parseInt(request.getParameter("IDusuario"));
 			int numCtaOrigen = Integer.parseInt(request.getParameter("ddlCuentaOrigen"));
 			int cuotas = Integer.parseInt(request.getParameter("ddlCuotas"));
-			float importe = Float.parseFloat(request.getParameter("monto"));
-			float importePrestamo = (float) (importe*0.70);
+			float importe = Float.parseFloat(request.getParameter("monto").trim());
+			float importePrestamo = 1500; //Float.parseFloat(request.getParameter("montoApagar").toString());
+			String plazo = "24";
+			boolean estado = false;
 			
+			if(preNeg.insertPrestamo(numCtaOrigen, idUser, importe, importePrestamo, plazo, cuotas, estado)) {
+				System.out.println("Solicitud exitosa!!");
+			}
+			else {
+				System.out.println("ERROOOOOOOOOR!!!!!");
+			}
 			
-			String msgString = "";
+			RequestDispatcher rd = request.getRequestDispatcher("/Prestamos.jsp");
+			rd.forward(request, response);
+			
+			/*String msgString = "";
 			if(preNeg.validarPrestamo(numCtaOrigen)) {
 				//acá se ejecuta el trigger actualizarSaldoCuentas despues de hacer el insert
 				boolean prestado = preNeg.insertPrestamo(numCtaOrigen,importePrestamo,importe,cuotas,false);
@@ -149,15 +172,17 @@ public class ServletPrestamo extends HttpServlet {
 			else {
 				msgString = " No puede tener mas de un prestamo activo en la misma cuenta";
 				request.setAttribute("msgTransferencia", msgString);
-			}	
+			}*/	
 			
 			
 		}
+		
+		
 		List<Cuenta> cuentas = new ArrayList<Cuenta>();
 		cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
 		request.setAttribute("cuentas", cuentas);
 		dispatcher = request.getRequestDispatcher("/Prestamos.jsp?usuario" + nombre);
-		dispatcher.forward(request, response);*/
+		dispatcher.forward(request, response);
 	}
 	
 	}

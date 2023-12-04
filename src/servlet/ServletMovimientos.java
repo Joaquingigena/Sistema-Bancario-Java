@@ -68,7 +68,7 @@ public class ServletMovimientos extends HttpServlet {
 			switch (opcion) {
 
 			case "listarMovimientos":
-
+				
 				movimientos = movNeg.obtenerMovimientosPorUsuario(nombre);
 
 				request.setAttribute("Movimientos", movimientos);

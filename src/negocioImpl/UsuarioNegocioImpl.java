@@ -7,6 +7,7 @@ import com.sun.xml.internal.fastinfoset.algorithm.UUIDEncodingAlgorithm;
 import Excepciones.UsuarioEnBlancoException;
 import daoImpl.UsuarioDaoImp;
 import entidades.Personas;
+import entidades.Usuario;
 import negocio.IUsuarioNegocio;
 
 public class UsuarioNegocioImpl implements IUsuarioNegocio{
@@ -27,6 +28,16 @@ public class UsuarioNegocioImpl implements IUsuarioNegocio{
 		
 		return uDaoImp.getUsuarioPorCBU(cbu);
 	}
+
+	@Override
+	public Usuario datosUsuario(String usuario, String pass) {
+		Usuario user = new Usuario();
+		
+		user = uDaoImp.ValidarDatos(usuario, pass);
+		
+		return user;
+	}
+	
 	
 	
 }

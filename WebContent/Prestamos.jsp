@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="entidades.Cuotas"%>
 <%@page import="entidades.Cuenta"%>
+<%@page import="entidades.Usuario"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -101,20 +102,30 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
 					<h4>Solicitud de prestamo</h4>
 					<div id="MontoRequerido" style="display:flex; margin:0; margin-top: 20px; align-items:center;">
 					  <h5>Monto requerido: $</h5>
-					  <input type="text" class="form-control" id="monto" name ="monto"  aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
+					  <input type="text" class="form-control" id="monto" name ="monto" onchange="cambia_monto()" aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px ">
 					</div>	
 				<div id=CantCuotas style="margin-top:50px; display:flex; align-items:center;">
 					<h5>Cantidad de cuotas: </h5>
-				    <select id="cuotas" name="ddlCuotas" class="form-select" required>
+				    <select id="cuotas" name="ddlCuotas" class="form-select" required onchange="cambia_monto()">
 					<%
 					    if (listaCuotas != null) 
+					    %>
+					    	<option value="" selected>Seleccione cantidad de cuotas </option>
+					    	<%
 					            for (Cuotas c : listaCuotas) { %>
 					                <option value=<%= c.getIdCuota_C() %>><%=c.getCantidadCuota_C() %></option>
 					        <% }%>
-					    </select>
+					</select>
+					
 					
 					 
-				</div>				 
+				</div>	
+				
+				<div id=ImporteMes style="display:flex; margin-top: 20px; align-items:center"> 
+					<h5>Importe Cuota: $</h5>
+					<input type="number" class="form-control" id="montoApagar" name ="montoApagar" disabled aria-describedby="basic-addon1" style="margin: 0; margin-left: 20px; width: 200px">
+				</div>
+							 
 				<div>	 
 					<div id="Cuenta Destino" style="display:flex; margin-top: 20px; align-items:center">
 					  <h5>Cuenta destino: </h5>
@@ -124,6 +135,13 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
                                 <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
                         <% } %>
                     </select>
+                    <%Usuario user = new Usuario(); 
+                    	if(request.getAttribute("Usuario")!= null){
+                    	user = (Usuario)request.getAttribute("Usuario");
+                    	}
+                    %>
+                    <input type="hidden" name="IDusuario" value="<%=user.getIdUsuario_U()%>">
+                    
 					</div>
 
 
@@ -143,6 +161,54 @@ if (request.getAttribute("cuotas")!=null) listaCuotas=(ArrayList <Cuotas>)reques
 			
 		</div>
 	</div>
+	
+						<!-- FUNCION JAVASCRIPT -->
+                        <script type="text/javascript">
+                        
+                        
+                        function cambia_monto(){
+                        	
+                        	var montoSolicitado = document.getElementById('monto').value;
+                        	var montoApagar = document.getElementById('montoApagar');
+                        	var interes = 1;
+                        	var seleccion = document.getElementById("cuotas");
+                        	
+                        	var cuotas = 1;
+                        	var valueCuotas = Number(seleccion.options[seleccion.selectedIndex].value);
+                        	
+                        	switch(valueCuotas){
+                        		case 1: interes = 1.15;
+                        				cuotas = 3;
+                        		break;
+                        		
+                        		case 2: interes = 1.25;
+                        				cuotas = 6;
+                        		break;
+                        		
+                        		case 3: interes = 1.50;
+                        				cuotas = 12;
+                        		break;
+                        		
+                        		case 4: interes = 1.90;
+                        				cuotas = 18;
+                        		break;
+                        		
+                        		case 5: interes = 2.15;
+                        				cuotas = 24;
+                        		break;
+                        	}	
+                        	
+                        	if(seleccion.options[seleccion.selectedIndex].text.charAt(0)!="S"){
+                        		var m = montoSolicitado*interes/cuotas;
+                        		montoApagar.value = m.toFixed(2);
+                        	}
+                        	else{
+                        		montoApagar.value = "";
+                        	}
+                        	
+                        }
+                        
+                        </script>
 	
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

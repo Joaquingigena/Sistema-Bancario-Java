@@ -232,6 +232,100 @@
 		                        <td><%=p.getImportePedido_P() %> </td>
 		                        <td><%=p.getIdCuota_P().getCantidadCuota_C() %> </td>
 		                        <td><%=p.getEstado() %> </td>
+		                        
+		                        
+		                        
+		                        
+		                        <td style="width:300px;">
+	                    		<%if(p.getEstado()==false){%>
+	                    			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">Aceptar</button>
+	                    			<!-- <input type="submit" name="btnAceptarSol" value="Aceptar"> -->
+	                    			
+	                    			<!-- DIV MODAL -->
+							<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta Usuario</h1>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body" Style="display:flex;">
+							      	<div>
+							      		
+							      	</div>
+							        <div style="margin-left: 10%;display:flex;flex-direction:column;">
+							        	Usuario
+							        	<input type="text" name="txtUsuario">
+							        	Contraseña
+							        	<input type="password" name="txtPass">
+							        	Repetir Contraseña
+							        	<input type="password" name="txtRepetirPass">
+							        </div>
+							        
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							        <button name="btnAceptarSol" type="submit" class="btn btn-primary">Guardar</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<!-- ---------------------------------------------------------------------------------------------- -->
+	                    			
+	                    	
+							
+							
+									<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Rech">Rechazar</button>
+	                    			<!-- <input type="submit" name="btnRechazarSol" value="Rechazar"> --> 
+	                    			
+	                    			<!-- DIV MODAL -->
+							<div class="modal fade" id="Rech" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered">
+							    <div class="modal-content">
+							      <div style="background-color:red" class="modal-header">
+							        <h1 class="modal-title fs-5" id="exampleModalLabel">ATENCIÓN!</h1>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body" Style="display:flex;">
+							      	<div style="width:90%;">
+							      		
+							      	</div>
+							        <div style="margin-left: 0%;display:flex;flex-direction:column; text-align:center;justify-content:center;">
+							        	<h3>¿Está seguro que desea rechazar esta solicitud?</h3> 
+							        	
+							        </div>
+							        
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+							        <button type="submit" name="btnRechazarSol" style="background-color:red; border-color:red;" type="button" class="btn btn-primary">SI</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<!-- ---------------------------------------------------------------------------------------------- -->
+	                    			
+	                    		<%} %>
+	                    		
+							
+	                    	</td>
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
 		                         
 		                      <%-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal<%=p.getNumPrestamo_P()%>">AutorizarPrestamos</button>
 		                        	<!-- DIV MODAL ALTA CUENTA -->
@@ -268,13 +362,8 @@
 										<!-- FIN DIV MODAL ALTA CUENTA -->
 									</div>                    
                      		 </tr>
-                    		  <%
-                    	  }
-                    	  
-                      }
-                      
-                      
-                      %>
+						<%} %>
+						<%} %>
                     </tbody>
                   </table>
           <div class="card-footer">

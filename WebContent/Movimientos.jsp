@@ -101,6 +101,7 @@
         </div>
     </nav>
 	<div id="General">
+		
 		<div id="Navegacion">
 			<label style="text-align:center; margin: 10%;"><%=nombre%></label>
 			<div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Excepciones.UsuarioEnBlancoException;
+import entidades.Usuario;
 import negocioImpl.UsuarioNegocioImpl;
 
 /**
@@ -43,10 +44,15 @@ public class ServletUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getParameter("btnIngresar")!= null) {
+			Usuario user = new Usuario();
+			
 			String usuario = request.getParameter("usuario"); 
 			String pass = request.getParameter("password");
 			RequestDispatcher dispatcher;
 			String msgString = "";
+			
+			//user = usuarioNegocioImpl.datosUsuario(usuario, pass);
+			//request.setAttribute("Usuario", user);
 			
 			int codValidacion; 
 			

@@ -133,7 +133,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 		return lista;
 	}
 	
-	/*public boolean validarPrestamo(int numCuenta)
+	public boolean validarPrestamo(int numCuenta)
 	{
 		ResultSet rs;
 		conexion = new conexion();
@@ -169,18 +169,21 @@ public class PrestamosDaoImpl implements IPrestamos{
 		return esValido;
 	}
 	
-	public boolean insertPrestamo(int numCtaOrigen, float importePrestamo, float importe, int cuotas, boolean estado)
+	public boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo, int cuotas, boolean estado)
 	{
 		conexion = new conexion();
 		boolean isPrestado=true;
 		try
 		{
-			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?");
+			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?,?,?)");
 			cst.setInt(1,numCtaOrigen);
-			cst.setFloat(2, importePrestamo);
-			cst.setFloat(3,importe);
-			cst.setInt(4, cuotas);
-			cst.setBoolean(5, estado);
+			cst.setInt(2,7);
+			cst.setFloat(3, importePrestamo);
+			cst.setFloat(4,importe);
+			cst.setString(5, plazo);
+			cst.setInt(6, cuotas);
+			cst.setBoolean(7, estado);
+			cst.execute();
 		}
 		catch (Exception e)
 		{
@@ -193,6 +196,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 		}
 		return isPrestado;
 	}
+	
 	@Override
 	public boolean altaPrestamo(int numPrestamo) {
 		ResultSet rs;
@@ -235,7 +239,8 @@ public class PrestamosDaoImpl implements IPrestamos{
 			conexion.close();
 		}
 		return iscreate;
-	}*/
+	}
+	
 	
 	/*
 	 Y LA NUEVA TABLA DE PRESTAMOS, SOLO SE ELIMINA EL PLAZOPAGOS:

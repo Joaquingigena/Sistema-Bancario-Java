@@ -12,8 +12,8 @@ public interface IPrestamosNegocio {
 	
 	public List<Prestamos> queryFiltro(String campo,String criterio,String filtro);
 	
-	/*public boolean validarPrestamo(int numCuenta);
+	public boolean validarPrestamo(int numCuenta);
 
-	boolean insertPrestamo(int numCtaOrigen, float importePrestamo, float importe, int cuotas, boolean estado);
-	public boolean altaPrestamo(int numPrestamo);*/
+	boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo,  int cuotas, boolean estado);
+	public boolean altaPrestamo(int numPrestamo);
 }
