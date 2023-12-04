@@ -133,24 +133,24 @@ public class ServletPrestamo extends HttpServlet {
 				request.setAttribute("isCreated", false);
 			}*/
 			
-			preNeg.aceptarPrestamo(numCuenta, idUsuario, importe);
+			preNeg.aceptarPrestamo(numPrestamo,numCuenta, idUsuario, importe);
 			
 			request.setAttribute("cargarPrestamos" ,preNeg.listarPrestamos());	
 			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
 			dispatcher.forward(request, response);
 		}
-		/*if(request.getParameter("btnRechazarPrestamo") != null) {
+		if(request.getParameter("btnRechazarPrestamo") != null) {
+			int numPrestamo = Integer.parseInt(request.getParameter("txtPrestamo"));
+			int numCuenta = Integer.parseInt(request.getParameter("txtCuenta1"));
+			int idUsuario = Integer.parseInt(request.getParameter("txtCliente"));
+			float importe = Float.parseFloat(request.getParameter("txtImporte"));
 
-			int numPrestamo =Integer.parseInt(request.getParameter("numPrestamo"));
-
-			if(preNeg.deletePrestamo(numPrestamo)){
-				request.setAttribute("isCreated", true);
-			}else {
-				request.setAttribute("isCreated", false);
-			}
-
-			response.sendRedirect("/TPIntegrador_Grupo_6/ServletPrestamo?Param=listarPrestamos");
-		}*/
+			preNeg.rechazarPrestamo(numPrestamo,numCuenta, idUsuario, importe);
+			
+			request.setAttribute("cargarPrestamos" ,preNeg.listarPrestamos());	
+			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 		
 		if (request.getParameter("btnSolicitarPrestamo") != null) {
@@ -167,11 +167,12 @@ public class ServletPrestamo extends HttpServlet {
 			float importePrestamo = Float.parseFloat(request.getParameter("monto").toString());
 			String plazo = request.getParameter("plazo").toString() + " Meses";//"24";
 			boolean estado = false;
+			boolean autorizado = true;
 			
 			System.out.println("ID USUARIO:::: "+idUser);
 			System.out.println("IMPORTE PRESTAMO:::: "+importePrestamo);
 			
-			if(preNeg.insertPrestamo(numCtaOrigen, idUser, importe, importePrestamo, plazo, cuotas, estado)) {
+			if(preNeg.insertPrestamo(numCtaOrigen, idUser, importe, importePrestamo, plazo, cuotas, estado, autorizado)) {
 				System.out.println("Solicitud exitosa!!");
 			}
 			else {

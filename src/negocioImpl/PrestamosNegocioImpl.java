@@ -95,21 +95,16 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	}
 	
 	@Override
-	public boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo, int cuotas, boolean estado) {
+	public boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo, int cuotas, boolean estado, boolean autorizado) {
 		// TODO Auto-generated method stub
-		return preDao.insertPrestamo(numCtaOrigen, idUsuario, importePrestamo, importe, plazo, cuotas, estado);
+		return preDao.insertPrestamo(numCtaOrigen, idUsuario, importePrestamo, importe, plazo, cuotas, estado, autorizado);
 	}
 	
-	public boolean altaPrestamo(int numPrestamo) {
-		// TODO Auto-generated method stub
-		return preDao.altaPrestamo(numPrestamo);
-	}
-	public boolean deletePrestamo(int numPrestamo) {
-		// TODO Auto-generated method stub
-		return preDao.deletePrestamo(numPrestamo);
+	public boolean rechazarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe) {
+		return preDao.rechazarPrestamo(numPrestamo,numCuenta, idUsuario, importe);
 	}
 	
-	public boolean aceptarPrestamo(int numCuenta, int idUsuario, float importe) {
-		return preDao.aceptarPrestamo(numCuenta, idUsuario, importe);
+	public boolean aceptarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe) {
+		return preDao.aceptarPrestamo(numPrestamo,numCuenta, idUsuario, importe);
 	}
 }

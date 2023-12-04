@@ -14,8 +14,9 @@ public interface IPrestamosNegocio {
 	
 	public boolean validarPrestamo(int numCuenta);
 
-	boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo,  int cuotas, boolean estado);
-	public boolean altaPrestamo(int numPrestamo);
+	public boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo, int cuotas, boolean estado, boolean autorizado);
+
+	public boolean rechazarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe);
 	
-	public boolean aceptarPrestamo(int numCuenta, int idUsuario, float importe);
+	public boolean aceptarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe);
 }

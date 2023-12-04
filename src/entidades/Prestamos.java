@@ -8,6 +8,7 @@ public class Prestamos {
 	private float ImportePedido_P;
 	private Cuotas IdCuota_P;
 	private boolean Estado;
+	private boolean Autorizado;
 	
 	public Prestamos()
 	{
@@ -15,7 +16,7 @@ public class Prestamos {
 		IdCuota_P = new Cuotas();
 	}
 	public Prestamos(int numPrestamo, int numCliente, Cuenta numCuenta, float importePagar, float importePedido,
-			Cuotas idCuota, boolean estado)
+			Cuotas idCuota, boolean estado, boolean autorizado)
 	{
 		this.NumPrestamo_P=numPrestamo;
 		this.NumCliente_P = numCliente; 
@@ -24,6 +25,7 @@ public class Prestamos {
 		this.ImportePedido_P=importePedido;
 		this.IdCuota_P=idCuota;
 		this.Estado=estado;
+		this.Autorizado=autorizado;
 		
 	}
 	public int getNumPrestamo_P() {
@@ -68,10 +70,16 @@ public class Prestamos {
 	public void setEstado(boolean estado) {
 		Estado = estado;
 	}
+	public boolean getAutorizado() {
+		return Autorizado;
+	}
+	public void setAutorizado(boolean autorizado) {
+		Autorizado = autorizado;
+	}
 	@Override
 	public String toString() {
 		return "Prestamos [NumPrestamo_P=" + NumPrestamo_P + ",NumCliente_P="+NumCliente_P + ", NumCuenta_P=" + NumCuenta_P + ", ImportePagar_P="
-				+ ImportePagar_P + ", ImportePedido_P=" + ImportePedido_P + "IdCuota_P=" + IdCuota_P + ", Estado=" + Estado + "]";
+				+ ImportePagar_P + ", ImportePedido_P=" + ImportePedido_P + "IdCuota_P=" + IdCuota_P + ", Estado=" + Estado + " , Autorizado=" + Autorizado + "]";
 	}
 	
 

@@ -19,7 +19,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 	public List<Prestamos> listarPrestamos() {
 		List<Prestamos> lista = new ArrayList<Prestamos>();
 		conexion = new conexion();
-		String query = "SELECT P.NumPrestamo_P, IDusuario_P ,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, Cu.CantidadCuota_C, P.Estado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta INNER JOIN Cuotas Cu on IdCuota_P = IdCuota_C";
+		String query = "SELECT P.NumPrestamo_P, IDusuario_P ,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, Cu.CantidadCuota_C, P.Estado, P.Autorizado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta INNER JOIN Cuotas Cu on IdCuota_P = IdCuota_C";
 		
 		try {
 			conexion.Open();
@@ -35,6 +35,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 				prestamos.setImportePedido_P(rs.getFloat(5));
 				prestamos.getIdCuota_P().setCantidadCuota_C(rs.getString(6));
 				prestamos.setEstado(rs.getBoolean(7));
+				prestamos.setAutorizado(rs.getBoolean(8));
 						
 				lista.add(prestamos);
 			}
@@ -170,13 +171,13 @@ public class PrestamosDaoImpl implements IPrestamos{
 		return esValido;
 	}
 	
-	public boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo, int cuotas, boolean estado)
+	public boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo, int cuotas, boolean estado, boolean autorizado)
 	{
 		conexion = new conexion();
 		boolean isPrestado=true;
 		try
 		{
-			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?,?,?)");
+			CallableStatement cst = conexion.Open().prepareCall("CALL SPAgregarPrestamo(?,?,?,?,?,?,?,?)");
 			cst.setInt(1,numCtaOrigen);
 			cst.setInt(2,idUsuario);
 			cst.setFloat(3, importePrestamo);
@@ -184,6 +185,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 			cst.setString(5, plazo);
 			cst.setInt(6, cuotas);
 			cst.setBoolean(7, estado);
+			cst.setBoolean(8, autorizado);
 			cst.execute();
 		}
 		catch (Exception e)
@@ -197,9 +199,9 @@ public class PrestamosDaoImpl implements IPrestamos{
 		}
 		return isPrestado;
 	}
-	
-	@Override
-	public boolean altaPrestamo(int numPrestamo) {
+
+	public boolean aceptarPrestamo(int numPrestamo, int numCuenta, int idUsuario, float importe) {
+		
 		ResultSet rs;
 		conexion= new conexion();
 		String consulta = "UPDATE Prestamos set Estado = 1 where NumPrestamo_P= '" + numPrestamo + "'";
@@ -219,34 +221,14 @@ public class PrestamosDaoImpl implements IPrestamos{
 			conexion.close();
 		}
 		return iscreate;
-	}
-	public boolean deletePrestamo(int numPrestamo) {
-		ResultSet rs;
-		conexion = new conexion();
-		String consulta = "DELETE from Prestamos where NumPrestamo_P= '" + numPrestamo + "'";
-		boolean iscreate= false;
-		try
-		{
-			conexion.Open();
-			iscreate=conexion.executeDelete(consulta);
-			
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			conexion.close();
-		}
-		return iscreate;
+
 	}
 	
-	public boolean aceptarPrestamo(int numCuenta, int idUsuario, float importe) {
+	public boolean rechazarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe) {
 		
 		ResultSet rs;
 		conexion= new conexion();
-		String consulta = "UPDATE Prestamos set Estado = 1 where NumCuenta_P= '" + numCuenta + "'";
+		String consulta = "UPDATE Prestamos set Autorizado = 0 where NumPrestamo_P= '" + numPrestamo + "'";
 		boolean iscreate= false;
 		try
 		{

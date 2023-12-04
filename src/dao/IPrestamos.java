@@ -12,8 +12,10 @@ public interface IPrestamos {
 	public List<Prestamos> filtroAvanzado(String query);
 	List<Cuotas> listarCuotas();
 	
+	public boolean insertPrestamo(int numCtaOrigen, int idUsuario, float importePrestamo, float importe, String plazo, int cuotas, boolean estado, boolean autorizado);
+	
 	public boolean validarPrestamo(int numCuenta);
-	boolean altaPrestamo(int numPrestamo);
-	public boolean deletePrestamo(int numPrestamo);
-	public boolean aceptarPrestamo(int numCuenta, int idUsuario, float importe);
+	
+	public boolean rechazarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe);
+	public boolean aceptarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe);
 }

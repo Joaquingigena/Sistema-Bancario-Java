@@ -316,7 +316,7 @@
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-							        <button type="submit" name="btnRechazarSol" style="background-color:red; border-color:red;" type="button" class="btn btn-primary">SI</button>
+							        <button type="submit" name="btnRechazarPrestamo" style="background-color:red; border-color:red;" type="button" class="btn btn-primary">SI</button>
 							      </div>
 							    </div>
 							  </div>
