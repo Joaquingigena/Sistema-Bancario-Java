@@ -122,9 +122,9 @@ public class ServletPrestamo extends HttpServlet {
 			
 			// Se utilizó para probar resultados por consola --------------------
 			System.out.println("NUMERO DE PRESTAMO: " + numPrestamo);
-			/*System.out.println("NUMERO DE CUENTA: " + numCuenta);
+			System.out.println("NUMERO DE CUENTA: " + numCuenta);
 			System.out.println("NUMERO DE USUARIO: " + idUsuario);
-			System.out.println("IMPORTE: " + importe);*/
+			System.out.println("IMPORTE: " + importe);
 			//--------------------------------------------------------------------
 			
 			/*if(preNeg.altaPrestamo(numPrestamo)){

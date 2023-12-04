@@ -207,7 +207,7 @@
 
         <div class="row">
             <div class="col-8">
-            <form action="ServletPrestamo" method="post">
+            
                 <table class="table" id="tablaPrestamos">
                     <thead>
                       <tr>
@@ -228,6 +228,7 @@
                       if(listaPrestamos!=null){                   	  
                     	  for(Prestamos p : listaPrestamos){
                     		  %>
+                    		 <form action="ServletPrestamo" method="post">
                     		 <tr data-nombre="<%= p.getNumPrestamo_P() %>">
 		                        <td><%=p.getNumPrestamo_P() %></td>
 		                        <td><%=p.getNumCliente() %></td>
@@ -243,12 +244,15 @@
 		                        <td style="width:300px;">
 	                    		<%if(p.getEstado()==false){
 	                    			int ID = p.getNumCliente(); 
-	                    			int cuenta = p.getNumCuenta_P().getNumCuenta_Cta();%>
-	                    			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%=ID%><%=cuenta%>">Aceptar</button>
+	                    			int cuenta = p.getNumCuenta_P().getNumCuenta_Cta();
+	                    			String numPre = p.getNumPrestamo_P()+"";
+	                    			%>
+	                    			
+	                    			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%=numPre%>">Aceptar</button>
 	                    			<!-- <input type="submit" name="btnAceptarSol" value="Aceptar"> -->
 	                    			
 	                    			<!-- DIV MODAL -->
-							<div class="modal fade" id="Modal<%=ID%><%=cuenta%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="Modal<%=numPre%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -272,8 +276,8 @@
 							        	<!-- SE UTILIZA PARA ENVIAR LOS DATOS AL SERVLET -->
 							        	<input type="hidden" name="txtPrestamo" value="<%=p.getNumPrestamo_P()%>">
 							        	<input type="hidden" name="txtCliente" value="<%=ID%>">
-							        	<input type="hidden" name="txtCuenta1" value="<%=p.getNumCuenta_P().getNumCuenta_Cta()%>">
-							        	<input type="hidden" name="txtImporte" value="<%=p.getImportePedido_P()%>">
+							        	<input type="hidden" name="txtCuenta1" value="<%=cuenta%>">
+							        	<input type="hidden" name="txtImporte" value="<%=p.getImportePedido_P() %>">
 							        </div>
 							        
 							      </div>
@@ -324,63 +328,15 @@
 							
 	                    	</td>
 		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                        
-		                         
-		                      <%-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal<%=p.getNumPrestamo_P()%>">AutorizarPrestamos</button>
-		                        	<!-- DIV MODAL ALTA CUENTA -->
-									<div class="modal fade" id="Modal<%= p.getNumPrestamo_P()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	                    			<form action="ServletPrestamo" method="post">
-	                    				<input type="hidden" name="numPrestamo" value="<%=p.getNumPrestamo_P() %>">
-									  <div class="modal-dialog modal-dialog-centered">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta Cuenta</h1>
-									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									      </div>
-									      <div class="modal-body" Style="display:flex;">
-									      	<div>
-										        <div><b>NumeroPrestamo: </b><%= p.getNumPrestamo_P()%></div>
-										        <div><b>Importe: </b><%= p.getImportePedido_P()%></div>
-										        <div><b>Importe Con Interes: </b><%= p.getImportePagar_P() %></div>
-										        <div><b>Cuotas: </b><%= p.getIdCuota_P().getCantidadCuota_C() %></div>
-										        <div><b>Estado: </b><%= p.getEstado() %></div>
-									      	</div>
-									  
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
-									        <input name="btnAceptarPrestamo" type="submit" value="Aceptar" class="btn btn-primary" />
-									      </div>
-									      	<div class="modal-footer">
-									        <button type="button" class="btn btn-secondary"></button>
-									        <input name="btnRechazarPrestamo" type="submit" value="rechazo" class="btn btn-primary" />
-									      </div>
-									    </div>
-									  </div>
-							        </form> ---%>
-										<!-- FIN DIV MODAL ALTA CUENTA -->
+
 									</div>                    
                      		 </tr>
+                     		 </form>
 						<%} %>
 						<%} %>
                     </tbody>
                   </table>
-                 </form>
+                 
           <div class="card-footer">
           <nav aria-label="Page navigation example">
             <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">  
