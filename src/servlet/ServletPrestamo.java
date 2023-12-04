@@ -107,7 +107,7 @@ public class ServletPrestamo extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
 			dispatcher.forward(request, response);
 		}
-		/*
+		
 		if(request.getParameter("btnAceptarPrestamo") != null) {
 
 			int numPrestamo =Integer.parseInt(request.getParameter("numPrestamo"));
@@ -120,7 +120,7 @@ public class ServletPrestamo extends HttpServlet {
 
 			response.sendRedirect("/TPIntegrador_Grupo_6/ServletPrestamo?Param=listarPrestamos");
 		}
-		if(request.getParameter("btnRechazarPrestamo") != null) {
+		/*if(request.getParameter("btnRechazarPrestamo") != null) {
 
 			int numPrestamo =Integer.parseInt(request.getParameter("numPrestamo"));
 

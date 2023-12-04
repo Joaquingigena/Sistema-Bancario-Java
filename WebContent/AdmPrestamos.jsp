@@ -239,12 +239,14 @@
 		                        
 		                        
 		                        <td style="width:300px;">
-	                    		<%if(p.getEstado()==false){%>
-	                    			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">Aceptar</button>
+	                    		<%if(p.getEstado()==false){
+	                    			int ID = p.getNumCliente(); 
+	                    			int cuenta = p.getNumCuenta_P().getNumCuenta_Cta();%>
+	                    			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%=ID%><%=cuenta%>">Aceptar</button>
 	                    			<!-- <input type="submit" name="btnAceptarSol" value="Aceptar"> -->
 	                    			
 	                    			<!-- DIV MODAL -->
-							<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="Modal<%=ID%><%=cuenta%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -256,18 +258,19 @@
 							      		
 							      	</div>
 							        <div style="margin-left: 10%;display:flex;flex-direction:column;">
-							        	Usuario
-							        	<input type="text" name="txtUsuario">
-							        	Contraseña
-							        	<input type="password" name="txtPass">
-							        	Repetir Contraseña
-							        	<input type="password" name="txtRepetirPass">
+							        	Nº Préstamo
+							        	<input type="text" name="txtPrestamo" value="<%=p.getNumPrestamo_P()%>" disabled>
+							        	Cliente
+							        	<input type="text" name="txtCliente" value="<%=ID%>" disabled>
+							        	Cuenta
+							        	<input type="text" name="txtCuenta" value="<%=cuenta%>" disabled>
+							        	
 							        </div>
 							        
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-							        <button name="btnAceptarSol" type="submit" class="btn btn-primary">Guardar</button>
+							        <button name="btnAceptarSPrestamo" type="submit" class="btn btn-primary">Guardar</button>
 							      </div>
 							    </div>
 							  </div>
