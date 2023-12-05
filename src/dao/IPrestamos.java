@@ -18,4 +18,6 @@ public interface IPrestamos {
 	
 	public boolean rechazarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe);
 	public boolean aceptarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe);
+	
+	public List<Prestamos> listarPrestamos(int idUsurio);
 }

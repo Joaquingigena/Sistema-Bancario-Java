@@ -49,6 +49,42 @@ public class PrestamosDaoImpl implements IPrestamos{
 		
 		return lista;
 	}
+	
+	@Override
+	public List<Prestamos> listarPrestamos(int idUsuario) {
+		List<Prestamos> lista = new ArrayList<Prestamos>();
+		conexion = new conexion();
+		String query = "SELECT P.NumPrestamo_P, IDusuario_P ,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, Cu.CantidadCuota_C, P.Estado, P.Autorizado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta INNER JOIN Cuotas Cu on IdCuota_P = IdCuota_C where IDusuario_P= " + idUsuario;
+		
+		try {
+			conexion.Open();
+			ResultSet rs= conexion.query(query);
+			
+			while(rs.next()) {
+				Prestamos prestamos= new Prestamos();
+				
+				prestamos.setNumPrestamo_P(rs.getInt(1));
+				prestamos.setNumCliente_P(rs.getInt(2));
+				prestamos.getNumCuenta_P().setNumCuenta_Cta(rs.getInt(3));
+				prestamos.setImportePagar_P(rs.getFloat(4));
+				prestamos.setImportePedido_P(rs.getFloat(5));
+				prestamos.getIdCuota_P().setCantidadCuota_C(rs.getString(6));
+				prestamos.setEstado(rs.getBoolean(7));
+				prestamos.setAutorizado(rs.getBoolean(8));
+						
+				lista.add(prestamos);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		return lista;
+	}
+	
+	
 	@Override
 	public boolean agregarPrestamo(String monto, int cuotas, int cuenta) {
 		conexion= new conexion();

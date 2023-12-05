@@ -90,13 +90,69 @@
 		  });
 		</script>
 		<div id="Cuerpo">
-			<div id="Encabezado">
-				<h2>Pago Prestamo</h2>
-			</div>
-			<div id="Primario">
-				<form action="">
+			
+			
+			
+					
 				
-					<h4>Pago de prestamo</h4>
+			<form>
+			<div class="container text-center">
+				
+				<h2>Prestamos</h2>
+				<div class="row filaPrestamo">
+				    <div class="col">
+				      <label class="form-control">Prestamo N°</label>
+				
+				    </div>
+				    <div class="col">
+				    	<label class="form-control">Fecha de inicio 05/12</label>
+				    </div>
+				    <div class="col">
+				    	<label class="form-control">Monto solicitado: $$$</label>
+				    </div>
+				    <div class="col">
+				    	<label class="form-control">Monto total a pagar: $$$</label>
+				    </div>
+				    <div class="col">
+				    	<label class="form-control">Monto restante a pagar: $$$</label>
+				    </div>
+				</div>
+			
+			<div class="row filaPrestamo">
+					<div class="col">
+				      <label class="form-control">Cuota N°</label>
+				      <select class="form-select">
+				      	<option>1 </option>
+				      	<option>2 </option>
+				      	<option>3 </option>
+				      </select>
+				    </div>
+				    <div class="col">
+				      <label class="form-control">N° de cuenta</label>
+				      <select class="form-select">
+				      	<option>1 </option>
+				      	<option>2 </option>
+				      	<option>3 </option>
+				      </select>
+				    </div>
+			</div>
+			
+			<div class="row ">
+				<div class="col text-center">
+					<input type="submit" name="btnPagar" value="Pagar" class="btn btn-secondary btn-mm">
+				</div>
+			</div>
+			
+			</form>
+			
+			
+			</div>
+			</div>
+			</div>
+			
+			<!-- <div id="Primario">
+				
+					<h4>Pago de prestamo N° 123123</h4>
 			<form action="ServletMovimientos" method="post">
 				<div id="CuentaPrestamo" style="display:flex; margin-top: 20px; align-items:center">
 				  <h5>Cuenta: </h5>
@@ -148,11 +204,8 @@
 					</div>
 					<div>
 						
-						
-					</div>
-					
-				</div>
-			</div>
+						 -->
+				
 	
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

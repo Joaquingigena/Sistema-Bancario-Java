@@ -7,6 +7,7 @@ import entidades.Prestamos;
 
 public interface IPrestamosNegocio {
 	public List<Prestamos> listarPrestamos();
+	public List<Prestamos> listarPrestamos(int idUsuario);
 	
 	public boolean agregarPrestamo(String monto, int cuotas, int cuenta);
 	

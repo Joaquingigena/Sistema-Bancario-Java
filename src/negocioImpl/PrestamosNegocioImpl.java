@@ -107,4 +107,10 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	public boolean aceptarPrestamo(int numPrestamo,int numCuenta, int idUsuario, float importe) {
 		return preDao.aceptarPrestamo(numPrestamo,numCuenta, idUsuario, importe);
 	}
+
+	@Override
+	public List<Prestamos> listarPrestamos(int idUsuario) {
+	
+		return preDao.listarPrestamos(idUsuario);
+	}
 }
