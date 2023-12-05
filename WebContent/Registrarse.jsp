@@ -21,6 +21,22 @@
 </head>
 <body>
 
+<%
+        List <Provincias> ListaProv = null;
+        int locali = 0;
+		if(request.getAttribute("ListaProvincias") !=null)
+		{
+		ListaProv = (List<Provincias>)request.getAttribute("ListaProvincias");
+		}
+		
+		List <Localidades> ListaLoc = null;
+		if(request.getAttribute("ListaLocalidades") !=null)
+		{
+			ListaLoc = (List<Localidades>)request.getAttribute("ListaLocalidades");
+		}
+ %>
+
+
 <!-- Barra de navegacion -->
      <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
@@ -108,18 +124,10 @@
                     </div>     
                     
                     <div class="form-group mb-3">
-                    	<%
-                    			List <Provincias> ListaProv = null;
-                    			int locali = 0;
-			            		if(request.getAttribute("ListaProvincias") !=null)
-			            		{
-			            			ListaProv = (List<Provincias>)request.getAttribute("ListaProvincias");
-			            		}
-			            %>
+                    	
 			            
                         <select class="form-control mb-3" required id="provincias" name="provincia" placeholder="Provincia" onchange="cambia_localidad()">
-                        	<option value="" selected>Seleccione Provincia</option>
-                        	
+							<option value="" selected>Seleccione Provincia</option>	
                         	<%	
 			            		if(ListaProv!=null)
 			            		//for(int i=0; i < 5; i++){
@@ -127,31 +135,24 @@
             				%>
             				<option value="<%=Prov.getCodProvincia_Prov() %>"><%= Prov.getNombre_Prov() %></option>                          
                             <%} %>
-                        </select>
+                        </select>             
                     </div>
                     
                     <div class="form-group mb-3">
-                    	<%
-                    		
-			            		List <Localidades> ListaLoc = null;
-			            		if(request.getAttribute("ListaLocalidades") !=null)
-			            		{
-			            			ListaLoc = (List<Localidades>)request.getAttribute("ListaLocalidades");
-			            		}
-			            %>
+                    	
                         <select class="form-control mb-3" required id="localidad" name="localidad" placeholder="Localidad">
-                        	<option value="" selected>Seleccione Localidad</option>	  				
+                        	<option value="" selected>Seleccione Localidad</option>	  		
+                        	
+                        	<%
+                        	for(Localidades L : ListaLoc){
+                        		%>
+                        		<option value= "<%=L.getCodLocalidad_Loc()%>"><%=L.getNombre_Loc() %> </option>
+                        	<% }
+                        	
+                        	%>		
                         </select>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <!-- <input type="text" class="form-control" id="localidad" name="localidad" required placeholder="Localidad"> -->
-                    </div>
+                                   
+                     </div>
                     
                     <div class="form-group mb-3">
                         
