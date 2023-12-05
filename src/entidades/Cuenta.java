@@ -66,13 +66,14 @@ public class Cuenta {
 	}
 	public void setSaldo_Cta(float saldo_Cta) {
 		Saldo_Cta = saldo_Cta;
-	}
+	}	
+	
 	@Override
 	public String toString() {
 		return "Cuenta [NumCuenta_Cta=" + NumCuenta_Cta + ", IdUsuario_Cta=" + IdUsuario_Cta + ", FechaCreacion_Cta="
 				+ FechaCreacion_Cta + ", IdTipoCuenta_Cta=" + IdTipoCuenta_Cta + ", CBU_Cta=" + CBU_Cta + ", Saldo_Cta="
 				+ Saldo_Cta + ", Estado_Cta=" + Estado_Cta + "]";
 	}
-	
+
 
 }

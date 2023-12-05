@@ -5,7 +5,6 @@ import java.util.List;
 import Excepciones.CuilDNIException;
 import entidades.Localidades;
 import entidades.Personas;
-import entidades.Prestamos;
 import entidades.Provincias;
 import entidades.Usuario;
 

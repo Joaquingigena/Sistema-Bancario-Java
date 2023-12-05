@@ -51,7 +51,9 @@ public class ServletInformes extends HttpServlet {
 	}
 	
 	public void inicializarAdminInformes(HttpServletRequest request, HttpServletResponse response, List<Movimientos> listaMovimientos) throws ServletException, IOException {
-		if(listaMovimientos == null) {		
+		System.out.println("lista informes" + listaMovimientos);
+		if(listaMovimientos == null) {	
+			System.out.println("entraa???");
 			List<Movimientos> listaMovimientosCompleta = infNeg.listarMovimientos();
 			request.setAttribute("listaInformes", listaMovimientosCompleta); 
 		}

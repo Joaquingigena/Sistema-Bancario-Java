@@ -19,7 +19,7 @@ public class InformeNegocioImpl implements IInformesNegocio{
 	public List<Movimientos> queryFiltro(String campo, String criterio, String filtro) {
 		
 
-		String query= "select M.numMovimiento_M, M.numCuenta_M, M.fechaMovimiento_M, M.detalle_M, M.importe_M, M.idTipoMovimiento_M, M.estado_M from Movimientos as M inner join Cuenta C on C.numCuenta_Cta = M.numCuenta_M inner join TipoMovimientos TM on TM.idTipoMovimiento_TM = M.idTipoMovimiento_M and ";
+		String query= "select M.NumMovimiento_M, M.NumCuenta_M, M.FechaMovimiento_M, M.Detalle_M, M.Importe_M, M.IdTipoMovimiento_M, M.Estado_M from Movimientos as M inner join Cuenta C on C.NumCuenta_Cta = M.NumCuenta_M inner join TipoMovimientos TM on TM.IdTipoMovimiento_TM = M.IdTipoMovimiento_M and";
 		try {
 			
 		if("movimiento".equals(campo)) {

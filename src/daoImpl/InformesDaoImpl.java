@@ -27,7 +27,8 @@ public class InformesDaoImpl implements IInformes{
 				"    M.Detalle_M,\r\n" + 
 				"    M.Importe_M,\r\n" + 
 				"    M.IdTipoMovimiento_M,\r\n" + 
-				"    M.Estado_M\r\n" + 
+				"    M.Estado_M,\r\n" + 
+				"    M.NumCuentaDestino_Mo \r\n" + 
 				"FROM\r\n" + 
 				"    Movimientos AS M\r\n" + 
 				"INNER JOIN\r\n" + 
@@ -56,9 +57,7 @@ public class InformesDaoImpl implements IInformes{
 				movimiento.setImporte_M(rs.getFloat(9));
 				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt(10));
 				movimiento.setEstado_M(rs.getBoolean(11));
-
-				
-						
+				movimiento.getNumCuentaDestino_Mo().setNumCuenta_Cta(rs.getInt(12));;
 				lista.add(movimiento);
 			}
 			

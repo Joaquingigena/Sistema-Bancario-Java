@@ -1,7 +1,7 @@
 <%@page import="entidades.Movimientos"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -202,13 +202,14 @@
                       <tr>
                         
                         <th scope="col">N° Movimiento</th>
-                        <th scope="col">N° Cuenta</th>
+                        <th scope="col">N° Cuenta Origen</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Fecha Movimiento</th>
                         <th scope="col">Detalle</th>
                         <th scope="col">Importe</th>
                         <th scope="col">Tipo de Movimiento</th>
+                        <th scope="col">N° Cuenta Destino</th>
                         <th scope="col">Estado</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -219,7 +220,8 @@
                     <tbody class="table-group-divider">
                       
                       <%
-                      if(listaMovimientos!=null){                   	  
+                      if(listaMovimientos!=null){  
+                    	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // Define el formato de fecha que deseas
                     	  for(Movimientos m : listaMovimientos){
                     		  %>
                     		 <tr data-nombre="<%=m.getNumMovimiento_M() %>">
@@ -227,10 +229,11 @@
 		                        <td><%=m.getNumCuenta_M().getNumCuenta_Cta()%></td>
 		                        <td><%=m.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().getNombre_P() %></td>
 		                        <td><%=m.getNumCuenta_M().getIdUsuario_Cta().getIdPersona_U().getApellido_P() %></td>
-		                        <td><%=m.getFechaMovimiento_M() %></td>
+		                        <td><%=dateFormat.format(m.getFechaMovimiento_M()) %></td>
 		                        <td><%=m.getDetalle_M() %> </td>
 		                        <td><%=m.getImporte_M() %> </td>
 		                        <td><%=m.getIdTipoMovimiento_M().getIdTipoMovimiento_TM()%> </td> 
+		                        <td><%=m.getNumCuentaDestino_Mo().getNumCuenta_Cta()%> </td> 
 		                        <td><%=m.getEstado_M()%></td>
 
 			                        

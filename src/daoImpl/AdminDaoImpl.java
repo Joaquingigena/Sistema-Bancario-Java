@@ -104,6 +104,7 @@ public class AdminDaoImpl implements IAdminDao {
 		boolean guardado=true;
 		
 		String query= "update usuario set Estado_u=false where IdUsuario_U="+id;
+		this.cambiarEstadoSolicitud(id, 0);
 		try {
 			conexion.Open();
 			guardado=conexion.execute(query);	

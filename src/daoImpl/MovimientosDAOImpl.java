@@ -35,8 +35,8 @@ public class MovimientosDAOImpl implements IMovimientos{
 				movimiento.setDetalle_M(rs.getString(5));
 				movimiento.setImporte_M(rs.getFloat(7));
 				movimiento.setEstado_M(rs.getBoolean(8));
+				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt("IdTipoMovimiento_M"));;
 				movimiento.getIdTipoMovimiento_M().setDescripcion_TM(rs.getString("Descripcion"));
-                //movimiento.getNumCuenta_M().setIdUsuario_Cta(rs.getInt(9));
                
 			
                 Movs.add(movimiento);
