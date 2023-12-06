@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Excepciones.CuilDNIException;
 import daoImpl.AdminDaoImpl;
+import daoImpl.UsuarioDaoImp;
 import entidades.Localidades;
 import entidades.Personas;
 import entidades.Provincias;
@@ -97,9 +98,10 @@ public class ServletAdmin extends HttpServlet {
 		if(request.getParameter("eliminarCliente")!=null) {
 			
 			int id=Integer.parseInt( request.getParameter("eliminarCliente"));
+			System.out.println("id para eliminar: "+ id);
 			
-			if(adminNeg.eliminarCliente(id))
-				System.out.println("Cliente eliminado correctamente");
+		if(adminNeg.eliminarCliente(id))
+				System.out.println("Cliente eliminado correctamente con Id: "+ id);
 			
 			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
 			

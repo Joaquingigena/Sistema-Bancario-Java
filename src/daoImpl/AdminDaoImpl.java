@@ -1,17 +1,9 @@
 package daoImpl;
 
 import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-
-import com.mysql.cj.xdevapi.Statement;
-
 //import com.mysql.cj.jdbc.CallableStatement;
 //import com.sun.corba.se.pept.transport.Connection;
 
@@ -102,9 +94,11 @@ public class AdminDaoImpl implements IAdminDao {
 		
 		conexion= new conexion();
 		boolean guardado=true;
-		
+		System.out.println("eliminar user id :"+id);
 		String query= "update usuario set Estado_u=false where IdUsuario_U="+id;
-		this.cambiarEstadoSolicitud(id, 0);
+		UsuarioDaoImp usuarioDaoImp = new UsuarioDaoImp();
+		int idPersona = usuarioDaoImp.obtenerIdPersonaDeUsuario(id)		;
+		cambiarEstadoSolicitud(idPersona, 0);
 		try {
 			conexion.Open();
 			guardado=conexion.execute(query);	
@@ -287,7 +281,7 @@ public class AdminDaoImpl implements IAdminDao {
 	}
 	
 	public boolean cambiarEstadoSolicitud(int ID, int estado) {
-		
+		System.out.println("PERSONA ID "+ ID);
 		conexion= new conexion();
 		boolean guardado=true;
 		
@@ -311,21 +305,25 @@ public class AdminDaoImpl implements IAdminDao {
 	public boolean altaUsuario(int ID, String user, String pass, int rol) {
 		conexion= new conexion();
 		boolean guardado=true;
+		System.out.println("alta usuario Id: "+ID);
+		UsuarioDaoImp userDaoImp = new UsuarioDaoImp();
 		
-		try {
-			CallableStatement cst =  conexion.Open().prepareCall("CALL SP_AgregarUsuario(?,?,?,?)");
-			cst.setInt(1, ID);
-			cst.setString(2, user);
-			cst.setString(3, pass);
-			cst.setInt(4, rol);
-			cst.execute();
-			
-		} catch (Exception e) {
-			guardado=false;
-			e.printStackTrace();
-		}
-		finally {
-			conexion.close();
+		if(!userDaoImp.resucitarUsuario(ID, user, pass)) {
+			try {
+				CallableStatement cst =  conexion.Open().prepareCall("CALL SP_AgregarUsuario(?,?,?,?)");
+				cst.setInt(1, ID);
+				cst.setString(2, user);
+				cst.setString(3, pass);
+				cst.setInt(4, rol);
+				cst.execute();
+				
+			} catch (Exception e) {
+				guardado=false;
+				e.printStackTrace();
+			}
+			finally {
+				conexion.close();
+			}
 		}
 		return guardado;
 	}

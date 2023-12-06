@@ -121,6 +121,88 @@ public class UsuarioDaoImp implements IUsuario{
 		}
 		return persona; 
 	}
+
+	@Override
+	public boolean resucitarUsuario(int idUsuario, String usuario, String pass) {
+		conexion conexion= new conexion();
+		boolean iscreate= false;
+		
+		System.out.println("resucitar id usuaurio ===="+ idUsuario);
+		if(ObtenerIdUsuario(idUsuario)!=0) {
+			String consulta = "UPDATE bd_tpint_grupo_6_lab4.usuario set Estado_U = 1, Usuario_U = '"+usuario+"'" + ", Pass_U = '"+pass+"'"+" where IdPersona_U= " + idUsuario ;
+			try
+			{
+				conexion.Open();
+				iscreate=conexion.execute(consulta);
+				iscreate= true;
+				return iscreate;
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				conexion.close();
+			}			
+		}
+		
+		return iscreate;
+		
+		
+	}
+
+	@Override
+	public int obtenerIdPersonaDeUsuario(int idUsuario) {
+		cn = new conexion();
+		cn.Open();
+		
+		String query = "SELECT IdPersona_U FROM bd_tpint_grupo_6_lab4.usuario where IdUsuario_U = " + idUsuario;
+		
+		try {
+			
+			ResultSet rs = cn.query(query);
+			
+			while (rs.next()) {
+				int idPersonAux = rs.getInt("IdPersona_U");
+				System.out.println("id persona entraa: "+ idPersonAux);
+	            return idPersonAux;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			cn.close();
+		}
+		return 0; // retorna 0 si no existe usuario
+	}
+
+	@Override
+	public int ObtenerIdUsuario(int idPersona) {
+		cn = new conexion();
+		cn.Open();
+		
+		String query = "SELECT IdUsuario_U FROM bd_tpint_grupo_6_lab4.usuario where IdPersona_U  = " + idPersona;
+		
+		try {
+			
+			ResultSet rs = cn.query(query);
+			
+			while (rs.next()) {
+				int id = rs.getInt("IdUsuario_U");
+				System.out.println("id usuario: "+ id);
+	            return id;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			cn.close();
+		}
+		return 0; // retorna 0 si no existe usuario
+	}
 	
 	
 

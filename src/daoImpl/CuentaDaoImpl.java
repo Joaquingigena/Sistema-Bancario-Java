@@ -103,7 +103,6 @@ public class CuentaDaoImpl implements ICuenta {
 			boolean isCreate = false;
 			
 			try {
-				
 				if(validarTotalCuentas(idUsuario) <= 3) {
 					
 					connection = conexion.Open();
@@ -604,7 +603,6 @@ public class CuentaDaoImpl implements ICuenta {
 			}
 			return esValido;
 		}
-
 				
 
 }

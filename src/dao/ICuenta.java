@@ -42,4 +42,5 @@ public interface ICuenta {
 	
 	public boolean validarSaldo(int numCtaOrigen, float importe);
 	
+	
 }
