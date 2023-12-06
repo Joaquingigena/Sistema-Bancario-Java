@@ -95,7 +95,7 @@
 			
 					
 				
-			<form>
+			<form action="ServletMovimientos" method="post">
 			<div class="container text-center">
 				
 				<h2>Prestamos</h2>
@@ -129,11 +129,14 @@
 				    </div>
 				    <div class="col">
 				      <label class="form-control">N° de cuenta</label>
-				      <select class="form-select">
-				      	<option>1 </option>
-				      	<option>2 </option>
-				      	<option>3 </option>
-				      </select>
+				      <select id="cuentas" name="ddlCuenta" class="form-select" required>
+                        <% if (listaCuentas != null)
+                            for (Cuenta cuenta : listaCuentas) { %>
+                                <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
+                        <% } %>
+                    </select>
+                    <% 
+                    %>
 				    </div>
 			</div>
 			
@@ -150,61 +153,6 @@
 			</div>
 			</div>
 			
-			<!-- <div id="Primario">
-				
-					<h4>Pago de prestamo N° 123123</h4>
-			<form action="ServletMovimientos" method="post">
-				<div id="CuentaPrestamo" style="display:flex; margin-top: 20px; align-items:center">
-				  <h5>Cuenta: </h5>
-				  <select id="cuentas" name="ddlCuenta" class="form-select" required>
-                        <% if (listaCuentas != null)
-                            for (Cuenta cuenta : listaCuentas) { %>
-                                <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
-                        <% } %>
-                    </select>
-                    <% 
-                    %>
-				</div>
-		<div id="codigoPago" style="margin-top:20px; display:flex; align-items:center">
-							<h5>Codigo del Pago</h5>
-							<div style="width: 200px">
-							<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-							</div>
-						</div>
-		<div id="numCuota" style="margin-top:20px; display:flex; align-items:center">
-							<h5>Cuota N° </h5>
-							<div style="width: 200px">
-							<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-							</div>
-						</div>	
-						<div id="MontoAPagar" style="margin-top:20px; display:flex; align-items:center">
-							<h5>Monto a Pagar: $ </h5>
-							<div style="width: 200px">
-							<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-							</div>
-						</div>	 
-							 
-		<div id="FechaPago" style="margin-top:20px; display:flex; align-items:center">
-							<h5>Fecha del Pago </h5>
-							<div style="width: 200px">
-							<input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" style="margin-left: 40px;">
-							</div>
-						</div>	 
-						<div>	 
-		
-		
-							<div id="btnPagar" style="margin-top:20px; display:flex; justify-content:end; width:100%">
-								<button type="button" class="btn btn-success" style="margin-right: 30px">Pagar</button>
-							</div>
-						</div>
-						
-						</form>
-		
-						
-					</div>
-					<div>
-						
-						 -->
 				
 	
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
