@@ -13,17 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import negocioImpl.CuentaNegocioImpl;
 import negocioImpl.MovimientoNegocioImpl;
+import negocioImpl.PagoPresNegocioImpl;
 import entidades.Cuenta;
 import entidades.Movimientos;
+import entidades.PagoCuotasPrestamo;
 import entidades.Usuario;
 
 @WebServlet("/ServletMovimientos")
 public class ServletMovimientos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	// private CuentaNegocioImpl cuentaNeg = new CuentaNegocioImpl();
+	private CuentaNegocioImpl cuentaNeg = new CuentaNegocioImpl();
 	private MovimientoNegocioImpl movNeg = new MovimientoNegocioImpl();
 	private CuentaNegocioImpl cuentaNegocioImpl = new CuentaNegocioImpl();
-
+	private PagoPresNegocioImpl pagoNeg = new PagoPresNegocioImpl();
 	public ServletMovimientos() {
 		super();
 	}
@@ -33,10 +35,14 @@ public class ServletMovimientos extends HttpServlet {
 
 		RequestDispatcher dispatcher;
 		String nombre = request.getParameter("usuario");
+		///ACA NOSE COMO SEGUIR 
+		///int numPrestamo = Integer.parseInt(request.getParameter("ddlCuotas"));
 		
 		List<Movimientos> movimientos = new ArrayList<Movimientos>();
 		List<Cuenta> cuentas = new ArrayList<Cuenta>();
+		List<PagoCuotasPrestamo> listaCuota = new ArrayList<PagoCuotasPrestamo>();
 		if(cuentas.isEmpty()) cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
+		///if(listaCuota.isEmpty()) listaCuota = pagoNeg.listarCuotas(numPrestamo);
 		
 		if(request.getParameter("buscarCuenta") != null) {
 			
@@ -60,6 +66,10 @@ public class ServletMovimientos extends HttpServlet {
 			dispatcher.forward(request, response);		
 		}
 		
+		if (listaCuota != null && !listaCuota.isEmpty()) {
+			request.setAttribute("pagocuotasprestamo", listaCuota);
+		}
+		
 		
 		if (request.getParameter("Param") != null) {
 
@@ -73,6 +83,7 @@ public class ServletMovimientos extends HttpServlet {
 
 				request.setAttribute("Movimientos", movimientos);
 				request.setAttribute("cuentas", cuentas);
+				
 
 				dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario" + nombre);
 				dispatcher.forward(request, response);
@@ -89,7 +100,7 @@ public class ServletMovimientos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			case "pagos":
-				request.setAttribute("cuentas" , cuentas);	
+				request.setAttribute("cuentas" , cuentas);		
 				dispatcher = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario" + nombre);
 				dispatcher.forward(request, response);
 				break;

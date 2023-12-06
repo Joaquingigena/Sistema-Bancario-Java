@@ -27,6 +27,9 @@
 
 	ArrayList <Cuenta> listaCuentas = null;
 	if (request.getAttribute("cuentas")!=null) listaCuentas=(ArrayList <Cuenta>)request.getAttribute("cuentas");
+	
+	ArrayList <PagoCuotasPrestamo> listaCuotas = null;
+	if (request.getAttribute("pagocuotasprestamo")!=null) listaCuotas=(ArrayList <PagoCuotasPrestamo>)request.getAttribute("pagocuotasprestamo");
 
 %>
 <body>
@@ -121,11 +124,14 @@
 			<div class="row filaPrestamo">
 					<div class="col">
 				      <label class="form-control">Cuota N°</label>
-				      <select class="form-select">
-				      	<option>1 </option>
-				      	<option>2 </option>
-				      	<option>3 </option>
-				      </select>
+				      <select id="cuotas" name="ddlCuotas" class="form-select" required>
+                        <% if (listaCuotas != null)
+                            for (PagoCuotasPrestamo c : listaCuotas) { %>
+                                <option value=<%=c.getNumPrestamo_PCP() %>><%=c.getNumCuota_PCP() + " - " + " Monto: " + c.getMontoPagoMes_PCP()  %></option>
+                        <% } %>
+                    </select>
+                    <% 
+                    %>
 				    </div>
 				    <div class="col">
 				      <label class="form-control">N° de cuenta</label>
