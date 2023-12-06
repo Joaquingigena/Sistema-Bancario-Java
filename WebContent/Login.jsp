@@ -39,7 +39,7 @@
     <div class="row">
         <section class="col-md-6 mx-auto ingreso">
             <div class="logo text-center">
-                <h1>Banco Grupo 4</h1>
+                <h1>Banco Grupo 6</h1>
             </div>
             <h3>Inicia sesión</h3>
             <form method="post" action="ServletUsuario">
