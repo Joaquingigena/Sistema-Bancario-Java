@@ -207,21 +207,22 @@
 			</div>
 		</div>
 			<div>
-				    <div class="container text-center d-flex justify-content-center aligne-content-center">
-					  <div class="row">
-					    <div class="col-md">
-					      <h6>Desde: </h6>
-					        <input type="date">
-					    </div>
-					    <div class="col-md">
-					      <h6>Hasta: </h6>
-					        <input type="date">
-					    </div>
-					    <div class="col-md py-4">
-					      <button class="btn btn-success btn-sm">Buscar</button>
-					    </div>
-					  </div>
-					</div>
+		    <div class="container text-center d-flex justify-content-center aligne-content-center">
+			  <div class="row">
+			    <div class="col-md">
+			      <h6>Desde: </h6>
+			        <input type="date" id="fechaInicio">
+			    </div>
+			    <div class="col-md">
+			      <h6>Hasta: </h6>
+			        <input type="date" id="fechaFin">
+			    </div>
+			    <div class="col-md py-4">
+			      <button class="btn btn-success btn-sm" onclick="filtroFechas()">Buscar</button>
+			    </div>
+			  </div>
+			</div>
+			
 			    <div id="Encabezado" class="text-center">
 					<h2>Movimientos</h2>
 				</div>
@@ -269,6 +270,37 @@
 			
 	</div>
   </div>	
+  
+   <script>
+			console.log("Script cargado")
+			function filtroFechas(){
+					
+				
+				var fechaInicio= document.getElementById("fechaInicio");
+				var fechaFin= document.getElementById("fechaFin");
+				var tablaMovimientos= document.getElementById("tablaMov");
+				
+				
+				var inicio= new Date(fechaInicio.value);
+				var fin= new Date(fechaFin.value);
+				
+				for(i=1 ; i< tablaMovimientos.rows.length ; i++ ){
+					
+					var fechaCelda = new Date(tablaMovimientos.rows[i].cells[1].innerText);
+					
+					if(!(fechaCelda >= inicio && fechaCelda <= fin)){
+						tablaMovimientos.rows[i].style.display="none";
+					}
+				}
+					
+					
+					
+				}
+					
+	</script>
+  
+  
+  
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
