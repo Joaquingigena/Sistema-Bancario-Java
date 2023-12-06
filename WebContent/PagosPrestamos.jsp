@@ -125,16 +125,13 @@
 				
 				    </div>
 				    <div class="col">
-				    	<label class="form-control">Fecha de inicio 05/12</label>
+				    	<label class="form-control">Fecha de inicio </label>
 				    </div>
 				    <div class="col">
-				    	<label class="form-control">Monto solicitado: $$$</label>
+				    	<label class="form-control">Monto solicitado:  <%= listaPrestamos.get(0).getImportePedido_P() %> $</label>
 				    </div>
 				    <div class="col">
-				    	<label class="form-control">Monto total a pagar: $$$</label>
-				    </div>
-				    <div class="col">
-				    	<label class="form-control">Monto restante a pagar: $$$</label>
+				    	<label class="form-control">Monto total a pagar: <%=listaPrestamos.get(0).getImportePagar_P() %>$</label>
 				    </div>
 				</div>
 			
