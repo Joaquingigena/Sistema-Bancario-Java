@@ -64,10 +64,10 @@ public class MovimientosDAOImpl implements IMovimientos{
 			while(rs.next()) {
 				Movimientos movimiento = new Movimientos();
 				movimiento.setNumMovimiento_M(rs.getInt(1));
-				movimiento.setFechaMovimiento_M(rs.getTimestamp(3));
-				movimiento.setDetalle_M(rs.getString(4));
-				movimiento.setImporte_M(rs.getFloat(5));
-				movimiento.setEstado_M(rs.getBoolean(7));           
+				movimiento.setFechaMovimiento_M(rs.getTimestamp(4));
+				movimiento.setDetalle_M(rs.getString(5));
+				movimiento.setImporte_M(rs.getFloat(7));
+				movimiento.setEstado_M(rs.getBoolean(8));           
 			
                 Movs.add(movimiento);
 			}

@@ -3,7 +3,7 @@
 <%@page import="entidades.Cuenta"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -237,12 +237,13 @@
 			        </thead>
 		                    <tbody class="table-group-divider">
 		                      <%
-		                      if(listaMovimientos!=null){                   	  
+		                      if(listaMovimientos!=null){          
+		                    	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // Define el formato de fecha que deseas
 		                    	  for(Movimientos m : listaMovimientos){
 		                    		  %>
 		                    		 <tr>
 		                    		    <td><%= m.getNumMovimiento_M() %></td>
-				                        <td><%= m.getFechaMovimiento_M() %></td>
+				                        <td><%= dateFormat.format(m.getFechaMovimiento_M()) %></td>
 				                        <td><%= m.getDetalle_M() %></td>
 				                        <td><%= m.getIdTipoMovimiento_M().getIdTipoMovimiento_TM() == 1 || m.getIdTipoMovimiento_M().getIdTipoMovimiento_TM() == 2 ? m.getImporte_M() : "-"+m.getImporte_M() %></td>
 				                        <td><%= m.getIdTipoMovimiento_M().getDescripcion_TM() %> </td>

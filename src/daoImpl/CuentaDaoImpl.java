@@ -262,7 +262,7 @@ public class CuentaDaoImpl implements ICuenta {
 			Usuario user = new Usuario();
 			TipoCuentas TP = new TipoCuentas();
 			
-			String query= "select C.NumCuenta_Cta as numCuenta, C.IdUsuario_Cta as idUsuario, C.FechaCreacion_Cta as fechaCreacion, C.IdTipoCuenta_Cta as idTipoCuenta, C.CBU_Cta as CBU, C.Saldo_Cta as saldo from Cuenta as C inner join Usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas TC on TC.IdTipo_TC = C.IdTipoCuenta_Cta where C.NumCuenta_Cta = "+ id;
+			String query= "select C.NumCuenta_Cta as numCuenta, C.IdUsuario_Cta as idUsuario, C.FechaCreacion_Cta as fechaCreacion, C.IdTipoCuenta_Cta as idTipoCuenta, C.CBU_Cta as CBU, C.Saldo_Cta as saldo from bd_tpint_grupo_6_lab4.cuenta as C inner join bd_tpint_grupo_6_lab4.usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join bd_tpint_grupo_6_lab4.tipocuentas TC on TC.IdTipo_TC = C.IdTipoCuenta_Cta where C.NumCuenta_Cta = "+ id;
 			
 			try {
 				conexion.Open();
