@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import negocioImpl.AdminNegocioImpl;
 import negocioImpl.CuentaNegocioImpl;
 import negocioImpl.MovimientoNegocioImpl;
 import negocioImpl.PagoPresNegocioImpl;
+import negocioImpl.PrestamosNegocioImpl;
 import entidades.Cuenta;
 import entidades.Movimientos;
 import entidades.PagoCuotasPrestamo;
+import entidades.Prestamos;
 import entidades.Usuario;
 
 @WebServlet("/ServletMovimientos")
@@ -26,6 +29,8 @@ public class ServletMovimientos extends HttpServlet {
 	private MovimientoNegocioImpl movNeg = new MovimientoNegocioImpl();
 	private CuentaNegocioImpl cuentaNegocioImpl = new CuentaNegocioImpl();
 	private PagoPresNegocioImpl pagoNeg = new PagoPresNegocioImpl();
+	private AdminNegocioImpl admNeg = new AdminNegocioImpl();
+	private PrestamosNegocioImpl presNeg = new PrestamosNegocioImpl();
 	public ServletMovimientos() {
 		super();
 	}
@@ -35,6 +40,13 @@ public class ServletMovimientos extends HttpServlet {
 
 		RequestDispatcher dispatcher;
 		String nombre = request.getParameter("usuario");
+		Usuario cliente= admNeg.obtenerUsuariov2(nombre);
+		List<Prestamos> prestamosxCliente = presNeg.listarPrestamos(cliente.getIdUsuario_U());
+		
+		System.out.println("nombre : " + nombre);
+		System.out.println("cliente : " + cliente);
+		System.out.println("lista : " + prestamosxCliente);
+		
 		///ACA NOSE COMO SEGUIR 
 		///int numPrestamo = Integer.parseInt(request.getParameter("ddlCuotas"));
 		
@@ -101,6 +113,8 @@ public class ServletMovimientos extends HttpServlet {
 				break;
 			case "pagos":
 				request.setAttribute("cuentas" , cuentas);		
+				System.out.println("prestamos: " + prestamosxCliente);
+				request.setAttribute("prestamos" , prestamosxCliente);	
 				dispatcher = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario" + nombre);
 				dispatcher.forward(request, response);
 				break;

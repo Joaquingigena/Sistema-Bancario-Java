@@ -1,4 +1,6 @@
 <%@page import="entidades.Cuenta"%>
+<%@page import="entidades.Prestamos"%>
+
 <%@page import="entidades.PagoCuotasPrestamo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -31,6 +33,10 @@
 	ArrayList <PagoCuotasPrestamo> listaCuotas = null;
 	if (request.getAttribute("pagocuotasprestamo")!=null) listaCuotas=(ArrayList <PagoCuotasPrestamo>)request.getAttribute("pagocuotasprestamo");
 
+	List<Prestamos> listaPrestamos= new ArrayList<Prestamos>();
+	if(request.getAttribute("prestamos")!=null){
+		listaPrestamos = (ArrayList<Prestamos>)request.getAttribute("prestamos");
+	}
 %>
 <body>
 <!-- Barra de navegacion -->
@@ -104,7 +110,18 @@
 				<h2>Prestamos</h2>
 				<div class="row filaPrestamo">
 				    <div class="col">
-				      <label class="form-control">Prestamo N°</label>
+				    <label class="form-control">Prestamo N°</label>
+				      <select class="form-select">
+				      	<%
+				      	if(listaPrestamos!=null){
+				      		for(Prestamos P : listaPrestamos){
+				      			%>
+				      			<option><%=P.getNumPrestamo_P() %> </option>
+				      			<%
+				      		}
+				      	}
+				      	%>
+				      </select>
 				
 				    </div>
 				    <div class="col">

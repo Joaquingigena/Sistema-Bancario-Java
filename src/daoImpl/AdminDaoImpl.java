@@ -174,7 +174,7 @@ public class AdminDaoImpl implements IAdminDao {
 		Usuario user= new Usuario();
 		Personas persona= new Personas();
 		
-		String query= "select U.Pass_U as Pass,U.Usuario_U as nombreUsuario, P.DNI_P as DNI,P.CUIL_P as Cuil, P.Nombre_P as Nombre,P.Apellido_P as Apellido, P.Direccion_P as Direccion, P.Correo_P as Correo, P.Telefono_P as Telefono from usuario as U inner join personas P on P.IdPersona_P=U.IdPersona_U where U.Usuario_U="+"'"+nombre+"'";
+		String query= "select U.IdUsuario_U as idUsuario, U.Pass_U as Pass,U.Usuario_U as nombreUsuario, P.DNI_P as DNI,P.CUIL_P as Cuil, P.Nombre_P as Nombre,P.Apellido_P as Apellido, P.Direccion_P as Direccion, P.Correo_P as Correo, P.Telefono_P as Telefono from usuario as U inner join personas P on P.IdPersona_P=U.IdPersona_U where U.Usuario_U="+"'"+nombre+"'";
 		
 		//U.Contraseña as Contraseña, Hay que agregarlo
 		try {
@@ -191,6 +191,7 @@ public class AdminDaoImpl implements IAdminDao {
 			persona.setCorreo_P(rs.getString("Correo"));
 			persona.setTelefono_P(rs.getString("Telefono"));
 		
+			user.setIdUsuario_U(rs.getInt("idUsuario"));
 			user.setUsuario_U(rs.getString("nombreUsuario"));
 			user.setPassword_U(rs.getString("Pass"));
 			user.setIdPersona_U(persona);
