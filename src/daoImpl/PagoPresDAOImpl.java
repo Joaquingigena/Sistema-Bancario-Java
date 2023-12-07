@@ -48,5 +48,42 @@ public class PagoPresDAOImpl implements IPagoPres{
 	    }
 	    return lista;
 	}
+	
+	@Override
+	public PagoCuotasPrestamo getPagoPorCuenta(int numCuenta)
+	{
+		conexion = new conexion();
+		String query = "Select CodPago_PCP, NumPrestamo_PCP, NumCuenta_PCP, NumCuota_PCP, MontoPagoMes_PCP, FechaPago_PCP, Estado_PCP " 
+		+ "FROM pagocuotasPrestamo where Estado_PCP = 1 and NumCuenta_PCP = '" + numCuenta +"' order by CodPago_PCP ASC LIMIT 1";
+		
+		PagoCuotasPrestamo pago = new PagoCuotasPrestamo();
+		try {
+			conexion.Open();
+			ResultSet rs = conexion.query(query);
+			while(rs.next())
+			{
+				
+				
+				pago.setCodPago_PCP(rs.getInt("CodPago_PCP"));
+				pago.getNumPrestamo_PCP().setNumPrestamo_P(rs.getInt("NumPrestamo_PCP"));
+				pago.getNumCuenta_PCP().setNumCuenta_Cta(rs.getInt("NumCuenta_PCP"));
+	            pago.setNumCuota_PCP(rs.getInt("NumCuota_PCP"));
+	            pago.setMontoPagoMes_PCP(rs.getFloat("MontoPagoMes_PCP"));
+	            pago.setFechaPago_PCP(rs.getDate("FechaPago_PCP"));
+	            pago.setEstado_PCP(rs.getBoolean("Estado_PCP"));
+				
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally 
+		{
+			conexion.close();
+		}
+		return pago;
+	}
+	
 
 }

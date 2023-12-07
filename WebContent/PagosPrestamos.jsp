@@ -1,6 +1,7 @@
 <%@page import="entidades.Cuenta"%>
 <%@page import="entidades.Prestamos"%>
 
+
 <%@page import="entidades.PagoCuotasPrestamo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,16 +28,14 @@
 <%
 	String nombre = (String)request.getParameter("usuario");
 
+     boolean esValido = false;
+    if (request.getAttribute("datosOk")!=null) esValido = (boolean)request.getAttribute("datosOk");
+    
 	ArrayList <Cuenta> listaCuentas = null;
 	if (request.getAttribute("cuentas")!=null) listaCuentas=(ArrayList <Cuenta>)request.getAttribute("cuentas");
 	
-	ArrayList <PagoCuotasPrestamo> listaCuotas = null;
-	if (request.getAttribute("pagocuotasprestamo")!=null) listaCuotas=(ArrayList <PagoCuotasPrestamo>)request.getAttribute("pagocuotasprestamo");
-
-	List<Prestamos> listaPrestamos= new ArrayList<Prestamos>();
-	if(request.getAttribute("prestamos")!=null){
-		listaPrestamos = (ArrayList<Prestamos>)request.getAttribute("prestamos");
-	}
+	PagoCuotasPrestamo pago = null;
+	if (request.getAttribute("listPago")!=null) pago=(PagoCuotasPrestamo)request.getAttribute("listPago");
 %>
 <body>
 <!-- Barra de navegacion -->
@@ -104,49 +103,9 @@
 			
 					
 				
-			<form action="ServletMovimientos" method="post">
+			<form action="ServletPagoPrestamos" method="<%=esValido? "post" : "get"%>">
 			<div class="container text-center">
 				
-				<h2>Prestamos</h2>
-				<div class="row filaPrestamo">
-				    <div class="col">
-				    <label class="form-control">Prestamo N°</label>
-				      <select class="form-select">
-				      	<%
-				      	if(listaPrestamos!=null){
-				      		for(Prestamos P : listaPrestamos){
-				      			%>
-				      			<option><%=P.getNumPrestamo_P() %> </option>
-				      			<%
-				      		}
-				      	}
-				      	%>
-				      </select>
-				
-				    </div>
-				    <div class="col">
-				    	<label class="form-control">Fecha de inicio </label>
-				    </div>
-				    <div class="col">
-				    	<label class="form-control">Monto solicitado:  <%= listaPrestamos.get(0).getImportePedido_P() %> $</label>
-				    </div>
-				    <div class="col">
-				    	<label class="form-control">Monto total a pagar: <%=listaPrestamos.get(0).getImportePagar_P() %>$</label>
-				    </div>
-				</div>
-			
-			<div class="row filaPrestamo">
-					<div class="col">
-				      <label class="form-control">Cuota N°</label>
-				      <select id="cuotas" name="ddlCuotas" class="form-select" required>
-                        <% if (listaCuotas != null)
-                            for (PagoCuotasPrestamo c : listaCuotas) { %>
-                                <option value=<%=c.getNumPrestamo_PCP() %>><%=c.getNumCuota_PCP() + " - " + " Monto: " + c.getMontoPagoMes_PCP()  %></option>
-                        <% } %>
-                    </select>
-                    <% 
-                    %>
-				    </div>
 				    <div class="col">
 				      <label class="form-control">N° de cuenta</label>
 				      <select id="cuentas" name="ddlCuenta" class="form-select" required>
@@ -155,16 +114,45 @@
                                 <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
                         <% } %>
                     </select>
-                    <% 
-                    %>
+                      <div class="container text-center">
+					  <div class="row">
+                    	<%
+					    		if(pago != null){%>
+					    		
+					    		
+					    		<div class="col form-floating mb-3">
+							     	<input readonly type="text" class="form-control" value="<%= pago.getCodPago_PCP()%>" name="CodPago"/>
+		                        	<label for="CodPago">Codigo de Pago</label>
+							    </div>	
+							    
+							    <div class="col form-floating mb-3">
+							      	<input readonly type="text" class="form-control" value="<%= pago.getNumPrestamo_PCP()%>" name="NumPrestamo"/>
+		                        	<label for="NumPrestamo">N° de Prestamo</label>
+							    </div>
+							    
+							    <div class="col form-floating mb-3">
+							     	<input readonly type="text" class="form-control" value="<%= pago.getNumCuota_PCP()%>" name="NumCuota"/>
+		                        	<label for="NumCuota">N° de Cuota</label>
+							    </div>
+							    
+							    <div class="col form-floating mb-3">
+							     	<input readonly type="text" class="form-control" value="<%= pago.getMontoPagoMes_PCP()%>" name="MontoPago"/>
+		                        	<label for="MontoPago">Monto a Pagar</label>
+							    </div>
+					    	<%	}%>
+					   </div>
+					 </div>
 				    </div>
 			</div>
 			
-			<div class="row ">
-				<div class="col text-center">
-					<input type="submit" name="btnPagar" value="Pagar" class="btn btn-secondary btn-mm">
-				</div>
-			</div>
+                <div class="col-md-12">
+                	<%if(!esValido){%>
+                		<input type="submit" class="btn btn-outline-success form-control btn-lg" name="validarDatos" value="Verificar datos"/>
+                    <%	}
+                	else{%>	
+                    	<input type="submit" class="btn btn-outline-success form-control btn-lg" name="btnPagar" value="Pagar" min=0.01 onclick="return confirm('¿Está seguro de realizar este pago?')" />
+                	<%	}%>
+                </div>
 			
 			</form>
 			

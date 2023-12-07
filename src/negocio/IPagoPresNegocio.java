@@ -8,5 +8,7 @@ public interface IPagoPresNegocio {
 
 	public List<PagoCuotasPrestamo> listarCuotas(int numPrestamo);
 
+	PagoCuotasPrestamo getPagoPorCuenta(int numCuenta);
+
 	
 }

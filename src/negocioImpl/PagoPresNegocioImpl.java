@@ -14,6 +14,12 @@ public class PagoPresNegocioImpl implements IPagoPresNegocio{
 		 pagDao.listarCuotas(numPrestamo);
 		return null;
 	}
+	
+	@Override
+	public PagoCuotasPrestamo getPagoPorCuenta(int numCuenta) {
+		 pagDao.getPagoPorCuenta(numCuenta);
+		return null;
+	}
  
 	
 }
