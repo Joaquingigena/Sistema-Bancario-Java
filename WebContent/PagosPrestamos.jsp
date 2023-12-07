@@ -108,7 +108,7 @@
 				
 				    <div class="col">
 				      <label class="form-control">N° de cuenta</label>
-				      <select id="cuentas" name="ddlCuenta" class="form-select" required>
+				      <select id="cuentas" name="ddlCuenta" class="form-select" required required onchange="this.form.submit()">
                         <% if (listaCuentas != null)
                             for (Cuenta cuenta : listaCuentas) { %>
                                 <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>

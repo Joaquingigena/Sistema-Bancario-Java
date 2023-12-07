@@ -66,9 +66,11 @@ public class ServletPagoPrestamos extends HttpServlet {
 			switch (opcion) {
 				
 			case "Verificar datos" :
-				int numCuenta  = Integer.parseInt(request.getParameter("ddlCuenta"));
-				System.out.println(numCuenta);
-				
+				if (request.getParameter("ddlCuenta") != null) {
+					int numCuenta = Integer.parseInt(request.getParameter("ddlCuenta"));
+					pago = pagoNeg.getPagoPorCuenta(numCuenta);
+					request.setAttribute("pago", pago);
+				}
 				
 				request.setAttribute("listpago", pago);
 				

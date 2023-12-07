@@ -28,17 +28,17 @@ public class PagoPresDAOImpl implements IPagoPres{
 	        ResultSet rs = conexion.query(query);
 	        
 	        while(rs.next()) {
-	            PagoCuotasPrestamo pagoCuotasPrestamo = new PagoCuotasPrestamo();
+	            PagoCuotasPrestamo p = new PagoCuotasPrestamo();
 	            
-	            pagoCuotasPrestamo.getNumPrestamo_PCP().setNumPrestamo_P(rs.getInt("NumPrestamo_PCP"));
-	            pagoCuotasPrestamo.setCodPago_PCP(rs.getInt("CodPago_PCP"));
-	            pagoCuotasPrestamo.getNumCuenta_PCP().setNumCuenta_Cta(rs.getInt("NumCuenta_PCP"));
-	            pagoCuotasPrestamo.setNumCuota_PCP(rs.getInt("NumCuota_PCP"));
-	            pagoCuotasPrestamo.setMontoPagoMes_PCP(rs.getFloat("MontoPagoMes_PCP"));
-	            pagoCuotasPrestamo.setFechaPago_PCP(rs.getDate("FechaPago_PCP"));
-	            pagoCuotasPrestamo.setEstado_PCP(rs.getBoolean("Estado_PCP"));
+	            p.getNumPrestamo_PCP().setNumPrestamo_P(rs.getInt("NumPrestamo_PCP"));
+	            p.setCodPago_PCP(rs.getInt("CodPago_PCP"));
+	            p.getNumCuenta_PCP().setNumCuenta_Cta(rs.getInt("NumCuenta_PCP"));
+	            p.setNumCuota_PCP(rs.getInt("NumCuota_PCP"));
+	            p.setMontoPagoMes_PCP(rs.getFloat("MontoPagoMes_PCP"));
+	            p.setFechaPago_PCP(rs.getDate("FechaPago_PCP"));
+	            p.setEstado_PCP(rs.getBoolean("Estado_PCP"));
 	                    
-	            lista.add(pagoCuotasPrestamo);
+	            lista.add(p);
 	        }
 	        
 	    } catch (Exception e) {
