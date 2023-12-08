@@ -61,23 +61,23 @@ public class ServletPagoPrestamos extends HttpServlet {
 		}
 		if (request.getParameter("validarDatos") != null) {
 			String opcion = request.getParameter("validarDatos").toString();
-			PagoCuotasPrestamo pago = new PagoCuotasPrestamo();
+			PagoCuotasPrestamo pago = null;
 			
 			switch (opcion) {
 				
 			case "Verificar datos" :
-				if (request.getParameter("ddlCuenta") != null) {
+				
 					int numCuenta = Integer.parseInt(request.getParameter("ddlCuenta"));
 					pago = pagoNeg.getPagoPorCuenta(numCuenta);
-					request.setAttribute("pago", pago);
-				}
+					request.setAttribute("listpago", pago);
+
 				
-				request.setAttribute("listpago", pago);
+				
 				
 				request.setAttribute("cuentas", cuentas);
 				request.setAttribute("datosOk", true);
 				
-				RequestDispatcher rd = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario" + nombre);
+				RequestDispatcher rd = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario=" + nombre);
 				rd.forward(request, response);	
 				
 				break;
@@ -85,6 +85,7 @@ public class ServletPagoPrestamos extends HttpServlet {
 			}
 			
 		}
+
 		
 		
 
@@ -94,6 +95,5 @@ public class ServletPagoPrestamos extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
 	}
 }

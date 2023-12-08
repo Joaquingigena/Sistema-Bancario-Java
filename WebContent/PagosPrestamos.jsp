@@ -1,7 +1,5 @@
 <%@page import="entidades.Cuenta"%>
 <%@page import="entidades.Prestamos"%>
-
-
 <%@page import="entidades.PagoCuotasPrestamo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -34,8 +32,8 @@
 	ArrayList <Cuenta> listaCuentas = null;
 	if (request.getAttribute("cuentas")!=null) listaCuentas=(ArrayList <Cuenta>)request.getAttribute("cuentas");
 	
-	PagoCuotasPrestamo pago = null;
-	if (request.getAttribute("listPago")!=null) pago=(PagoCuotasPrestamo)request.getAttribute("listPago");
+	/*PagoCuotasPrestamo pago = null;
+	if (request.getAttribute("listPago")!=null) pago=(PagoCuotasPrestamo)request.getAttribute("listPago");*/
 %>
 <body>
 <!-- Barra de navegacion -->
@@ -108,7 +106,8 @@
 				
 				    <div class="col">
 				      <label class="form-control">N° de cuenta</label>
-				      <select id="cuentas" name="ddlCuenta" class="form-select" required required onchange="this.form.submit()">
+				      <input type="hidden" name="usuario" value="<%=nombre %>"/>
+				      <select id="cuentas" name="ddlCuenta" class="form-select" required >
                         <% if (listaCuentas != null)
                             for (Cuenta cuenta : listaCuentas) { %>
                                 <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
@@ -117,6 +116,7 @@
                       <div class="container text-center">
 					  <div class="row">
                     	<%
+                    	PagoCuotasPrestamo pago = (PagoCuotasPrestamo) request.getAttribute("listPago");
 					    		if(pago != null){%>
 					    		
 					    		
