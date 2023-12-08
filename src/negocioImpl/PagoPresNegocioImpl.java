@@ -17,8 +17,13 @@ public class PagoPresNegocioImpl implements IPagoPresNegocio{
 	
 	@Override
 	public PagoCuotasPrestamo getPagoPorCuenta(int numCuenta) {
-		 pagDao.getPagoPorCuenta(numCuenta);
-		return null;
+		return pagDao.getPagoPorCuenta(numCuenta);
+		
+	}
+	
+	@Override
+	public boolean pagoCuota(int codPago, int numPrestamo, int numCuenta, int numCuota, float monto) {
+		return pagDao.pagoCuota(codPago,numPrestamo,numCuenta,numCuota,monto);
 	}
  
 	

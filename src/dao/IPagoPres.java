@@ -8,6 +8,8 @@ public interface IPagoPres {
 
 	public List<PagoCuotasPrestamo> listarCuotas(int numPrestamo);
 
-	PagoCuotasPrestamo getPagoPorCuenta(int numCuenta);
+	public PagoCuotasPrestamo getPagoPorCuenta(int numCuenta);
+	
+	public boolean pagoCuota(int codPago, int numPrestamo, int numCuenta, int numCuota, float monto);
 	
 }

@@ -52,6 +52,7 @@ public class PagoPresDAOImpl implements IPagoPres{
 	@Override
 	public PagoCuotasPrestamo getPagoPorCuenta(int numCuenta)
 	{
+		;
 		conexion = new conexion();
 		String query = "Select CodPago_PCP, NumPrestamo_PCP, NumCuenta_PCP, NumCuota_PCP, MontoPagoMes_PCP, FechaPago_PCP, Estado_PCP " 
 		+ "FROM pagocuotasPrestamo where Estado_PCP = 1 and NumCuenta_PCP = '" + numCuenta +"' order by CodPago_PCP ASC LIMIT 1";
@@ -72,6 +73,7 @@ public class PagoPresDAOImpl implements IPagoPres{
 	            pago.setFechaPago_PCP(rs.getDate("FechaPago_PCP"));
 	            pago.setEstado_PCP(rs.getBoolean("Estado_PCP"));
 				
+	            
 			}
 		}
 		catch (Exception e)
@@ -83,6 +85,31 @@ public class PagoPresDAOImpl implements IPagoPres{
 			conexion.close();
 		}
 		return pago;
+	}
+
+	public boolean pagoCuota(int codPago, int numPrestamo, int numCuenta, int numCuota, float monto) {
+		
+		conexion = new conexion();
+		
+		String query = "UPDATE PagoCuotasPrestamo set Estado_PCP = 0 where CodPago_PCP= '" + codPago +" '";
+		boolean isCreate = false;
+		try
+		{
+			conexion.Open();
+			isCreate=conexion.execute(query);
+			
+			
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			conexion.close();
+		}
+		return isCreate;
 	}
 	
 

@@ -32,6 +32,7 @@
 	ArrayList <Cuenta> listaCuentas = null;
 	if (request.getAttribute("cuentas")!=null) listaCuentas=(ArrayList <Cuenta>)request.getAttribute("cuentas");
 	
+	PagoCuotasPrestamo pago = (PagoCuotasPrestamo) request.getAttribute("listPago");
 	/*PagoCuotasPrestamo pago = null;
 	if (request.getAttribute("listPago")!=null) pago=(PagoCuotasPrestamo)request.getAttribute("listPago");*/
 %>
@@ -101,13 +102,15 @@
 			
 					
 				
-			<form action="ServletPagoPrestamos" method="<%=esValido? "post" : "get"%>">
+			<form action="ServletPagoPrestamos" method="<%=esValido ? "post" : "get"%>">
 			<div class="container text-center">
 				
 				    <div class="col">
 				      <label class="form-control">N° de cuenta</label>
 				      <input type="hidden" name="usuario" value="<%=nombre %>"/>
-				      <select id="cuentas" name="ddlCuenta" class="form-select" required >
+                     
+				      <select id="cuentas" name="ddlCuenta" class="form-select" required>
+
                         <% if (listaCuentas != null)
                             for (Cuenta cuenta : listaCuentas) { %>
                                 <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
@@ -116,7 +119,6 @@
                       <div class="container text-center">
 					  <div class="row">
                     	<%
-                    	PagoCuotasPrestamo pago = (PagoCuotasPrestamo) request.getAttribute("listPago");
 					    		if(pago != null){%>
 					    		
 					    		
@@ -126,8 +128,13 @@
 							    </div>	
 							    
 							    <div class="col form-floating mb-3">
-							      	<input readonly type="text" class="form-control" value="<%= pago.getNumPrestamo_PCP()%>" name="NumPrestamo"/>
+							      	<input readonly type="text" class="form-control" value="<%= pago.getNumPrestamo_PCP().getNumPrestamo_P()%>" name="NumPrestamo"/>
 		                        	<label for="NumPrestamo">N° de Prestamo</label>
+							    </div>
+							    
+							    <div class="col form-floating mb-3">
+							      	<input readonly type="text" class="form-control" value="<%= pago.getNumCuenta_PCP().getNumCuenta_Cta()%>" name="NumCuenta"/>
+		                        	<label for="NumCuenta">N° de Cuenta</label>
 							    </div>
 							    
 							    <div class="col form-floating mb-3">
