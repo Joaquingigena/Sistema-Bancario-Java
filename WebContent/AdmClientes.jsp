@@ -94,7 +94,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="Login.jsp">Cerrar sesion</a>
               </li>
-	           	<ion-icon name="person-circle-outline"></ion-icon> <b><%= nombre %></b>
+	           	
               
             </ul>
           
