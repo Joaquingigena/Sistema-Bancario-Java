@@ -76,117 +76,94 @@
         </div>
     </nav>
     
-     <!-- Busqueda -->
-     <!-- <form action="ServletCuenta" method="post">-->
-    <div class="d-flex justify-content-center">
-        <div class="col-sm-4">
-            <input type="text" class="form-control" name="filtroValor" id="filtroValor" onkeyup="filtroRapido()" placeholder="Buscar N° de movimiento">
+    
+	
+	
+	<div class="container mt-4">
+    <h2 class="mb-4">Informe Bancario</h2>
+    
+     <h4>Filtrar por Fechas</h4>
+
+    <form action="" method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="fechaInicio">Fecha de inicio:</label>
+                <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+            </div>
+
+            <div class="col-md-4">
+                <label for="fechaFin">Fecha de fin:</label>
+                <input type="date" class="form-control" id="fechaFin" name="fechaFin" required>
+            </div>
         </div>
-        <div class="col-auto">
-            <input type="submit" name="btnBuscar" value="Buscar" class="btn btn-primary" >
+
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+    
+	<form method="get" action="ServletInformes">
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Monto Total de Ingresos</h5>
+                    <p class="card-text" id="montoIngresos">0.00</p>
+                </div>
+            </div>
         </div>
-         <div class="col-sm-4">
-			<input type="checkbox"  class="form-check-input" id="chkFiltro" onchange="activarFiltroAvanzado()" >
-			<label class="form-check-label" for="chkFiltro">Filtro avanzado </label>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Monto Total de Egresos</h5>
+                    <p class="card-text" id="montoEgresos">0.00</p>
+                </div>
+            </div>
         </div>
     </div>
-	 <!-- </form>-->
-	<script>
-	function filtroRapido(){
-		
-		var filtro= document.getElementById("filtroValor").value.toLowerCase();;
-		var tablaMovimientos= document.getElementById("tablaMovimientos")
-		var filas= tablaMovimientos.getElementsByTagName("tr");
-		
-		for (var i = 1; i < filas.length; i++) {  
-            var numMovimiento = filas[i].getAttribute("data-nombre").toLowerCase();
-            if (numMovimiento.includes(filtro)) {
-                filas[i].style.display = "";
-            } else {
-                filas[i].style.display = "none";
-            }
-        }
-	}
-	</script>
-	
-	<!-- Filtro -->
-	<div id="filtroAvanzado"  style="display:none;"> 
-	<form action="ServletInformes" method="post">
-	<div class="container">
-		<div class="row">
-			<div class="col-3">
-				<div class="mb-3">
-				
-				<label class="form-label"> Campo</label>
-				<select id="ddlCampo" name="ddlCampo" class="form-control">
-					<option value="movimiento" >N° Movimiento </option>
-					<option value="fecha" > Fecha</option>
-					<option value="importe" > importe </option>
-				</select>			
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="mb-3">
-				
-				<label class="form-label"> Criterio</label>
-				<select id="ddlCriterio" name="ddlCriterio" class="form-control">
-						<option value="Contiene" >Contiene</option>
-						<option value="Igual a" > Igual a</option>
-						
-			    </select>			
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="mb-3">
-				<label class="form-label"> Filtro</label>
-				<input type="text" name="filtro" class="form-control"> 
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="mb-3">
-				<br>
-				<input type="submit" name="btnFiltrar" value="Filtrar" class="btn btn-primary"> 
-				</div>
-				<div class="col-auto">
-				<br>
-                <input type="submit" name="btnQuitarFiltro" value="QuitarFiltro" class="btn btn-primary" >
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cantidad de Usuarios Registrados</h5>
+                    <p class="card-text" id="usuariosRegistrados">0</p>
                 </div>
-			</div>
-		</div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cantidad de Préstamos Otorgados</h5>
+                    <p class="card-text" id="prestamosOtorgados">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cantidad de Movimientos Realizados</h5>
+                    <p class="card-text" id="movimientosRealizados">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
 	</div>
 	</form>
-	</div>
-	<script>
-		var criteriosXcampos= {
-				movimiento:["Contiene","Igual a"],
-				fecha: ["Mayor que","Menor que","Igual a"],
-				importe: ["Mayor que","Menor que","Igual a"]
-		}
-		
-		var campoSelect = document.getElementById("ddlCampo");
-        var criterioSelect = document.getElementById("ddlCriterio");
-        
-        campoSelect.addEventListener("change", function() {
-        	
-        	var criterios = criteriosXcampos[campoSelect.value];
-        	
-        	criterioSelect.innerHTML="";
-        	
-        	 if (criterios) {
-                 criterios.forEach(function(criterio) {
-                     var opcion = document.createElement("option");
-                     opcion.value = criterio;
-                     opcion.textContent = criterio;
-                     criterioSelect.appendChild(opcion);
-                 });
-             }
-        });
-        
-        
-	</script>
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 
     <div class="container-fluid">
         <div class="row">
             <div class="col-3 titulo">
@@ -259,7 +236,7 @@
             </div>
         </div>
     </div>
-    
+     -->
     <script>
 	
 	function activarFiltroAvanzado(){
