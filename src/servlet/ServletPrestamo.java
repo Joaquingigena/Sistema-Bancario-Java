@@ -169,14 +169,31 @@ public class ServletPrestamo extends HttpServlet {
 			boolean estado = false;
 			boolean autorizado = true;
 			
+			String msgString = "";
 			System.out.println("ID USUARIO:::: "+idUser);
 			System.out.println("IMPORTE PRESTAMO:::: "+importePrestamo);
 			
-			if(preNeg.insertPrestamo(numCtaOrigen, idUser, importe, importePrestamo, plazo, cuotas, estado, autorizado)) {
-				System.out.println("Solicitud exitosa!!");
+			if(!preNeg.validarPrestamo(numCtaOrigen)) {
+				System.out.println("ERROOOOOOOOOR!!!!!");
+				msgString = " No puede tener mas de un prestamo activo en la misma cuenta o ya tiene un prestamo a la espera de ser aceptado";
+				request.setAttribute("msgPrestamo", msgString);
+				
 			}
 			else {
-				System.out.println("ERROOOOOOOOOR!!!!!");
+				boolean prestado = preNeg.insertPrestamo(numCtaOrigen, idUser, importe, importePrestamo, plazo, cuotas, estado, autorizado);
+				
+				if(prestado)
+				{
+					System.out.println("Solicitud exitosa!!");
+					msgString = " Prestamo exitoso, a la espera de confirmacion";
+					request.setAttribute("msgTransferencia", msgString);
+				}
+				else
+				{
+					msgString = " Error al solicitar el Prestamo";
+					request.setAttribute("msgError", msgString);
+				}
+				
 			}
 			
 			List<Cuenta> cuentas = new ArrayList<Cuenta>();
@@ -191,22 +208,7 @@ public class ServletPrestamo extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/Prestamos.jsp");
 			rd.forward(request, response);
 			
-			/*String msgString = "";
-			if(preNeg.validarPrestamo(numCtaOrigen)) {
-				//acá se ejecuta el trigger actualizarSaldoCuentas despues de hacer el insert
-				boolean prestado = preNeg.insertPrestamo(numCtaOrigen,importePrestamo,importe,cuotas,false);
 				
-				if (prestado) {
-					msgString = " Prestamo exitoso, a la espera de confirmacion";
-					request.setAttribute("msgTransferencia", msgString);
-				}				
-			}
-			else {
-				msgString = " No puede tener mas de un prestamo activo en la misma cuenta";
-				request.setAttribute("msgTransferencia", msgString);
-			}*/	
-			
-			
 		}
 		
 		
@@ -218,5 +220,3 @@ public class ServletPrestamo extends HttpServlet {
 	}
 	
 	}
-
-

@@ -149,12 +149,12 @@ public class ServletTransferencia extends HttpServlet {
 				}
 				else {
 					msgString = " Transferencia rechazada";
-					request.setAttribute("msgTransferencia", msgString);
+					request.setAttribute("msgError", msgString);
 				}				
 			}
 			else {
 				msgString = " Saldo insuficiente para realizar operacion";
-				request.setAttribute("msgTransferencia", msgString);
+				request.setAttribute("msgSaldo", msgString);
 			}	
 			System.out.println(numCtaOrigen + " " + numCtaDestino + " " +  detalle + " " + importe);
 			

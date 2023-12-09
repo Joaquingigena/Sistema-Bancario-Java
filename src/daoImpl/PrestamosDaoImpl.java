@@ -175,7 +175,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 	{
 		ResultSet rs;
 		conexion = new conexion();
-		String consulta = "Select COUNT(NumCuenta_P) as NumeroC from Prestamos where NumCuenta_P = '"+ numCuenta + "' and Estado = 1";
+		String consulta = "Select COUNT(NumCuenta_P) as NumeroC from Prestamos where NumCuenta_P = '"+ numCuenta + "' and (Estado = 1 or Estado = 0) and Autorizado = 1";
 		boolean esValido= true;
 		int num=0;
 		try
@@ -187,7 +187,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 				num=rs.getInt("NumeroC");
 			}
 			System.out.println("numero de prestamos en la misma cuenta: "+ num);
-			if(num<=1)
+			if(num<1)
 			{
 				esValido=true;
 			}

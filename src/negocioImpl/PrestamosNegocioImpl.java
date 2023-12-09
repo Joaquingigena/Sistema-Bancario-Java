@@ -113,4 +113,6 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	
 		return preDao.listarPrestamos(idUsuario);
 	}
+	
+	
 }

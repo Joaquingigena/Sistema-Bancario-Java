@@ -106,13 +106,13 @@ public class ServletPagoPrestamos extends HttpServlet {
 				else
 				{
 					msgString = "Pago Rechazado";
-					request.setAttribute("msgPago", msgString);
+					request.setAttribute("msgError", msgString);
 				}
 			}
 			else
 			{
 				msgString = "Saldo Insuficiente para realizar operacion";
-				request.setAttribute("msgPago", msgString);
+				request.setAttribute("msgSaldo", msgString);
 			}
 		}
 		List<Cuenta> cuentas = new ArrayList<Cuenta>();

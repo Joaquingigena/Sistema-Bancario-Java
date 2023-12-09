@@ -13,6 +13,7 @@
  <!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  
  <!-- Icons de Bootstrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -166,69 +167,60 @@
                     	<input type="submit" class="btn btn-outline-success form-control btn-lg" name="btnTransferir" value="Transferir" min=0.01 onclick="return confirm('¿Está seguro de realizar esta transferencia?')" />
                 	<%	}%>
                 </div>
+                                <%
+			if(request.getAttribute("msgTransferencia") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgTransferencia")%>"; 
+								Swal.fire({
+									  title: "Transferencia exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            
+            <%
+			if(request.getAttribute("msgError") !=null){
+				%>
+					<script type="text/javascript">
+						var mensaje = "<%=request.getAttribute("msgError")%>"; 
+							Swal.fire({
+								  title: "Error",
+								  text: mensaje,
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+					</script>
+            <%}%>
+            
+                        <%
+			if(request.getAttribute("msgSaldo") !=null){
+				%>
+					<script type="text/javascript">
+						var mensaje = "<%=request.getAttribute("msgSaldo")%>"; 
+							Swal.fire({
+								  title: "Error",
+								  text: mensaje,
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+					</script>
+            <%}%>
             </form>
         </div>
 	</div>
     </div>
-	<%
-int mensaje=-3;
-if (request.getAttribute("mensaje")!=null) mensaje=(int)request.getAttribute("mensaje");   
-
-                		
-Boolean importeNegativo = false;
-if (request.getAttribute("importeNegativo")!=null) {
-	importeNegativo= (boolean)request.getAttribute("importeNegativo");
-}
-%>  
 
 
 
-    <div style="display: flex; justify-content: center;">
-    
-  		<%
-	    if (importeNegativo == true){
-	    %>
-	   <div ID="MsgErrorDiv" class="col-md-4 alert alert-danger" runat="server" visible="false">
-	         <strong>Error</strong> El importe no debe ser negativo!
-	         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-	   </div>
-       <%}%>    
-        <%
-        if (mensaje == -2){
-        %>
-        <div ID="MsgErrorDiv" class="col-md-4 alert alert-danger" runat="server" visible="false">
-            <strong>Error</strong> La cuenta de origen no puede ser la misma que la de destino.
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        <%
-        }
-        else if (mensaje == -1){
-        %>
-        <div ID="MsgErrorDiv" class="col-md-4 alert alert-danger" runat="server" visible="false">
-            <strong>Error</strong> La cuenta no tiene saldo disponible para la transferencia.
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        <%
-        }
-        else if (mensaje == 0){
-        %>
-        <div ID="MsgErrorDiv" class="col-md-4 alert alert-danger" runat="server" visible="false">
-            <strong>Error</strong> Hubo un error al realizar la transferencia.
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        <%
-        }
-        else if (mensaje == 1){
-        %>
-        
-        <div ID="MsgCorrectoDiv" class="col-md-4 alert alert-success" runat="server" visible="false">
-            <strong>Correcto</strong> Transferencia realizada correctamente!
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        <%
-        }
-        %>
-   </div>
+
+
 	
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
