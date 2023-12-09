@@ -38,6 +38,16 @@
 	if(request.getAttribute("listaInformes")!=null){
 		listaMovimientos= (ArrayList<Movimientos>)request.getAttribute("listaInformes");
 	}
+	
+	Integer movimientos = (Integer)(request.getAttribute("movimientos"));
+	
+	Integer cantUsuarios = (Integer)(request.getAttribute("cantU"));
+	
+	Integer cantPrestamos = (Integer)(request.getAttribute("cantP"));
+	
+	float montoPrestamos = (float)(request.getAttribute("MontoPrestamos"));
+	
+	float montoCuotas = (float)(request.getAttribute("MontoCuotas"));
 
 %>
  <!-- Barra de navegacion -->
@@ -84,38 +94,37 @@
     
      <h4>Filtrar por Fechas</h4>
 
-    <form action="" method="post">
+    <form action="ServletInformes" method="post">
         <div class="row">
             <div class="col-md-4">
                 <label for="fechaInicio">Fecha de inicio:</label>
-                <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+                <input type="datetime-local" class="form-control" id="fechaInicio" name="fechaInicio" required>
             </div>
 
             <div class="col-md-4">
                 <label for="fechaFin">Fecha de fin:</label>
-                <input type="date" class="form-control" id="fechaFin" name="fechaFin" required>
+                <input type="datetime-local" class="form-control" id="fechaFin" name="fechaFin" required>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <button type="submit" class="btn btn-primary" name="btnFiltrarFecha">Filtrar</button>
     </form>
     
 	<form method="get" action="ServletInformes">
-    <div class="row mt-4">
-        <div class="col-md-6">
+    <div class="row mt-4">   
+       <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Monto Total de Ingresos</h5>
-                    <p class="card-text" id="montoIngresos">0.00</p>
+                    <h5 class="card-title">Monto Total de Prestamos Otorgados</h5>
+                    <p class="card-text" id="montoPrestamos"><%= montoPrestamos %></p>
                 </div>
             </div>
         </div>
-
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Monto Total de Egresos</h5>
-                    <p class="card-text" id="montoEgresos">0.00</p>
+                    <h5 class="card-title">Monto Total de Cuotas de Prestamos Cobrados</h5>
+                    <p class="card-text" id="montoCuotas"><%= montoCuotas %></p>
                 </div>
             </div>
         </div>
@@ -126,7 +135,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Cantidad de Usuarios Registrados</h5>
-                    <p class="card-text" id="usuariosRegistrados">0</p>
+                    <p class="card-text" id="usuariosRegistrados"><%= cantUsuarios %></p>
                 </div>
             </div>
         </div>
@@ -135,7 +144,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Cantidad de Préstamos Otorgados</h5>
-                    <p class="card-text" id="prestamosOtorgados">0</p>
+                    <p class="card-text" id="prestamosOtorgados"><%= cantPrestamos %></p>
                 </div>
             </div>
         </div>
@@ -146,7 +155,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Cantidad de Movimientos Realizados</h5>
-                    <p class="card-text" id="movimientosRealizados">0</p>
+                    <p class="card-text" id="movimientosRealizados"><%= movimientos %></p>
                 </div>
             </div>
         </div>

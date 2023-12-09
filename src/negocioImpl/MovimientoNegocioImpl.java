@@ -25,5 +25,6 @@ public class MovimientoNegocioImpl implements IMovimientoNegocio{
 		// TODO Auto-generated method stub
 		return mDaoImp.insertMovimientoPorUsuario(numCtaOrigen, numCtaDestino , Detalle, importe, tipoMov, estado);
 	}
+	
 
 }

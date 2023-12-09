@@ -79,5 +79,45 @@ public class InformeNegocioImpl implements IInformesNegocio{
 		
 		return informedao.filtroAvanzado(query);
 	}
+	
+	public int filtroPorMovimientosRealizado(String fechaIni, String fechaFin) 
+	{
+		return informedao.filtroPorMovimientosRealizado(fechaIni, fechaFin);
+	}
+	
+	public float filtroPorMontoPrestamos(String fechaIni, String fechaFin) 
+	{
+		return informedao.filtroPorMontoPrestamos(fechaIni, fechaFin);
+	}
+	
+	public float filtroPorMontoCuotas(String fechaIni, String fechaFin) 
+	{
+		return informedao.filtroPorMontoCuotas(fechaIni, fechaFin);
+	}
+	
+	/* filtros para mostrar cuando se abre el jsp de adminformes */
+	
+	public float filtroPorMontoPrestamosSF() 
+	{
+		return informedao.filtroPorMontoPrestamosSF();
+	}
+	
+	public float filtroPorMontoCuotasSF() 
+	{
+		return informedao.filtroPorMontoCuotasSF();
+	}
+	
+	public int filtroPorMovimientosRealizadoSF() 
+	{
+		return informedao.filtroPorMovimientosRealizadoSF();
+	}
+	public int filtroCantUsuariosSF() 
+	{
+		return informedao.filtroCantUsuariosSF();
+	}
+	public int filtroCantPrestamosSF()
+	{
+		return informedao.filtroCantPrestamosSF();
+	}
 
 }
