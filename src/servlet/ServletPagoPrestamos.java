@@ -65,7 +65,7 @@ public class ServletPagoPrestamos extends HttpServlet {
 		        case "Verificar datos":
 		            int numCuenta = Integer.parseInt(request.getParameter("ddlCuenta"));
 		            PagoCuotasPrestamo pago = pagoNeg.getPagoPorCuenta(numCuenta);
-		            request.setAttribute("listPago", pago); // Asegúrate de usar "listPago" en lugar de "listpago"
+		            request.setAttribute("listPago", pago); 
 		            request.setAttribute("cuentas", cuentas);
 		            request.setAttribute("datosOk", true);
 		            RequestDispatcher rd = request.getRequestDispatcher("/PagosPrestamos.jsp?usuario=" + nombre);

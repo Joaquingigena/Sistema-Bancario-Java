@@ -23,6 +23,27 @@
 </style>
 
 <title>Transferencias</title>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener el elemento select
+        var ddlCuenta = document.getElementById('transferencias');
+
+        // Obtener la última opción seleccionada desde localStorage
+        var lastSelectedOption = localStorage.getItem('lastSelectedOption');
+
+        // Establecer la última opción seleccionada como la primera opción
+        if (lastSelectedOption) {
+            ddlCuenta.value = lastSelectedOption;
+        }
+
+        // Escuchar cambios en el elemento select
+        ddlCuenta.addEventListener('change', function() {
+            // Almacenar la última opción seleccionada en localStorage
+            localStorage.setItem('lastSelectedOption', this.value);
+        });
+    });
+</script>
  
 </head>
 <body>
@@ -111,7 +132,7 @@
                 <div class="col-md-12">
                 <label for="ddlCuentaOrigen">Cuenta origen</label>
                 	<input type="hidden" name="usuario" value="<%=nombre %>"/>
-                    <select name="ddlCuentaOrigen" class="form-select" required>
+                    <select id="transferencias" name="ddlCuentaOrigen" class="form-select" required>
                         <% if (listaCuentasOrigen != null)
                             for (Cuenta cuenta : listaCuentasOrigen) { %>
                                 <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>

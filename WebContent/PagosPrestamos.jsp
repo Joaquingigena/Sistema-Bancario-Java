@@ -22,6 +22,27 @@
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener el elemento select
+        var ddlCuenta = document.getElementById('cuentas');
+
+        // Obtener la última opción seleccionada desde localStorage
+        var lastSelectedOption = localStorage.getItem('lastSelectedOption');
+
+        // Establecer la última opción seleccionada como la primera opción
+        if (lastSelectedOption) {
+            ddlCuenta.value = lastSelectedOption;
+        }
+
+        // Escuchar cambios en el elemento select
+        ddlCuenta.addEventListener('change', function() {
+            // Almacenar la última opción seleccionada en localStorage
+            localStorage.setItem('lastSelectedOption', this.value);
+        });
+    });
+</script>
+
 <title>PagosPrestamos</title>
 </head>
 <%
@@ -116,6 +137,7 @@
                             for (Cuenta cuenta : listaCuentas) { %>
                                 <option value=<%=cuenta.getNumCuenta_Cta() %>><%=" CBU: "+ cuenta.getCBU_Cta() + " - " + " Saldo $"+ cuenta.getSaldo_Cta() %></option>
                         <% } %>
+
                     </select>
                       <div class="container text-center">
 					  <div class="row">

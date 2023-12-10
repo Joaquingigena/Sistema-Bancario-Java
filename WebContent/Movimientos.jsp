@@ -47,6 +47,27 @@
             });
         });
     </script>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener el elemento select
+        var ddlCuenta = document.getElementById('movimientos');
+
+        // Obtener la última opción seleccionada desde localStorage
+        var lastSelectedOption = localStorage.getItem('lastSelectedOption');
+
+        // Establecer la última opción seleccionada como la primera opción
+        if (lastSelectedOption) {
+            ddlCuenta.value = lastSelectedOption;
+        }
+
+        // Escuchar cambios en el elemento select
+        ddlCuenta.addEventListener('change', function() {
+            // Almacenar la última opción seleccionada en localStorage
+            localStorage.setItem('lastSelectedOption', this.value);
+        });
+    });
+</script>
 <title>Movimientos</title>
 </head>
 <body>
@@ -148,7 +169,7 @@
 				    <div style="display:flex;">
 				        <h5 style="margin:25px">Cuenta: </h5>
 				        <input type="hidden" name="usuario" value="<%=nombre %>"/>
-				        <select name="numCuenta" style="height: 40px; width:400px; margin: 15px" class="form-select" aria-label="Default select example">
+				        <select id="movimientos" name="numCuenta" style="height: 40px; width:400px; margin: 15px" class="form-select" aria-label="Default select example">
 								
 				            <%
 				            	if(numCuenta==0){%>
