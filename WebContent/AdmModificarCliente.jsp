@@ -86,7 +86,7 @@
     	  <div class="row">
            <div class="col-md-6">
              <label for="campo3" class="form-label">Nombre de usuario</label>
-             <input type="text" class="form-control" value="<%=user.getUsuario_U() %>" name="txtNombreUsuario">
+             <input type="text" class="form-control" value="<%=user.getUsuario_U() %>" name="txtNombreUsuario" readonly>
            </div>
            <div class="col-md-6">
              <label for="campo4" class="form-label">Contraseña</label>

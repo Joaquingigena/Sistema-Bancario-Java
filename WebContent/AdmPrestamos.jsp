@@ -177,7 +177,7 @@
         
         campoSelect.addEventListener("change", function() {
         	
-        	var lista= document.getElementById("listaCuenta");
+        	var lista= document.getElementById("tablaPrestamos");
         	console.log(lista);
         	
         	var criterios = criteriosXcampos[campoSelect.value];

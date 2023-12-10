@@ -72,17 +72,25 @@
     
     <div class="d-flex justify-content-center">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="filtroValor" placeholder="Filtrar por">
-        </div>
-        <div class="col-auto">
-            <select class="form-control" id="filtroCampo">
-                <option value="nombre">N° Cliente</option>
-                <option value="id">DNI</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-primary" id="btnFiltrar">Filtrar</button>
-        </div>
+            <input type="text" class="form-control" id="filtroValor" placeholder="Filtrar por DNI">
+    </div>
+	<script>
+    function filtroRapido() {
+        var filtro = document.getElementById("filtroValor").value.toLowerCase();
+        var tablaLista = document.getElementById("tablaLista");
+        var filas = tablaCuentas.getElementsByTagName("tr");
+
+        for (var i = 1; i < filas.length; i++) {
+            var Dni = filas[i].getAttribute("data-nombre").toLowerCase();
+            if (Dni.includes(filtro)) {
+                filas[i].style.display = "";
+            } else {
+                filas[i].style.display = "none";
+            }
+        }
+    }
+	</script>
+	
     </div>
 
     <div class="container-fluid">
@@ -110,7 +118,7 @@
             	
             	%>
             
-                <table class="table table-striped">
+                <table class="table table-striped" id="tablaLista">
                       <tr class="table-primary">
                         
                         <th scope="col">ID</th>
@@ -139,7 +147,7 @@
  							
                     %>
                     <form action="ServletAdmin" method="get">
-                    	<tr> 
+                    	<tr data-nombre="<%=Per.getDNI_P() %>"> 
 	                    	<td> <%=Per.getIdPersona_P() %> <input type="hidden" name="idPersona" value="<%=Per.getIdPersona_P() %>"> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P().getNombre_Loc() %></td> <td><%=Per.getCodProvincia_P().getNombre_Prov() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> 
 	                    	<%
 	                    	String ruta = "";

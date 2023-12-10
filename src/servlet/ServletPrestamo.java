@@ -112,6 +112,11 @@ public class ServletPrestamo extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
 			dispatcher.forward(request, response);
 		}
+		if(request.getParameter("btnQuitarFiltro")!=null) {
+			request.setAttribute("cargarPrestamos" , preNeg.listarPrestamos());	
+			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 		if(request.getParameter("btnAceptarPrestamo") != null) {
 
