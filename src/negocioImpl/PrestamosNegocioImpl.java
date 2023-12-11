@@ -19,7 +19,7 @@ public class PrestamosNegocioImpl implements IPrestamosNegocio{
 	@Override
 	public List<Prestamos> queryFiltro(String campo, String criterio, String filtro) {
 		
-		String query= "SELECT P.NumPrestamo_P,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, P.PlazoPago, C.NumCuenta_Cta FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta and ";
+		String query= "SELECT P.NumPrestamo_P,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, P.PlazoPago, C.NumCuenta_Cta FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta where ";
 		try {
 			
 		if("cuenta".equals(campo)) {

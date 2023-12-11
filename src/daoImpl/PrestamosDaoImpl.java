@@ -114,6 +114,8 @@ public class PrestamosDaoImpl implements IPrestamos{
 		List<Prestamos> lista = new ArrayList<Prestamos>();
 		conexion = new conexion();
 		
+		System.out.println("query en el dao " + query);
+		
 		try {
 			conexion.Open();
 			ResultSet rs= conexion.query(query);
@@ -125,7 +127,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 				prestamos.getNumCuenta_P().setNumCuenta_Cta(rs.getInt(2));
 				prestamos.setImportePagar_P(rs.getFloat(3));
 				prestamos.setImportePedido_P(rs.getFloat(4));
-				prestamos.getIdCuota_P().setIdCuota_C(rs.getInt(5));
+				prestamos.getIdCuota_P().setCantidadCuota_C(rs.getString(5));
 				prestamos.setEstado(rs.getBoolean(6));
 						
 				lista.add(prestamos);

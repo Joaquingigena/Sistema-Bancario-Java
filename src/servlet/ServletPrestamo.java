@@ -107,6 +107,10 @@ public class ServletPrestamo extends HttpServlet {
 			String criterio= request.getParameter("ddlCriterio");
 			String filtro= request.getParameter("filtro");
 			
+			System.out.println("campo: " + campo);
+			System.out.println("criterio: " + criterio);
+			System.out.println("filtro: " + filtro);
+			
 			request.setAttribute("cargarPrestamos" ,preNeg.queryFiltro(campo, criterio, filtro));
 			
 			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
