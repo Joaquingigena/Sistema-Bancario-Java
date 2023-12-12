@@ -280,6 +280,101 @@
 										      </div>
 										    </div>
 										  </div>
+										  <form action="ServletCuenta" method="get">
+										  <%
+			if(request.getAttribute("msgModificado") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgModificado")%>"; 
+								Swal.fire({
+									  title: "Accion exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            
+            <%
+			if(request.getAttribute("msgError") !=null){
+				%>
+					<script type="text/javascript">
+						var mensaje = "<%=request.getAttribute("msgError")%>"; 
+							Swal.fire({
+								  title: "Error",
+								  text: mensaje,
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+					</script>
+            <%}%>
+                       										                  <%
+			if(request.getAttribute("msgEliminado") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgEliminado")%>"; 
+								Swal.fire({
+									  title: "Accion exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            
+            <%
+			if(request.getAttribute("msgErrorEliminar") !=null){
+				%>
+					<script type="text/javascript">
+						var mensaje = "<%=request.getAttribute("msgErrorEliminar")%>"; 
+							Swal.fire({
+								  title: "Error",
+								  text: mensaje,
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+					</script>
+            <%}%>
+            </form>
+            <form action="ServletCuenta" method="post">
+                                   										                  <%
+			if(request.getAttribute("msgAlta") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgAlta")%>"; 
+								Swal.fire({
+									  title: "Accion exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            
+            <%
+			if(request.getAttribute("msgErrorAlta") !=null){
+				%>
+					<script type="text/javascript">
+						var mensaje = "<%=request.getAttribute("msgErrorAlta")%>"; 
+							Swal.fire({
+								  title: "Error",
+								  text: mensaje,
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+					</script>
+            <%}%>
+										  </form>
+										  
 </div>
  </td>
 		                     		 </tr>
@@ -291,20 +386,6 @@
 
                     </tbody>
                   </table>
-		                    		<%
-											if(!isCreated){
-												%>
-													<script type="text/javascript">
-													console.log("entraa al alert")
-															Swal.fire({
-																  title: "Error",
-																  text: "El usuario no puede tener mas de 3 cuentas",
-																  icon: "error",
-																  confirmButtonColor: "#DE3419",
-																  allowOutsideClick: false,
-									        				});		
-													</script>
-								            <%}%>
                           <div class="card-footer">
           <nav aria-label="Page navigation example">
             <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">

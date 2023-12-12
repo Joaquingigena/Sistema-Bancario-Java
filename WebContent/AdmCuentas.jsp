@@ -12,6 +12,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style type="text/css">
@@ -267,6 +269,69 @@
 										      </div>
 										    </div>
 										  </div>
+										  <form action="ServletCuenta" method="get">
+										                  <%
+			if(request.getAttribute("msgModificado") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgModificado")%>"; 
+								Swal.fire({
+									  title: "Accion exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            
+            <%
+			if(request.getAttribute("msgError") !=null){
+				%>
+					<script type="text/javascript">
+						var mensaje = "<%=request.getAttribute("msgError")%>"; 
+							Swal.fire({
+								  title: "Error",
+								  text: mensaje,
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+					</script>
+            <%}%>
+            
+            										                  <%
+			if(request.getAttribute("msgEliminado") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgEliminado")%>"; 
+								Swal.fire({
+									  title: "Accion exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            
+            <%
+			if(request.getAttribute("msgErrorEliminar") !=null){
+				%>
+					<script type="text/javascript">
+						var mensaje = "<%=request.getAttribute("msgErrorEliminar")%>"; 
+							Swal.fire({
+								  title: "Error",
+								  text: mensaje,
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+					</script>
+            <%}%>
+										  </form>
                      		 </tr>
                     		  <%
                     	  }

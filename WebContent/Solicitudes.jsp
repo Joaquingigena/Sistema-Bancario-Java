@@ -16,6 +16,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <style type="text/css">
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
 </style>
@@ -262,29 +264,44 @@
 	                    	</td>
 							
                     	</tr>
+                <%
+			if(request.getAttribute("msgSol") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgSol")%>"; 
+								Swal.fire({
+									  title: "Registro exitoso!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            
+                         <%
+			if(request.getAttribute("msgRec") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgRec")%>"; 
+								Swal.fire({
+									  title: "Accion exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            
                     </form>
 
                     <%	
                     	}
                     %>
-                    <% 
-                   	if((boolean)request.getAttribute("EstadoAltasoli")==true){
-				%>
-					<script type="text/javascript">
-								Swal.fire({
-									  title: "Registro exitoso!",
-									  text: "El usuario ha sido dado de alta con exito.",
-									  icon: "success",
-									  confirmButtonColor: "#43B814",
-									  allowOutsideClick: false
-								}).then((result) => {
-	            					if(result.isConfirmed){
-	            						location.href ='Solicitudes.jsp';
-	            					}
-	            				});
-					</script>
-					
-            	<%}%>
+   
             	
                   </table>
             </div>

@@ -30,15 +30,25 @@ public class ServletCuenta extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		request.setAttribute("usuario" ,usuario);
 		RequestDispatcher dispatcher;
+		
 		if(request.getParameter("Param")!=null) {
 			inicializarAdminCuenta(request,response,null);
 		}
 		if(request.getParameter("eliminarCuenta")!=null) {
 
 			int id=Integer.parseInt( request.getParameter("eliminarCuenta"));
+			String msgEliminado= "";
 
 			if(cuentaNeg.eliminarCuenta(id))
-				System.out.println("Cuenta eliminada correctamente");
+			{
+				msgEliminado = "Cuenta eliminada correctamente";
+				request.setAttribute("msgEliminado", msgEliminado);
+			}
+			else
+			{
+				msgEliminado = "Error al Eliminar";
+				request.setAttribute("msgErrorEliminar", msgEliminado);
+			}
 
 			request.setAttribute("ListaCuentas" ,cuentaNeg.ListarCuentas());
 
@@ -71,6 +81,8 @@ public class ServletCuenta extends HttpServlet {
 			Cuenta cta = new Cuenta();
 			TipoCuentas tc = new TipoCuentas();
 			
+			String msgMod= "";
+			
 			cta.setNumCuenta_Cta(Integer.parseInt(request.getParameter("hiddenId")));
 			cta.setCBU_Cta(Integer.parseInt(request.getParameter("txtCBU")));
 			cta.setSaldo_Cta(Float.parseFloat(request.getParameter("txtSaldo")));
@@ -83,8 +95,16 @@ public class ServletCuenta extends HttpServlet {
 			System.out.println(cta.toString());
 
 			if(cuentaNeg.modificarCuenta(cta)) {
-				System.out.println("Modificado con exito");
-
+				msgMod = "Modificado con Exito";
+				System.out.println(msgMod);
+				request.setAttribute("msgModificado", msgMod);
+			}
+			else
+			{
+				msgMod = "Error al Modificar";
+				System.out.println(msgMod);
+				request.setAttribute("msgError", msgMod);
+				
 			}
 			request.setAttribute("ListaCuentas" ,cuentaNeg.ListarCuentas());
 
@@ -109,6 +129,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		String tipoCuentaString = request.getParameter("radioBtn");
 		int tipoCuenta = Integer.parseInt(tipoCuentaString);  
 		int numCbu = Integer.parseInt(request.getParameter("nroCbu"));
+		String msgAlta ="";
 
 		System.out.println("tipoCuenta: "+tipoCuenta);
 		System.out.println("numCbu: "+numCbu);
@@ -120,7 +141,17 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			System.out.println("servlet cuentas: cantidad cuentas "+cantidadCuenta);
 			request.setAttribute("totalCuentas", cantidadCuenta);
 			request.setAttribute("isCreated", true);
+			
+			
+			msgAlta = "Cuenta dada de Alta con Exito";
+			System.out.println(msgAlta);
+			request.setAttribute("msgAlta", msgAlta);
+			
 		}else {
+			msgAlta = "Error al dar de Alta";
+			System.out.println(msgAlta);
+			request.setAttribute("msgErrorAlta", msgAlta);
+			
 			request.setAttribute("isCreated", false);
 		}
 

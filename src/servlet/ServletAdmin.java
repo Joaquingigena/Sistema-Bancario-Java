@@ -99,8 +99,19 @@ public class ServletAdmin extends HttpServlet {
 			
 			int id=Integer.parseInt( request.getParameter("eliminarCliente"));
 			System.out.println("id para eliminar: "+ id);
+			String msgEliminado= "";
 			
 		if(adminNeg.eliminarCliente(id))
+		{
+			
+			msgEliminado = "Cliente eliminado correctamente";
+			request.setAttribute("msgEliminado", msgEliminado);
+		}
+		else
+		{
+			msgEliminado = "Error al Eliminar";
+			request.setAttribute("msgErrorEliminar", msgEliminado);
+		}
 				System.out.println("Cliente eliminado correctamente con Id: "+ id);
 			
 			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
@@ -167,6 +178,7 @@ public class ServletAdmin extends HttpServlet {
 			String user = request.getParameter("txtUsuario").toString();
 			String pass = request.getParameter("txtPass").toString();
 			int rol = 2;
+			String msgSol = "";
 			List <Personas> ListaPer = null;
 			
 			// Cambia estado Solicitud
@@ -181,6 +193,8 @@ public class ServletAdmin extends HttpServlet {
 			// Seteo la lista al request para enviarla a la pagina de regreso.
 			if(ListaPer!=null) {
 				request.setAttribute("ListaPersonas", ListaPer);
+				msgSol= "Usuario dado de alta Exitosamente";
+				request.setAttribute("msgSol", msgSol);
 			}
 			
 			request.setAttribute("EstadoAltasoli", altaSoli);
@@ -193,6 +207,7 @@ public class ServletAdmin extends HttpServlet {
 			int estado=-1;
 			int ID = Integer.parseInt(request.getParameter("idPersona").toString());
 			List <Personas> ListaPer = null;
+			String msgRec = "";
 			
 			adminNeg.aceptarSolicitud(ID, estado);
 			
@@ -202,6 +217,8 @@ public class ServletAdmin extends HttpServlet {
 			// Seteo la lista al request para enviarla a la pagina de regreso.
 			if(ListaPer!=null) {
 				request.setAttribute("ListaPersonas", ListaPer);
+				msgRec= "Usuario Rechazado Exitosamente";
+				request.setAttribute("msgRec", msgRec);
 			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Solicitudes.jsp");
@@ -291,6 +308,8 @@ public class ServletAdmin extends HttpServlet {
 			persona.setCorreo_P(request.getParameter("txtCorreo"));
 			persona.setTelefono_P(request.getParameter("txtTelefono"));
 			//persona.setFechaNac_P((request.getParameter("txtFecha").toString()));
+			
+			String msgMod = "";
 		
 			L.setCodLocalidad_Loc(Integer.parseInt(request.getParameter("ddlLocalidades")));
 			
@@ -313,7 +332,16 @@ public class ServletAdmin extends HttpServlet {
 			System.out.println(nuevo.toString());
 			
 			if(adminNeg.modificarCliente(nuevo)) {
-				System.out.println("Modificado con exito");
+				msgMod = "Modificado con Exito";
+				System.out.println(msgMod);
+				request.setAttribute("msgModificado", msgMod);
+				
+			}
+			else
+			{
+				msgMod = "Error al Modificar";
+				System.out.println(msgMod);
+				request.setAttribute("msgError", msgMod);
 				
 			}
 			request.setAttribute("cargar" ,adminNeg.listarUsuarios());
