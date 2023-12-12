@@ -55,7 +55,7 @@ public class MovimientosDAOImpl implements IMovimientos{
 	public List<Movimientos> getMovimientosPorCuenta(int codMovimiento) {
 		List<Movimientos> Movs = new ArrayList<Movimientos>();
 		conexion= new conexion();
-		String query= "SELECT m.* FROM movimientos m  WHERE m.NumCuentaDestino_Mo =" + codMovimiento;
+		String query= "SELECT m.*, tp.Descripcion_TM as Descripcion FROM movimientos m join tipomovimientos tp on tp.IdTipoMovimiento_TM = m.IdTipoMovimiento_M  WHERE m.NumCuentaDestino_Mo =" + codMovimiento;
 
 		try {
 			conexion.Open();
@@ -68,7 +68,8 @@ public class MovimientosDAOImpl implements IMovimientos{
 				movimiento.setDetalle_M(rs.getString(5));
 				movimiento.setImporte_M(rs.getFloat(7));
 				movimiento.setEstado_M(rs.getBoolean(8));           
-			
+				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt("IdTipoMovimiento_M"));;
+				movimiento.getIdTipoMovimiento_M().setDescripcion_TM(rs.getString("Descripcion"));
                 Movs.add(movimiento);
 			}
 			
