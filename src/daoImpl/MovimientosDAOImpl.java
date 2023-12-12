@@ -55,7 +55,8 @@ public class MovimientosDAOImpl implements IMovimientos{
 	public List<Movimientos> getMovimientosPorCuenta(int codMovimiento) {
 		List<Movimientos> Movs = new ArrayList<Movimientos>();
 		conexion= new conexion();
-		String query= "SELECT m.*, tp.Descripcion_TM as Descripcion FROM movimientos m join tipomovimientos tp on tp.IdTipoMovimiento_TM = m.IdTipoMovimiento_M  WHERE m.NumCuentaDestino_Mo =" + codMovimiento + " or NumCuenta_M ="+ codMovimiento;
+
+		String query= "SELECT m.*, tp.Descripcion_TM as Descripcion FROM movimientos m join tipomovimientos tp on tp.IdTipoMovimiento_TM = m.IdTipoMovimiento_M  WHERE m.NumCuentaDestino_Mo = '" + codMovimiento + "' or m.NumCuenta_M = '" + codMovimiento + "'";
 
 		try {
 			conexion.Open();
