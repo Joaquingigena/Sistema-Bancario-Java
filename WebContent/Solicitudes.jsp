@@ -263,10 +263,29 @@
 							
                     	</tr>
                     </form>
+
                     <%	
                     	}
                     %>
-                     
+                    <% 
+                   	if((boolean)request.getAttribute("EstadoAltasoli")==true){
+				%>
+					<script type="text/javascript">
+								Swal.fire({
+									  title: "Registro exitoso!",
+									  text: "El usuario ha sido dado de alta con exito.",
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            					if(result.isConfirmed){
+	            						location.href ='Solicitudes.jsp';
+	            					}
+	            				});
+					</script>
+					
+            	<%}%>
+            	
                   </table>
             </div>
         </div>
@@ -274,5 +293,7 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

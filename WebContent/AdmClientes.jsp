@@ -203,9 +203,11 @@
 		                        <td><%=u.getIdPersona_U().getCorreo_P() %></td>
 			                    <td style="width:400px;">
 	                    			<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal<%=u.getIdUsuario_U()%>">Abrir cuenta</button>
+	                    			
+	                    			
 	                    			<!-- DIV MODAL ALTA CUENTA -->
 									<div class="modal fade" id="Modal<%= u.getIdUsuario_U()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	                    			<form action="ServletCuenta" method="post">
+	                    			<form action="ServletCuenta" method="post" autocomplete="off">
 	                    				<input type="hidden" name="idUsuario" value="<%=u.getIdUsuario_U() %>">
 									  <div class="modal-dialog modal-dialog-centered">
 									    <div class="modal-content">
@@ -238,7 +240,7 @@
 									        	<b>Nro. CBU</b>
 									        	<input type="text" readonly name="nroCbu" value="<%=numero1%>">
 									        	<b>Monto inicial</b>
-									        	<input type="number" name="montoInicial" value="10000">
+									        	<input type="number" name="montoInicial" value="10000" readonly>
 									        	<b>Detalle</b>
 									        	<input type="text" name="detalle" value="Apertura de cuenta">
 									        </div>

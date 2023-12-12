@@ -162,6 +162,7 @@ public class ServletAdmin extends HttpServlet {
 		
 		if(request.getParameter("btnAceptarSol")!=null) {
 			int estado=1;
+			boolean altaSoli = false;
 			int ID = Integer.parseInt(request.getParameter("idPersona").toString());
 			String user = request.getParameter("txtUsuario").toString();
 			String pass = request.getParameter("txtPass").toString();
@@ -172,7 +173,7 @@ public class ServletAdmin extends HttpServlet {
 			adminNeg.aceptarSolicitud(ID, estado);
 			
 			//Alta Usuario
-			adminNeg.altaUsuario(ID, user, pass, rol);
+			altaSoli = adminNeg.altaUsuario(ID, user, pass, rol);
 			
 			// Obtengo la lista de personas desde la capa Negocio.
 			ListaPer = adminNeg.listarSolicitudes();
@@ -181,6 +182,8 @@ public class ServletAdmin extends HttpServlet {
 			if(ListaPer!=null) {
 				request.setAttribute("ListaPersonas", ListaPer);
 			}
+			
+			request.setAttribute("EstadoAltasoli", altaSoli);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Solicitudes.jsp");
 			rd.forward(request, response);

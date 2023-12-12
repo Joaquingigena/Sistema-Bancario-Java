@@ -264,14 +264,14 @@
 		                    <tbody class="table-group-divider">
 		                      <%
 		                      if(listaMovimientos!=null){          
-		                    	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // Define el formato de fecha que deseas
+		                    	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		                    	  for(Movimientos m : listaMovimientos){
 		                    		  %>
 		                    		 <tr>
 		                    		    <td><%= m.getNumMovimiento_M() %></td>
 				                        <td><%= dateFormat.format(m.getFechaMovimiento_M()) %></td>
 				                        <td><%= m.getDetalle_M() %></td>
-				                        <td><%= m.getImporte_M()%></td>
+				                        <td><%= m.getImporte_M() %></td>
 				                        <td><%= m.getIdTipoMovimiento_M().getDescripcion_TM() %> </td>
 					                        
 		                     		 </tr>
