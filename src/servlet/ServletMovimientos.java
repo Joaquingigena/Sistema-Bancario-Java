@@ -3,6 +3,9 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -128,12 +131,76 @@ public class ServletMovimientos extends HttpServlet {
 				break;
 			}
 		}
+		
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nombre = request.getParameter("usuario");
+		
+		
+		if(request.getParameter("btnFiltrarFechaMovimiento")!=null)
+		{
+			RequestDispatcher dispatcher;
+			
+			
+			
+			String fechaHoraInicio = request.getParameter("fechaInicio");
+			String fechaHoraFin = request.getParameter("fechaFin");
+			int numCuenta = Integer.parseInt(request.getParameter("cuenta"));
+			List<Movimientos> movimientos = new ArrayList<Movimientos>();
+			List<Cuenta> cuentas = new ArrayList<Cuenta>();
+			if(cuentas.isEmpty()) cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
+			Cuenta cuentaFilter = cuentaNegocioImpl.obtenerCuenta(numCuenta);
+			
+			
+			
+			SimpleDateFormat formatoHTML = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+			
+			try {
+			    // Convertir formato de fecha y hora del formulario a un formato compatible con TIMESTAMP en la base de datos
+			    SimpleDateFormat formatoBD = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		doGet(request, response);
+			    Date fechaInicio = formatoHTML.parse(fechaHoraInicio);
+			    Date fechaFin = formatoHTML.parse(fechaHoraFin);
+
+			    // Formatear las fechas al formato de TIMESTAMP de la base de datos
+			    String fechaHoraInicioBD = formatoBD.format(fechaInicio);
+			    String fechaHoraFinBD = formatoBD.format(fechaFin);
+			    
+			    System.out.println(fechaHoraInicioBD);
+			    System.out.println(fechaHoraFinBD);
+			    System.out.println(nombre);
+			    System.out.println(numCuenta);
+			    
+			    
+
+			    if(numCuenta == 0)
+			    {
+			    	movimientos= movNeg.filtroFechaPorUsuario(fechaHoraInicioBD, fechaHoraFinBD, nombre);
+				    request.setAttribute("Movimientos", movimientos);
+				    request.setAttribute("cuentas", cuentas);
+				    request.setAttribute("cuentaFilter", cuentaFilter);
+			    }
+			    else
+			    {
+			    movimientos= movNeg.filtroFechaPorCuenta(fechaHoraInicioBD, fechaHoraFinBD, numCuenta);
+			    request.setAttribute("Movimientos", movimientos);
+			    request.setAttribute("cuentas", cuentas);
+				request.setAttribute("cuentaFilter", cuentaFilter);
+			    }
+
+
+			} catch (ParseException e) {
+			    e.printStackTrace();
+			    
+			}
+			
+			dispatcher = request.getRequestDispatcher("/Movimientos.jsp?usuario=" + nombre);
+			dispatcher.forward(request, response);
+
+		}
+
+		
 	}
 	
 	private void cargarCuentasDestino(HttpServletRequest request) {

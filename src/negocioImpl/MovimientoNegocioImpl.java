@@ -26,5 +26,15 @@ public class MovimientoNegocioImpl implements IMovimientoNegocio{
 		return mDaoImp.insertMovimientoPorUsuario(numCtaOrigen, numCtaDestino , Detalle, importe, tipoMov, estado);
 	}
 	
+	public List<Movimientos> filtroFechaPorCuenta(String fechaIni, String fechaFin, int numCuenta)
+	{
+		return mDaoImp.filtroFechaPorCuenta(fechaIni, fechaFin, numCuenta);
+	}
+	
+	public List<Movimientos> filtroFechaPorUsuario(String fechaIni, String fechaFin, String nombre)
+	{
+		return mDaoImp.filtroFechaPorUsuario(fechaIni, fechaFin, nombre);
+	}
+	
 
 }

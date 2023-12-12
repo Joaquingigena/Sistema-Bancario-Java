@@ -117,5 +117,77 @@ public class MovimientosDAOImpl implements IMovimientos{
 		
 		return isCreate;
 	}
+	
+	public List<Movimientos> filtroFechaPorCuenta (String fechaIni, String fechaFin, int numCuenta)
+	{
+		List<Movimientos> Movs = new ArrayList<Movimientos>();
+		conexion= new conexion();
+		String query= "SELECT m.*, tm.Descripcion_TM as Descripcion FROM movimientos m JOIN cuenta c ON m.NumCuentaDestino_Mo = c.NumCuenta_Cta or m.NumCuenta_M = c.NumCuenta_Cta  JOIN usuario u on c.IdUsuario_Cta = u.IdUsuario_U  JOIN tipoMovimientos TM on m.IdTipoMovimiento_M = TM.IdTipoMovimiento_TM " +
+		" WHERE (m.NumCuenta_M = '" + numCuenta + "' or m.NumCuentaDestino_Mo = '" + numCuenta + "') and m.FechaMovimiento_M >='" + fechaIni + "'  and m.FechaMovimiento_M <= '" + fechaFin + "' and m.Estado_M = 1";
+
+		try {
+			conexion.Open();
+			ResultSet rs= conexion.query(query);
+			
+			while(rs.next()) {
+				Movimientos movimiento = new Movimientos();
+				movimiento.setNumMovimiento_M(rs.getInt(1));
+				movimiento.setFechaMovimiento_M(rs.getTimestamp(4));
+				movimiento.setDetalle_M(rs.getString(5));
+				movimiento.setImporte_M(rs.getFloat(7));
+				movimiento.setEstado_M(rs.getBoolean(8));
+				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt("IdTipoMovimiento_M"));;
+				movimiento.getIdTipoMovimiento_M().setDescripcion_TM(rs.getString("Descripcion"));
+               
+			
+                Movs.add(movimiento);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		
+		return Movs;
+		
+	}
+	
+	public List<Movimientos> filtroFechaPorUsuario(String fechaIni, String fechaFin, String Nombre)
+	{
+		List<Movimientos> Movs = new ArrayList<Movimientos>();
+		conexion= new conexion();
+		String query= "SELECT m.*, tm.Descripcion_TM as Descripcion FROM movimientos m JOIN cuenta c ON m.NumCuentaDestino_Mo = c.NumCuenta_Cta or m.NumCuenta_M = c.NumCuenta_Cta  JOIN usuario u on c.IdUsuario_Cta = u.IdUsuario_U  JOIN tipoMovimientos TM on m.IdTipoMovimiento_M = TM.IdTipoMovimiento_TM " +
+		" WHERE u.Usuario_U = '" + Nombre + "' and m.FechaMovimiento_M >='" + fechaIni + "'  and m.FechaMovimiento_M <= '" + fechaFin + "' and m.Estado_M = 1";
+
+		try {
+			conexion.Open();
+			ResultSet rs= conexion.query(query);
+			
+			while(rs.next()) {
+				Movimientos movimiento = new Movimientos();
+				movimiento.setNumMovimiento_M(rs.getInt(1));
+				movimiento.setFechaMovimiento_M(rs.getTimestamp(4));
+				movimiento.setDetalle_M(rs.getString(5));
+				movimiento.setImporte_M(rs.getFloat(7));
+				movimiento.setEstado_M(rs.getBoolean(8));
+				movimiento.getIdTipoMovimiento_M().setIdTipoMovimiento_TM(rs.getInt("IdTipoMovimiento_M"));;
+				movimiento.getIdTipoMovimiento_M().setDescripcion_TM(rs.getString("Descripcion"));
+               
+			
+                Movs.add(movimiento);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			conexion.close();
+		}
+		
+		return Movs;
+		
+	}
 
 }

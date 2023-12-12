@@ -228,21 +228,25 @@
 			</div>
 		</div>
 			<div>
+			<form action="ServletMovimientos" method="post">
 		    <div class="container text-center d-flex justify-content-center aligne-content-center">
-			  <div class="row">
-			    <div class="col-md">
-			      <h6>Desde: </h6>
-			        <input type="date" id="fechaInicio">
-			    </div>
-			    <div class="col-md">
-			      <h6>Hasta: </h6>
-			        <input type="date" id="fechaFin">
-			    </div>
-			    <div class="col-md py-4">
-			      <button class="btn btn-success btn-sm" onclick="filtroFechas()">Buscar</button>
-			    </div>
-			  </div>
+        <div class="row">
+        <input type="hidden" name="usuario" value="<%=nombre %>"/>
+        <input type="hidden" name="cuenta" value="<%=numCuenta %>"/>
+            <div class="col-md-4">
+                <label for="fechaInicio">Fecha de inicio:</label>
+                <input type="datetime-local" class="form-control" id="fechaInicio" name="fechaInicio" required>
+            </div>
+
+            <div class="col-md-4">
+                <label for="fechaFin">Fecha de fin:</label>
+                <input type="datetime-local" class="form-control" id="fechaFin" name="fechaFin" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" name="btnFiltrarFechaMovimiento">Filtrar</button>
 			</div>
+			</form>
 			
 			    <div id="Encabezado" class="text-center">
 					<h2>Movimientos</h2>
