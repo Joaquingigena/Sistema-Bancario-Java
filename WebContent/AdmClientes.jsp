@@ -10,10 +10,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style type="text/css">
 	<jsp:include page="css\StyleSheet.css"></jsp:include>
@@ -52,7 +52,17 @@
 <%
 	String nombre = (String)request.getAttribute("usuario");
 	List<Usuario> listaClientes= new ArrayList<Usuario>();
-
+	boolean isCreated = true;
+	if(request.getAttribute("isCreated")!= null){
+		isCreated = (Boolean)request.getAttribute("isCreated");
+	}
+	
+	int totalCuentas = 0;
+	
+	if(request.getAttribute("totalCuentas")!= null){
+		totalCuentas = (Integer)request.getAttribute("totalCuentas");
+	}
+	
 	if(request.getAttribute("cargar")!=null){
 		listaClientes= (ArrayList<Usuario>)request.getAttribute("cargar");
 	}
@@ -193,7 +203,6 @@
 		                        <td><%=u.getIdPersona_U().getCorreo_P() %></td>
 			                    <td style="width:400px;">
 	                    			<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal<%=u.getIdUsuario_U()%>">Abrir cuenta</button>
-	                    			
 	                    			<!-- DIV MODAL ALTA CUENTA -->
 									<div class="modal fade" id="Modal<%= u.getIdUsuario_U()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	                    			<form action="ServletCuenta" method="post">
@@ -276,9 +285,24 @@
                     	  				}
                     	  			} 
 		                    		%>
+		                    		
 
                     </tbody>
                   </table>
+		                    		<%
+											if(!isCreated){
+												%>
+													<script type="text/javascript">
+													console.log("entraa al alert")
+															Swal.fire({
+																  title: "Error",
+																  text: "El usuario no puede tener mas de 3 cuentas",
+																  icon: "error",
+																  confirmButtonColor: "#DE3419",
+																  allowOutsideClick: false,
+									        				});		
+													</script>
+								            <%}%>
                           <div class="card-footer">
           <nav aria-label="Page navigation example">
             <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">

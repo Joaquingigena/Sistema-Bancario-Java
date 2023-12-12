@@ -103,7 +103,7 @@ public class CuentaDaoImpl implements ICuenta {
 			boolean isCreate = false;
 			
 			try {
-				if(validarTotalCuentas(idUsuario) <= 3) {
+				if(validarTotalCuentas(idUsuario) < 3) {
 					
 					connection = conexion.Open();
 					String query = "INSERT INTO bd_tpint_grupo_6_lab4.cuenta (IdUsuario_Cta, FechaCreacion_Cta, IdTipoCuenta_Cta, CBU_Cta, Saldo_Cta) VALUES (?, ?, ?, ?, ?)";
@@ -134,6 +134,7 @@ public class CuentaDaoImpl implements ICuenta {
 			}
 			finally {
 				conexion.close();
+				System.out.println("se creaaaa?? "+isCreate);
 			}
 			return isCreate;
 		}

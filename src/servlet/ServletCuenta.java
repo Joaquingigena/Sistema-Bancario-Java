@@ -116,6 +116,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		System.out.println("detalleString: "+detalleString);
 
 		if(cuentaNeg.altaCuenta(idUsuario, tipoCuenta, numCbu, montoInicial, detalleString, tipoMovimiento )){
+			int cantidadCuenta = cuentaNeg.validarTotalCuentas(idUsuario);
+			System.out.println("servlet cuentas: cantidad cuentas "+cantidadCuenta);
+			request.setAttribute("totalCuentas", cantidadCuenta);
 			request.setAttribute("isCreated", true);
 		}else {
 			request.setAttribute("isCreated", false);
