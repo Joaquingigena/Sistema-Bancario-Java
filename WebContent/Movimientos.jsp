@@ -267,7 +267,7 @@
 		                    		    <td><%= m.getNumMovimiento_M() %></td>
 				                        <td><%= dateFormat.format(m.getFechaMovimiento_M()) %></td>
 				                        <td><%= m.getDetalle_M() %></td>
-				                        <td><%= m.getIdTipoMovimiento_M().getIdTipoMovimiento_TM() == 1 || m.getIdTipoMovimiento_M().getIdTipoMovimiento_TM() == 2 ? m.getImporte_M() : "-"+m.getImporte_M() %></td>
+				                        <td><%= m.getImporte_M()%></td>
 				                        <td><%= m.getIdTipoMovimiento_M().getDescripcion_TM() %> </td>
 					                        
 		                     		 </tr>
