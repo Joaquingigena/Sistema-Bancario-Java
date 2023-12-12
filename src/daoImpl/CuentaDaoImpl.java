@@ -143,7 +143,7 @@ public class CuentaDaoImpl implements ICuenta {
 		public int validarTotalCuentas(int idUsuario) {
 			conexion= new conexion();
 			String query= "SELECT count(IdUsuario_Cta) FROM bd_tpint_grupo_6_lab4.cuenta where IdUsuario_Cta = " + "'" + idUsuario +"'";
-			int count = 0;
+			int count = 1;
 			try {
 				conexion.Open();
 				ResultSet rs= conexion.query(query);
