@@ -64,7 +64,7 @@ public class CuentaNegocioImpl implements ICuentaNegocio {
 	@Override
 	public List<Cuenta> queryFiltro(String campo, String criterio, String filtro) {
 		
-		String query= "Select C.NumCuenta_Cta,C.IdUsuario_Cta, C.FechaCreacion_Cta, C.IdTipoCuenta_Cta, C.CBU_Cta, C.Saldo_Cta FROM cuenta AS C inner join usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas tc on tc.IdTipo_TC = C.IdTipoCuenta_Cta where Estado_Cta=true and ";
+		String query= "Select C.NumCuenta_Cta,C.IdUsuario_Cta, p.Nombre_P, p.Apellido_P, C.FechaCreacion_Cta, C.IdTipoCuenta_Cta, C.CBU_Cta, C.Saldo_Cta FROM cuenta AS C inner join usuario U on U.IdUsuario_U = C.IdUsuario_Cta inner join TipoCuentas tc on tc.IdTipo_TC = C.IdTipoCuenta_Cta inner join personas p on p.IdPersona_P = U.IdPersona_U where Estado_Cta=true and ";
 		try {
 			
 		if("usuario".equals(campo)) {

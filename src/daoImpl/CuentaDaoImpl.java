@@ -398,11 +398,16 @@ public class CuentaDaoImpl implements ICuenta {
 				while(rs.next()) {
 					Cuenta cuenta= new Cuenta();
 					
+					
 					cuenta.setNumCuenta_Cta(rs.getInt(1));
 					cuenta.getIdUsuario_Cta().setIdUsuario_U(rs.getInt(2));
-					cuenta.setFechaCreacion_Cta(rs.getDate(3));
-					cuenta.setCBU_Cta(rs.getInt(5));
-					cuenta.setSaldo_Cta(rs.getFloat(6));
+					
+					cuenta.getIdUsuario_Cta().getIdPersona_U().setNombre_P(rs.getString(3));
+					cuenta.getIdUsuario_Cta().getIdPersona_U().setApellido_P(rs.getString(4));
+					
+					cuenta.setFechaCreacion_Cta(rs.getDate(5));
+					cuenta.setCBU_Cta(rs.getInt(6));
+					cuenta.setSaldo_Cta(rs.getFloat(7));
 				
 					lista.add(cuenta);
 				}
