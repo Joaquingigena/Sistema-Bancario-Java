@@ -166,7 +166,7 @@ public class CuentaDaoImpl implements ICuenta {
 		@Override
 		public int obtenerNumCuenta(int cbu) {
 			conexion= new conexion();
-			String query= "SELECT NumCuenta_Cta FROM bd_tpint_grupo_6_lab4.cuenta where CBU_Cta = " + "'" + cbu +"'";
+			String query= "SELECT NumCuenta_Cta FROM bd_tpint_grupo_6_lab4.cuenta where CBU_Cta = " + "'" + cbu +"' and Estado_Cta = 1";
 			int id = 0;
 			try {
 				conexion.Open();
@@ -424,7 +424,7 @@ public class CuentaDaoImpl implements ICuenta {
 			UsuarioDaoImp usuarioDaoImp = new UsuarioDaoImp();
 			int idUsuario = usuarioDaoImp.ObtenerIdUsuario(nombre);
 			
-			String query= "Select * FROM cuenta where IdUsuario_Cta = "+idUsuario;
+			String query= "Select * FROM cuenta where IdUsuario_Cta = '"+idUsuario + "' and Estado_Cta = 1";
 			
 			try {
 				conexion.Open();
@@ -498,7 +498,7 @@ public class CuentaDaoImpl implements ICuenta {
 			String consulta = 
 			"Select * from cuenta inner join tipocuentas " + 
 			"	on (cuenta.IdTipoCuenta_Cta = tipocuentas.IdTipo_TC) inner join usuario on (cuenta.IdUsuario_Cta = usuario.IdUsuario_U)" +  
-			"where  usuario.IdUsuario_U = '" + idUsuario + "'"; 
+			"where  usuario.IdUsuario_U = '" + idUsuario + "' and Estado_Cta = 1"; 
 			try 
 			{
 				conexion.Open();

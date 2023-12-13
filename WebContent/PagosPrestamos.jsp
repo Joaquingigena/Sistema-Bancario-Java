@@ -179,9 +179,12 @@
                 	<%if(!esValido){%>
                 		<input type="submit" class="btn btn-outline-success form-control btn-lg" name="validarDatos" value="Verificar datos"/>
                     <%	}
-                	else{%>	
-                    	<input type="submit" class="btn btn-outline-success form-control btn-lg" name="btnPagar" value="Pagar" min=0.01 onclick="return confirm('¿Está seguro de realizar este pago?')" />
-                	<%	}%>
+                	else{ 
+                	if(pago.getCodPago_PCP()!=0){%>
+                	 
+                	 <input type="submit" class="btn btn-outline-success form-control btn-lg" name="btnPagar" value="Pagar" min=0.01 onclick="return confirm('¿Está seguro de realizar este pago?')" />
+                	<%	}
+                	}%>
                 </div>
                 
                 <%
