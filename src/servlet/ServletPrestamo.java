@@ -129,6 +129,8 @@ public class ServletPrestamo extends HttpServlet {
 			int idUsuario = Integer.parseInt(request.getParameter("txtCliente"));
 			float importe = Float.parseFloat(request.getParameter("txtImporte"));
 			
+			String msgAprobado ="";
+			
 			// Se utilizó para probar resultados por consola --------------------
 			System.out.println("NUMERO DE PRESTAMO: " + numPrestamo);
 			System.out.println("NUMERO DE CUENTA: " + numCuenta);
@@ -142,7 +144,12 @@ public class ServletPrestamo extends HttpServlet {
 				request.setAttribute("isCreated", false);
 			}*/
 			
-			preNeg.aceptarPrestamo(numPrestamo,numCuenta, idUsuario, importe);
+			if(preNeg.aceptarPrestamo(numPrestamo,numCuenta, idUsuario, importe));
+			{
+				msgAprobado = "Prestamo Aprobado correctamente";
+				request.setAttribute("msgAprobado", msgAprobado);
+			}
+			
 			
 			request.setAttribute("cargarPrestamos" ,preNeg.listarPrestamos());	
 			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");
@@ -153,8 +160,13 @@ public class ServletPrestamo extends HttpServlet {
 			int numCuenta = Integer.parseInt(request.getParameter("txtCuenta1"));
 			int idUsuario = Integer.parseInt(request.getParameter("txtCliente"));
 			float importe = Float.parseFloat(request.getParameter("txtImporte"));
+			String msgRechazado = "";
 
-			preNeg.rechazarPrestamo(numPrestamo,numCuenta, idUsuario, importe);
+			if(preNeg.rechazarPrestamo(numPrestamo,numCuenta, idUsuario, importe));
+			{
+				msgRechazado = "Prestamo Rechazado correctamente";
+				request.setAttribute("msgRechazado", msgRechazado);
+			}
 			
 			request.setAttribute("cargarPrestamos" ,preNeg.listarPrestamos());	
 			dispatcher = request.getRequestDispatcher("/AdmPrestamos.jsp");

@@ -13,6 +13,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style type="text/css">
@@ -204,6 +207,14 @@
                 <h3 >Prestamos</h3>
             </div>
         </div>
+        
+        <div class="col-3 titulo">
+               
+                <h3 >Leyenda</h3>
+                <h3 >(Estado = 0 y Autorizado = 0) = Prestamo Rechazado</h3>
+                <h3 >(Estado = 1 y Autorizado = 1) = Prestamo Autorizado</h3>
+                <h3 >(Estado = 2 y Autorizado = 2) = Prestamo Pagado</h3>
+            </div>
 
         <div class="row">
             <div class="col-8">
@@ -218,6 +229,7 @@
                         <th scope="col">Importe pedido</th>
                         <th scope="col">Cuotas a pagar</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Autorizado</th>
                         
                       </tr>
                     </thead>
@@ -237,6 +249,7 @@
 		                        <td><%=p.getImportePedido_P() %> </td>
 		                        <td><%=p.getIdCuota_P().getCantidadCuota_C() %> </td>
 		                        <td><%=p.getEstado() %> </td>
+		                        <td><%=p.getAutorizado()%> </td>
 		                        
 		                        
 		                        
@@ -331,6 +344,36 @@
 
 									</div>                    
                      		 </tr>
+            <%
+			if(request.getAttribute("msgAprobado") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgAprobado")%>"; 
+								Swal.fire({
+									  title: "Accion exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
+            <%
+			if(request.getAttribute("msgRechazado") !=null){
+				%>
+					<script type="text/javascript">
+					var mensaje = "<%=request.getAttribute("msgRechazado")%>"; 
+								Swal.fire({
+									  title: "Accion exitosa!",
+									  text: mensaje,
+									  icon: "success",
+									  confirmButtonColor: "#43B814",
+									  allowOutsideClick: false
+								}).then((result) => {
+	            				});
+					</script>
+            <%}%>
                      		 </form>
 						<%} %>
 						<%} %>
