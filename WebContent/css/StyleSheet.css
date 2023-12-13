@@ -393,3 +393,12 @@ div#Primario{
 .filaPrestamo label{
 	font-size:18px;
 }
+
+.aceptado{
+	color: green;
+	font-size:25px;
+}
+.rechazado{
+	color:red;
+	font-size:25px;
+}

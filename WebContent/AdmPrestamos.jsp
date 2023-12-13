@@ -207,15 +207,6 @@
                 <h3 >Prestamos</h3>
             </div>
         </div>
-        
-        <div class="col-3 titulo">
-               
-                <h3 >Leyenda</h3>
-                <h3 >(Estado = 0 y Autorizado = 0) = Prestamo Rechazado</h3>
-                <h3 >(Estado = 1 y Autorizado = 1) = Prestamo Autorizado</h3>
-                <h3 >(Estado = 2 y Autorizado = 2) = Prestamo Pagado</h3>
-            </div>
-
         <div class="row">
             <div class="col-8">
             
@@ -229,7 +220,6 @@
                         <th scope="col">Importe pedido</th>
                         <th scope="col">Cuotas a pagar</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Autorizado</th>
                         
                       </tr>
                     </thead>
@@ -248,8 +238,17 @@
 		                        <td><%=p.getImportePagar_P() %></td>
 		                        <td><%=p.getImportePedido_P() %> </td>
 		                        <td><%=p.getIdCuota_P().getCantidadCuota_C() %> </td>
-		                        <td><%=p.getEstado() %> </td>
-		                        <td><%=p.getAutorizado()%> </td>
+		                        <td><% if(p.getEstado()== true){
+		                        	%>
+		                        	
+		                        	<i class="bi bi-check-circle aceptado"></i>
+		                        <% }
+		                        else{
+		                        	%>
+		                        	<i class="bi bi-x-circle rechazado"></i>
+		                        	<%
+		                        }%> </td>
+		                     
 		                        
 		                        
 		                        
@@ -379,7 +378,7 @@
 						<%} %>
                     </tbody>
                   </table>
-                 
+  
           <div class="card-footer">
           <nav aria-label="Page navigation example">
             <ul class=".dataTables_wrapper .dataTables_paginate .paginate_button">  
