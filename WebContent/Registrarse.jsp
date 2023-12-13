@@ -143,13 +143,7 @@
                         <select class="form-control mb-3" required id="localidad" name="localidad" placeholder="Localidad">
                         	<option value="" selected>Seleccione Localidad</option>	  		
                         	
-                        	<%
-                        	for(Localidades L : ListaLoc){
-                        		%>
-                        		<option value= "<%=L.getCodLocalidad_Loc()%>"><%=L.getNombre_Loc() %> </option>
-                        	<% }
-                        	
-                        	%>		
+                        			
                         </select>
                                    
                      </div>
