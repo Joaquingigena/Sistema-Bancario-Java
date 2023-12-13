@@ -145,7 +145,7 @@
                     %>
                     
                     	<tr data-nombre="<%=Per.getDNI_P() %>" > 
-	                    	<td> <%=Per.getIdPersona_P() %><input type="hidden" name="idPersona" value="<%=Per.getIdPersona_P() %>"/> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P().getNombre_Loc() %></td> <td><%=Per.getCodProvincia_P().getNombre_Prov() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> 
+	                    	<td> <%=Per.getIdPersona_P() %> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P().getNombre_Loc() %></td> <td><%=Per.getCodProvincia_P().getNombre_Prov() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> 
 	                    	<%
 		                    	String ruta = "";
 		                    	switch(Per.getSolicitud_P())
@@ -181,6 +181,7 @@
 							      </div>
 							      <div class="modal-body" Style="display:flex;">
 							      	<div>
+							      		<input type="hidden" name="idPersona" value="<%=Per.getIdPersona_P() %>"/>
 							      		<div>Nombre: <%=Per.getNombre_P() %></div>
 								        <div>Apellido: <%=Per.getApellido_P() %></div>
 								        <div>DNI: <%=Per.getDNI_P() %></div>
@@ -227,6 +228,7 @@
 							      </div>
 							      <div class="modal-body" Style="display:flex;">
 							      	<div style="width:90%;">
+							      		<input type="hidden" name="idPersona" value="<%=Per.getIdPersona_P() %>"/>
 							      		<div>Nombre: <%=Per.getNombre_P() %> </div> 
 								        <div>Apellido: <%=Per.getApellido_P() %></div>
 								        <div>DNI: <%=Per.getDNI_P() %></div>
