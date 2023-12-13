@@ -74,23 +74,18 @@
     
     <div class="d-flex justify-content-center">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="filtroValor" placeholder="Filtrar por DNI">
+            <input type="text" class="form-control" id="filtroValor" placeholder="Search...">
     </div>
-	<script>
-    function filtroRapido() {
-        var filtro = document.getElementById("filtroValor").value.toLowerCase();
-        var tablaLista = document.getElementById("tablaLista");
-        var filas = tablaCuentas.getElementsByTagName("tr");
-
-        for (var i = 1; i < filas.length; i++) {
-            var Dni = filas[i].getAttribute("data-nombre").toLowerCase();
-            if (Dni.includes(filtro)) {
-                filas[i].style.display = "";
-            } else {
-                filas[i].style.display = "none";
-            }
-        }
-    }
+		<script>
+	    document.getElementById('filtroValor').addEventListener('input', function() {
+	        let filtro = this.value.toUpperCase();
+	        let filas = document.querySelectorAll('table tr[data-nombre]');
+	
+	        filas.forEach(function(fila) {
+	            let contenido = fila.innerText.toUpperCase();
+	            fila.style.display = contenido.includes(filtro) ? '' : 'none';
+	        });
+	    });
 	</script>
 	
     </div>
@@ -119,7 +114,7 @@
             		}
             	
             	%>
-            
+            <form action="ServletAdmin" method="get">
                 <table class="table table-striped" id="tablaLista">
                       <tr class="table-primary">
                         
@@ -148,24 +143,24 @@
  	                    {
  							
                     %>
-                    <form action="ServletAdmin" method="get">
-                    	<tr data-nombre="<%=Per.getDNI_P() %>"> 
-	                    	<td> <%=Per.getIdPersona_P() %> <input type="hidden" name="idPersona" value="<%=Per.getIdPersona_P() %>"> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P().getNombre_Loc() %></td> <td><%=Per.getCodProvincia_P().getNombre_Prov() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> 
+                    
+                    	<tr data-nombre="<%=Per.getDNI_P() %>" > 
+	                    	<td> <%=Per.getIdPersona_P() %><input type="hidden" name="idPersona" value="<%=Per.getIdPersona_P() %>"/> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P().getNombre_Loc() %></td> <td><%=Per.getCodProvincia_P().getNombre_Prov() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> 
 	                    	<%
-	                    	String ruta = "";
-	                    	switch(Per.getSolicitud_P())
-	                    	{
-	                    	case 0:
-	                    		ruta = "css/imagenes/amarillo.png";
-	                    		break;
-	                    			
-	                    	case 1:
-	                    		ruta = "css/imagenes/verde.png";
-	                    		break;
-	                    	case -1:
-	                    		ruta = "css/imagenes/rojo.png";
-	                    		break;
-	                    	}
+		                    	String ruta = "";
+		                    	switch(Per.getSolicitud_P())
+		                    	{
+		                    	case 0:
+		                    		ruta = "css/imagenes/amarillo.png";
+		                    		break;
+		                    			
+		                    	case 1:
+		                    		ruta = "css/imagenes/verde.png";
+		                    		break;
+		                    	case -1:
+		                    		ruta = "css/imagenes/rojo.png";
+		                    		break;
+		                    	}
 	                    	%>
 	                    	<td>
 	                    		<img alt="Icono" src="<%=ruta %>">
@@ -264,6 +259,15 @@
 	                    	</td>
 							
                     	</tr>
+                    
+
+                    <%	
+                    	}
+                    %>
+   
+            	
+                  </table>
+                  </form>
                 <%
 			if(request.getAttribute("msgSol") !=null){
 				%>
@@ -296,14 +300,7 @@
 					</script>
             <%}%>
             
-                    </form>
-
-                    <%	
-                    	}
-                    %>
-   
-            	
-                  </table>
+                   
             </div>
         </div>
     </div>
