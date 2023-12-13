@@ -128,6 +128,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 				prestamos.setImportePagar_P(rs.getFloat(3));
 				prestamos.setImportePedido_P(rs.getFloat(4));
 				prestamos.getIdCuota_P().setCantidadCuota_C(rs.getString(5));
+				prestamos.setNumCliente_P(rs.getInt(6));
 				prestamos.setEstado(rs.getBoolean(6));
 						
 				lista.add(prestamos);
