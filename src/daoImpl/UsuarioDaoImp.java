@@ -96,7 +96,7 @@ public class UsuarioDaoImp implements IUsuario{
 		String query = "SELECT p.* FROM bd_tpint_grupo_6_lab4.personas p" +
 					   " join bd_tpint_grupo_6_lab4.usuario u on u.IdPersona_U = p.IdPersona_P" +
 				       " join bd_tpint_grupo_6_lab4.cuenta c on c.IdUsuario_Cta = u.IdUsuario_U" + 
-					   " WHERE c.CBU_Cta =" +"'"+cbu+"'";
+					   " WHERE c.CBU_Cta =" +"'"+cbu+"' and c.Estado_Cta = 1";
 		
 		Personas persona = new Personas();
 		try {

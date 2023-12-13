@@ -233,6 +233,21 @@
 	        				});		
 					</script>
             <%}%>
+            
+                                    <%
+			if(request.getAttribute("msgErrorCuenta") !=null){
+				%>
+					<script type="text/javascript">
+						var mensaje = "<%=request.getAttribute("msgErrorCuenta")%>"; 
+							Swal.fire({
+								  title: "Error",
+								  text: mensaje,
+								  icon: "error",
+								  confirmButtonColor: "#DE3419",
+								  allowOutsideClick: false,
+	        				});		
+					</script>
+            <%}%>
             </form>
         </div>
 	</div>

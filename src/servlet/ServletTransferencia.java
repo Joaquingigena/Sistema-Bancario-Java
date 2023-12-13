@@ -105,6 +105,16 @@ public class ServletTransferencia extends HttpServlet {
 			case "Verificar datos" :
 				String cbuDestino = request.getParameter("CBUDestino");
 				listPersonas = usuarioNegocioImpl.getUsuarioPorCBU(cbuDestino);
+				String msgString = "";
+				
+				if(listPersonas.getApellido_P() == null)
+				{
+					msgString = " Esta Cuenta esta dada de baja, intente con otra!";
+					request.setAttribute("msgErrorCuenta", msgString);
+					request.setAttribute("cuentas", cuentas);
+					RequestDispatcher rd = request.getRequestDispatcher("/Transferencias.jsp?usuario" + nombre);
+					rd.forward(request, response);	
+				}
 				
 				request.setAttribute("listPersonas", listPersonas);
 				System.out.println("persona: "+ listPersonas.getApellido_P());
