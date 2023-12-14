@@ -305,11 +305,11 @@
 	                    	
 							
 							
-									<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Rech">Rechazar</button>
+									<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Rech<%=p.getNumPrestamo_P()%>">Rechazar</button>
 	                    			<!-- <input type="submit" name="btnRechazarSol" value="Rechazar"> --> 
 	                    			
 	                    			<!-- DIV MODAL -->
-							<div class="modal fade" id="Rech" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="Rech<%=p.getNumPrestamo_P()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered">
 							    <div class="modal-content">
 							      <div style="background-color:red" class="modal-header">
@@ -321,6 +321,21 @@
 							      		
 							      	</div>
 							        <div style="margin-left: 0%;display:flex;flex-direction:column; text-align:center;justify-content:center;">
+							        	Nº Préstamo
+							        	<input type="text" name="Pres" value="<%=p.getNumPrestamo_P()%>" disabled>
+							        	Cliente
+							        	<input type="text" name="Cli" value="<%=p.getNumCliente()%>" disabled>
+							        	Cuenta
+							        	<input type="text" name="Cue" value="<%=p.getNumCuenta_P().getNumCuenta_Cta()%>" disabled>
+							        	Importe
+							        	<input type="number" name="Imp" value="<%=p.getImportePedido_P()%>" disabled>
+							        	
+							        	<!-- SE UTILIZA PARA ENVIAR LOS DATOS AL SERVLET -->
+							        	<input type="hidden" name="txtPrestamo" value="<%=p.getNumPrestamo_P()%>">
+							        	<input type="hidden" name="txtCliente" value="<%=p.getNumCliente()%>">
+							        	<input type="hidden" name="txtCuenta1" value="<%=p.getNumCuenta_P().getNumCuenta_Cta()%>">
+							        	<input type="hidden" name="txtImporte" value="<%=p.getImportePedido_P() %>">
+							    
 							        	<h3>¿Está seguro que desea rechazar esta solicitud?</h3> 
 							        	
 							        </div>

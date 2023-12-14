@@ -19,7 +19,7 @@ public class PrestamosDaoImpl implements IPrestamos{
 	public List<Prestamos> listarPrestamos() {
 		List<Prestamos> lista = new ArrayList<Prestamos>();
 		conexion = new conexion();
-		String query = "SELECT P.NumPrestamo_P, IDusuario_P ,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, Cu.CantidadCuota_C, P.Estado, P.Autorizado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta INNER JOIN Cuotas Cu on IdCuota_P = IdCuota_C";
+		String query = "SELECT P.NumPrestamo_P, IDusuario_P ,P.NumCuenta_P, P.ImportePagar_P, P.ImportePedido_P, Cu.CantidadCuota_C, P.Estado, P.Autorizado FROM prestamos as P INNER JOIN cuenta C on P.NumCuenta_P = C.NumCuenta_Cta INNER JOIN Cuotas Cu on IdCuota_P = IdCuota_C order by P.numPrestamo_P ASC";
 		
 		try {
 			conexion.Open();
