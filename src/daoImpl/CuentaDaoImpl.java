@@ -406,8 +406,8 @@ public class CuentaDaoImpl implements ICuenta {
 					cuenta.getIdUsuario_Cta().getIdPersona_U().setApellido_P(rs.getString(4));
 					
 					cuenta.setFechaCreacion_Cta(rs.getDate(5));
-					cuenta.setCBU_Cta(rs.getInt(6));
-					cuenta.setSaldo_Cta(rs.getFloat(7));
+					cuenta.setCBU_Cta(rs.getInt(7));
+					cuenta.setSaldo_Cta(rs.getFloat(8));
 				
 					lista.add(cuenta);
 				}
