@@ -114,8 +114,8 @@
             		}
             	
             	%>
-            <form action="ServletAdmin" method="get">
                 <table class="table table-striped" id="tablaLista">
+                	<thead>
                       <tr class="table-primary">
                         
                         <th scope="col">ID</th>
@@ -135,91 +135,105 @@
                         <th scope="col"></th>
                       </tr>
 
-  						
+  					</thead>	
+                    <tbody>
  					<%
- 						if(ListaPer!=null)
- 						//for(int i=0;i<5;i++)
- 						for(Personas Per : ListaPer)
- 	                    {
+ 						if(ListaPer!=null){
  							
-                    %>
-                    
-                    	<tr data-nombre="<%=Per.getDNI_P() %>" > 
-	                    	<td> <%=Per.getIdPersona_P() %> </td> <td><%=Per.getDNI_P() %></td> <td><%=Per.getCodLocalidad_P().getNombre_Loc() %></td> <td><%=Per.getCodProvincia_P().getNombre_Prov() %></td> <td><%=Per.getCUIL_P() %> </td> <td><%=Per.getNombre_P() %></td> <td><%=Per.getApellido_P() %></td> <td><%=Per.getSexo_P()%></td> <td><%=Per.getNacionalidad_P() %></td> <td><%=Per.getFechaNac_P() %></td> <td><%=Per.getDireccion_P() %></td> <td><%=Per.getCorreo_P()%></td> <td><%=Per.getTelefono_P() %></td> 
-	                    	<%
-		                    	String ruta = "";
-		                    	switch(Per.getSolicitud_P())
-		                    	{
-		                    	case 0:
-		                    		ruta = "css/imagenes/amarillo.png";
-		                    		break;
-		                    			
-		                    	case 1:
-		                    		ruta = "css/imagenes/verde.png";
-		                    		break;
-		                    	case -1:
-		                    		ruta = "css/imagenes/rojo.png";
-		                    		break;
-		                    	}
-	                    	%>
-	                    	<td>
-	                    		<img alt="Icono" src="<%=ruta %>">
-	                    	</td>
-	                    	
-	                    	<td style="width:300px;">
-	                    		<%if(Per.getSolicitud_P()==0){ String DNI = Per.getDNI_P();%>
-	                    			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%=DNI%>">Aceptar</button>
-	                    			<!-- <input type="submit" name="btnAceptarSol" value="Aceptar"> -->
-	                    			
-	                    			<!-- DIV MODAL -->
-							<div class="modal fade" id="Modal<%=DNI%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog modal-dialog-centered">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta Usuario</h1>
-							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							      </div>
-							      <div class="modal-body" Style="display:flex;">
-							      	<div>
-							      		<input type="hidden" name="idPersona" value="<%=Per.getIdPersona_P() %>"/>
-							      		<div>Nombre: <%=Per.getNombre_P() %></div>
-								        <div>Apellido: <%=Per.getApellido_P() %></div>
-								        <div>DNI: <%=Per.getDNI_P() %></div>
-								        <div>Dirección: <%=Per.getDireccion_P() %></div>
-								        <div>Localidad: <%=Per.getCodLocalidad_P() %></div>
-								        <div>Provincia: <%=Per.getCodProvincia_P() %></div>
-								        <div>Mail: <%=Per.getCorreo_P() %></div>
-								        <div>Sexo: <%=Per.getSexo_P() %></div>
-								        <div>Nacionalidad: <%=Per.getNacionalidad_P() %></div>
-								        <div>Teléfono: <%=Per.getTelefono_P() %></div>
-							      	</div>
-							        <div style="margin-left: 10%;display:flex;flex-direction:column;">
-							        	Usuario
-							        	<input type="text" name="txtUsuario">
-							        	Contraseña
-							        	<input type="password" name="txtPass">
-							        	Repetir Contraseña
-							        	<input type="password" name="txtRepetirPass">
-							        </div>
-							        
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-							        <button name="btnAceptarSol" type="submit" class="btn btn-primary">Guardar</button>
-							      </div>
-							    </div>
-							  </div>
-							</div>
+	 						for(Personas Per : ListaPer)
+	 	                    {
+ 						
+	 				%>
+			            <tr data-nombre> 
+		                    	<td> <%=Per.getIdPersona_P() %> </td> 
+		                    	<td><%=Per.getDNI_P() %></td> 
+		                    	<td><%=Per.getCodLocalidad_P().getNombre_Loc() %></td> 
+		                    	<td><%=Per.getCodProvincia_P().getNombre_Prov() %></td> 
+		                    	<td><%=Per.getCUIL_P() %> </td> 
+		                    	<td><%=Per.getNombre_P() %></td> 
+		                    	<td><%=Per.getApellido_P() %></td> 
+		                    	<td><%=Per.getSexo_P()%></td> 
+		                    	<td><%=Per.getNacionalidad_P() %></td> 
+		                    	<td><%=Per.getFechaNac_P() %></td> 
+		                    	<td><%=Per.getDireccion_P() %></td> 
+		                    	<td><%=Per.getCorreo_P()%></td> 
+		                    	<td><%=Per.getTelefono_P() %></td> 
+		                    	<%
+			                    	String ruta = "";
+			                    	switch(Per.getSolicitud_P())
+			                    	{
+			                    	case 0:
+			                    		ruta = "css/imagenes/amarillo.png";
+			                    		break;
+			                    			
+			                    	case 1:
+			                    		ruta = "css/imagenes/verde.png";
+			                    		break;
+			                    	case -1:
+			                    		ruta = "css/imagenes/rojo.png";
+			                    		break;
+			                    	}
+		                    	%>
+		                    	<td>
+		                    		<img alt="Icono" src="<%=ruta %>">
+		                    	</td>
+		                    	
+		                    	<td style="width:300px;">
+		                    		<%if(Per.getSolicitud_P()==0){ String DNI = Per.getDNI_P();%>
+		                    			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%=DNI%>">Aceptar</button>
+										<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Rech<%=DNI%>">Rechazar</button>	
+										 		                    										
+			                    </td>
+									
+	                    	</tr>  
+	                    				<!-- DIV MODAL -->	
+	                    	<form action="ServletAdmin" method="get"> 		
+								<div class="modal fade" id="Modal<%=DNI%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							
+								  <div class="modal-dialog modal-dialog-centered">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta Usuario</h1>
+								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								      </div>
+								      <div class="modal-body" Style="display:flex;">
+								      	<div>
+								      		ID: <input readonly name="idPersona" value="<%=Per.getIdPersona_P() %>" />
+								      		<div>Nombre: <%=Per.getNombre_P() %></div>
+									        <div>Apellido: <%=Per.getApellido_P() %></div>
+									        <div>DNI: <%=Per.getDNI_P() %></div>
+									        <div>Dirección: <%=Per.getDireccion_P() %></div>
+									        <div>Localidad: <%=Per.getCodLocalidad_P() %></div>
+									        <div>Provincia: <%=Per.getCodProvincia_P() %></div>
+									        <div>Mail: <%=Per.getCorreo_P() %></div>
+									        <div>Sexo: <%=Per.getSexo_P() %></div>
+									        <div>Nacionalidad: <%=Per.getNacionalidad_P() %></div>
+									        <div>Teléfono: <%=Per.getTelefono_P() %></div>
+								      	</div>
+								        <div style="margin-left: 10%;display:flex;flex-direction:column;">
+								        	Usuario
+								        	<input type="text" name="txtUsuario">
+								        	Contraseña
+								        	<input type="password" name="txtPass" minlength="6">
+								        	Repetir Contraseña
+								        	<input type="password" name="txtRepetirPass" minlength="6">
+								        </div>
+								        
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+								        <button name="btnAceptarSol" type="submit" class="btn btn-primary" value="Guardar">Guardar</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+	                    	</form>		
 							<!-- ---------------------------------------------------------------------------------------------- -->
-	                    			
-	                    	
-							
-							
-									<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Rech<%=DNI%>">Rechazar</button>
-	                    			<!-- <input type="submit" name="btnRechazarSol" value="Rechazar"> --> 
-	                    			
-	                    			<!-- DIV MODAL -->
+	                    	                    			
+	                    			<!-- DIV MODAL -->	
+	                    <form action="ServletAdmin" method="get">
 							<div class="modal fade" id="Rech<%=DNI%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							
 							  <div class="modal-dialog modal-dialog-centered">
 							    <div class="modal-content">
 							      <div style="background-color:red" class="modal-header">
@@ -253,23 +267,17 @@
 							    </div>
 							  </div>
 							</div>
-							<!-- ---------------------------------------------------------------------------------------------- -->
-	                    			
-	                    		<%} %>
-	                    		
-							
-	                    	</td>
-							
-                    	</tr>
-                    
-
-                    <%	
-                    	}
-                    %>
-   
-            	
-                  </table>
-                  </form>
+							<!-- ---------------------------------------------------------------------------------------------- -->	
+	                    </form>		
+	                      <%  }
+	                	}
+ 					}
+	                %>  
+	                    	</tbody>  
+	                     </table>
+	                            			
+	                    
+                                   
                 <%
 			if(request.getAttribute("msgSol") !=null){
 				%>
@@ -286,8 +294,8 @@
 					</script>
             <%}%>
             
-                         <%
-			if(request.getAttribute("msgRec") !=null){
+               <%
+				if(request.getAttribute("msgRec") !=null){
 				%>
 					<script type="text/javascript">
 					var mensaje = "<%=request.getAttribute("msgRec")%>"; 
