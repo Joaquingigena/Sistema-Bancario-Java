@@ -76,21 +76,6 @@ public class ServletPrestamo extends HttpServlet {
 		dispatcher.forward(request, response);
 		break;
 			}
-	if (request.getParameter("btnSolicitarPrestamo") != null) {
-		
-	PrestamosNegocioImpl PresNeg = new PrestamosNegocioImpl();
-	
-	int estado = 1;
-	String monto = request.getParameter("monto").toString();
-	int Cuotas = Integer.parseInt(request.getParameter("cuota").trim());
-	int Cuenta = Integer.parseInt(request.getParameter("destino").trim());
-	
-	//alta de prestamos
-	preNeg.agregarPrestamo(monto, Cuotas, Cuenta);
-	
-	
-	}
-	
 	
 		}
 	}
@@ -137,13 +122,7 @@ public class ServletPrestamo extends HttpServlet {
 			System.out.println("NUMERO DE USUARIO: " + idUsuario);
 			System.out.println("IMPORTE: " + importe);
 			//--------------------------------------------------------------------
-			
-			/*if(preNeg.altaPrestamo(numPrestamo)){
-				request.setAttribute("isCreated", true);
-			}else {
-				request.setAttribute("isCreated", false);
-			}*/
-			
+
 			if(preNeg.aceptarPrestamo(numPrestamo,numCuenta, idUsuario, importe));
 			{
 				msgAprobado = "Prestamo Aprobado correctamente";
@@ -232,12 +211,6 @@ public class ServletPrestamo extends HttpServlet {
 				
 		}
 		
-		
-		List<Cuenta> cuentas = new ArrayList<Cuenta>();
-		cuentas = cuentaNegocioImpl.listarCuentasPorUsuario(nombre);
-		request.setAttribute("cuentas", cuentas);
-		dispatcher = request.getRequestDispatcher("/Prestamos.jsp?usuario" + nombre);
-		dispatcher.forward(request, response);
 	}
 	
 	}

@@ -238,7 +238,7 @@
 		                        <td><%=p.getImportePagar_P() %></td>
 		                        <td><%=p.getImportePedido_P() %> </td>
 		                        <td><%=p.getIdCuota_P().getCantidadCuota_C() %> </td>
-		                        <td><% if(p.getEstado()== true){
+		                        <td><% if(p.getEstado()== true && p.getAutorizado()== true){
 		                        	%>
 		                        	
 		                        	<i class="bi bi-check-circle aceptado"></i>
